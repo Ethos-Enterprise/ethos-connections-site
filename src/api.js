@@ -1,3 +1,4 @@
+
 //importando a biblioteca que faz requisições http (precisa de menos coisa do que comparado ao fetch)
 import axios from "axios";
 
@@ -9,5 +10,3 @@ const api = axios.create({
 
 //exportamos para poder acessar em todas as paginas do projeto
 export default api;
-
-    
