@@ -1,0 +1,24 @@
+.nossa-solucao {
+    background-image: url(../../../../assets/background-fazemos.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titulo{
+    font-size: 30px;
+    font-weight: var(--letra-medium);
+    color: var(--cor-letras);
+}
+
+.titulo span{
+    color: var(--cor-primaria);
+}
+
+.linha-beneficios{
+    display: flex;
+    flex-direction: row;
+}
