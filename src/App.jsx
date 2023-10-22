@@ -9,16 +9,19 @@ import './index.css'
 import Home from './pages/Home/Home.jsx';
 import Cadastro from './pages/Cadastro/Cadastro.jsx';
 import Login from './pages/Login/Login.jsx';
+import PaginaInicial from "./pages/PaginaInicial/PaginaInicial";
 
 function App() {
   return (
     //rotas
     <Router>
       <Routes>
-        //colocar aqui todos os caminhos
         <Route path="/" element={<Home />} />
         <Route path="/cadastrar" element={<Cadastro />} />
         <Route path="/entrar" element={<Login />} />
+        <Route path="/cadastrar" element={<Cadastro />} />
+        <Route path="/pagina-inicial" element={<PaginaInicial />} />
+
       </Routes>
 
     </Router>

@@ -9,6 +9,7 @@
     flex-direction: column;
 }
 .titulo{
+    margin-bottom: 50px;
     font-size: 30px;
     font-weight: var(--letra-medium);
     color: var(--cor-letras);
@@ -21,4 +22,11 @@
 .linha-beneficios{
     display: flex;
     flex-direction: row;
+}
+
+
+@media (max-width: 768px) {
+   .linha-beneficios{
+    flex-direction: column;
+   }
 }

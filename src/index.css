@@ -19,9 +19,25 @@
       --letra-black: 900;
   }
 
+  /* Estilizando a barra de rolagem */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Estilizando o polegar da barra de rolagem (a parte que você move) */
+::-webkit-scrollbar-thumb {
+    background: var(--cor-secundaria);
+}
+
+/* Estilizando a pista da barra de rolagem (o fundo) */
+::-webkit-scrollbar-track {
+    background: var(--cinza);
+}
+
   html,
   body {
-      font-family: 'Inter', sans-serif;
       font-family: 'Poppins', sans-serif;
+      margin: 0px;
+      padding: 0px;
       background-color: var(--preto-comum);
   }

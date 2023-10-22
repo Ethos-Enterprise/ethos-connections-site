@@ -1,25 +1,31 @@
 import React from 'react'
-import './header.css'
+import './Header.css'
+
+import Logo from '../../assets/logoBranco.png'
+import ButtonOutlined from '../ButtonOutlined/ButtonOutlined'
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   return (
     <>
-      <nav>
 
-          <img src="" alt="LOGO" />
-          
-        <ul>
+      <header>
 
-          <li>Home</li>
-          <li>Sobre ESG</li>
-          <li>Nossos Serviços</li>
-          <li>Planos</li>
-          <li>Contatos</li>
+          <img src={Logo} alt="LOGO" />
 
-        </ul>
-          <button>Entrar</button>
-      </nav>
+          <ul>
+            <li>Home</li>
+            <li>Sobre ESG</li>
+            <li>Nossos Serviços</li>
+            <li>Planos</li>
+            <li>Contatos</li>
+          </ul>
 
+          <Link to={"/entrar"}>
+          <ButtonOutlined/>
+          </Link>
+
+      </header>
     </>
   )
 }

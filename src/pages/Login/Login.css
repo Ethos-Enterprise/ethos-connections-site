@@ -1,0 +1,168 @@
+.fundo {
+    background-image: url(../../assets/imagens/background-login.png);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formulario {
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario .imagem {
+    text-align: center;
+}
+
+.formulario .imagem img {
+    width: 70px;
+}
+
+h2 {
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1.2rem;
+}
+
+/* ---------------------------- */
+
+.input {
+    position: relative;
+    margin-top: 32px;
+}
+
+.input input {
+    background-color: var(--cinza);
+    font-size: 0.9rem;
+    padding: 20px 15px 1px;
+    font-weight: var(--letra-light);
+    color: var(--cor-letras);
+    border-radius: 5px 5px 0px 0px;
+    height: 30px;
+    border: none;
+    transition: border-bottom 0.3s;
+    border-bottom: 1px solid #9B9B9B;
+    outline: none;
+    caret-color: cadetblue;
+    min-width: 25vw;
+}
+
+.input input:focus {
+    border-bottom: 1px solid var(--cor-primaria);
+}
+
+label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    pointer-events: none;
+}
+
+
+label span {
+    display: inline-block;
+    color: var(--cor-letras);
+    font-size: 0.875rem;
+    font-weight: var(--letra-light);
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+input:focus+label span {
+    font-size: 0.80rem;
+    color: var(--cor-primaria);
+    transform: translateY(-12px);
+}
+
+/* Quando o campo de entrada contém pelo menos um caractere */
+.input label.caractere-digitado-label span {
+    font-size: 0.80rem;
+    transform: translateY(-12px);
+    color: var(--cor-primaria);
+}
+
+/* ---------------------------- */
+.link-pagina {
+    text-align: right;
+    color: var(--cor-primaria);
+    font-weight: var(--letra-light);
+    font-size: 0.875rem;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+.botao {
+    text-align: center;
+}
+
+/* PARTE DO OU */
+.tracinhos {
+    display: flex;
+    align-items: center;
+    margin: 16px 0px 8px 0px;
+}
+
+.tracinho {
+    flex: 1;
+    height: 1px;
+    background-color: #4D4D4D;
+}
+
+.tracinhos span {
+    margin: 0 20px;
+}
+
+
+.formulario p {
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 0.875rem;
+}
+
+.imagem-lateral {
+    margin-right: 10vw;
+}
+
+
+@media screen and (max-width: 1285px) {
+    .formulario {
+        justify-content: center;
+        margin: 0px;
+    }
+
+    .imagem-lateral{
+        margin: 0px;
+        margin-left: 10vw;
+    }
+
+    input {
+        width: auto;
+    }
+
+
+    .fundo {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    input {
+        width: 40vw;
+    }
+
+    .imagem-lateral {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    input {
+        width: 70vw;
+    }
+}

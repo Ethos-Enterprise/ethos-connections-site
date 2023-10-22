@@ -1,12 +1,16 @@
 import React from 'react'
-import './beneficio.css';
+import './Beneficio.css';
 
-export const Beneficio = (promps) => {
+export const Beneficio = (props) => {
   return (
     <div className='container'>
-        <div className='titulo-beneficio'><img src="" alt="icone" /> <h3>NomeBeneficio</h3></div>
-        <p>   Conectamos empresas com os mesmos objetivos, em prol das práticas ESG
-          , proporcionando conexões relevantes que têm o poder de transformar o mundo.</p>
+      
+      <div className='titulo-beneficio'>
+        <img className='icone-beneficio' src={props.img} alt="icone" />
+        <h3>{props.beneficio}</h3>
+      </div>
+
+      <p>{props.descricao}</p>
     </div>
   )
 }
