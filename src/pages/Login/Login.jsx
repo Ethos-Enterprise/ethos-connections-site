@@ -1,7 +1,7 @@
 import React from 'react'
 import './Login.css'
 
-import api from "../../App"
+import api from "../../service/api";
 
 import IconeLogo from '../../assets/iconeLogo- branco.png';
 import FotoLogin from '../../assets/foto-login.png';
@@ -12,6 +12,9 @@ import { Link } from 'react-router-dom'
 
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
+
 function verificar(event) {
   const input = event.target;
   const label = input.parentElement.querySelector("label");
@@ -20,41 +23,46 @@ function verificar(event) {
     label.classList.add("caractere-digitado-label");
   } else {
     label.classList.remove("caractere-digitado-label");
-  } 
+  }
 }
 
 const Login = () => {
-  
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(email, senha)
+
     api.post('/login', {
-      email: username,
-      senha: password
+      email: email,
+      password: senha
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
+
       .then(response => {
+        console.log(response);
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem('authToken', response.data.token);
-          sessionStorage.setItem('usuario', response.data.nome);
+          sessionStorage.setItem('email', response.data.email);
 
           console.log('Login realizado com sucesso!');
-          // navigate('/welcome');
+          navigate('/pagina-inicial');
         } else {
           throw new Error('Ops! Ocorreu um erro interno.');
         }
       })
       .catch(error => {
-         console.log(error.message);
+        console.log(error.message);
       });
   };
-  
+
   return (
     <div className='fundo'>
 
@@ -66,18 +74,31 @@ const Login = () => {
         <h2>Faça login na Ethos</h2>
 
         <div className="input">
-          <input type="text"  id='email' onInput={verificar} />
+          <input
+            type="text"
+            id='email'
+            onInput={verificar}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label htmlFor="seuInput"><span>Email</span></label>
         </div>
 
         <div className="input">
-          <input type="password" id='senha' onInput={verificar}  />
+          <input
+            type="password"
+            id='senha'
+            onInput={verificar}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+
+          />
           <label htmlFor="seuInput"><span>Senha</span></label>
         </div>
 
         <Link to="" className='link-pagina'>Esqueceu a senha?</Link>
 
-          <ButtonFilled acao={"Entrar"} type="submit" />
+        <ButtonFilled acao={"Entrar"} type="submit" />
 
         <div className='tracinhos'>
           <div className='tracinho' />

@@ -1,0 +1,87 @@
+header{
+    padding: 15px 15px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 0px 3px var(--cor-secundaria); /* Propriedade de sombra (ajuste conforme necessário) */
+}
+
+.logo {
+    width: 200px;
+}
+
+ul .link-header{
+    text-decoration: none;
+    margin: 0px 25px;
+    color: var(--cor-letras);
+    font-weight: var(--letra-light);
+    font-size: 1.100rem;
+    min-width: 130px;
+}
+
+.caixa-dropdown{
+    display: flex;
+    flex-direction: row;
+}
+
+.dropDown{
+    display: flex;
+    justify-content: center;
+    padding: 1px 10px;
+}
+.dropDown img{
+    width: 20px;
+}
+
+.dropDown span{
+    margin-left: 10px;
+    font-weight: var(--letra-light);
+    font-size: 0.90rem;
+}
+
+
+/* Estilo base para a lista suspensa */
+.dropDown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo da lista suspensa quando o dropdown está aberto */
+.dropDown:hover .notificacoes-lista {
+    display: block;
+}
+
+.dropDown:hover .usuario-lista {
+    display: block;
+}
+
+.dropDown ul {
+    display: none;
+    position: absolute;
+    background-color: var(--cinza);
+    border-radius: 5px;
+    border: 0.05px solid #A3A3A3;
+    list-style: none;
+    padding: 0px;
+    margin: 2px 0px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropDown ul li {
+    margin: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 5px;
+    width: 8vw;
+    font-weight: var(--letra-ligh);
+    font-size: 0.8rem;
+}
+
+/* Estilo dos itens da lista suspensa ao passar o mouse */
+.dropDown ul li:hover {
+    background-color: #121212;
+    color: var(--cor-primaria);
+}
+
+
