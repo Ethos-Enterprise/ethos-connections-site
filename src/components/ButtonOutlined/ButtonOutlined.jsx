@@ -4,7 +4,7 @@ import './ButtonOutlined.css'
 const ButtonBorda = () => {
   return (
     <>
-    <button>Entrar</button>
+    <button className='botao-borda'>Entrar</button>
     </>
   )
 }

@@ -7,12 +7,10 @@ import { useNavigate } from 'react-router-dom';
 export const PaginaInicial = () => {
 
   const navigate = useNavigate();
-  const username = sessionStorage?.getItem('email');
 
 
   const handleLogout = () => {
     sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('email');
     navigate('/entrar');
 };
 

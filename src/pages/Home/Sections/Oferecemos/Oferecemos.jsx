@@ -12,10 +12,10 @@ import Beneficio from './Beneficio/Beneficio.jsx';
 
 const Oferecemos = () => {
   return (
-    <div className='nossa-solucao'>
+    <section id='nossa-solucao'>
       <h2 className='titulo'>O <span>que</span> oferecemos<span>?</span></h2>
 
-      <div>
+      <div className='caixa-beneficios'>
         <div className='linha-beneficios'>
           <Beneficio img={Conexao} beneficio={"Conexão"} descricao={"Conectamos empresas com os mesmos objetivos, em prol das práticas ESG, proporcionando conexões relevantes que têm o poder de transformar o mundo."}/>
           <Beneficio img={Confianca} beneficio={"Confiança"} descricao={"Garantimos que as empresas que oferecem serviços através da Ethos são referências no mercado e são certificadas pelas suas soluções nos pilares ESG."}/>
@@ -29,7 +29,7 @@ const Oferecemos = () => {
         </div>
 
       </div>
-    </div>
+    </section>
   )
 }
 

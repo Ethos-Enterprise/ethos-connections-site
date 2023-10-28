@@ -1,6 +1,19 @@
-button{
-    width: 2vw;
+.botao-borda{
+    width: 100px;
     border-radius: 5px;
-    border-color: 2px solid var(--cor-primaria);
     background-color: transparent;
+    border: 2px solid;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+}
+
+.botao-borda:hover{
+    background-color: var(--cor-primaria);
+    color: var(--cor-letras);
 }

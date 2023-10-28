@@ -50,7 +50,6 @@ const Login = () => {
         console.log(response);
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem('authToken', response.data.token);
-          sessionStorage.setItem('email', response.data.email);
 
           console.log('Login realizado com sucesso!');
           navigate('/pagina-inicial');

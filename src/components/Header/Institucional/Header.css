@@ -2,19 +2,51 @@ body{
     color: var(--cor-letras)
 }
 
-header {
+.header-institucional {
     display: flex;
-    padding: 2vw;
+    padding: 1vw;
     justify-content: center;
     align-items: center;
+    justify-content: space-around;
+    background-color: var(--preto-comum);
+    position: sticky;
+    z-index: 1;
 }
 
-header ul {
+.header-institucional ul {
     display: flex;
     flex-direction: row;
-}
-header ul li {
-    list-style: none;
-    margin: 1vw;
+    padding: 2px;
 }
 
+.header-institucional ul a{
+    text-decoration: none;
+    color: var(--cor-letras);
+}
+
+.header-institucional ul a:hover{
+    color: var(--cor-primaria);
+}
+
+.header-institucional ul a li {
+    list-style: none;
+    margin: 1vw;
+    font-size: 1.20rem;
+    font-weight: var(--letra-light);
+
+}
+
+.logo-institucional{
+    width: 230px;
+}
+
+@media (max-width: 1070px) {
+    .header-institucional{
+        justify-content: space-between;
+        padding: 1vw 3vw;
+    }
+
+    .navbar-opcoes{
+        display: none;
+    }
+ }

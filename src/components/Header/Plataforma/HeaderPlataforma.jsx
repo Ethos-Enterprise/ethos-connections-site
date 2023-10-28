@@ -20,7 +20,7 @@ const HeaderPlataforma = (props) => {
 
     return (
         <>
-            <header>
+            <header className='header-plataforma'>
                 <img src={Logo} alt="LOGO" className='logo' />
 
                 <ul>

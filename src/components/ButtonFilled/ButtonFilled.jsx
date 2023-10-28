@@ -5,7 +5,7 @@ import './ButtonFilled.css'
 const ButtonFilled = (props) => {
   return (
     <>
-        <button>{props.acao}</button>
+        <button className='botao-preenchido'>{props.acao}</button>
     </>
   )
 }
