@@ -15,7 +15,7 @@ import IconeLogo from '../../assets/iconeLogo- branco.png';
 import api from "../../service/api";
 
 //components só do cadastro
-import Progresso from './Etapas/Progresso/progresso';
+import Progresso from './Etapas/Progresso/Progresso';
 import DadosGerais from './Etapas/DadosGerais/DadosGerais';
 import EnderecoEContato from './Etapas/EnderecoEContato/EnderecoEContato';
 import Senha from './Etapas/Senha/Senha';
