@@ -13,7 +13,7 @@ import Beneficio from './Beneficio/Beneficio.jsx';
 const Oferecemos = () => {
   return (
     <section id='nossa-solucao'>
-      <h2 className='titulo'>O <span>que</span> oferecemos<span>?</span></h2>
+      <h2 className='titulo-oferecemos'>O <span>que</span> oferecemos<span>?</span></h2>
 
       <div className='caixa-beneficios'>
         <div className='linha-beneficios'>

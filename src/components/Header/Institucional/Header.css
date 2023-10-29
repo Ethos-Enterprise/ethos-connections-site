@@ -2,14 +2,20 @@ body{
     color: var(--cor-letras)
 }
 
-.header-institucional {
+.header-institucional{
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 4px 9px 0px rgba(34, 34, 34, 0.25);
+}
+.header-institucional-principal {
+   
     display: flex;
-    padding: 1vw;
+    flex-direction: row;
+    padding: 0.5vw 4vw;
     justify-content: center;
     align-items: center;
     justify-content: space-around;
     background-color: var(--preto-comum);
-    position: sticky;
     z-index: 1;
 }
 
@@ -17,6 +23,7 @@ body{
     display: flex;
     flex-direction: row;
     padding: 2px;
+    margin: 0px;
 }
 
 .header-institucional ul a{
@@ -26,27 +33,85 @@ body{
 
 .header-institucional ul a:hover{
     color: var(--cor-primaria);
+    font-weight: var(--letra-light);
 }
 
 .header-institucional ul a li {
     list-style: none;
-    margin: 1vw;
-    font-size: 1.20rem;
-    font-weight: var(--letra-light);
+    margin: 20px 23px;
+    font-size: 1.1rem;
+    font-weight: var(--letra-extra-light);
+}
 
+.botao-borda{
+    width: 110px;
 }
 
 .logo-institucional{
-    width: 230px;
+    width: 205px;
+}
+
+.navbar-botao-mobile{
+    display: none;
+}
+
+.navbar-opcoes-mobile{
+    display: none;
 }
 
 @media (max-width: 1070px) {
-    .header-institucional{
+    .header-institucional-principal{
         justify-content: space-between;
-        padding: 1vw 3vw;
+        padding: 15px 5vw;
     }
 
     .navbar-opcoes{
         display: none;
+    }
+
+    .botao-entrar-borda{
+        display: none;
+    }
+
+    .logo-institucional{
+        width: 180px;
+    }
+    .navbar-botao-mobile {
+        display: block;
+    }
+
+    .header-institucional ul {
+        flex-direction: column;
+        padding: 2px;
+        margin: 0px;
+    }
+
+    .open{
+        display: block;
+        background-color: var(--cinza);
+    }
+
+    .header-institucional ul a li {
+        list-style: none;
+        margin: 5px;
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .tracinho-mobile{
+        width: 100%;
+        border-bottom: 0.4px solid var(--preto-acizentado);
+    }
+
+    .entrar-mobile{
+        color: var(--cor-primaria);
+    }
+ }
+
+
+ @media (max-width: 520px) {
+    .logo-institucional{
+        width: 140px;
     }
  }

@@ -1,0 +1,177 @@
+.fundo-cadastro {
+    background-image: url(../../assets/imagens/background-login.png);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-cadastro {
+    margin-right: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-cadastro .imagem {
+    text-align: center;
+}
+
+.formulario-cadastro .imagem img {
+    width: 70px;
+}
+
+.formulario-cadastro h2 {
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1.2rem;
+}
+
+.formulario-cadastro .botoes-cadastro{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.formulario-cadastro .botoes-cadastro .botao-borda{  
+    width: 17vw;
+    margin: 0px;
+}
+
+.formulario-cadastro .botoes-cadastro .botao-preenchido{  
+    width: 17vw;
+    margin: 0px 0px 0px 16px;
+}
+
+.imagem-lateral-cadastro {
+    margin-left: 10vw;
+    text-align: center;
+}
+
+.imagem-lateral-cadastro p {
+    font-weight: var(--letra-light);
+    font-size: 0.875rem;
+}
+
+.botao-desativado {
+    color: var(--cinza); 
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid;
+    border-color: var(--cinza);
+    color: var(--cinza);
+    border-color: var(--cinza);
+    font-family: 'Poppins', sans-serif;
+    padding: 5px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    width: 17vw;
+  }
+
+/* ---------------------------- */
+
+.container-inputs .input input{
+    width: 32vw;
+}
+/* INPUT QUE TEM 2 EM UMA LINHA */
+
+.linha-inputs{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.input-cadastro-2 {
+    position: relative;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.input-cadastro-2 input {
+    background-color: var(--cinza);
+    font-size: 0.9rem;
+    padding: 20px 15px 1px;
+    font-weight: var(--letra-light);
+    color: var(--cor-letras);
+    border-radius: 5px 5px 0px 0px;
+    height: 30px;
+    border: none;
+    transition: border-bottom 0.3s;
+    border-bottom: 1px solid #9B9B9B;
+    outline: none;
+    caret-color: cadetblue;
+    min-width: 17vw;
+}
+
+
+.input-cadastro-2 input:focus {
+    border-bottom: 1px solid var(--cor-primaria);
+}
+
+.input-cadastro-2 label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    pointer-events: none;
+}
+
+
+.input-cadastro-2 label span {
+    display: inline-block;
+    color: var(--cor-letras);
+    font-size: 0.875rem;
+    font-weight: var(--letra-light);
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+.input-cadastro-2 input:focus+label span {
+    font-size: 0.80rem;
+    color: var(--cor-primaria);
+    transform: translateY(-12px);
+}
+
+.input-cadastro-2 label.caractere-digitado-label span {
+    font-size: 0.80rem;
+    transform: translateY(-12px);
+    color: var(--cor-primaria);
+}
+
+@media screen and (max-width: 1285px) {
+    .formulario-cadastro {
+        justify-content: center;
+        margin: 0px;
+    }
+    .imagem-lateral-cadastro{
+        margin: 0px;
+        margin-right: 10vw;
+    }
+
+    .fundo-cadastro {
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width: 1150px) {
+    .input input {
+        width: 40vw;
+    }
+
+    .imagem-lateral-cadastro {
+        display: none;
+    }
+}

@@ -97,7 +97,7 @@ const Login = () => {
 
         <Link to="" className='link-pagina'>Esqueceu a senha?</Link>
 
-        <ButtonFilled acao={"Entrar"} type="submit" />
+        <ButtonFilled acao={"Entrar"} type="submit"/>
 
         <div className='tracinhos'>
           <div className='tracinho' />
@@ -105,7 +105,7 @@ const Login = () => {
           <div className='tracinho' />
         </div>
 
-        <p>Ainda não é cadastrado? <Link to="" className='link-pagina'>Criar Conta</Link> </p>
+        <p>Ainda não é cadastrado? <Link to="/cadastrar" className='link-pagina'>Criar Conta</Link> </p>
       </form>
 
       <div className='imagem-lateral'>

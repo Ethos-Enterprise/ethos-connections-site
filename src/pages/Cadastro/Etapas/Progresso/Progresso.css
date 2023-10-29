@@ -1,0 +1,32 @@
+.etapa-progresso{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 24px;
+}
+
+.etapa{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.etapa p {
+    font-weight: var(--letra-extra-light);
+}
+
+.etapa .numero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor-primaria);
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    color: var(--preto-comum);
+    font-weight: var(--letra-extra-bold);
+    font-size: 1rem;
+}

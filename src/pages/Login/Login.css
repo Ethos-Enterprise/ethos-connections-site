@@ -23,7 +23,7 @@
     text-align: center;
 }
 
-h2 {
+.formulario h2 {
     text-align: center;
     letter-spacing: 4px;
     font-weight: var(--letra-semi-bold);
@@ -57,7 +57,7 @@ h2 {
     border-bottom: 1px solid var(--cor-primaria);
 }
 
-label {
+.input label {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -65,7 +65,7 @@ label {
 }
 
 
-label span {
+.input label span {
     display: inline-block;
     color: var(--cor-letras);
     font-size: 0.875rem;
@@ -74,7 +74,7 @@ label span {
 }
 
 
-input:focus+label span {
+.input input:focus+label span {
     font-size: 0.80rem;
     color: var(--cor-primaria);
     transform: translateY(-12px);
@@ -97,8 +97,10 @@ input:focus+label span {
     margin-bottom: 32px;
 }
 
-.botao {
-    text-align: center;
+.botao-preenchido {
+    display: block;
+    margin: 0 auto; /* Esto centra horizontalmente el botón dentro del contenedor */
+    width: 100%;
 }
 
 /* PARTE DO OU */
@@ -141,7 +143,7 @@ input:focus+label span {
         margin-left: 10vw;
     }
 
-    input {
+    .input input {
         width: auto;
     }
 
@@ -152,7 +154,7 @@ input:focus+label span {
 }
 
 @media screen and (max-width: 1150px) {
-    input {
+    .input input {
         width: 40vw;
     }
 
@@ -163,7 +165,17 @@ input:focus+label span {
 
 
 @media screen and (max-width: 800px) {
-    input {
+    .input input {
         width: 70vw;
     }
 }
+
+
+@media screen and (max-width: 520px) {
+    .formulario h2 {
+        letter-spacing: 2px;
+        font-size: 1.1rem;
+    }
+
+}
+

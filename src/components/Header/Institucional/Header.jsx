@@ -14,37 +14,94 @@ const Header = () => {
     }
   };
 
+  const mostrarMenu = () => {
+    let menuMobile = document.querySelector('.navbar-opcoes-mobile');
+
+    if (menuMobile.classList.contains('open')) {
+      menuMobile.classList.remove('open');
+    } else {
+      menuMobile.classList.add('open');
+    }
+  }
+
   return (
     <>
       <header className='header-institucional'>
+        <div className='header-institucional-principal'>
 
-        <img src={Logo} alt="LOGO" className='logo-institucional' />
+          <img src={Logo} alt="LOGO" className='logo-institucional' />
 
-        <div className='navbar-opcoes'>
+          <div className='navbar-opcoes'>
+            <nav>
+              <ul>
+                <a href="#home" onClick={() => scrollToSection("home")}>
+                  <li>Home</li>
+                </a>
+                <a href="#sobre-esg" onClick={() => scrollToSection("sobre-esg")}>
+                  <li>Sobre ESG</li>
+                </a>
+                <a href="#nossa-solucao" onClick={() => scrollToSection("nossa-solucao")}>
+                  <li>Nossa Solução</li>
+                </a>
+                <a href="#planos" onClick={() => scrollToSection("planos")}>
+                  <li>Planos</li>
+                </a>
+                <a href="#contato" onClick={() => scrollToSection("contato")}>
+                  <li>Contato</li>
+                </a>
+              </ul>
+            </nav>
+          </div>
+
+          <div className='botao-entrar-borda'>
+          <Link to={"/entrar"}>
+            <ButtonOutlined  acao={"Entrar"} id='institucional'/>
+          </Link>
+          </div>
+
+
+          <div className="navbar-botao-mobile">
+            <span onClick={() => mostrarMenu()}>
+              <i className="fa-solid fa-bars" style={{ color: "#01A2C3", fontSize: "30px" }}></i>
+            </span>
+          </div>
+        </div>
+
+        <div className="navbar-opcoes-mobile" >
           <nav>
             <ul>
               <a href="#home" onClick={() => scrollToSection("home")}>
                 <li>Home</li>
               </a>
+
+              <div className='tracinho-mobile'></div>
               <a href="#sobre-esg" onClick={() => scrollToSection("sobre-esg")}>
                 <li>Sobre ESG</li>
               </a>
-              <a href="#nossos-servicos" onClick={() => scrollToSection("nossos-servicos")}>
-                <li>Nossos Serviços</li>
+              <div className='tracinho-mobile'></div>
+
+              <a href="#nossa-solucao" onClick={() => scrollToSection("nossa-solucao")}>
+                <li>Nossa Solução</li>
               </a>
+              <div className='tracinho-mobile'></div>
+
               <a href="#planos" onClick={() => scrollToSection("planos")}>
                 <li>Planos</li>
               </a>
-              <a href="#contatos" onClick={() => scrollToSection("contatos")}>
-                <li>Contatos</li>
+              <div className='tracinho-mobile'></div>
+
+              <a href="#contato" onClick={() => scrollToSection("contato")}>
+                <li>Contato</li>
               </a>
+              <div className='tracinho-mobile'></div>
+
+              <Link to={"/entrar"}>
+                <li  className="entrar-mobile" style={{ fontSize: '1rem', fontWeight: "normal"}} >Entrar</li>
+              </Link>
             </ul>
           </nav>
-        </div>
 
-        <Link to={"/entrar"}>
-          <ButtonOutlined />
-        </Link>
+        </div>
 
       </header>
 

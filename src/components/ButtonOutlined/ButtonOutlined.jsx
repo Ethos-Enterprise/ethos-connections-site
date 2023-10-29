@@ -1,10 +1,10 @@
 import React from 'react'
 import './ButtonOutlined.css'
 
-const ButtonBorda = () => {
+const ButtonBorda = (props) => {
   return (
     <>
-    <button className='botao-borda'>Entrar</button>
+    <button className='botao-borda'>{props.acao}</button>
     </>
   )
 }
