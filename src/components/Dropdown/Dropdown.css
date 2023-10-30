@@ -1,0 +1,59 @@
+/* Estilos do dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    height: 45px;
+    margin-bottom: 7px;
+}
+
+.dropdown-select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--cinza);
+    border: 0.05px solid #757575;
+    border-radius: 5px;
+    padding: 15.5px 10px 14px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: var(--letra-light);
+}
+
+.dropdown-select.active + .dropdown-options {
+    display: block;
+    border: 0.5px solid var(--cor-primaria);
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--preto-comum);
+    border: 0.5px solid var(--cor-detalhe);
+    border-radius: 0 0 5px 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    font-weight: var(--letra-light);
+    z-index:5;
+}
+
+.dropdown-option {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-option:hover {
+    color: var(--cor-primaria);
+    background-color: var(--preto-acizentado);
+}
+
+
+/* Adicione os estilos para a seta */
+.dropdown-select i{
+    font-size: 20px; 
+    color: var(--cor-letras); 
+  }
+  

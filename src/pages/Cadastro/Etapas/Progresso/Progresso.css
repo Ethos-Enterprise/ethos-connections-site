@@ -14,7 +14,9 @@
     text-align: center;
 }
 
-.etapa p {
+.nome-etapa {
+    color: #d9d9d955 ;
+    font-size: 0.9rem;
     font-weight: var(--letra-extra-light);
 }
 
@@ -22,11 +24,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    color: var(--cor-secundaria);
+    font-weight: var(--letra-extra-bold);
+    font-size: 1rem;
+}
+
+/* quando adicionar o 2 a classe ele ficara desta cor */
+
+.nome-etapa2 {
+    color: #d9d9d9;
+    font-size: 0.9rem;
+    font-weight: var(--letra-extra-light);
+}
+
+.numero2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
     border-radius: 100%;
     width: 30px;
     height: 30px;
     color: var(--preto-comum);
     font-weight: var(--letra-extra-bold);
     font-size: 1rem;
+}
+
+@media screen and (max-width: 520px) {
+    .nome-etapa {
+        font-size: 0.8rem;
+    }
+    .nome-etapa2 {
+        font-size: 0.8rem;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .linha-inputs{
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .dropdown-select{
+        width: 70vw;
+    }
 }

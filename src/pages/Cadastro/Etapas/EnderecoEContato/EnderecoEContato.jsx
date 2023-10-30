@@ -1,4 +1,6 @@
 import React from 'react'
+import { useEffect } from 'react';
+
 
 function verificar(event) {
     const input = event.target;
@@ -11,39 +13,52 @@ function verificar(event) {
     }
   }
   
-const EnderecoEContato = () => {
+  const EnderecoEContato = ({data, updateFieldHandler}) => {
+
+    useEffect(() => {
+      verificar({ target: document.getElementById('cep') });
+      verificar({ target: document.getElementById('telefone') });
+      verificar({ target: document.getElementById('email') });
+  
+    }, []); 
     return (
         <>
             <div className="input">
                 <input
                     type="Number"
-                    id='cep-empresa'
+                    name='cep'
+                    id='cep'
                     onInput={verificar}
-
+                    value={data.cep || ""}
+                    onChange={(e) => updateFieldHandler("cep", e.target.value)}
                 />
-                <label htmlFor="seuInput"><span>CEP</span></label>
+                <label htmlFor="cep"><span>CEP</span></label>
             </div>
 
             <div className="input">
                 <input
                     type="number"
+                    name='telefone'
                     id='telefone'
                     onInput={verificar}
-
-
+                    required
+                    value={data.telefone || ""}
+                    onChange={(e) => updateFieldHandler("telefone", e.target.value)}
                 />
-                <label htmlFor="seuInput"><span>Telefone Corporativo</span></label>
+                <label htmlFor="telefone"><span>Telefone Corporativo</span></label>
             </div>
 
             <div className="input">
                 <input
                     type="text"
+                    name='email'
                     id='email'
                     onInput={verificar}
-
-
+                    required
+                    value={data.email || ""}
+                    onChange={(e) => updateFieldHandler("email", e.target.value)}
                 />
-                <label htmlFor="seuInput"><span>Email Corporativo</span></label>
+                <label htmlFor="email"><span>Email Corporativo</span></label>
             </div>
 
         </>

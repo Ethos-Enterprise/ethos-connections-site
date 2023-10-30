@@ -10,6 +10,8 @@
       --preto-acizentado: #0D0D0D;
       --cinza: #1B1F23;
 
+      --cor-detalhe: #2F2F2F;
+      
       --letra-extra-light:200;
       --letra-light: 300;
       --letra-regular: 400;
@@ -41,4 +43,17 @@
       margin: 0px;
       padding: 0px;
       background-color: var(--preto-comum);
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"] {
+    appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
   }

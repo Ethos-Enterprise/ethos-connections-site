@@ -1,0 +1,23 @@
+.link-pagina-login{
+    text-decoration: none;
+}
+
+.titulo-agradecimento{
+    font-weight: var(--letra-medium);
+    font-size: 1.2rem;
+    margin-bottom: 69px;
+
+}
+
+.cadastro-sucesso{
+    width: 69px;
+    margin: 0px 0px 30px;
+}
+.mensagem-redirecionar{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: var(--letra-regular);
+    color: var(--cor-primaria);
+    margin-bottom: 63px;
+}
+

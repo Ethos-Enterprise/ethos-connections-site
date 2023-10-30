@@ -4,12 +4,9 @@ export function formEtapas(etapas) {
     const [etapaAtual, setEtapaAtual] = useState(0);
 
     function mudarEtapa(i, e) {
-        
         if (e) {
             e.preventDefault();
-        } else {
-            console.log("Evento não definido");
-        }
+        } 
 
         if(i < 0 || i >= etapas.length) return
         setEtapaAtual(i)

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 //css
@@ -23,13 +22,35 @@ import Agradecimento from './Etapas/Agradecimento/Agradecimento';
 
 //hooks
 import { formEtapas } from '../../hooks/FormEtapas';
+import { useState } from 'react';
 
 const Cadastro = () => {
 
+  const formTemplate = {
+    nomeEmpresa: "",
+    cnpj: "",
+    areaAtuacao: "Área de Atuação",
+    mediaFuncionarios: "Nº de Funcionários",
+    cep: "",
+    telefone: "",
+    email: "",
+    senha: "",
+    confirmacaoSenha: "",
+    newsletter: ""
+  }
+  const [data, setData] = useState(formTemplate);
+
+  const updateFieldHandler = (key, value) => {
+
+    setData((prev) => {
+      return { ...prev, [key]: value }
+    })
+  }
+
   const etapas = [
-    <DadosGerais />,
-    <EnderecoEContato />,
-    <Senha />,
+    <DadosGerais data={data} updateFieldHandler={updateFieldHandler} />,
+    <EnderecoEContato data={data} updateFieldHandler={updateFieldHandler} />,
+    <Senha data={data} updateFieldHandler={updateFieldHandler} />,
     <Agradecimento />
   ];
 
@@ -45,6 +66,17 @@ const Cadastro = () => {
       </div>
 
       <form className='formulario-cadastro' onSubmit={(e) => mudarEtapa(etapaAtual + 1, e)}>
+        {/* <p>{data.nomeEmpresa}</p>
+        <p>{data.cnpj}</p>
+        <p>{data.areaAtuacao}</p>
+        <p>{data.mediaFuncionarios}</p>
+        <p>{data.cep}</p>
+        <p>{data.telefone}</p>
+        <p>{data.email}</p>
+        <p>{data.senha}</p>
+        <p>{data.confirmacaoSenha}</p>
+        <p>{data.newsletter}</p> */}
+
 
         {!esconderBotoes ? (
           <>
@@ -52,8 +84,9 @@ const Cadastro = () => {
               <img src={IconeLogo} alt="icone logo" />
             </div>
 
+
             <h2>Cadastro de Empresa</h2>
-            <Progresso />
+            <Progresso etapaAtual={etapaAtual} />
           </>
         ) : null}
 
@@ -80,7 +113,7 @@ const Cadastro = () => {
                   Avançar
                 </button>
               ) : (
-            
+
                 <button className='botao-preenchido' type="submit">
                   Cadastrar
                 </button>

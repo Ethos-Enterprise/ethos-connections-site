@@ -1,11 +1,12 @@
 import React from 'react'
 
-//importando css
-import './Oferecemos.css';
 import Confianca from '../../../../assets/icones/confianca.png'
 import Agilidade from '../../../../assets/icones/rapidez.png'
 import Crescimento from '../../../../assets/icones/crescimento.png'
 import Conexao from '../../../../assets/icones/usuario-conectado.png'
+
+//importando css
+import './Oferecemos.css';
 
 //importando components
 import Beneficio from './Beneficio/Beneficio.jsx';

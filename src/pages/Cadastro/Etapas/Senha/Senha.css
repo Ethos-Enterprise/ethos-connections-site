@@ -1,0 +1,21 @@
+.check-cadastro{
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.check-cadastro label{
+    font-size: 0.87rem;
+    font-weight: var(--letra-ligth);
+}
+
+.check-cadastro label span{
+    color: var(--cor-primaria);
+    font-weight: var(--letra-ligth);
+}
+
+.check-cadastro input {
+    margin-right: 12px;
+    width: 16px; /* Ajuste a largura conforme necessário */
+    height: 16px;
+}
