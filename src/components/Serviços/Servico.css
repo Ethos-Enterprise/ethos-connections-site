@@ -1,0 +1,45 @@
+.caixa-servico{
+    margin-top: 30px;
+    background-color: var(--cinza);
+    padding: 35px;
+    border-radius: 7px;
+    display: flex;
+    gap: 24px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.caixa-servico:hover{
+    scale: 1.02;
+}
+
+.foto-perfil-empresa{
+    border-radius: 12px;
+}
+
+.foto-perfil-empresa .foto{
+    border-radius: 12px;
+}
+
+.dados-servico-empresa .titulo-servico{
+    margin: 0px 0px 16px 0px;
+    font-size: 1.2rem;
+    font-weight: var(--letra-medium);
+}
+
+.dados-servico-empresa .nome-empresa-servico{
+    margin: 0px;
+    font-size: 1.1rem;
+    font-weight: var(--letra-extra-light);
+}
+
+.dados-servico-empresa .descricao-servico{
+    margin: 24px 0px;
+    font-size: 0.9rem;
+    font-weight: var(--letra-extra-light);
+}
+
+.valor-medio-servico{
+    margin: 0px;
+    font-size: 0.95rem;
+}

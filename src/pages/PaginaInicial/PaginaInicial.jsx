@@ -1,23 +1,26 @@
 import React from 'react'
+
+//css
 import './PaginaInicial.css'
+
+//components
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
-import verificado from '../../assets/verificado.png'
+import Dropdown from '../../components/Dropdown/Dropdown.jsx'
+import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma.jsx';
+import Servico from '../../components/Serviços/Sevico.jsx';
+
 import { useNavigate } from 'react-router-dom';
 
-export const PaginaInicial = () => {
+export const PaginaInicial = ({ usuario }) => {
 
   const navigate = useNavigate();
 
 
-  const handleLogout = () => {
-    sessionStorage.removeItem('authToken');
-    navigate('/entrar');
-};
-
   return (
     <div className='pagina-inicial'>
-      {/* <HeaderPlataforma
-        link1={'dont1'}
+
+      <HeaderPlataforma
+        link1={'/pagina-inicial'}
         titulo1={'Soluções ESG'}
 
         link2={'dont2'}
@@ -25,24 +28,43 @@ export const PaginaInicial = () => {
 
         link3={'dont3'}
         titulo3={'Aplicativo Ethos'}
-      /> */}
 
+        razaoSocial={usuario && usuario.razaoSocial}
+      />
 
-      <img src={verificado} alt="" className='imagem-pagina-inicial' />
-      <h3>VOCÊ TEM O TOKEN DE ACESSO!!</h3>
-      <h3>Foi liberado seu acesso as API'S</h3>
+   
 
-        <a className='api-link' href="">http://localhost:8083/v1.0/empresas</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/servicos</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/avaliacoes</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/portfolios</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/prestadoras</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/empresa-prestadora</a>
-        <a className='api-link' href="">http://localhost:8083/v1.0/questionarios</a>
+      <div className='conteudo-solucoes'>
 
+      <div className='container-ultimos-serviços'>
+        <h4>Últimos serviços visitados</h4>
+      </div>
 
-      <button className='botao-inicial' onClick={handleLogout}> Sair</button>
+        <div className='input-pesquisa'>
+          <input type="text" className='pesquisa' placeholder='Buscar soluções' />
+          <button className="botao-pesquisar" type="submit"><i className="fa-solid fa-magnifying-glass" style={{color: "#9cb8e8;", fontSize: '1.3rem'}}></i></button>
 
+        </div>
+
+        <div className='filtros-pesquisa'>
+          <p className='titulo-filtro'>Filtros</p>
+          <div className='filtros'>
+
+          </div>
+        </div>
+
+        <div className='servicos-pesquisados'>
+          <Servico />
+
+          <Servico />
+          <Servico />
+          <Servico />
+
+        </div>
+
+      </div>
+
+      <FooterPlataforma />
     </div>
   )
 }

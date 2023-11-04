@@ -1,9 +1,13 @@
+.caixa-header{
+    width: 100%;
+}
+
 .header-plataforma{
     padding: 15px 15px 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0px 0px 3px var(--cor-secundaria); /* Propriedade de sombra (ajuste conforme necessário) */
+    border-bottom: 0.1px solid var(--cor-secundaria);
 }
 
 .logo {
@@ -22,15 +26,13 @@ ul .link-header{
 .caixa-dropdown{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    height: 50px;
 }
 
-.dropDown{
-    display: flex;
-    justify-content: center;
-    padding: 1px 10px;
-}
 .dropDown img{
-    width: 20px;
+    width: 19px;
 }
 
 .dropDown span{
@@ -40,13 +42,18 @@ ul .link-header{
 }
 
 
-/* Estilo base para a lista suspensa */
 .dropDown {
     position: relative;
     display: inline-block;
+    height: 100%;      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 8px;
+
 }
 
-/* Estilo da lista suspensa quando o dropdown está aberto */
+/* lista suspensa quando o dropdown está aberto */
 .dropDown:hover .notificacoes-lista {
     display: block;
 }
@@ -55,19 +62,20 @@ ul .link-header{
     display: block;
 }
 
-.dropDown ul {
+.dropDown .usuario-lista {
     display: none;
     position: absolute;
+    top: 35px;
+    left: -5px;
     background-color: var(--cinza);
     border-radius: 5px;
     border: 0.05px solid #A3A3A3;
     list-style: none;
     padding: 0px;
-    margin: 2px 0px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dropDown ul li {
+.dropDown .usuario-lista li {
     margin: 0;
     padding: 10px 15px;
     cursor: pointer;
@@ -79,7 +87,7 @@ ul .link-header{
 }
 
 /* Estilo dos itens da lista suspensa ao passar o mouse */
-.dropDown ul li:hover {
+.dropDown .usuario-lista li:hover {
     background-color: #121212;
     color: var(--cor-primaria);
 }

@@ -23,16 +23,17 @@ import Agradecimento from './Etapas/Agradecimento/Agradecimento';
 //hooks
 import { formEtapas } from '../../hooks/FormEtapas';
 import { useState } from 'react';
+import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 
 const Cadastro = () => {
 
   const formTemplate = {
     nomeEmpresa: "",
-    cnpj: "",
+    cnpj:"",
     areaAtuacao: "Área de Atuação",
-    mediaFuncionarios: "Nº de Funcionários",
-    cep: "",
-    telefone: "",
+    mediaFuncionarios: 10,
+    cep:"",
+    telefone:"",
     email: "",
     senha: "",
     confirmacaoSenha: "",
@@ -56,27 +57,84 @@ const Cadastro = () => {
 
   const { etapaAtual, etapaComponents, mudarEtapa, primeiraEtapa, ultimoPasso, esconderBotoes } = formEtapas(etapas);
 
+  const cadastrar = (e) => {
+    e.preventDefault();
+
+    api.post('/auth/login', {
+      email: 'admin@ethos',
+      password: '123'
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+      .then(response => {
+        console.log(response);
+        if (response.status === 200 && response.data?.token) {
+          sessionStorage.setItem('authToken', response.data.token);
+
+          const authToken = sessionStorage.getItem('authToken');
+
+      // Agora, faz uma solicitação para cadastrar a empresa
+      const empresaData = {
+        razaoSocial: data.nomeEmpresa,
+        cnpj: data.cnpj,
+        telefone: data.telefone,
+        email: data.email,
+        senha: data.senha,
+        setor: data.areaAtuacao,
+        qtdFuncionarios: 100,
+        assinanteNewsletter: true
+      };
+
+       api.post('/v1.0/empresas', empresaData, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
+
+      .then(response => {
+        // Lide com a resposta da API aqui
+      
+        console.log(response.data)
+      
+        console.log('Cadastro realizado com sucesso!');
+      })
+      .catch(error => {
+        // Lide com erros da solicitação aqui
+        console.error(error);
+      });
+
+      } else {
+        throw new Error('Ops! Ocorreu um erro interno.');
+      }
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
+};
 
   return (
     <div className='fundo-cadastro'>
+      <Link to="/" className='link-voltar'>
+      <ButtonFilled  acao={" < "}/>
+      </Link>
 
       <div className='imagem-lateral-cadastro'>
         <img src={FotoCadastro} alt="" />
+          
         <p>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
       </div>
 
-      <form className='formulario-cadastro' onSubmit={(e) => mudarEtapa(etapaAtual + 1, e)}>
-        {/* <p>{data.nomeEmpresa}</p>
-        <p>{data.cnpj}</p>
-        <p>{data.areaAtuacao}</p>
-        <p>{data.mediaFuncionarios}</p>
-        <p>{data.cep}</p>
-        <p>{data.telefone}</p>
-        <p>{data.email}</p>
-        <p>{data.senha}</p>
-        <p>{data.confirmacaoSenha}</p>
-        <p>{data.newsletter}</p> */}
-
+      <form className='formulario-cadastro' onSubmit={(e) => {
+        e.preventDefault();
+        if (ultimoPasso) {
+          cadastrar(e);  // Chama a função de cadastro
+        } else {
+          mudarEtapa(etapaAtual + 1, e);  // Avança para a próxima etapa
+        }
+      }}>
 
         {!esconderBotoes ? (
           <>

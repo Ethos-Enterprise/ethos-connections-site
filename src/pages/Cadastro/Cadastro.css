@@ -111,6 +111,15 @@
     width: calc((29vw/2) - 16px);
 }
 
+.link-voltar{
+    width: 40px;
+    text-decoration: none;
+    position: absolute;
+    top: 20px; /* Ajuste a posição vertical conforme necessário */
+    left: 1.5vw; /* Ajuste a posição horizontal conforme necessário */
+    text-align: center;
+}
+
 @media screen and (max-width: 1285px) {
     .formulario-cadastro {
         justify-content: center;

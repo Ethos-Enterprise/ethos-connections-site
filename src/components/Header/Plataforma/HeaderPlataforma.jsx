@@ -13,13 +13,12 @@ const HeaderPlataforma = (props) => {
 
     const handleLogout = () => {
       sessionStorage.removeItem('authToken');
-      sessionStorage.removeItem('email');
       navigate('/entrar');
   };
 
 
     return (
-        <>
+        < div className='caixa-header'>
             <header className='header-plataforma'>
                 <img src={Logo} alt="LOGO" className='logo' />
 
@@ -37,7 +36,7 @@ const HeaderPlataforma = (props) => {
 
                     <div className="dropDown" >
                         <img src={Usuario} alt="icone de usuario" />
-                        <span>NomeUsuario</span>
+                        <span>{props.razaoSocial}</span>
 
                         <ul className="usuario-lista">
                             <li>Meu Perfil</li>
@@ -53,7 +52,7 @@ const HeaderPlataforma = (props) => {
 
             </header>
 
-        </>
+        </div>
     )
 }
 
