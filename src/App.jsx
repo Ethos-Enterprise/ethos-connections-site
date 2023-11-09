@@ -12,22 +12,27 @@ import Login from './pages/Login/Login.jsx';
 import PaginaInicial from "./pages/PaginaInicial/PaginaInicial";
 import Avaliacao from "./pages/Avaliacao/Avaliacao";
 
+//contexto
+import { UsuarioProvider } from "./hooks/Usuario.jsx";
 
 function App() {
   return (
     //rotas
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastrar" element={<Cadastro />} />
-        <Route path="/entrar" element={<Login />} />
-        <Route path="/cadastrar" element={<Cadastro />} />
-        <Route path="/pagina-inicial" element={<PaginaInicial />} />
-        <Route path="/pagina-inicial/servico/avaliacao" element={<Avaliacao />} />
+    <UsuarioProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-      </Routes>
+          <Route path="/cadastrar" element={<Cadastro />} />
+          <Route path="/entrar" element={<Login />} />
+          <Route path="/cadastrar" element={<Cadastro />} />
+          <Route path="/pagina-inicial" element={<PaginaInicial />} />
+          <Route path="/pagina-inicial/servico/avaliacao" element={<Avaliacao />} />
 
-    </Router>
+        </Routes>
+
+      </Router>
+    </UsuarioProvider>
 
   );
 }

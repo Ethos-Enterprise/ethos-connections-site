@@ -1,0 +1,12 @@
+.container-ultimo-servico{
+    background-color: var(--cinza-caixas);
+    padding: 20px 35px;
+    width: 200px;
+    border-radius: 7px;
+}
+
+.container-ultimo-servico .titulo-ultimo-servico{
+    margin: 0px;
+    font-size: 1rem;
+    font-weight: var(--letra-regular);
+}

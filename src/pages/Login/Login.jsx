@@ -1,19 +1,24 @@
   import React from 'react'
+
+  //css
   import './Login.css'
 
+  //api
   import api from "../../service/api";
 
+  //imagens
   import IconeLogo from '../../assets/iconeLogo- branco.png';
   import FotoLogin from '../../assets/foto-login.png';
 
+  //componentes
   import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 
-  import { Link } from 'react-router-dom'
-
+  //coisas do react
+  import { Link, useNavigate } from 'react-router-dom'
   import { useState } from 'react';
 
-  import { useNavigate } from 'react-router-dom';
-
+  //hook 
+  import { useUsuario } from '../../hooks/Usuario';
 
   function verificar(event) {
     const input = event.target;
@@ -31,6 +36,10 @@
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+
+    //colocar função do hook Usuario
+    const { atualizarUsuario } = useUsuario(); 
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -56,18 +65,20 @@
             //requisição login pegar dados do input e passar o token tb
             api.get(`/v1.0/empresas/login/${email}/${senha}`, {
               headers: {
-                Authorization: `Bearer ${authToken}`, // Defina o cabeçalho 'Authorization' com o token
+                Authorization: `Bearer ${authToken}`, 
               }
             })
               .then(response => {
-                // Lide com a resposta da API aqui
                 console.log(response.data);
 
                 console.log('Login realizado com sucesso!');
-                navigate('/pagina-inicial', { state: { usuario: response.data } });
+
+                atualizarUsuario(response.data);
+
+                navigate('/pagina-inicial');
+
               })
               .catch(error => {
-                // Lide com erros da solicitação aqui
                 console.error(error);
                 
               });

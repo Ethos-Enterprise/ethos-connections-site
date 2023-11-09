@@ -12,9 +12,11 @@
 
 }
 
-.container-ultimos-serviços h4{
-    font-size: 1rem;
-    font-weight: var(--letra-regular);
+
+
+.ultimos-servicos{
+    display: flex;
+    gap: 24px;
 }
 
 .conteudo-solucoes{
