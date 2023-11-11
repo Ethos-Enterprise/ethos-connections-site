@@ -17,11 +17,11 @@ body {
     padding: 20px;
     /* Reduzi o padding para ajustar a proporção */
     background-color: #030303;
-    width: 130px;
+    width: 140px;
     /* Defina um tamanho fixo para os cards */
-    height: 170px;
+    height: 180px;
     /* Defina um tamanho fixo para os cards */
-    border-radius: 8px;
+    border-radius: 15px;
     /* Adicionei um raio de borda para suavizar as bordas */
 }
 
@@ -30,9 +30,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
+    width: 30px;
     /* Tamanho fixo para o círculo branco */
-    height: 40px;
+    height: 30px;
     /* Tamanho fixo para o círculo branco */
     background-color: white;
     border-radius: 50%;
@@ -55,7 +55,7 @@ body {
 
 .texto {
     color: var(--cor-letras);
-    font-size: 16px;
+    font-size: 17px;
     /* Ajuste o tamanho do texto conforme necessário */
     text-align: center;
     /* Alinhe o texto no centro */
@@ -63,4 +63,6 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: var(--letra-light);
     /* Remova qualquer margem para garantir alinhamento consistente */
+    margin-bottom: 2rem;
 }
+

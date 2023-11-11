@@ -14,6 +14,7 @@ export const BeneficiosESG = (props) => {
   return (
 
     <div class='beneficios-esg'>
+      <div class="overlay"></div>
       <div class='titulo'>      <h2 className='titulo-beneficios-esg'> 
       <span>Por que </span>adotar<span> práticas ESG? </span></h2>
       </div>
