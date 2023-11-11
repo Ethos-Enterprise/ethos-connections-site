@@ -1,0 +1,40 @@
+.carrosel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .carrosel img {
+    width: 100%; /* Ajusta a largura da imagem para 100% do container */
+    height: auto; /* Mantém a proporção da imagem */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra à imagem, ajuste conforme necessário */
+    transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave ao passar para o próximo slide */
+  }
+  
+  .bolinhas {
+    position: absolute;
+    top: 50%;
+    margin-left: 4rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    height: 30%; /* Adiciona uma altura fixa para a coluna de bolinhas */
+
+  }
+  
+  .bolinha {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #01a3c300; /* Cor da bolinha inativa */
+    margin-bottom: 1rem; /* Espaçamento entre as bolinhas */
+    cursor: pointer;
+    border: 2px solid #01A2C3; /* Adiciona um contorno à bolinha */
+
+  }
+  
+  .bolinha.ativa {
+    background-color: #01A2C3; /* Cor da bolinha ativa */
+  }
+  

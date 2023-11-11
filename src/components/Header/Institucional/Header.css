@@ -16,7 +16,7 @@ body{
     align-items: center;
     justify-content: space-around;
     background-color: var(--preto-comum);
-    z-index: 1;
+    z-index: 1000;
 }
 
 .header-institucional ul {

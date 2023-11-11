@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Adicione outras regras de estilo conforme necessário */
+  
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Centraliza verticalmente */
+    gap: 1rem;
+    flex-direction: column;
+    opacity: 0.8;
+    padding: 20px;
+    /* Reduzi o padding para ajustar a proporção */
+    background-color: #030303;
+    width: 130px;
+    /* Defina um tamanho fixo para os cards */
+    height: 170px;
+    /* Defina um tamanho fixo para os cards */
+    border-radius: 8px;
+    /* Adicionei um raio de borda para suavizar as bordas */
+}
+
+
+.numero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    /* Tamanho fixo para o círculo branco */
+    height: 40px;
+    /* Tamanho fixo para o círculo branco */
+    background-color: white;
+    border-radius: 50%;
+    /* Garante que seja um círculo */
+    overflow: hidden;
+    /* Garante que o conteúdo não ultrapasse os limites do contêiner */
+    margin-bottom: 1rem;
+
+}
+
+.numeros {
+    color: #030303;
+    /* Torna o número transparente */
+    font-size: 25px;
+    /* Ajuste o tamanho do número conforme necessário */
+    font-weight: bold;
+    margin: 0;
+    /* Remova a margem para garantir o alinhamento correto */
+}
+
+.texto {
+    color: var(--cor-letras);
+    font-size: 16px;
+    /* Ajuste o tamanho do texto conforme necessário */
+    text-align: center;
+    /* Alinhe o texto no centro */
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: var(--letra-light);
+    /* Remova qualquer margem para garantir alinhamento consistente */
+}

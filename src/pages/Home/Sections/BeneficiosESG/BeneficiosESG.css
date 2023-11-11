@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Adicione outras regras de estilo conforme necessário */
+  
+
+.beneficios-esg{
+    background-image: url(../../../../assets/imagens/background-praticasESG.png);
+    background-size: cover;
+    background-position: center; /* Isso centraliza a imagem vertical e horizontalmente */
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens */
+    height: 95vh; /* 100% da altura da viewport */
+    align-content: flex-start; /* Adicione esta linha */
+    
+    
+}
+
+.titulo{ 
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start; /* Adicione esta linha */
+    margin-top: 100px; /* Ajuste o valor conforme necessário para o espaçamento desejado */
+
+}
+
+.titulo-beneficios-esg {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+    font-weight: var(--letra-medium);
+    color: var(--cor-letras);
+    font-size: 30px;
+    margin-left:5rem ;
+
+    
+}
+
+.titulo-beneficios-esg span {
+    color: var(--cor-primaria);
+    margin-left: 10px; /* Ajuste o valor conforme necessário para o espaçamento desejado */
+    margin-right: 10px; /* Ajuste o valor conforme necessário para o espaçamento desejado */
+  }
+  
+
+.titulo-container {
+    gap: 1rem;
+    display: flex;
+    text-align: center;
+}
+
+
+
+.titulo-beneficio h3{
+    color: var(--cor-primaria);
+}
+
+.titulo-beneficio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
