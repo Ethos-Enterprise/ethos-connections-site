@@ -1,12 +1,30 @@
 .container-ultimo-servico{
     background-color: var(--cinza-caixas);
-    padding: 20px 35px;
+    padding: 15px 20px;
     width: 200px;
     border-radius: 7px;
+    cursor: pointer;
+    
 }
 
 .container-ultimo-servico .titulo-ultimo-servico{
     margin: 0px;
     font-size: 1rem;
     font-weight: var(--letra-regular);
+}
+
+.container-ultimo-servico .nome-empresa-ultimo-servico{
+    margin: 8px 0px 16px 0px ;
+    font-size: 0.89rem;
+    font-weight: var(--letra-light);
+}
+
+.container-ultimo-servico .valor-ultimo-servico{
+    margin: 0px 0px 0px 0px ;
+    font-size: 0.9rem;
+    font-weight: var(--letra-regular);
+}
+
+.container-ultimo-servico:hover{
+    scale: 1.02;
 }

@@ -28,6 +28,9 @@ function App() {
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/pagina-inicial" element={<PaginaInicial />} />
           <Route path="/pagina-inicial/servico/avaliacao" element={<Avaliacao />} />
+          {/* <Route path="/meu-perfil"/ > */}
+          {/* <Route path="/minhas-interacoes"/> */}
+          {/* <Route path="/meu-plano"/> */}
 
         </Routes>
 

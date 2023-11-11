@@ -1,46 +1,49 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-//criando contexto para fornecer aos outros componentes 
-const DadosUsuario = createContext();
+const UsuarioContext = createContext();
 
-
-// (Provider)
 export function UsuarioProvider({ children }) {
-    //Definindo dados do usuario para fornecer aos componentes
-  const [usuario, setUsuario] = useState({
-    
-    id: children.id,
-    razaoSocial: children.razaoSocial,
-    cnpj: children.cnpj,
-    telefone: children.telefone,
-    email: children.email,
-    setor: children.setor,
-    qtdFuncionarios: children.qtdFuncionarios,
-    assinanteNewsletter: children.assinanteNewsletter,
+  // obtendo os dados do usuário do localStorage
+  const usuarioDadosArmazenados = sessionStorage.getItem('usuarioDados');
+  const usuarioDadosIniciais = usuarioDadosArmazenados ? JSON.parse(usuarioDadosArmazenados) : {
+    id: '',
+    razaoSocial: '',
+    cnpj: '',
+    telefone: '',
+    email: '',
+    setor: '',
+    qtdFuncionarios: 0,
+    assinanteNewsletter: false,
+  };
 
-  });
+  //  dados do usuário p fornecer aos componentes
+  const [usuario, setUsuario] = useState(usuarioDadosIniciais);
 
-    // atualiza os dados do usuario
-    const atualizarUsuario = (novoUsuario) => {
-      console.log('ENTREI NO ATUALIZAR USUARIO');
-      console.log(novoUsuario)
-    
-      setUsuario(novoUsuario);
+  // Atualiza dados do usuário
+  const atualizarUsuario = (novoUsuario) => {
+    console.log('ENTREI NO ATUALIZAR USUARIO');
+    console.log(novoUsuario);
 
-      };
-    
+    setUsuario(novoUsuario);
+  };
 
-  //Criando os dados para fornecer aos componentes
+  // Armazenando os dados do usuário no localStorage sempre que eles mudam
+  useEffect(() => {
+
+    sessionStorage.setItem('usuarioDados', JSON.stringify(usuario));
+  }, [usuario]);
+
+  // Criando os dados para fornecer aos componentes
   return (
-    <DadosUsuario.Provider value={{ usuario, atualizarUsuario }}>
+    <UsuarioContext.Provider value={{ usuario, atualizarUsuario }}>
       {children}
-    </DadosUsuario.Provider>
+    </UsuarioContext.Provider>
   );
 }
 
-//criando hook useUsuario para que os componentes acessem os dados
+// Criando hook useUsuario para que os componentes acessem os dados
 export function useUsuario() {
-  const context = useContext(DadosUsuario);
+  const context = useContext(UsuarioContext);
 
   if (context === undefined) {
     throw new Error('useUsuario não pode ser usado fora do seu contexto');

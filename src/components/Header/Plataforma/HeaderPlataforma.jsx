@@ -1,20 +1,26 @@
 import React from 'react'
+
+//css
 import './HeaderPlataforma.css'
+
+//imagens
 import Logo from '../../../assets/logoBranco.png'
 import Usuario from '../../../assets/icones/perfil-de-usuario.png'
 import Notificacao from '../../../assets/icones/notificacao.png'
-import { useNavigate } from 'react-router-dom';
+import IconeDropdownFechado from'../../../assets/icones/icone-dropdown-fechado.png';
+import IconeDropdownAberto from'../../../assets/icones/icone-dropdown-aberto.png';
 
-import { Link } from 'react-router-dom'
+//router
+import { useNavigate, Link } from 'react-router-dom';
 
 const HeaderPlataforma = (props) => {
     const navigate = useNavigate();
     const username = sessionStorage?.getItem('email');
 
     const handleLogout = () => {
-      sessionStorage.removeItem('authToken');
-      navigate('/entrar');
-  };
+        sessionStorage.clear();
+        navigate('/entrar');
+    };
 
 
     return (
@@ -37,11 +43,24 @@ const HeaderPlataforma = (props) => {
                     <div className="dropDown" >
                         <img src={Usuario} alt="icone de usuario" />
                         <span>{props.razaoSocial}</span>
+                        <img src={IconeDropdownFechado} alt="icone dropdown" className='icone-dropdown' />
 
                         <ul className="usuario-lista">
-                            <li>Meu Perfil</li>
+
+                            <Link to={'/meu-perfil'} className='link-dropdown'>
+                                <li>
+                                    Meu Perfil
+                                </li>
+                            </Link>
+
+                            <Link to={"/minhas-interacoes"} className='link-dropdown'>
                             <li>Minhas Interações</li>
+                            </Link>
+                            
+                            <Link to={"/meu-plano"} className='link-dropdown'>
                             <li>Meu Plano</li>
+                            </Link>
+                            
                             <li onClick={handleLogout}>Sair</li>
 
                         </ul>

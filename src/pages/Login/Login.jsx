@@ -54,9 +54,8 @@
           'Content-Type': 'application/json'
         }
       })
-
         .then(response => {
-          console.log(response);
+          console.log(response.data);
           if (response.status === 200 && response.data?.token) {
             sessionStorage.setItem('authToken', response.data.token);
 
@@ -69,18 +68,12 @@
               }
             })
               .then(response => {
-                console.log(response.data);
-
                 console.log('Login realizado com sucesso!');
-
                 atualizarUsuario(response.data);
-
                 navigate('/pagina-inicial');
-
               })
               .catch(error => {
-                console.error(error);
-                
+                console.error('Erro no login : '+ error);
               });
 
           } else {

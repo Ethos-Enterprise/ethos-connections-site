@@ -1,25 +1,29 @@
-.pagina-inicial{
+.pagina-inicial {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.container-ultimos-serviços{
+.container-ultimos-serviços {
     background-color: var(--cinza);
-    padding: 35px;
+    padding: 20px 35px;
     border-radius: 7px;
     margin-top: 31px;
-
 }
 
+.container-ultimos-serviços .titulo-ultimos-servicos {
+    margin: 0px;
+    font-size: 1rem;
+    font-weight: var(--letra-regular);
+    margin-bottom: 24px;
+}
 
-
-.ultimos-servicos{
+.ultimos-servicos {
     display: flex;
     gap: 24px;
 }
 
-.conteudo-solucoes{
+.conteudo-solucoes {
     display: flex;
     flex-direction: column;
     width: 1150px;
@@ -33,15 +37,15 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-  }
-  
-  .pesquisa-container {
+}
+
+.pesquisa-container {
     display: flex;
     align-items: center;
     position: relative;
-  }
-  
-  .pesquisa {
+}
+
+.pesquisa {
     padding: 14px 30px 10px 13px;
     background-color: #1b1b1b;
     border: none;
@@ -49,9 +53,9 @@
     color: var(--cor-letras);
     font-size: 1rem;
     flex: 1;
-  }
-  
-  .botao-pesquisar {
+}
+
+.botao-pesquisar {
     background-color: var(--cor-primaria);
     border-radius: 0px 7px 7px 0px;
     border: none;
@@ -59,13 +63,26 @@
     padding: 10px 30px 10px 30px;
 }
 
-.filtros-pesquisa{
-    margin: 24px 0px 0px 0px ;
+.filtros-pesquisa  {
+    margin: 24px 0px 0px 0px;
     background-color: var(--cinza);
     padding: 10px 20px;
     border-radius: 7px;
+    gap: 16px;
 }
 
-.titulo-filtro{
+.titulo-filtro {
     margin: 0px;
+}
+
+.filtros-pesquisa .filtros{
+    display: flex;
+    gap: 16px;
+}
+
+.filtros-pesquisa .filtros  .filtro{
+    border: 1px solid var(--cor-primaria);
+    padding: 10px;
+    border-radius: 3px;
+    background-color: transparent;
 }

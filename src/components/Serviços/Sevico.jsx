@@ -6,28 +6,55 @@ import './Servico.css'
 //imagens
 import FotoPerfil from '../../assets/imagens/perfil.jpg'
 
-const Servico = () => {
+import { Link, useNavigate } from 'react-router-dom'
+
+
+const Servico = (props) => {
+  const navigate = useNavigate();
+
+//   const verServico = (id) => {
+//     api.get(`/v1.0/servicos/${id}`, {
+//       headers: {
+//         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+//       }
+//     })
+//       .then(response => {
+
+//         console.log('sucesso na busca: ' + response.data)
+//         navigate('/pagina-inicial/servico/avaliacao');
+//       })
+//       .catch(error => {
+//         console.log('erro ao buscar serviço por id' + error);
+//       })
+//       .finally(
+//         console.log('Terminei a requisição BuscarServicoPorId')
+//       );
+// }
+
+  const verServico = () => {
+        navigate('/pagina-inicial/servico/avaliacao');
+  }
+
   return (
-    <div className='caixa-servico'>
-      <div className='foto-perfil-empresa'>
-        <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
-      </div>
+  <div className='caixa-servico' onClick={verServico}>
+    <div className='foto-perfil-empresa'>
+      <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
+    </div>
 
-      <div className='dados-servico-empresa'>
-        <h4 className='titulo-servico'>Treinamento de Responsabilidade Social Corporativa (RSC)</h4>
-        <p className='nome-empresa-servico'>Deloitte</p>
+    <div className='dados-servico-empresa'>
+      <h4 className='titulo-servico'>{props.nomeServico}</h4>
+      <p className='nome-empresa-servico'>{props.nomeEmpresa}</p>
 
-        <p className='descricao-servico'>O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma 
-          empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. 
-          Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC:
-        </p>
+      <p className='descricao-servico'>{props.descricao}
+      </p>
 
-        <p className='valor-medio-servico'>Valor Médio <span>R$ 2.000</span></p>
-        
-      </div>
+      <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
 
     </div>
-  )
+
+  </div>
+
+)
 }
 
 export default Servico

@@ -6,7 +6,7 @@ const UltimosServicos = (props) => {
     <div className='container-ultimo-servico'>
         <h4 className='titulo-ultimo-servico'>{props.nomeServico}</h4>   
         <p className='nome-empresa-ultimo-servico'>{props.nomeEmpresaServico}</p>
-        <p className='valor-ultimo-servico'>Valor: {props.valorServico}</p>
+        <p className='valor-ultimo-servico'>Valor Médio: {props.valorServico}</p>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+
+
 .caixa-servico{
     margin-top: 30px;
     background-color: var(--cinza);
@@ -11,6 +13,7 @@
 
 .caixa-servico:hover{
     scale: 1.02;
+    box-shadow: 1px 1px 10px var(--cor-secundaria);
 }
 
 .foto-perfil-empresa{

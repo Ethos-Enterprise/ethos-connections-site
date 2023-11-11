@@ -37,6 +37,7 @@ ul .link-header{
 
 .dropDown span{
     margin-left: 10px;
+    margin-right: 10px;
     font-weight: var(--letra-light);
     font-size: 0.90rem;
 }
@@ -84,6 +85,11 @@ ul .link-header{
     width: 8vw;
     font-weight: var(--letra-ligh);
     font-size: 0.8rem;
+}
+
+.link-dropdown{
+    text-decoration: none;
+    color: var(--cor-letras);
 }
 
 /* Estilo dos itens da lista suspensa ao passar o mouse */
