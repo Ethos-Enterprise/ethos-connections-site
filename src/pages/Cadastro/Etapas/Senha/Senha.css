@@ -6,12 +6,12 @@
 
 .check-cadastro label{
     font-size: 0.87rem;
-    font-weight: var(--letra-ligth);
+    font-weight: var(--letra-regular);
 }
 
 .check-cadastro label span{
     color: var(--cor-primaria);
-    font-weight: var(--letra-ligth);
+    font-weight: var(--letra-regular);
 }
 
 .check-cadastro input {

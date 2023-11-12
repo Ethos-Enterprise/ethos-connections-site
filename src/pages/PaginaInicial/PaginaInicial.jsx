@@ -14,7 +14,7 @@ import Servico from '../../components/Serviços/Sevico.jsx';
 import UltimosServicos from './UltimosServicos/UltimosServicos.jsx';
 
 //coisas do react
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
@@ -87,6 +87,9 @@ export const PaginaInicial = () => {
 
       <div className='conteudo-solucoes'>
 
+        <div className='beadcrumb'>
+        <Link to='/pagina-inicial' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
+        </div>
         <div className='container-ultimos-serviços'>
           <h4 className='titulo-ultimos-servicos'>Últimos serviços visitados</h4>
           <div className='ultimos-servicos'>
@@ -100,7 +103,7 @@ export const PaginaInicial = () => {
 
         <div className='input-pesquisa'>
           <input type="text" className='pesquisa' placeholder='Buscar soluções' />
-          <button className="botao-pesquisar" type="submit"><i className="fa-solid fa-magnifying-glass" style={{ color: '#fafafa', fontSize: '1.3rem' }}></i></button>
+          <button className="botao-pesquisar" type="submit"><i className="fa-solid fa-magnifying-glass icone-botao-pesquisar" ></i></button>
         </div>
 
         <div className='filtros-pesquisa'>
@@ -128,7 +131,9 @@ export const PaginaInicial = () => {
           nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'} 
           nomeEmpresa={'Deloitte'} 
           descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'} 
-          valorMedio={'2.000'} />
+          valorMedio={'2.000'} 
+          areaESG={'Environmental, Social'}
+          />
         </div>
 
       </div>

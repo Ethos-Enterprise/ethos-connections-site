@@ -14,14 +14,14 @@
 
       --cor-detalhe: #2F2F2F;
       
-      --letra-extra-light:200;
-      --letra-light: 300;
-      --letra-regular: 400;
-      --letra-medium: 500;
-      --letra-semi-bold: 600;
-      --letra-bold: 700;
-      --letra-extra-bold: 800;
-      --letra-black: 900;
+      --letra-extra-light:100;
+      --letra-light: 200;
+      --letra-regular: 300;
+      --letra-medium: 400;
+      --letra-semi-bold: 500;
+      --letra-bold: 600;
+      --letra-extra-bold: 700;
+      --letra-black: 800;
   }
 
   /* Estilizando a barra de rolagem */
@@ -59,3 +59,22 @@
     appearance: none;
     margin: 0;
   }
+
+.beadcrumb{
+    margin-top: 16px;
+
+}
+
+.link-beadcrumb{
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--cor-letras);
+  font-weight: var(--letra-light);
+}
+
+.link-beadcrumb-atual{
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--cor-letras);
+  font-weight: var(--letra-regular);
+}

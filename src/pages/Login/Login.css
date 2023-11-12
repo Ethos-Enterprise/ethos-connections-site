@@ -91,7 +91,7 @@
 .link-pagina {
     text-align: right;
     color: var(--cor-primaria);
-    font-weight: var(--letra-light);
+    font-weight: var(--letra-regular);
     font-size: 0.875rem;
     margin-top: 8px;
     margin-bottom: 32px;
@@ -118,6 +118,7 @@
 
 .tracinhos span {
     margin: 0 20px;
+    font-weight: var(--letra-light);
 }
 
 

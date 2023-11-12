@@ -41,7 +41,7 @@ body{
     list-style: none;
     margin: 20px 23px;
     font-size: 1.1rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
 }
 
 .botao-borda{

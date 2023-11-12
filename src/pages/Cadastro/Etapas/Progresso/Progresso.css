@@ -17,7 +17,7 @@
 .nome-etapa {
     color: #d9d9d955 ;
     font-size: 0.9rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
 }
 
 .etapa .numero{
@@ -39,7 +39,7 @@
 .nome-etapa2 {
     color: #d9d9d9;
     font-size: 0.9rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
 }
 
 .numero2{

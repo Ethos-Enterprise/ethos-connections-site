@@ -46,16 +46,16 @@
 .sobre .titulo-sobre{
     font-size: 1rem;
     color: var(--cor-primaria);
-    font-weight: var(--letra-regular);
+    font-weight: var(--letra-medium);
 }
 
 .sobre .texto-sobre{
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
     font-size: 0.95rem;
 }
 
 .slogan-ethos{
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
     font-size: 0.9rem;
 }
 
@@ -74,7 +74,7 @@
     margin-left: 15px;
     font-family: 'Poppins', sans-serif;
     font-size: 0.92rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -94,7 +94,7 @@
 .footer-plataforma .informacoes .container-redes-sociais .titulo-redes-sociais{
     font-size: 1rem;
     color: var(--cor-primaria);
-    font-weight: var(--letra-regular);
+    font-weight: var(--letra-medium);
 }
 
 /* ---------------------------------CONTATOS--------------------------------- */
@@ -113,7 +113,7 @@
     margin-left: 15px;
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
     border-radius: 5px;
 }
 
@@ -132,12 +132,12 @@
 .footer-plataforma .informacoes .container-contatos .titulo-contatos{
     font-size: 1rem;
     color: var(--cor-primaria);
-    font-weight: var(--letra-regular);
+    font-weight: var(--letra-medium);
 }
 .direitos-site{
     margin-top: 30px;
     font-size: 0.85rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
 }
 
 /*  */
@@ -159,7 +159,7 @@
     margin-left: 15px;
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
     border-radius: 5px;
 }
 
@@ -179,10 +179,10 @@
 .footer-plataforma .informacoes .container-aplicativo .titulo-aplicativo{
     font-size: 1rem;
     color: var(--cor-primaria);
-    font-weight: var(--letra-regular);
+    font-weight: var(--letra-medium);
 }
 .direitos-site{
     margin-top: 30px;
     font-size: 0.85rem;
-    font-weight: var(--letra-extra-light);
+    font-weight: var(--letra-light);
 }

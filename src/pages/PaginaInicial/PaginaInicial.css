@@ -1,6 +1,6 @@
 .pagina-inicial {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
 }
 
@@ -8,14 +8,14 @@
     background-color: var(--cinza);
     padding: 20px 35px;
     border-radius: 7px;
-    margin-top: 31px;
+    margin-top: 10px;
 }
 
 .container-ultimos-serviços .titulo-ultimos-servicos {
     margin: 0px;
     font-size: 1rem;
     font-weight: var(--letra-regular);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .ultimos-servicos {
@@ -26,7 +26,8 @@
 .conteudo-solucoes {
     display: flex;
     flex-direction: column;
-    width: 1150px;
+    width: 1140px;
+    margin-left: 10vw;
 }
 
 .input-pesquisa {
@@ -46,13 +47,22 @@
 }
 
 .pesquisa {
-    padding: 14px 30px 10px 13px;
-    background-color: #1b1b1b;
-    border: none;
+    font-weight: var(--letra-regular);
+    padding: 13px 30px 10px 13px;
+    background-color: var(--cinza);
+    border: 0.5px solid var(--cor-primaria);
     border-radius: 7px 0px 0px 7px;
     color: var(--cor-letras);
     font-size: 1rem;
     flex: 1;
+    transition: border 0.3s ease;
+    border-right: 0;
+}
+
+.pesquisa:focus{
+    outline:none;
+    border: 0.5px solid var(--cor-letras);
+
 }
 
 .botao-pesquisar {
@@ -60,19 +70,33 @@
     border-radius: 0px 7px 7px 0px;
     border: none;
     cursor: pointer;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 30px 11px 30px;
+    transition: background-color 0.1s ease-in;
+
+}
+
+.icone-botao-pesquisar{
+    color: var(--cor-letras);
+    font-size: 1.3rem;
+}
+
+.botao-pesquisar:hover{
+    background-color: var(--cor-letras)
+}
+.botao-pesquisar:hover .icone-botao-pesquisar{
+    color: var(--cor-primaria);
 }
 
 .filtros-pesquisa  {
     margin: 24px 0px 0px 0px;
     background-color: var(--cinza);
-    padding: 10px 20px;
+    padding: 20px 35px;
     border-radius: 7px;
     gap: 16px;
 }
 
 .titulo-filtro {
-    margin: 0px;
+    margin: 0px 0px 8px 0px;
 }
 
 .filtros-pesquisa .filtros{
@@ -80,9 +104,22 @@
     gap: 16px;
 }
 
-.filtros-pesquisa .filtros  .filtro{
-    border: 1px solid var(--cor-primaria);
+.filtros-pesquisa .filtros .input-filtro{
+    border: 2px solid var(--cor-primaria);
+    border-radius: 4px;
+}
+
+.filtros-pesquisa .filtros .input-filtro .filtro{
+    border: none;
+    border-right: 0;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 3px 0px 0px 3px;
     background-color: transparent;
+    color: var(--cor-letras);
+}
+
+.filtros-pesquisa .filtros .input-filtro .filtro:focus ~ .input-filtro{
+    outline: none;
+    border: 2px solid var(--cor-letras);
+
 }
