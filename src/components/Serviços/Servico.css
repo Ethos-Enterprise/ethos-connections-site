@@ -84,3 +84,48 @@
     color: var(--cinza);
     font-size: 0.85rem;
 }
+
+/*  */
+.caixa-servico-portfolio{
+    background-color: var(--cinza);
+    padding: 35px 5px 25px 20px;
+    display: flex;
+    gap: 24px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    position: relative;
+
+    border-bottom: 0.5px solid var(--cor-detalhe);
+}
+
+.caixa-servico-portfolio .dados-servico-empresa .titulo-servico{
+    color: var(--cor-primaria);
+}
+
+.caixa-servico-portfolio .dados-servico-empresa .descricao-servico{
+margin-right: 10px;
+}
+
+.caixa-servico-portfolio .container-valor-e-avaliacao{
+    display: flex;
+    justify-content: space-between;
+}
+
+.caixa-servico-portfolio  .container-valor-e-avaliacao .link-avaliacoes{
+    color: var(--cor-primaria);
+    font-size: 1rem;
+    border-bottom: 0.2px solid var(--cor-primaria);
+}
+
+.caixa-servico-portfolio  .container-valor-e-avaliacao .link-avaliacoes .icone-avaliacoes{
+    color: var(--cor-primaria);
+    font-size: 1.2rem;
+}
+
+.caixa-servico-portfolio  .container-valor-e-avaliacao .link-avaliacoes .icone-avaliacoes span{
+    margin-left: 2px;
+    color: var(--cor-primaria);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}

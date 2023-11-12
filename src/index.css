@@ -85,3 +85,9 @@ margin-bottom: 10px;
   width: 75vw;
   margin-left: 10vw;
 }
+
+.tracinho-divisor{
+  width: 100%;
+  border-bottom: 1px solid var(--cor-detalhe);
+  margin-top: 10px;
+}

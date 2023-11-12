@@ -36,10 +36,14 @@ const Servico = (props) => {
   }
 
   return (
-    <div className='caixa-servico' onClick={verServico}>
-      <div className='foto-perfil-empresa'>
-        <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
-      </div>
+
+    <div className={props.fotoPerfil ? ('caixa-servico') : ('caixa-servico-portfolio')} onClick={verServico}>
+
+      {props.fotoPerfil  && (
+        <div className='foto-perfil-empresa'>
+          <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
+        </div>
+      )}
 
       <div className='dados-servico-empresa'>
         <h4 className='titulo-servico'>{props.nomeServico}</h4>
@@ -48,8 +52,16 @@ const Servico = (props) => {
         <p className='descricao-servico'>{props.descricao}
         </p>
 
+        {props.fotoPerfil ? (
+          
         <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-
+        ) : (
+          <div className='container-valor-e-avaliacao'>
+          <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+          <Link to={'/pagina-inicial/portfolio/avaliacao'} className='link-avaliacoes'> <i className="fa-regular fa-comment icone-avaliacoes"> <span>Ver Avaliações</span></i></Link>
+          </div>
+        )
+        }
       </div>
 
 
@@ -74,7 +86,7 @@ const Servico = (props) => {
         )}
 
       </div>
-    </div>
+    </div >
 
   )
 }

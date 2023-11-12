@@ -61,6 +61,8 @@ ul .link-header{
 
 .dropDown:hover .usuario-lista {
     display: block;
+    z-index: 1000; 
+
 }
 
 .dropDown .usuario-lista {

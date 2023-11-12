@@ -36,7 +36,6 @@
     overflow-y: auto;
     font-size: 0.9rem;
     font-weight: var(--letra-light);
-    z-index:5;
 }
 
 .dropdown-option {

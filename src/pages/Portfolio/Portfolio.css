@@ -1,38 +1,176 @@
-.informacoes-principais-empresa{
+.informacoes-principais-empresa {
     background-color: var(--cinza);
     border-radius: 7px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    position: relative;
+
 }
 
+.informacoes-principais-empresa .container-foto {
+    height: 220px;
+    border-radius: 7px;
+    border-radius: 7px 7px 0px 0px;
+
+}
+
+.informacoes-principais-empresa .container-foto .foto-de-capa {
+    object-position: top;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px 7px 0px 0px;
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa {
+    display: flex;
+    align-items: end;
+    background-color: var(--cinza);
+    padding: 5px 35px 35px 35px;
+    border-radius: 7px;
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .foto-de-perfil {
+    box-sizing: content-box;
+    border-radius: 7px;
+    border: 5px solid var(--cor-secundaria);
+    width: 185px;
+    height: 165px;
+    position: absolute;
+    top: 185px;
+    left: 33px; 
+}
+
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .foto-de-perfil .foto-de-perfil-empresa {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .informacoes-principais {
+    margin-left: 215px;
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .informacoes-principais .nome-empresa-portfolio {
+    font-size: 1.5rem;
+    font-weight: var(--letra-medium);
+    margin: 10px 0px 0px 0px;
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .informacoes-principais .link-site-empresa {
+    font-size: 0.95rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-primaria);
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .informacoes-principais .descricao-breve-empresa {
+    font-size: 1rem;
+    font-weight: var(--letra-light);
+    margin: 8px 0px;
+    color: var(--cor-letras);
+}
+
+.informacoes-principais-empresa .container-informacoes-principais-empresa .informacoes-principais .ano-certificacao-empresa {
+    font-size: 0.95rem;
+    font-weight: var(--letra-light);
+    margin: 0;
+    color: #cfcfcf;
+}
+
+/*-------------------------- GERAL EMPRESA--------------------- */
 .informacoes-gerais-empresa {
     display: flex;
     flex-direction: row;
     gap: 16px;
+    margin-bottom: 16px;
 }
 
-.informacoes-gerais-empresa .dados-gerais-empresa{
+.informacoes-gerais-empresa .dados-gerais-empresa {
     background-color: var(--cinza);
     border-radius: 7px;
-    margin-bottom: 24px;
+    width: 87%;
 }
 
-.informacoes-gerais-empresa .dados-gerais-empresa{
+.informacoes-gerais-empresa .dados-gerais-empresa {
     background-color: var(--cinza);
     border-radius: 7px;
+    padding: 20px 35px;
 }
 
-.sobre-a-empresa{
-    background-color: var(--cinza);
-    border-radius: 7px;
+.informacoes-gerais-empresa .dados-gerais-empresa .informacao {
+    margin: 18px 0px 0px 0px;
 }
 
-.certificados-empresa{
-    background-color: var(--cinza);
-    border-radius: 7px;
+.informacoes-gerais-empresa .dados-gerais-empresa .informacao .informacao-titulo {
+    margin: 0px 0px 8px 0px;
+    font-weight: var(--letra-regular);
+    font-size: 0.95rem;
 }
 
-.servicos-da-empresa{
+.informacoes-gerais-empresa .dados-gerais-empresa .informacao .informacao-dado {
+    margin: 0px;
+    font-weight: var(--letra-extra-light);
+    font-size: 1rem;
+
+}
+
+.informacoes-gerais-empresa .sobre-a-empresa {
     background-color: var(--cinza);
     border-radius: 7px;
+    padding: 20px 35px;
+    margin-bottom: 8px;
+}
 
+.informacoes-gerais-empresa .sobre-a-empresa .descricao-sobre-empresa {
+    font-weight: var(--letra-light);
+    font-size: 0.95rem;
+    line-height: 26px;
+}
+
+.informacoes-gerais-empresa .certificados-empresa {
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding: 20px 35px;
+
+}
+
+.servicos-da-empresa {
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding: 20px 35px;
+
+}
+
+.titulo-informacao-empresa {
+    color: var(--cor-primaria);
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/*  */
+
+.certificados-empresa .certificados{
+    display: flex;
+    flex-direction: row;
+    padding: 30px 0px;
+    gap: 16px;
+}
+
+.certificados-empresa .certificado{
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    align-items: center;
+}
+
+.certificados-empresa .certificado .icone-certificado{ 
+    width: 95px;
+}
+
+.certificados-empresa .certificado .nome-certificado{ 
+    font-weight: var(--letra-light);
+    font-size: 0.95rem;
+    margin: 8px 0px 0px 0px;
 }
