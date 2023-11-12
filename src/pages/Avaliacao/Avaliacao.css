@@ -1,0 +1,234 @@
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.conteudo-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 2vh;
+}
+
+
+.container-avaliacao-servico {
+    background-color: var(--cinza);
+    border-radius: 7px;
+    width: 30vh;
+    height: 45vh;
+}
+
+.margin-avaliacao-foto {
+    margin: 2vh 2vh 2vh 2vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.margin-avaliacao {
+    margin: 2vh 2vh 2vh 2vh;
+}
+
+.imagem-perfil {
+    margin-top: 1vh;
+    border-radius: 15px;
+    width: 25vh;
+}
+
+.titulo-avaliacao-servico {
+    font-size: 1.3rem;
+    font-weight: var(--letra-medium);
+}
+
+.subtitulo-avaliacao-servico {
+    font-size: 0.95rem;
+    font-weight: var(--letra-regular);
+    margin-top: -1vh;
+}
+
+.botao-borda {
+    width: 10rem;
+    margin-top: 1vh;
+}
+
+.container-foto-bloco {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-informacoes {
+    background-color: var(--cinza);
+    border-radius: 1%;
+    width: 124vh;
+    height: 45vh;
+}
+
+.titulo-container-informacao {
+    font-size: 1.2rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-primaria);
+    margin-top: 3vh;
+}
+
+.subtitulo-container-informacao {
+    font-size: 1.0rem;
+    font-weight: var(--letra-regular);
+    margin-top: 1vh;
+}
+
+.subtitulo-container-informacao-favoritar {
+    font-size: 1.0rem;
+    font-weight: var(--letra-regular);
+    margin-top: 1vh;
+    margin-left: 2vh;
+}
+
+.texto-container-informacao {
+    font-size: 0.9rem;
+    font-weight: var(--letra-regular);
+    max-width: 49rem;
+    text-align: justify;
+    margin-top: 3vh;
+}
+
+.container-avaliacao {
+    background-color: var(--cinza);
+    border-radius: 7px;
+    height: 0;
+    padding-bottom: 20%;
+    margin-top: 5vh;
+    width: 156vh;
+}
+
+.traco {
+    background-color: #2F2F2F;
+    height: 0.2vh;
+    margin-top: 2vh;
+}
+
+.box-container-informacoes {
+    display: flex;
+    flex-direction: row;
+    margin: 2vh 2vh 2vh 2vh;
+}
+
+
+.botao-preenchido-servico {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-primaria);
+    border: none;
+    padding: 8px;
+    color: var(--preto-comum);
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in;
+    /* Adicione uma transição para a propriedade transform */
+    width: 10rem;
+    margin-right: 3vh;
+}
+
+.botao-preenchido-servico:hover {
+    background-color: var(--cor-letras);
+
+}
+
+.imagem-coracao {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 2vh;
+    margin-top: 0.5vh;
+}
+
+.margin-avaliacao-2 {
+    margin: 4vh 4vh 4vh 4vh;
+}
+
+.titulo-caixa-avaliacao-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+}
+
+.titulo-avaliacao-servico-2 {
+    font-size: 1.2rem;
+    font-weight: var(--letra-regular);
+    color: var(--cor-primaria);
+}
+
+.titulo-avaliacao-servico-3 {
+    font-size: 1.2rem;
+    font-weight: var(--letra-regular);
+}
+
+
+
+
+
+
+
+.container-coracao input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    
+  }
+  
+  .container-coracao {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.1rem;
+    user-select: none;
+    margin-top: 0.2rem;
+    transition: 100ms;
+}
+  
+  .checkmark {
+    top: 0;
+    left: 0;
+    height: 2em;
+    width: 2em;
+    transition: 100ms;
+    animation: initial;
+    
+  }
+  
+  .container-coracao input:not(:checked) ~ .checkmark path {
+    fill: var(--cor-primaria);
+    stroke-width: 0;
+    
+  }
+  
+  .container-coracao input:not(:checked) ~ .checkmark {
+    animation: dislike_effect 400ms ease;
+  }
+  
+  .container-coracao:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes dislike_effect {
+
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    
+  
+      0% {
+        transform: scale(0);
+      }
+  
+    
+  }
+  
