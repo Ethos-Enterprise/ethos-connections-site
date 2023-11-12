@@ -62,7 +62,7 @@
 
 .beadcrumb{
     margin-top: 16px;
-
+margin-bottom: 10px;
 }
 
 .link-beadcrumb{
@@ -77,4 +77,11 @@
   text-decoration: none;
   color: var(--cor-letras);
   font-weight: var(--letra-regular);
+}
+
+.conteudo{
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  margin-left: 10vw;
 }

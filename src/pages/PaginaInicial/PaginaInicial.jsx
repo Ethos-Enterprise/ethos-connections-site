@@ -85,11 +85,12 @@ export const PaginaInicial = () => {
 
       />
 
-      <div className='conteudo-solucoes'>
+      <div className='conteudo'>
 
         <div className='beadcrumb'>
         <Link to='/pagina-inicial' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
         </div>
+        
         <div className='container-ultimos-serviços'>
           <h4 className='titulo-ultimos-servicos'>Últimos serviços visitados</h4>
           <div className='ultimos-servicos'>

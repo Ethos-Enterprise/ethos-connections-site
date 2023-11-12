@@ -11,6 +11,7 @@ import Cadastro from './pages/Cadastro/Cadastro.jsx';
 import Login from './pages/Login/Login.jsx';
 import PaginaInicial from "./pages/PaginaInicial/PaginaInicial";
 import Avaliacao from "./pages/Avaliacao/Avaliacao";
+import Portfolio from "./pages/Portfolio/Potfolio.jsx";
 
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
@@ -27,7 +28,9 @@ function App() {
           <Route path="/entrar" element={<Login />} />
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/pagina-inicial" element={<PaginaInicial />} />
-          <Route path="/pagina-inicial/servico/avaliacao" element={<Avaliacao />} />
+          <Route path="/pagina-inicial/portfolio/avaliacao" element={<Avaliacao />} />
+          <Route path="/pagina-inicial/portfolio" element={<Portfolio />} />
+
           {/* <Route path="/meu-perfil"/ > */}
           {/* <Route path="/minhas-interacoes"/> */}
           {/* <Route path="/meu-plano"/> */}

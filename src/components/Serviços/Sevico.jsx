@@ -32,7 +32,7 @@ const Servico = (props) => {
   // }
 
   const verServico = () => {
-    navigate('/pagina-inicial/servico/avaliacao');
+    navigate('/pagina-inicial/portfolio/avaliacao');
   }
 
   return (

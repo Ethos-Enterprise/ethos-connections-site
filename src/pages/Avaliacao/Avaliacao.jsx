@@ -15,6 +15,10 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
 import ButtonBorda from '../../components/ButtonOutlined/ButtonOutlined'
 
+
+//coisas do react
+import { useNavigate, Link } from 'react-router-dom';
+
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
 import { useEffect } from 'react';
@@ -39,6 +43,14 @@ const Avaliacao = () => {
     ></HeaderPlataforma>
 
       <div className="conteudo">
+
+        {/* COPIAR E COLAR A DIV beadcrumb NAS PAGINAS E IR ADICIONANDO O CAMINHO CONFORME ESTE, O CSS DO INDEX ESTA DEIXANDO ELE NO FORMATO BONITINHO :) */}
+        <div className='beadcrumb'>
+          <Link to='/pagina-inicial' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
+          <Link to='/pagina-inicial/portfolio' className='link-beadcrumb'><span>Portfólio {'>'}</span>  </Link>
+          <Link to='/pagina-inicial/portfolio/avaliacao' className='link-beadcrumb-atual'><span> Avaliações do Serviço</span>  </Link>
+        </div>
+
         <div className="conteudo-row">
 
           <div className="container-avaliacao-servico">
@@ -47,7 +59,12 @@ const Avaliacao = () => {
               <div className="container-foto-bloco">
                 <h1 className="titulo-avaliacao-servico">Deloitte</h1>
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
+
+                {/* QUANDO VOCE QUISER LINKaR UMA OUTRA PAG, VC ADD O LINK LA NOS IMPORT E AQUI COLOCAR O CAMINHO (olhar o app.jsx) */}
+                <Link to={'/pagina-inicial/portfolio'}> 
                 <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
+                </Link>
+
               </div>
             </div>
           </div>

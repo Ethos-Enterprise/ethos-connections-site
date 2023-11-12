@@ -1,0 +1,38 @@
+.informacoes-principais-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    margin-bottom: 24px;
+}
+
+.informacoes-gerais-empresa {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.informacoes-gerais-empresa .dados-gerais-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    margin-bottom: 24px;
+}
+
+.informacoes-gerais-empresa .dados-gerais-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+}
+
+.sobre-a-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+}
+
+.certificados-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+}
+
+.servicos-da-empresa{
+    background-color: var(--cinza);
+    border-radius: 7px;
+
+}
