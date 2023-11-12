@@ -26,7 +26,7 @@
 .conteudo-solucoes {
     display: flex;
     flex-direction: column;
-    width: 1140px;
+    width: 75vw;
     margin-left: 10vw;
 }
 
@@ -104,18 +104,51 @@
     gap: 16px;
 }
 
+/* FILTRO SELECT */
+.filtros-pesquisa .filtros .select-filtro{
+    background-color: transparent;
+    border: 1px solid var(--cor-primaria);
+    color: var(--cor-letras);
+    border-radius: 3px;
+    width: 30%;
+    padding: 5px;
+}
+
+
+/* FILTRO INPUT */
+
 .filtros-pesquisa .filtros .input-filtro{
-    border: 2px solid var(--cor-primaria);
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--cor-primaria);
     border-radius: 4px;
+    width: 30%;
+    position: relative;
 }
 
 .filtros-pesquisa .filtros .input-filtro .filtro{
     border: none;
     border-right: 0;
-    padding: 10px;
     border-radius: 3px 0px 0px 3px;
     background-color: transparent;
     color: var(--cor-letras);
+    width: 91%;
+    padding: 10px 14.5px;
+
+}
+
+.filtros-pesquisa .filtros .input-filtro .botao-filtrar{
+    position: absolute;
+    right: 0;
+    margin-right: 5px;
+    background-color: var(--cor-primaria);
+    padding: 6px;
+    border: none;
+    border-radius: 2px;
+    width: 65px;
+    color: var(--cor-letras);
+    font-weight: var(--letra-regular);
+    font-size: 0.9rem;
 }
 
 .filtros-pesquisa .filtros .input-filtro .filtro:focus ~ .input-filtro{

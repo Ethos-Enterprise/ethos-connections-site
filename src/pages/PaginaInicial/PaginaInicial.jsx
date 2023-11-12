@@ -110,7 +110,7 @@ export const PaginaInicial = () => {
           <p className='titulo-filtro'>Filtros</p>
           <div className='filtros'>
 
-            <select name="areas" id="">
+            <select name="areas" id="" className='select-filtro'>
               <option value="">Selecione a área ESG</option>
               <option value="">Ambiental</option>
               <option value="">Social</option>
@@ -119,7 +119,12 @@ export const PaginaInicial = () => {
 
             <div className='input-filtro'>
               <input className='filtro' type="text" placeholder='Preço médio (máximo)' />
-              <button>Filtrar</button>
+              <button className='botao-filtrar'>Filtrar</button>
+            </div>
+
+            <div className='input-filtro'>
+              <input className='filtro' type="text" placeholder='Localização(Digite seu CEP)' />
+              <button className='botao-filtrar'>Filtrar</button>
             </div>
 
           </div>
