@@ -1,0 +1,48 @@
+.fundo-grafico {
+    margin: 60px 0px 40px 0px;
+    width: 100%;
+    background-color: #2F2F2F;
+    height: 13px;
+    border-radius: 7px;
+    position: relative;
+}
+
+.fundo-grafico .porcentagem-progresso{
+    height: 100%;
+    background-color: #01a2c3;
+    transition: width 0.5s ease-in-out;
+    border-radius: 7px;
+}
+
+.fundo-grafico .hint-dado-porcentagem{
+    position: absolute;
+    top: -40px;
+    transition: width 0.5s ease-in-out;
+    transform: translateX(-100%);
+    background-color: var(--cor-secundaria);
+    border-radius: 7px;
+}
+
+.hint-dado-porcentagem .dado-porcentagem{
+    margin: 0;
+    padding: 2px 15px;
+    font-size: 0.9rem;
+    font-weight: var(--letra-semi-bold);
+    transition: width 0.5s ease-in-out;
+    
+}
+
+.hint-dado-porcentagem .triangulo {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: var(--cor-secundaria) transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.5s ease-in-out;
+
+  }
+  

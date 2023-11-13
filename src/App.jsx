@@ -15,6 +15,7 @@ import Portfolio from "./pages/Portfolio/Potfolio.jsx";
 
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
+import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.jsx";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <Route path="/pagina-inicial" element={<PaginaInicial />} />
           <Route path="/pagina-inicial/portfolio/avaliacao" element={<Avaliacao />} />
           <Route path="/pagina-inicial/portfolio" element={<Portfolio />} />
-
+          <Route path="/analise-crescimento" element={<AnaliseCrescimento />} />
           {/* <Route path="/meu-perfil"/ > */}
           {/* <Route path="/minhas-interacoes"/> */}
           {/* <Route path="/meu-plano"/> */}

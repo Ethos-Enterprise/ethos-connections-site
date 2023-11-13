@@ -1,0 +1,138 @@
+.nivel-meta-esg{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+}
+
+.titulo-campo{
+    color: var(--cor-primaria);
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 0;
+}
+/* ------NIVEL ESG--------------- */
+.container-nivel-esg{
+    background-color: var(--cinza);
+    padding: 20px 35px;
+    border-radius: 7px;
+    width: 70%;
+}
+
+.graficos-circulares{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 32px;
+}
+
+.container-nivel-esg .titulo-grafico{
+    font-weight: var(--letra-regular);
+    font-size: 0.95rem;
+}
+.titulo-grafico span{
+    border: 1px solid var(--cor-primaria);
+    padding: 2px 8px;
+    border-radius: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.titulo-grafico span .texto-info{
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    width: 240px;
+    border-radius: 7px;
+    background-color: var(--cor-letras);
+    color: var(--preto-comum);
+    text-align: center;
+    font-size: 0.90rem;
+    padding: 5px;
+} 
+
+.titulo-grafico span:hover .texto-info{
+    display: block;
+}
+
+.titulo-grafico span .icone-duvida{
+    color: var(--cor-primaria);
+    font-size: 0.9rem;
+}
+
+.graficos-circulares .container-grafico-circular{
+    text-align: center;
+    width: 140px;
+}
+
+.graficos-circulares .container-grafico-circular .titulo-grafico-circular{
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+}
+
+.campo-graficos{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+/* -------------META------------- */
+
+.container-meta{
+    background-color: var(--cinza);
+    padding: 20px 35px;
+    border-radius: 7px;
+    width: 40%;
+}
+
+.container-meta .titulo-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-meta .titulo-container .botao-preenchido{
+    width: 110px;
+    margin: 0;
+    padding: 0px 2px;
+    height: auto;
+
+}
+
+.container-meta .meta-nao-definida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+}
+
+.container-meta .meta-nao-definida img{
+    width: 95px;
+}
+
+.container-meta .meta-nao-definida p{
+    font-weight: var(--letra-regular);
+    font-size: 1rem;
+    color: #454545;
+    text-align: center;
+}
+
+/*----------- FORMULARIOS ESG--------- */
+.formularios-esg{
+    margin-top: 24px;
+    background-color: var(--cinza);
+    padding: 20px 35px;
+    border-radius: 7px;
+}
+
+.formularios-esg .titulo-campo span{
+    color: var(--cor-letras);
+    margin-left: 10px;
+}
+
+.formularios-esg .container-formularios{
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;   
+}

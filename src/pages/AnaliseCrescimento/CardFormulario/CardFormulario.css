@@ -1,0 +1,101 @@
+.card-formulario{
+    border-radius: 7px;
+    background-color: #181a1c;
+    width: 380px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.card-formulario:hover{
+    scale: 1.02 ;
+}
+/*  */
+ .foto-formulario{
+    width: 100%;
+    height: 200px;
+    position: relative;
+    border-radius: 7px 7px 0px 0px;
+    object-fit: cover;
+
+}
+
+.foto-status-formulario{
+    position: relative;
+
+}
+
+.foto-status-formulario .status-atual{
+    position: absolute;
+    top: 0;
+    right: 30px;
+    padding: 4px;
+    width: 110px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--cor-primaria);
+    color: var(--preto-comum);
+    font-size: 0.95rem;
+    font-weight: var(--letra-medium);
+}
+
+
+.metade-card-formulario{
+    padding: 5px 30px 30px 30px;
+}
+
+/* INFORMACOES GERAIS */
+.card-formulario .informacoes-gerais-formulario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.informacoes-gerais-formulario .pontuacao-formulario{
+    text-align: center;
+}
+
+/* ------- FINAL CARD -------*/
+.card-formulario .pontuacao-link-formulario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.pontuacao-link-formulario .respostas-formulario{
+    min-width: 160px;
+}
+
+ .pontuacao-link-formulario .respostas-formulario .dado-subtitulo{
+    text-align: center;
+}
+
+.botao-preenchido{
+    width: 110px;
+    height: 40px;
+    margin: 0;
+}
+
+/* ------DESCRICAO */
+
+.card-formulario .descricao-card-formulario{
+    font-weight: var(--letra-light);
+    font-size: 0.9rem;
+    margin: 24px 0px;
+}
+
+.dado-subtitulo {
+    margin: 0;
+    color: var(--cor-primaria);
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+
+.subtitulo-card{
+    font-weight: var(--letra-light);
+    font-size: 0.9rem;
+    margin: 0;
+}
