@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Dropdown.css';
 
-const Dropdown = ({ options, selectedValue, updateSelectedValue }) => {
+const Dropdown = ({ label, options, selectedValue, updateSelectedValue }) => {
     const [selectedOption, setSelectedOption] = useState(selectedValue);
 
     const [isOpen, setIsOpen] = useState(false);
@@ -12,14 +12,14 @@ const Dropdown = ({ options, selectedValue, updateSelectedValue }) => {
         setIsOpen(!isOpen);
     };
 
+
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         setIsOpen(false);
         if (updateSelectedValue) {
-          updateSelectedValue(option);
+            updateSelectedValue(option);
         }
-      };
-      
+    };
 
     //verifica se o click foi fora do dropdown(pra fechar a caixa de options)
     useEffect(() => {
@@ -38,22 +38,24 @@ const Dropdown = ({ options, selectedValue, updateSelectedValue }) => {
 
     useEffect(() => {
         setSelectedOption(selectedValue);
-      }, [selectedValue]);
+    }, [selectedValue]);
 
     return (
         <div className="dropdown" ref={dropdownRef}>
             <div className="dropdown-select" onClick={toggleDropdown}>
                 <div>
-                {selectedOption}
+                    {selectedOption === '' ? label : selectedOption}
+
                 </div>
-              
+
                 <i className="fa-solid fa-caret-down"></i>
-    
+
             </div>
 
             {/* se a pessoa clicar no dropdown esta caixa recebera isOpen e aparecera */}
             {isOpen && (
                 <div className="dropdown-options">
+
                     {options.map((option, index) => (
                         <div
                             key={index}
@@ -63,6 +65,7 @@ const Dropdown = ({ options, selectedValue, updateSelectedValue }) => {
                             {option}
                         </div>
                     ))}
+
                 </div>
             )}
         </div>

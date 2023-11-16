@@ -15,13 +15,18 @@ function verificar(event) {
 }
 
 
-const Senha = ({data, updateFieldHandler}) => {
-    
+const Senha = ({ data, updateFieldHandler }) => {
+
     useEffect(() => {
         verificar({ target: document.getElementById('senha') });
         verificar({ target: document.getElementById('confirmacaoSenha') });
-    
-      }, []); 
+
+    }, []);
+
+    const handleNewsletterChange = (event) => {
+        setNewsletterChecked(event.target.checked);
+        updateFieldHandler('newsletter', event.target.checked ? 'true' : 'false');
+    };
 
     return (
         <>
@@ -51,25 +56,28 @@ const Senha = ({data, updateFieldHandler}) => {
             </div>
 
 
-                <div className='check-cadastro' style={{ marginTop: '32px' }}>
-                    <input 
-                    type="checkbox" 
-                    name="termos" 
-                    id="termos" 
-                    value={"true"}
-                    />
-                    <label htmlFor="termos">Concordo com os <span>termos de uso</span> e <span>política de privacidade</span></label>
-                </div>
+            <div className='check-cadastro' style={{ marginTop: '32px' }}>
+                <input
+                    type="checkbox"
+                    name="termos"
+                    id="termos"
+                    checked={data.termosDeUso}
+                    onChange={(e) => updateFieldHandler("termosDeUso", e.target.checked)}
+                />
+                <label htmlFor="termos">Concordo com os <span>termos de uso</span> e <span>política de privacidade</span></label>
+            </div>
 
-                <div className='check-cadastro'>
-                    <input 
-                    type="checkbox" 
-                    id="news" 
-                    name="news" 
-                    value={"true"}
-                    />
-                    <label htmlFor="news">Desejo me inscrever na Newsletter Ethos</label>
-                </div>
+            <div className='check-cadastro'>
+                <input
+                    type="checkbox"
+                    id="news"
+                    name="news"
+                    checked={data.newsletter}
+                    onChange={(e) => updateFieldHandler("newsletter", e.target.checked)}
+
+                />
+                <label htmlFor="news">Desejo me inscrever na Newsletter Ethos</label>
+            </div>
 
         </>
     )

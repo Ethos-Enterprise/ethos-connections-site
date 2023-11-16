@@ -1,0 +1,48 @@
+.container-menu-lateral{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding-bottom: 10px;
+    height: max-content;
+}
+
+.container-menu-lateral .lista-opcoes-menu{
+    margin: 0px;
+    padding: 0;
+}
+
+.container-menu-lateral .titulo-menu{
+    color: var(--cor-primaria);
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 20px 25px 0px 25px;
+}
+
+.container-menu-lateral .lista-opcoes-menu{
+    color: var(--cor-letras);
+    text-decoration: none;
+
+}
+
+.container-menu-lateral .lista-opcoes-menu .opcao-menu:hover{
+    background-color: #121212;
+}
+
+.container-menu-lateral .lista-opcoes-menu .opcao-menu{
+    list-style: none;
+    padding: 15px 25px 15px 25px;
+    font-weight: var(--letra-light);
+    font-size: 0.95rem;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.tracinho-divisor-menu{
+    width: auto;
+    border-bottom: 1px solid var(--cor-detalhe);
+    margin: 10px 20px 0px 20px;
+
+}
+
+.ativa {
+background-color: #121212;
+}

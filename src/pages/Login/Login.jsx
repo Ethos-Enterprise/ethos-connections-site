@@ -1,50 +1,56 @@
-  import React from 'react'
+import React from 'react'
 
-  //css
-  import './Login.css'
+//css
+import './Login.css'
 
-  //api
-  import api from "../../service/api";
+//api
+import api from "../../service/api";
 
-  //imagens
-  import IconeLogo from '../../assets/iconeLogo- branco.png';
-  import FotoLogin from '../../assets/foto-login.png';
+//imagens
+import IconeLogo from '../../assets/iconeLogo- branco.png';
+import FotoLogin from '../../assets/foto-login.png';
 
-  //componentes
-  import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
+//componentes
+import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 
-  //coisas do react
-  import { Link, useNavigate } from 'react-router-dom'
-  import { useState } from 'react';
+//coisas do react
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
-  //hook 
-  import { useUsuario } from '../../hooks/Usuario';
+//hook 
+import { useUsuario } from '../../hooks/Usuario';
 
-  function verificar(event) {
-    const input = event.target;
-    const label = input.parentElement.querySelector("label");
+function verificar(event) {
+  const input = event.target;
+  const label = input.parentElement.querySelector("label");
 
-    if (input.value.trim() !== "") {
-      label.classList.add("caractere-digitado-label");
-    } else {
-      label.classList.remove("caractere-digitado-label");
-    }
+  if (input.value.trim() !== "") {
+    label.classList.add("caractere-digitado-label");
+  } else {
+    label.classList.remove("caractere-digitado-label");
   }
+}
 
-  const Login = () => {
-    const navigate = useNavigate();
+const Login = () => {
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
 
-    //colocar função do hook Usuario
-    const { atualizarUsuario } = useUsuario(); 
+  // caso esteja errado email ou senha isto mudará de cor
+  const [erro, setErro] = useState(false);
+  const [mensagemErro, setMensagemErro] = useState('');
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+  //colocar função do hook Usuario
+  const { atualizarUsuario } = useUsuario();
 
-      console.log(email, senha)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(email, senha)
+
+    if (email != '' && senha != '') {
 
       api.post('/auth/login', {
         email: 'admin@ethos',
@@ -64,16 +70,34 @@
             //requisição login pegar dados do input e passar o token tb
             api.get(`/v1.0/empresas/login/${email}/${senha}`, {
               headers: {
-                Authorization: `Bearer ${authToken}`, 
+                Authorization: `Bearer ${authToken}`,
               }
             })
               .then(response => {
                 console.log('Login realizado com sucesso!');
                 atualizarUsuario(response.data);
-                navigate('/pagina-inicial');
+
+                Swal.fire({
+                  icon: "success",
+                  text: "Login feitro com sucesso!",
+                  showConfirmButton: false,
+                  timer:2000,
+                  timerProgressBar: true,  
+                  showClass: {
+                    popup: 'animated fadeInDown faster' 
+                  },
+                  didClose: () => {
+                    navigate('/pagina-inicial');
+                }
+                });
+
               })
               .catch(error => {
-                console.error('Erro no login : '+ error);
+                if (error.response.data.status == 404) {
+                  setErro(true);
+                  setMensagemErro('Email ou senha incorretas!')
+                }
+                console.error('Erro no login : ', error.response.data.detail);
               });
 
           } else {
@@ -83,63 +107,73 @@
         .catch(error => {
           console.log(error.message);
         });
+    } else {
+      setErro(true);
+      setMensagemErro('Preencha todos os campos!');
     };
-
-    return (
-      <div className='fundo'>
-        <Link to="/" className='link-voltar'>
-          <ButtonFilled acao={" < "} />
-        </Link>
-
-        <form className='formulario' onSubmit={handleSubmit}>
-          <div className='imagem'>
-            <img src={IconeLogo} alt="icone logo" />
-          </div>
-
-          <h2>Faça login na Ethos</h2>
-
-          <div className="input">
-            <input
-              type="text"
-              id='email'
-              onInput={verificar}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="seuInput"><span>Email</span></label>
-          </div>
-
-          <div className="input">
-            <input
-              type="password"
-              id='senha'
-              onInput={verificar}
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-
-            />
-            <label htmlFor="seuInput"><span>Senha</span></label>
-          </div>
-
-          <Link to="" className='link-pagina'>Esqueceu a senha?</Link>
-
-          <ButtonFilled acao={"Entrar"} type="submit" />
-
-          <div className='tracinhos'>
-            <div className='tracinho' />
-            <span>ou</span>
-            <div className='tracinho' />
-          </div>
-
-          <p>Ainda não é cadastrado? <Link to="/cadastrar" className='link-pagina'>Criar Conta</Link> </p>
-        </form>
-
-        <div className='imagem-lateral'>
-          <img src={FotoLogin} alt="" />
-        </div>
-
-      </div>
-    )
   }
 
-  export default Login
+  return (
+    <div className={`fundo ${erro ? 'erro' : ''}`}>
+      <Link to="/" className='link-voltar'>
+        <ButtonFilled acao={" < "} />
+      </Link>
+
+
+
+      <form className='formulario' onSubmit={handleSubmit}>
+        <div className='imagem'>
+          <img src={IconeLogo} alt="icone logo" />
+        </div>
+
+        <h2>Faça login na Ethos</h2>
+
+        {erro ? (
+          <h4 className='erro-login'>{mensagemErro}</h4>
+        ) : (null)}
+
+        <div className="input">
+          <input
+            type="text"
+            id='email'
+            onInput={verificar}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label htmlFor="seuInput"><span>Email</span></label>
+        </div>
+
+        <div className="input">
+          <input
+            type="password"
+            id='senha'
+            onInput={verificar}
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+
+          />
+          <label htmlFor="seuInput"><span>Senha</span></label>
+        </div>
+
+        <Link to="" className='link-pagina'>Esqueceu a senha?</Link>
+
+        <ButtonFilled acao={"Entrar"} type="submit" />
+
+        <div className='tracinhos'>
+          <div className='tracinho' />
+          <span>ou</span>
+          <div className='tracinho' />
+        </div>
+
+        <p>Ainda não é cadastrado? <Link to="/cadastrar" className='link-pagina'>Criar Conta</Link> </p>
+      </form>
+
+      <div className='imagem-lateral'>
+        <img src={FotoLogin} alt="" />
+      </div>
+
+    </div>
+  )
+}
+
+export default Login

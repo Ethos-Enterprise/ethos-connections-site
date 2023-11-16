@@ -27,19 +27,27 @@ import ButtonFilled from '../../components/ButtonFilled/ButtonFilled';
 
 const Cadastro = () => {
 
+    // caso algo esteja errado aparecerá uma mensagem
+    const [erro, setErro] = useState(false);
+    const [mensagemErro, setMensagemErro] = useState('');
+
   const formTemplate = {
     nomeEmpresa: "",
-    cnpj:"",
-    areaAtuacao: "Área de Atuação",
-    mediaFuncionarios: 10,
-    cep:"",
-    telefone:"",
+    cnpj: "",
+    areaAtuacao: "",
+    mediaFuncionarios: "" ,
+    cep: "",
+    telefone: "",
     email: "",
     senha: "",
     confirmacaoSenha: "",
-    newsletter: ""
+    newsletter: false,
+    termosDeUso: false,
   }
   const [data, setData] = useState(formTemplate);
+
+  // console.log(data);
+
 
   const updateFieldHandler = (key, value) => {
 
@@ -56,9 +64,15 @@ const Cadastro = () => {
   ];
 
   const { etapaAtual, etapaComponents, mudarEtapa, primeiraEtapa, ultimoPasso, esconderBotoes } = formEtapas(etapas);
+  
+  function removerCaracteresEspeciais(dado) {
+    return dado.replace(/[^\w\s]/g, '');
+}
+
 
   const cadastrar = (e) => {
     e.preventDefault();
+
 
     api.post('/auth/login', {
       email: 'admin@ethos',
@@ -70,69 +84,92 @@ const Cadastro = () => {
     })
 
       .then(response => {
-        console.log(response);
+        console.log('autenticacao jwt STATUS: ', response.status);
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem('authToken', response.data.token);
 
           const authToken = sessionStorage.getItem('authToken');
 
-      // Agora, faz uma solicitação para cadastrar a empresa
-      const empresaData = {
-        razaoSocial: data.nomeEmpresa,
-        cnpj: data.cnpj,
-        telefone: data.telefone,
-        email: data.email,
-        senha: data.senha,
-        setor: data.areaAtuacao,
-        qtdFuncionarios: 100,
-        assinanteNewsletter: true
-      };
+          // VOU FORMATAR O NUMERO DE FUNCIONARIOOOOS
+          let numeroFuncionarios = '';
+  
+          if (data.mediaFuncionarios != null) {
+              numeroFuncionarios = data.mediaFuncionarios.match(/(\d+)/g);
+            console.log('Peguei este numero ' + numeroFuncionarios);
+        
+            if(numeroFuncionarios.length >= 1) {
+              numeroFuncionarios = numeroFuncionarios[1];
+            console.log('atualizei para ' + numeroFuncionarios);
+            }
+            
+          }
 
-       api.post('/v1.0/empresas', empresaData, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
+          // Agora, faz uma solicitação para cadastrar a empresa
+          const empresaData = {
+            razaoSocial: data.nomeEmpresa,
+            cnpj: removerCaracteresEspeciais(data.cnpj),
+            telefone: removerCaracteresEspeciais(data.telefone),
+            email: data.email,
+            senha: data.senha,
+            setor: data.areaAtuacao,
+            qtdFuncionarios: numeroFuncionarios,
+            assinanteNewsletter: data.newsletter
+          };
 
-      .then(response => {
-        // Lide com a resposta da API aqui
-      
-        console.log(response.data)
-      
-        console.log('Cadastro realizado com sucesso!');
+          console.log(empresaData);
+
+          api.post('/v1.0/empresas', empresaData, {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          })
+
+            .then(response => {
+              // Lide com a resposta da API aqui
+
+              console.log(response.data)
+
+              console.log('Cadastro realizado com sucesso!');
+              mudarEtapa(etapaAtual + 1, e); 
+            })
+            .catch(error => {
+              // Lide com erros da solicitação aqui
+              console.error(error);
+
+              if(error.response.data.status) {
+
+              }
+
+
+            });
+
+        } else {
+          throw new Error('Ops! Ocorreu um erro interno.');
+        }
       })
       .catch(error => {
-        // Lide com erros da solicitação aqui
-        console.error(error);
+        console.log('erro ao acessar api' + error.message);
       });
-
-      } else {
-        throw new Error('Ops! Ocorreu um erro interno.');
-      }
-    })
-    .catch(error => {
-      console.log(error.message);
-    });
-};
+  };
 
   return (
     <div className='fundo-cadastro'>
       <Link to="/" className='link-voltar'>
-      <ButtonFilled  acao={" < "}/>
+        <ButtonFilled acao={" < "} />
       </Link>
 
       <div className='imagem-lateral-cadastro'>
         <img src={FotoCadastro} alt="" />
-          
+
         <p>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
       </div>
 
       <form className='formulario-cadastro' onSubmit={(e) => {
         e.preventDefault();
         if (ultimoPasso) {
-          cadastrar(e);  // Chama a função de cadastro
+          cadastrar(e); 
         } else {
-          mudarEtapa(etapaAtual + 1, e);  // Avança para a próxima etapa
+          mudarEtapa(etapaAtual + 1, e);  
         }
       }}>
 
@@ -147,6 +184,10 @@ const Cadastro = () => {
             <Progresso etapaAtual={etapaAtual} />
           </>
         ) : null}
+
+        {erro ? (
+          <h4 className='erro-cadastro'>{mensagemErro}</h4>
+        ) : (null)}
 
         <div className='container-inputs'>
           {etapaComponents}
@@ -178,9 +219,11 @@ const Cadastro = () => {
               )}
             </>
           ) : null}
-        </div>
-      </form>
 
+          
+        </div>
+      <p className='link-pagina-mobile'>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
+      </form>
     </div>
   )
 }

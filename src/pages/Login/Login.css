@@ -180,3 +180,15 @@
 
 }
 
+/* QUANDO ERRAR EMAIL OU SENHA ISTO MUDARÁ DE CORR */
+.erro .input input {
+    border-bottom: 1px solid rgb(172, 50, 50);
+  }
+  
+.erro-login{
+    margin: 20px 0px 0px 0px;
+    color: rgb(172, 50, 50) ;
+    font-weight: var(--letra-semi-bold);
+    font-size: 0.9rem;
+    text-align: center;
+}

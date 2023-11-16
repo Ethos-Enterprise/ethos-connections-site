@@ -1,0 +1,71 @@
+.container-menu-campos-editaveis{
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.dados-portfolio {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 35px;
+    background-color: var(--cinza);
+    border-radius: 7px;
+}
+
+.dados-portfolio .titulo-secao{
+    margin: 0;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+}
+
+.dados-portfolio .campo-portfolio{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dados-portfolio .campo-portfolio .label-portfolio{
+    font-weight: var(--letra-regular);
+    font-size: 1rem;
+}
+
+.dados-portfolio .campo-portfolio .input-portfolio{
+    border-radius: 5px;
+    background-color: #1b1b1b;
+    padding: 10px;
+    color: var(--cor-letras);
+    border: 0.2px solid #a3a3a3;
+    width: 35vw;
+}
+
+.dados-portfolio .inputs-portfolio{
+    display: flex;
+    margin: 8px 0px 20px 16px;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.botoes-portfolio{
+    display: flex;
+    margin-top: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.botoes-portfolio .botao-preenchido{
+    width: 210px;
+    margin: 0;
+}
+
+.botoes-portfolio .botao-borda{
+    width: 210px;
+    margin: 0;  
+}
+
+.dados-editaveis{
+    flex:1;
+}

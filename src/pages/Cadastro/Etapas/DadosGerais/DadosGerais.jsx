@@ -39,14 +39,14 @@ const DadosGerais = ({ data, updateFieldHandler }) => {
     ];
 
     const opcoesMediaTrabalhadores = [
-        'Menos de 10 funcionários',
+        'Até 9 funcionários',
         '10 a 20 funcionários',
         '21 a 50 funcionários',
         '51 a 100 funcionários',
         '101 a 200 funcionários',
         '201 a 500 funcionários',
         '501 a 1000 funcionários',
-        'Mais de 1000 funcionários'
+        '1001 ou mais funcionários'
     ];
 
     // Chamar verificar quando o componente é montado (pra evitar que o label fique em ima da letra ao voltar)
@@ -54,7 +54,6 @@ const DadosGerais = ({ data, updateFieldHandler }) => {
         verificar({ target: document.getElementById('nomeEmpresa') });
         verificar({ target: document.getElementById('cnpj') });
     }, []);
-
 
     return (
 
@@ -69,25 +68,75 @@ const DadosGerais = ({ data, updateFieldHandler }) => {
                     value={data.nomeEmpresa || ""}
                     onChange={(e) => updateFieldHandler("nomeEmpresa", e.target.value)}
                 />
-                <label htmlFor="nomeEmpresa"><span>Nome da Empresa</span></label>
+                <label htmlFor="nomeEmpresa"><span>Nome da Empresa *</span></label>
             </div>
 
             <div className="input">
                 <input
-                    type="number"
+                    type="text"
                     name='cnpj'
                     id='cnpj'
                     onInput={verificar}
                     required
                     value={data.cnpj || ""}
-                    onChange={(e) => updateFieldHandler('cnpj', e.target.value)}
+                    onKeyDown={(e) => {
+                        const deleteKey = e.key === 'Delete';
+                        const backspaceKey = e.key === 'Backspace';
+                    
+                        if (deleteKey || backspaceKey) {
+                          const inputValueCNPJ = e.target.value;
+                          const sanitizedValue = inputValueCNPJ.replace(/[^\d]/g, '');
+                          let dadoFormatado = '';
+                    
+                          for (let i = 0; i < sanitizedValue.length; i++) {
+                            dadoFormatado += sanitizedValue[i];
+                    
+                            if (i === 1 && i < sanitizedValue.length - 1) {
+                              dadoFormatado += '.';
+                            } else if (i === 4 && i < sanitizedValue.length - 1) {
+                              dadoFormatado += '.';
+                            } else if (i === 7 && i < sanitizedValue.length - 1) {
+                              dadoFormatado += '/';
+                            } else if (i === 11 && i < sanitizedValue.length - 1) {
+                              dadoFormatado += '-';
+                            }
+                          }
+                    
+                          updateFieldHandler("cnpj", dadoFormatado);
+                        }
+                      }}
+                      
+                    onChange={(e) => {
+                        const inputValueCNPJ= e.target.value;
+                        const maxLength = 14;
+                        const sanitizedValue = inputValueCNPJ.replace(/[^\d]/g, '').slice(0, maxLength);
+                        
+                        let dadoFormatado = '';
 
+                        for (let i = 0; i < sanitizedValue.length; i++) {
+                            dadoFormatado += sanitizedValue[i];
+                      
+                            if (i === 1) {
+                              dadoFormatado += '.';
+                            } else if (i === 4) {
+                              dadoFormatado += '.';
+                            } else if (i === 7) {
+                              dadoFormatado += '/';
+                            } else if (i === 11) {
+                              dadoFormatado += '-';
+                            }
+                          }                      
+
+                        updateFieldHandler("cnpj", dadoFormatado);
+                    }
+                }
                 />
-                <label htmlFor="cnpj"><span>CNPJ</span></label>
+                <label htmlFor="cnpj"><span>CNPJ *</span></label>
             </div>
 
             <div className='linha-inputs'>
                 <Dropdown
+                    label="Área de Atuação *"
                     options={opcoesAreaAtuacao}
                     selectedValue={data.areaAtuacao}
                     updateSelectedValue={(value) => updateFieldHandler("areaAtuacao", value)}
@@ -95,6 +144,7 @@ const DadosGerais = ({ data, updateFieldHandler }) => {
                 />
 
                 <Dropdown 
+                    label="Nº de Funcionários *"
                 options={opcoesMediaTrabalhadores} 
                 selectedValue={data.mediaFuncionarios}
                 updateSelectedValue={(value) => updateFieldHandler("mediaFuncionarios", value)}

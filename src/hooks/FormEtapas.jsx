@@ -4,7 +4,6 @@ export function formEtapas(etapas) {
     const [etapaAtual, setEtapaAtual] = useState(0);
 
     function mudarEtapa(i, e) {
-        console.log("mudei etapa");
         if (e) {
             e.preventDefault();
         } 

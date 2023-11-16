@@ -64,9 +64,13 @@
     text-align: center;
 }
 
-.imagem-lateral-cadastro p {
+.imagem-lateral-cadastro .link-pagina {
     font-weight: var(--letra-light);
     font-size: 0.875rem;
+}
+
+.link-pagina-mobile{
+    display: none;
 }
 
 .botao-desativado {
@@ -167,6 +171,12 @@
         display: none;
     }
 
+    .link-pagina-mobile{
+        display: block;
+        text-align: center;
+        margin-top: 24px;
+        font-size: 0.9rem;
+    }
     .container-inputs .input input {
         width: 40vw;
     }
@@ -232,4 +242,12 @@
         padding-top: 20px;
         padding-bottom: 50px;
     }
+}
+
+.erro-cadastro{
+    margin: 20px 0px 0px 0px;
+    color: rgb(172, 50, 50) ;
+    font-weight: var(--letra-semi-bold);
+    font-size: 0.9rem;
+    text-align: center;
 }

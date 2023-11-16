@@ -12,6 +12,7 @@ import Login from './pages/Login/Login.jsx';
 import PaginaInicial from "./pages/PaginaInicial/PaginaInicial";
 import Avaliacao from "./pages/Avaliacao/Avaliacao";
 import Portfolio from "./pages/Portfolio/Potfolio.jsx";
+import EditarPortfolio from "./pages/EditarPortfolio/EditarPortfolio.jsx";
 
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
@@ -35,6 +36,8 @@ function App() {
           {/* <Route path="/meu-perfil"/ > */}
           {/* <Route path="/minhas-interacoes"/> */}
           {/* <Route path="/meu-plano"/> */}
+
+          <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
 
         </Routes>
 
