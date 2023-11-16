@@ -38,3 +38,18 @@
     background-color: #01A2C3; /* Cor da bolinha ativa */
   }
   
+  /* Adicione estas regras de estilo ao seu arquivo de estilo (Carrosel.css) ou onde você gerencia seus estilos */
+.texto-sobre-imagem {
+  position: absolute;
+  top: 3%; /* Posiciona o texto no centro vertical */
+  left: 50%; /* Posiciona o texto no centro horizontal */
+  transform: translate(-50%, -50%); /* Move o texto de volta pela metade de sua própria largura e altura para centralizá-lo completamente */
+  text-align: center; /* Centraliza o texto no contêiner */
+  color: #fff; /* Cor do texto (ajuste conforme necessário) */
+  font-size: 40px; /* Tamanho da fonte do texto (ajuste conforme necessário) */
+  letter-spacing: 13px; /* Ajuste o valor conforme necessário */
+  font-weight: light; /* Peso da fonte (ajuste conforme necessário) */
+  padding: 10px; /* Espaçamento interno do texto (ajuste conforme necessário) */
+  white-space: nowrap;
+  border-radius: 8px; /* Borda arredondada para o contêiner de texto (ajuste conforme necessário) */
+}

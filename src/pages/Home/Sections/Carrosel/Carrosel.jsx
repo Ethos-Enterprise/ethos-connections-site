@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Carrosel.css';
 
-const Carrosel = ({ imagens }) => {
+const Carrosel = ({ imagens, textos }) => {
   const [slideAtual, setSlideAtual] = useState(0);
 
   const goToSlide = (index) => {
@@ -19,7 +19,10 @@ const Carrosel = ({ imagens }) => {
           />
         ))}
       </div>
-      <img src={imagens[slideAtual]} alt={`Slide ${slideAtual + 1}`} />
+      <div className="slide-content">
+        <img src={imagens[slideAtual]} alt={`Slide ${slideAtual + 1}`} />
+        {textos && textos[slideAtual] && <p className="texto-sobre-imagem">{textos[slideAtual]}</p>}
+      </div>
     </div>
   );
 };

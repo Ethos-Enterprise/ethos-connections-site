@@ -1,13 +1,6 @@
 import React from 'react'
 import './BeneficiosESG.css';
 
-
-import Numero2 from '../../../../assets/icones/Numero2.png'
-import Numero3 from '../../../../assets/icones/Numero3.png'
-import Numero4 from '../../../../assets/icones/Numero4.png'
-import Numero5 from '../../../../assets/icones/Numero5.png'
-import Numero6 from '../../../../assets/icones/Numero6.png'
-import Numero1 from '../../../../assets/icones/numero1-beneficios.png'
 import CardBeneficio from '../BeneficiosESG/CardBeneficio/CardBeneficioESG'
 
 export const BeneficiosESG = (props) => {
@@ -28,7 +21,6 @@ export const BeneficiosESG = (props) => {
         <CardBeneficio texto="Valoriza a imagem da empresa." numero="6" />
       </div>
 
-      <p>{props.descricao}</p>
     </div>
   )
 }

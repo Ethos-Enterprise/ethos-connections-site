@@ -6,7 +6,7 @@ body {
   
   /* Adicione outras regras de estilo conforme necessário */
   
-.card {
+.card-beneficio {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,13 @@ body {
     /* Defina um tamanho fixo para os cards */
     border-radius: 15px;
     /* Adicionei um raio de borda para suavizar as bordas */
+    box-shadow: 0.3em 0.3em 0.7em #00000015;
+    transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+   .card-beneficio:hover {
+    border: #01A2C3 0.2em solid;
+   }
 
 
 .numero-container {
