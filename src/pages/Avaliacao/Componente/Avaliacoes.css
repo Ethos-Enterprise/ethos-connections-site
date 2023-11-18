@@ -1,0 +1,57 @@
+/* Avaliacao Serviço */
+.traco {
+  background-color: #2F2F2F;
+  height: 0.2vh;
+  margin-top: 2vh;
+}
+
+.caixa-avaliacao-servico {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+
+.usuario-conjunto {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5vh;
+  align-items: center; 
+}
+
+.usuario-servico {
+  width: 25px;
+  height: 25px;
+}
+
+.estrela-servico {
+  width: 25px;
+  height: 25px;
+}
+
+.estrelas-conjunto {
+  display: flex;
+  gap: 1vh;
+}
+
+.titulo-star-avaliacao {
+  font-size: 1.1rem;
+  font-weight: var(--letra-medium);
+  color: var(--cor-primaria);
+}
+
+.subtitulo-star-avaliacao {
+  font-size: 1rem;
+  font-weight: var(--cinza);
+  color: #CFCFCF;
+}
+
+.descricao-star-avaliacao {
+  font-size: 1rem;
+  font-weight: var(--cinza);
+  color: #FAFAFA;
+}
+
+.container-avaliacao{
+  padding: 0px 35px 10px;
+
+}

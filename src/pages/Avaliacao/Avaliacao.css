@@ -1,4 +1,3 @@
-
 .conteudo-row {
     display: flex;
     flex-direction: row;
@@ -12,6 +11,7 @@
     border-radius: 7px;
     width: 30vh;
     height: 45vh;
+    padding: 20px 10px;
 }
 
 .margin-avaliacao-foto {
@@ -21,9 +21,7 @@
     flex-direction: column;
 }
 
-.margin-avaliacao {
-    margin: 2vh 2vh 2vh 2vh;
-}
+
 
 .imagem-perfil {
     margin-top: 1vh;
@@ -56,8 +54,10 @@
 .container-informacoes {
     background-color: var(--cinza);
     border-radius: 1%;
-    width: 124vh;
+    width: 100%;
     height: 45vh;
+    padding: 20px 35px;
+    position: relative;
 }
 
 .titulo-container-informacao {
@@ -83,7 +83,7 @@
 .texto-container-informacao {
     font-size: 0.9rem;
     font-weight: var(--letra-regular);
-    max-width: 49rem;
+    max-width: 90%;
     text-align: justify;
     margin-top: 3vh;
 }
@@ -91,22 +91,14 @@
 .container-avaliacao {
     background-color: var(--cinza);
     border-radius: 7px;
-    height: 0;
-    padding-bottom: 20%;
     margin-top: 5vh;
-    width: 100%;
 }
 
-.traco {
-    background-color: #2F2F2F;
-    height: 0.2vh;
-    margin-top: 2vh;
-}
 
 .box-container-informacoes {
     display: flex;
     flex-direction: row;
-    margin: 2vh 2vh 2vh 2vh;
+    margin: 2vh 2vh 2vh 0vh;
 }
 
 
@@ -139,6 +131,7 @@
 }
 
 .margin-avaliacao-2 {
+    background-color: var(--cinza);
     margin: 4vh 4vh 4vh 4vh;
 }
 
@@ -159,69 +152,88 @@
     font-weight: var(--letra-regular);
 }
 
-
-
-
-
-
-
-.container-coracao input {
+.pilar-servico {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-    
-  }
-  
-  .container-coracao {
-    display: block;
-    position: relative;
-    cursor: pointer;
-    font-size: 1.1rem;
-    user-select: none;
-    margin-top: 0.2rem;
-    transition: 100ms;
+    align-items: end;
+    top: 19px;
+    right: 0;
 }
-  
-  .checkmark {
-    top: 0;
-    left: 0;
-    height: 2em;
-    width: 2em;
-    transition: 100ms;
-    animation: initial;
-    
-  }
-  
-  .container-coracao input:not(:checked) ~ .checkmark path {
-    fill: var(--cor-primaria);
-    stroke-width: 0;
-    
-  }
-  
-  .container-coracao input:not(:checked) ~ .checkmark {
-    animation: dislike_effect 400ms ease;
-  }
-  
-  .container-coracao:hover {
-    transform: scale(1.1);
-  }
-  
-  @keyframes dislike_effect {
 
-      100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-    
-  
-      0% {
-        transform: scale(0);
-      }
-  
-    
+.pilar-servico .pilar-esg {
+    width: 118px;
+    padding: 3px;
+    text-align: center;
+    margin: 3px 0px;
+    background-color: var(--cor-primaria);
+    border-radius: 10px 0px 0px 2px;
+    font-weight: var(--letra-regular);
+    font-size: 0.85rem;
+}
+
+.pilar-servico .pilar-esg-nao-contido {
+    width: 30px;
+    padding: 3px;
+    text-align: center;
+    margin: 3px 0px;
+    background-color: var(--cor-secundaria);
+    border-radius: 10px 0px 0px 2px;
+    font-weight: var(--letra-regular);
+    color: var(--cinza);
+    font-size: 0.85rem;
+}
+
+
+/* Avaliacao Serviço */
+
+.caixa-avaliacao-servico {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
   }
   
+  .usuario-conjunto {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5vh;
+    align-items: center; 
+  }
+  
+  .usuario-servico {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .estrela-servico {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .estrelas-conjunto {
+    display: flex;
+    gap: 1vh;
+  }
+  
+  .titulo-star-avaliacao {
+    font-size: 1.1rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-primaria);
+  }
+  
+  .subtitulo-star-avaliacao {
+    font-size: 1rem;
+    font-weight: var(--cinza);
+    color: #CFCFCF;
+  }
+  
+  .descricao-star-avaliacao {
+    font-size: 1rem;
+    font-weight: var(--cinza);
+    color: #FAFAFA;
+  }
+  
+  .container-avaliacao{
+    padding: 0px 35px 10px;
+  
+  }

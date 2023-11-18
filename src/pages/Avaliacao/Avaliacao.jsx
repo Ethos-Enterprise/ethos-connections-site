@@ -5,7 +5,7 @@ import './Avaliacao.css';
 
 //Imagem
 import ImagemPerfil from '../../assets/imagens/perfil.jpg'
-import ImagemCoracao from '../../assets/favorito (2).png'
+
 
 //Componentes Footer e Header
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
@@ -14,6 +14,10 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 //Componentes Botões
 import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
 import ButtonBorda from '../../components/ButtonOutlined/ButtonOutlined'
+
+//Componente Coração
+import HeartCheckbox from './favoritar/Heart.jsx';
+import AvaliacaoServicoComponent from './Componente/Avaliacoes.jsx';
 
 
 //coisas do react
@@ -61,8 +65,8 @@ const Avaliacao = () => {
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
 
                 {/* QUANDO VOCE QUISER LINKaR UMA OUTRA PAG, VC ADD O LINK LA NOS IMPORT E AQUI COLOCAR O CAMINHO (olhar o app.jsx) */}
-                <Link to={'/pagina-inicial/portfolio'}> 
-                <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
+                <Link to={'/pagina-inicial/portfolio'}>
+                  <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
                 </Link>
 
               </div>
@@ -78,18 +82,23 @@ const Avaliacao = () => {
               <div className="traco"></div>
             </div>
 
+            <div class='pilar-servico'>
+
+              <p class='pilar-esg'>Environmental</p>
+              {/* <p class='pilar-esg-nao-contido'>E</p> */}
+
+              <p class='pilar-esg'>Social</p>
+              {/* <p class='pilar-esg-nao-contido'>S</p> */}
+
+              {/* <p class='pilar-esg'>Governamental</p> */}
+              <p class='pilar-esg-nao-contido'>G</p>
+
+            </div>
+
             <div className="box-container-informacoes">
               <button className='botao-preenchido-servico'>Solicitar Contato</button>
+              <HeartCheckbox></HeartCheckbox>
 
-              <label className="container-coracao">
-                <input defaultChecked type="checkbox" />
-                <div className="checkmark">
-                  <svg viewBox="0 0 256 256">
-                    <rect fill="none" height="256" width="256"></rect>
-                    <path d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z" strokeWidth="20px" stroke="#01A2C3" fill="none"></path>
-                  </svg>
-                </div>
-              </label>
               <h2 className='subtitulo-container-informacao-favoritar'>Favoritar</h2>
             </div>
 
@@ -98,11 +107,21 @@ const Avaliacao = () => {
 
 
         <div className="container-avaliacao">
+
           <div className='margin-avaliacao-2'>
             <div className="titulo-caixa-avaliacao-2"> <h2 className='titulo-avaliacao-servico-2'>Avaliações do Serviço </h2><h2 className='titulo-avaliacao-servico-3'>(3)</h2></div>
-            <div className="traco"></div>
+            <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
+
+            <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
+
+            <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
           </div>
+
+
         </div>
+
+
+
 
       </div>
 

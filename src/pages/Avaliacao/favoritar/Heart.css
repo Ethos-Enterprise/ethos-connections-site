@@ -1,0 +1,60 @@
+.container-coracao input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    
+  }
+  
+  .container-coracao {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.1rem;
+    user-select: none;
+    margin-top: 0.2rem;
+    transition: 100ms;
+}
+  
+  .checkmark {
+    top: 0;
+    left: 0;
+    height: 1.9rem;
+    width: 1.9rem;
+    transition: 100ms;
+    animation: initial;
+    
+  }
+  
+  .container-coracao input:not(:checked) ~ .checkmark path {
+    fill: var(--cor-primaria);
+    stroke-width: 0;
+    
+  }
+  
+  .container-coracao input:not(:checked) ~ .checkmark {
+    animation: dislike_effect 400ms ease;
+  }
+  
+  .container-coracao:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes dislike_effect {
+
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    
+  
+      0% {
+        transform: scale(0);
+      }
+  
+    
+  }
+  
