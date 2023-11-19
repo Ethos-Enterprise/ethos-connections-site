@@ -26,23 +26,26 @@ export const PaginaInicial = () => {
 
   const navigate = useNavigate();
 
+  // const dadosServico = {
+  //   nomeServico: 'primeiro servico teste api',
+  //   descricao: 'decricao legal descricao legal descricao legal',
+  //   valor: 100,
+  //   fkEmpresa: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+  // };
+
   // useEffect(() => {
-  //   api.post('v1.0/servicos', {
-  //     "id": "11",
-  //     "nomeServico": "Exemplo",
-  //     "descricao": "Este é um serviço de Exemplo",
-  //     "valor": 100
-  //   }, {
+  //   api.post('v1.0/servicos', dadosServico, {
   //     headers: {
   //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //     }
+  //     },
   //   })
   //   .then((response) =>
   //     console.log(response)
   //   )
   //   .catch((error) =>
-  //     console.log('erro ao cadastrar cadastrar serviço: ' + error)
-  //   )
+  //     console.log('erro ao cadastrar cadastrar serviço: ' , error)
+  
+  //     )
   //   .finally(
   //     console.log('tudo executado')
   //   )
@@ -59,7 +62,7 @@ export const PaginaInicial = () => {
         console.log('OK Serviços disponiveis:' + response.data)
       )
       .catch((error) =>
-        console.log('erro ao pegar todos os serviços. ERRO: ' + error)
+        console.log('erro ao pegar todos os serviços. ERRO: ', error)
       )
       .finally(
         console.log('Sai da requisição VerTodosServicos')
@@ -72,15 +75,7 @@ export const PaginaInicial = () => {
     <div className='pagina-inicial'>
 
       <HeaderPlataforma
-        link1={'/pagina-inicial'}
-        titulo1={'Soluções ESG'}
-
-        link2={'dont2'}
-        titulo2={'Parceiros Ethos'}
-
-        link3={'dont3'}
-        titulo3={'Aplicativo Ethos'}
-
+        plano={'Free'}
         razaoSocial={usuario.razaoSocial}
 
       />
@@ -88,7 +83,7 @@ export const PaginaInicial = () => {
       <div className='conteudo'>
 
         <div className='beadcrumb'>
-        <Link to='/pagina-inicial' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
+        <Link to='/solucoes-esg' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
         </div>
         
         <div className='container-ultimos-serviços'>

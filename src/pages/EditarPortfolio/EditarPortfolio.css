@@ -43,7 +43,7 @@
 
 .dados-portfolio .inputs-portfolio{
     display: flex;
-    margin: 8px 0px 20px 16px;
+    margin: 8px 0px 20px 36px;
     flex-direction: column;
     gap: 16px;
 }
@@ -68,4 +68,56 @@
 
 .dados-editaveis{
     flex:1;
+}
+
+/* TEXT AREA SOBRE A EMPRESA */
+.campo-texto-portfolio{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-texto-portfolio .label-text-area{
+    font-size: 1rem;
+    font-weight: var(--letra-regular);
+}
+
+.campo-texto-portfolio .text-area-sobre-empresa{
+    border-radius: 5px;
+    background-color: #1b1b1b;
+    padding: 10px;
+    color: var(--cor-letras);
+    border: 0.2px solid #a3a3a3;
+    width: 35vw;
+    resize: none;
+}
+
+
+.dados-portfolio .titulo-botao-adicionar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.dados-portfolio .titulo-botao-adicionar .botao-adicionar-servico{
+    padding: 0px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.dados-portfolio .titulo-botao-adicionar .botao-adicionar-servico .icone-adicionar-servico{
+    margin-right: 6px;
+    color: var(--cor-primaria);
+    font-size: 1.1rem;
+}
+
+.dados-portfolio .titulo-botao-adicionar .botao-adicionar-servico .acao--botao-adicionar-servico{
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.titulo-conjunto-informacoes{
+    font-size: 1.2rem;
+    font-weight: var(--letra-bold);
+    margin: 16px 0px 0px 0px;
 }

@@ -32,23 +32,15 @@ const Potfolio = () => {
         <div>
 
             <HeaderPlataforma
-                link1={'/pagina-inicial'}
-                titulo1={'Soluções ESG'}
-
-                link2={'dont2'}
-                titulo2={'Parceiros Ethos'}
-
-                link3={'dont3'}
-                titulo3={'Aplicativo Ethos'}
-
+                plano={'Free'}
                 razaoSocial={usuario.razaoSocial}
             />
 
             <div className='conteudo'>
 
                 <div className='beadcrumb'>
-                    <Link to='/pagina-inicial' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
-                    <Link to='/pagina-inicial/portfolio' className='link-beadcrumb-atual'><span>Portfólio</span>  </Link>
+                    <Link to='/solucoes-esg' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
+                    <Link to='/solucoes-esg/portfolio' className='link-beadcrumb-atual'><span>Portfólio</span>  </Link>
                 </div>
 
                 <div className='informacoes-principais-empresa'>

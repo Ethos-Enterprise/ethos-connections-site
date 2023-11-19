@@ -1,17 +1,52 @@
 import React from 'react'
 
-const Servicos = () => {
+import { useState , useEffect } from 'react';
+
+//react router dom
+import AdicionarServico from './AdicionarServico';
+
+const Servicos = (props) => {
+  const [adicionarServicoTela, setAdicionarServicoTela] = useState(props.voltar);
+
+  const adicionarServico = () => {
+    setAdicionarServicoTela(true);
+  };
+
+
+console.log(adicionarServicoTela);
   return (
-    <div className='dados-portfolio'>
-      <h2 className='titulo-secao'>
-        Serviços
-      </h2>
-      <div className='tracinho-divisor'></div>
+    <>
+      {
+        !adicionarServicoTela ?
+          (
+            <div className='dados-portfolio' >
+              <div className='titulo-botao-adicionar'>
 
-      <div className='inputs-portfolio'>
+                <h2 className='titulo-secao'>
+                  Serviços
+                </h2>
 
-      </div>
-    </div>
+                <div onClick={adicionarServico} className='botao-adicionar-servico'>
+                  <i className="fa-solid fa-plus icone-adicionar-servico"></i>
+
+                  <span className='acao-botao-adicionar-servico'>
+                    Adicionar
+                  </span>
+                </div>
+              </div>
+              <div className='tracinho-divisor'></div>
+
+              <div className='inputs-portfolio'>
+
+              </div>
+            </div >
+
+          ) : (
+            <AdicionarServico />
+          )
+      }
+    </>
+
   )
 }
 

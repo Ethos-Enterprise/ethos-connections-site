@@ -87,7 +87,7 @@ const Login = () => {
                     popup: 'animated fadeInDown faster' 
                   },
                   didClose: () => {
-                    navigate('/pagina-inicial');
+                    navigate('/solucoes-esg');
                 }
                 });
 
@@ -105,7 +105,7 @@ const Login = () => {
           }
         })
         .catch(error => {
-          console.log(error.message);
+          console.log(error);
         });
     } else {
       setErro(true);

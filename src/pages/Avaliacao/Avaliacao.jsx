@@ -34,14 +34,7 @@ const Avaliacao = () => {
   return (
 
     <><HeaderPlataforma
-      link1={'/pagina-inicial'}
-      titulo1={'Soluções ESG'}
-
-      link2={'dont2'}
-      titulo2={'Parceiros Ethos'}
-
-      link3={'dont3'}
-      titulo3={'Aplicativo Ethos'}
+      plano={'Free'}
 
       razaoSocial={usuario.razaoSocial}
     ></HeaderPlataforma>
@@ -65,7 +58,7 @@ const Avaliacao = () => {
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
 
                 {/* QUANDO VOCE QUISER LINKaR UMA OUTRA PAG, VC ADD O LINK LA NOS IMPORT E AQUI COLOCAR O CAMINHO (olhar o app.jsx) */}
-                <Link to={'/pagina-inicial/portfolio'}>
+                <Link to={'/solucoes-esg/portfolio'}>
                   <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
                 </Link>
 

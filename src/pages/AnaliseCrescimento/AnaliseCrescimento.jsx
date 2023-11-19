@@ -26,15 +26,8 @@ const AnaliseCrescimento = () => {
     return (
         <div>
             <HeaderPlataforma
-                link1={'/pagina-inicial'}
-                titulo1={'Soluções ESG'}
 
-                link2={'dont2'}
-                titulo2={'Meu Progresso '}
-
-                link3={'dont3'}
-                titulo3={'Parceiro Ethos'}
-
+                plano={'Analytics'}
                 razaoSocial={usuario.razaoSocial}
             />
 

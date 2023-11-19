@@ -1,14 +1,10 @@
 import React from 'react'
 import './MenuLateral.css'
 
-import  { useState} from 'react';
+const MenuLateral = ({ titulo, opcoes ,secaoAtiva, setSecaoAtual  }) => {
 
-const MenuLateral = ({ titulo, opcoes , setSecaoAtual  }) => {
-    const [secaoAtiva, setSecaoAtiva] = useState(opcoes[0].nome);
-
-    const mudarSecao = (nome) => {
-        setSecaoAtiva(nome);
-        setSecaoAtual(nome);
+    const mudarSecao = (opcao) => {
+        setSecaoAtual( opcao.hash); 
       };
 
     return (
@@ -19,8 +15,8 @@ const MenuLateral = ({ titulo, opcoes , setSecaoAtual  }) => {
                 {opcoes.map((opcao, index) => (
                         <li 
                         key={index}
-                        className={`opcao-menu ${opcao.nome === secaoAtiva ? 'ativa' : ''}`}
-                        onClick={() => mudarSecao(opcao.nome)}
+                        className={`opcao-menu ${opcao.hash === secaoAtiva ? 'ativa' : ''}`}
+                        onClick={() => mudarSecao(opcao)}
                         
                         >
                             {opcao.nome}

@@ -10,6 +10,7 @@ import MenuLateral from '../../components/MenuLateral/MenuLateral.jsx';
 import DadosGerais from './Secoes/DadosGerais.jsx';
 import DadosComplementares from './Secoes/DadosComplementares.jsx';
 import Servicos from './Secoes/Servicos.jsx';
+import AdicionarServico from './Secoes/AdicionarServico.jsx'
 import Certificacoes from './Secoes/Certificacoes.jsx';
 
 //react router dom
@@ -21,71 +22,80 @@ import { useUsuario } from '../../hooks/Usuario.jsx';
 const EditarPortfolio = () => {
   const { usuario } = useUsuario();
 
-  const [secaoAtual, setSecaoAtual] = useState('Dados Gerais');
-
+  const [secaoAtual, setSecaoAtual] = useState();
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const opcoesMenu = [
-    { nome: 'Dados Gerais'},
-    { nome: 'Dados Complementares'},
-    { nome: 'Servicos', caminho: '/item3' },
-    { nome: 'Certificações', caminho: '/item4' },
-    { nome: 'Ver Portfólio', caminho: '/item5' },
+    { nome: 'Dados Gerais', hash: 'dados-gerais' },
+    { nome: 'Dados Complementares', hash: 'dados-complementares' },
+    { nome: 'Serviços', hash: 'servicos' },
+    { nome: 'Certificações', hash: 'certificacoes' },
+    { nome: 'Ver Portfólio', hash: 'ver-portfolio' },
   ];
 
   useEffect(() => {
 
     const hash = location.hash.replace(/^#/, '');
-    if (hash && opcoesMenu.some((opcao) => opcao.nome === hash)) {
+
+    const secaoValida = opcoesMenu.some((opcao) => opcao.hash === hash);
+
+    if (secaoValida) {
       setSecaoAtual(hash);
+ 
+    } else {
+      navigate('/meu-portfolio/editar-portfolio#' + opcoesMenu[0]?.hash);
+
     }
-  }, [location]);
+  }, [location, navigate, opcoesMenu]);
 
 
   const renderizarComponenteSecao = () => {
 
+
     switch (secaoAtual) {
-      case 'Dados Gerais':
+      case 'dados-gerais':
         return <DadosGerais />;
-      case 'Dados Complementares':
+      case 'dados-complementares':
         return <DadosComplementares />;
-      case 'Servicos':
-        return <Servicos />;
-      case 'Certificações':
+      case 'servicos':
+        console.log('volteiii');
+          return <Servicos voltar={false}/>;
+      case 'certificacoes':
         return <Certificacoes />;
-      case 'Ver Portfólio':
-        navigate('/meu-portfolio')
+      case 'ver-portfolio':
+        navigate('/meu-portfolio');
+        break;
+      default:
+        return <DadosGerais />;
     }
   };
-
-  const handleMenuClick = (nome) => {
-    console.log('handleMenuClick', nome);
-    setSecaoAtual(nome);  // Alteração aqui para setar a seção diretamente
-    navigate(`/meu-portfolio/editar-portfolio#${nome}`);
-
-  };
   
+  const handleMenuClick = ( hash) => {
+    setSecaoAtual(hash);
+    navigate(`/meu-portfolio/editar-portfolio#${hash}`);
+  };
+
   return (
     <div>
       <HeaderPlataforma
-        link1={'/pagina-inicial'}
-        titulo1={'Soluções ESG'}
-        link2={'dont2'}
-        titulo2={'Minhas Negociações'}
-        link3={'dont3'}
-        titulo3={'Aplicativo Ethos'}
+
+        plano={'Provider'}
         razaoSocial={usuario.razaoSocial}
       />
 
       <div className="conteudo">
         <div className='beadcrumb'>
           <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
-            <span>Meu Portfolio {'> '}</span>
+            <span>Meu Portfólio {'> '}</span>
           </Link>
-          <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb-atual'>
-            <span>Editar Portfolio</span>
+          <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
+            <span>Editar Portfólio {'> '}</span>
+          </Link>
+
+          <Link to={`/minha-conta#${secaoAtual}`} className='link-beadcrumb-atual'>
+            <span className='caminho'>{opcoesMenu.find(opcao => opcao.hash === secaoAtual)?.nome}</span>
           </Link>
         </div>
 

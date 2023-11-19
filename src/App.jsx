@@ -13,10 +13,13 @@ import PaginaInicial from "./pages/PaginaInicial/PaginaInicial";
 import Avaliacao from "./pages/Avaliacao/Avaliacao";
 import Portfolio from "./pages/Portfolio/Potfolio.jsx";
 import EditarPortfolio from "./pages/EditarPortfolio/EditarPortfolio.jsx";
+import MeuPortfolio from "./pages/MeuPortfolio/MeuPortfolio.jsx";
+
 
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
 import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.jsx";
+import MinhaConta from "./pages/MinhaConta/MinhaConta.jsx";
 
 function App() {
   return (
@@ -29,16 +32,16 @@ function App() {
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/entrar" element={<Login />} />
           <Route path="/cadastrar" element={<Cadastro />} />
-          <Route path="/pagina-inicial" element={<PaginaInicial />} />
-          <Route path="/pagina-inicial/portfolio/avaliacao" element={<Avaliacao />} />
-          <Route path="/pagina-inicial/portfolio" element={<Portfolio />} />
-          <Route path="/analise-crescimento" element={<AnaliseCrescimento />} />
-          {/* <Route path="/meu-perfil"/ > */}
-          {/* <Route path="/minhas-interacoes"/> */}
-          {/* <Route path="/meu-plano"/> */}
+          <Route path="/solucoes-esg" element={<PaginaInicial />} />
+          <Route path="/solucoes-esg/portfolio/avaliacao" element={<Avaliacao />} />
+          <Route path="/solucoes-esg/portfolio" element={<Portfolio />} />
+          <Route path="/meu-progresso" element={<AnaliseCrescimento />} />
+
+          <Route path="/minha-conta" element={<MinhaConta/>}/>
+
+          <Route path="/meu-portfolio" element={<MeuPortfolio />} />
 
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
-
         </Routes>
 
       </Router>

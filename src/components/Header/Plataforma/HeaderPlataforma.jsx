@@ -7,8 +7,8 @@ import './HeaderPlataforma.css'
 import Logo from '../../../assets/logoBranco.png'
 import Usuario from '../../../assets/icones/perfil-de-usuario.png'
 import Notificacao from '../../../assets/icones/notificacao.png'
-import IconeDropdownFechado from'../../../assets/icones/icone-dropdown-fechado.png';
-import IconeDropdownAberto from'../../../assets/icones/icone-dropdown-aberto.png';
+import IconeDropdownFechado from '../../../assets/icones/icone-dropdown-fechado.png';
+import IconeDropdownAberto from '../../../assets/icones/icone-dropdown-aberto.png';
 
 //router
 import { useNavigate, Link } from 'react-router-dom';
@@ -27,13 +27,32 @@ const HeaderPlataforma = (props) => {
         < div className='caixa-header'>
             <header className='header-plataforma'>
                 <img src={Logo} alt="LOGO" className='logo' />
+                {props.plano == 'Free' && (
+                    <ul>
+                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
+                        <Link to='/' className='link-header'>Parceiro Ethos</Link >
+                        <Link to='' className='link-header'>Aplicativo Ethos</Link >
+                    </ul>
+                )
+                }
 
-                <ul>
-                    <Link to={props.link1} className='link-header'>{props.titulo1}</Link >
-                    <Link to={props.link2} className='link-header'>{props.titulo2}</Link >
-                    <Link to={props.link3} className='link-header'>{props.titulo3}</Link >
-                </ul>
+                {props.plano == 'Analytics' && (
+                    <ul>
+                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
+                        <Link to='/meu-progresso' className='link-header'>Meu Progresso</Link >
+                        <Link to='' className='link-header'>Parceiro Ethos</Link >
+                    </ul>
+                )
+                }
 
+                {props.plano == 'Provider' && (
+                    <ul>
+                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
+                        <Link to='/minhas-negociacoes' className='link-header'>Minhas Negociações</Link >
+                        <Link to='' className='link-header'>Aplicativo Ethos</Link >
+                    </ul>
+                )
+                }
                 <div className='caixa-dropdown'>
                     <div className='dropDown'>
                         <img src={Notificacao} alt="icone de notificação" />
@@ -47,20 +66,31 @@ const HeaderPlataforma = (props) => {
 
                         <ul className="usuario-lista">
 
-                            <Link to={'/meu-perfil'} className='link-dropdown'>
+
+                            {props.plano == 'Provider' ?(
+                            <Link to={'/meu-portfolio'} className='link-dropdown'>
+                            <li>
+                                Meu Portfolio
+                            </li>
+                        </Link>
+                            ) : (
+
+                            <Link to={'/minha-conta#meu-perfil'} className='link-dropdown'>
                                 <li>
                                     Meu Perfil
                                 </li>
                             </Link>
+                            )
+                                }
 
-                            <Link to={"/minhas-interacoes"} className='link-dropdown'>
-                            <li>Minhas Interações</li>
+                            <Link to={"/minha-conta#minhas-interacoes"} className='link-dropdown'>
+                                <li>Minhas Interações</li>
                             </Link>
-                            
-                            <Link to={"/meu-plano"} className='link-dropdown'>
-                            <li>Meu Plano</li>
+
+                            <Link to={"/minha-conta#meu-plano"} className='link-dropdown'>
+                                <li>Meu Plano</li>
                             </Link>
-                            
+
                             <li onClick={handleLogout}>Sair</li>
 
                         </ul>

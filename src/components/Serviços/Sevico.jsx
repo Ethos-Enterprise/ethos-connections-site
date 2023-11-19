@@ -21,7 +21,7 @@ const Servico = (props) => {
   //       .then(response => {
 
   //         console.log('sucesso na busca: ' + response.data)
-  //         navigate('/pagina-inicial/servico/avaliacao');
+  //         navigate('/solucoes-esg/servico/avaliacao');
   //       })
   //       .catch(error => {
   //         console.log('erro ao buscar serviço por id' + error);
@@ -32,7 +32,7 @@ const Servico = (props) => {
   // }
 
   const verServico = () => {
-    navigate('/pagina-inicial/portfolio/avaliacao');
+    navigate('/solucoes-esg/portfolio/avaliacao');
   }
 
   return (
@@ -58,7 +58,7 @@ const Servico = (props) => {
         ) : (
           <div className='container-valor-e-avaliacao'>
           <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-          <Link to={'/pagina-inicial/portfolio/avaliacao'} className='link-avaliacoes'> <i className="fa-regular fa-comment icone-avaliacoes"> <span>Ver Avaliações</span></i></Link>
+          <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'> <i className="fa-regular fa-comment icone-avaliacoes"> <span>Ver Avaliações</span></i></Link>
           </div>
         )
         }
