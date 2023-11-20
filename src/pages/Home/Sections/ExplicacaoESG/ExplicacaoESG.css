@@ -1,6 +1,6 @@
 .explicacao-esg {
   position: relative;
-  background: url(../../../../assets/background-fazemos.jpg);
+  background: url(../../../../assets/imagens/triangulos.png);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -8,25 +8,47 @@
   align-items: center;
   width: 100%;
   height: 95vh;
+  
 }
+
 
   .titulo1-container {
     display: flex;
     justify-content: flex-start;
     align-self: flex-start;
     z-index: 1; /* Certifique-se de que o título está acima do overlay */
+    flex-direction: column;
+  }
+
+  .subtitulo-esg{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    font-weight: var(--letra-regular);
+    color: var(--cor-letras);
+    font-size: 20px;
+    text-align:left;
+    margin-left: 105px;    
+    width: 70%;
   }
   
   .titulo-esg {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 80px;
+    margin-bottom: 10px;
     font-weight: var(--letra-medium);
     color: var(--cor-letras);
     font-size: 30px;
     margin-left: 6rem;
   }
-  
+
+  .texto-container .texto {
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: 400; /* Negrito */
+    margin: 0; /* Remover margens padrão */
+    letter-spacing: 3px;
+  }
+
   .titulo-esg span {
     color: var(--cor-primaria);
     margin-left: 10px;
@@ -49,11 +71,15 @@
     align-items: center;
   }
 
+
+
+
      /*  CSS  DOS CARDS ... */
 
  
   .card.card-1 {
     background-image: url('../../../../assets/imagens/ambiental-card.png');
+    
   }
   
   .card.card-2 {
@@ -70,9 +96,9 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  gap: 3rem;
+  gap: 8rem;
+  font-weight: bold; /* Negrito */
   
-
 }
 
 .card {
@@ -80,7 +106,6 @@
   position: relative;
   width: 300px;
   height: 380px;
-  background: rgb(3, 3, 3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +115,10 @@
   background-size: cover;
   background-position: center;
   overflow: hidden; /* Garante que a opacidade não ultrapasse os limites do cartão */
+  font-weight: bold; /* Negrito */
+
 }
+
 
 
 .card::before,
@@ -104,8 +132,11 @@
   justify-content: center;
   font-size: 25px;
   font-weight: bold;
-  background-color: #014D5C;
+  background-color: #01A2C3;
   transition: all 0.5s;
+  font-weight: bold; /* Negrito */
+
+
 }
 
 
@@ -113,6 +144,7 @@
 .card::before {
   top: 0;
   right: 0;
+
 }
 
 .card::after {
@@ -128,10 +160,27 @@
   transition: all 0.5s;
 }
 
-.card:hover:after {
-  content: "HELLO";
+.card.card-1.card:hover:after {
+  content: "Práticas relacionadas aos impactos ecológicos e uso responsável de recursos.";
+  text-align: center;
+  font-weight: 300;
+  font-size: larger;
+  margin: auto;
 }
 
+.card.card-2.card:hover:after {
+  content: "Enfoque nas relações e responsabilidades sociais, incluindo diversidade e condições de trabalho.";
+  text-align: center;
+  font-weight: 300;
+  font-size: larger;
 
+}
 
+.card.card-3.card:hover:after {
+  content: "Estrutura de liderança transparente e ética, com boas práticas de gestão corporativa.";
+  text-align: center;
+  font-weight: 300;
+  font-size: larger;
+
+}
 

@@ -7,8 +7,6 @@
 
   .carrosel img {
     width: 100%; /* Ajusta a largura da imagem para 100% do container */
-    height: auto; /* Mantém a proporção da imagem */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra à imagem, ajuste conforme necessário */
     transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave ao passar para o próximo slide */
   }
   
@@ -52,4 +50,11 @@
   padding: 10px; /* Espaçamento interno do texto (ajuste conforme necessário) */
   white-space: nowrap;
   border-radius: 8px; /* Borda arredondada para o contêiner de texto (ajuste conforme necessário) */
+}
+
+
+.subtitulo {
+  font-weight: bold;
+  font-size: 4rem;
+  color: white;
 }

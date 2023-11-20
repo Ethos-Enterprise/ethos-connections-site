@@ -1,0 +1,87 @@
+/* Fazemos.css */
+
+.container-fazemos {
+        position: relative;
+        background: url(../../../../assets/imagens/fazemos1.png);
+        background-size: cover;
+        background-position: center;
+        flex-direction: row;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 95vh;
+        justify-content: flex-end;
+     
+}
+
+
+.conteudo-container {
+    width: 40% ;
+    text-align: left;
+    margin-right: 5rem;
+    margin-bottom: 6rem;
+    /* Alinha o texto à esquerda */
+}
+
+.titulo-fazemos {
+    font-size: 40px;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 3px;
+    text-align: left;
+    color: white;
+    /* Adiciona cor ao título */
+}
+
+.descricao{
+    font-weight: 200;
+
+}
+.titulo-fazemos span {
+    color: var(--cor-primaria);
+}
+
+
+.botoes {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Botão Preenchido */
+.botao1-preenchido {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-primaria);
+    border: none;
+    padding: 8px;
+    color: var(--preto-comum);
+    font-weight: var(--letra-semi-bold);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in;
+    box-sizing: border-box; /* Adicionando box-sizing para consistência no cálculo do tamanho total */
+}
+
+.botao1-preenchido:hover {
+    background-color: var(--cor-letras);
+}
+
+/* Botão Borda */
+.botao1-borda {
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    font-family: 'Poppins', sans-serif;
+    padding: 8px; /* Mantendo o mesmo valor de padding para consistência */
+    font-weight: var(--letra-semi-bold);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+    box-sizing: border-box; /* Adicionando box-sizing para consistência no cálculo do tamanho total */
+}
+
+.botao1-borda:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-letras);
+}
