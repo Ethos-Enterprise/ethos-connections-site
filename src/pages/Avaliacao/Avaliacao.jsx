@@ -21,7 +21,7 @@ import AvaliacaoServicoComponent from './Componente/Avaliacoes.jsx';
 
 
 //coisas do react
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
@@ -31,6 +31,10 @@ import { useEffect } from 'react';
 const Avaliacao = () => {
   const { usuario } = useUsuario();
 
+  const location = useLocation();
+  const dadosServico = location.state ? location.state.dadosServico : null;
+
+  console.log(dadosServico);
   return (
 
     <><HeaderPlataforma
@@ -43,9 +47,9 @@ const Avaliacao = () => {
 
         {/* COPIAR E COLAR A DIV beadcrumb NAS PAGINAS E IR ADICIONANDO O CAMINHO CONFORME ESTE, O CSS DO INDEX ESTA DEIXANDO ELE NO FORMATO BONITINHO :) */}
         <div className='beadcrumb'>
-          <Link to='/pagina-inicial' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
-          <Link to='/pagina-inicial/portfolio' className='link-beadcrumb'><span>Portfólio {'>'}</span>  </Link>
-          <Link to='/pagina-inicial/portfolio/avaliacao' className='link-beadcrumb-atual'><span> Avaliações do Serviço</span>  </Link>
+          <Link to='/solucoes-esg' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
+          <Link to='/solucoes-esg/portfolio' className='link-beadcrumb'><span>Portfólio {'>'}</span>  </Link>
+          <Link to='/solucoes-esg/portfolio/avaliacao' className='link-beadcrumb-atual'><span> Avaliações do Serviço</span>  </Link>
         </div>
 
         <div className="conteudo-row">
@@ -54,7 +58,7 @@ const Avaliacao = () => {
             <div className='margin-avaliacao-foto'>
               <img src={ImagemPerfil} alt="Imagem do perfil da empresa" className='imagem-perfil' />
               <div className="container-foto-bloco">
-                <h1 className="titulo-avaliacao-servico">Deloitte</h1>
+                <h1 className="titulo-avaliacao-servico">{dadosServico.nomeEmpresa}</h1>
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
 
                 {/* QUANDO VOCE QUISER LINKaR UMA OUTRA PAG, VC ADD O LINK LA NOS IMPORT E AQUI COLOCAR O CAMINHO (olhar o app.jsx) */}
@@ -68,23 +72,33 @@ const Avaliacao = () => {
 
           <div className="container-informacoes">
             <div className='margin-avaliacao'>
-              <h1 className='titulo-container-informacao'>Treinamento de Responsabilidade Social Corporativa (RSC)</h1>
-              <h2 className='subtitulo-container-informacao'>Deloitte</h2>
-              <h2 className='texto-container-informacao'>O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC.</h2>
-              <h2 className='texto-container-informacao'> <b>Valor médio:</b> R$ 2000.00</h2>
+              <h1 className='titulo-container-informacao'>{dadosServico.nomeServico}</h1>
+              <h2 className='subtitulo-container-informacao'>{dadosServico.nomeEmpresa}</h2>
+              <h2 className='texto-container-informacao'>{dadosServico.descricao}</h2>
+              <h2 className='texto-container-valor'> <b className='tag-valor-medio'>Valor médio:</b> R$ {dadosServico.valorMedio}</h2>
               <div className="traco"></div>
             </div>
 
-            <div class='pilar-servico'>
+            <div className='pilar-servico'>
 
-              <p class='pilar-esg'>Environmental</p>
-              {/* <p class='pilar-esg-nao-contido'>E</p> */}
+              {dadosServico.areaESG == 'environmental' ? (
+                <p className='pilar-esg'>Environmental</p>
+              ) : (
+                <p className='pilar-esg-nao-contido'>E</p>
+              )}
 
-              <p class='pilar-esg'>Social</p>
-              {/* <p class='pilar-esg-nao-contido'>S</p> */}
+              {dadosServico.areaESG == 'social' ? (
+                <p className='pilar-esg'>Social</p>
+              ) : (
+                <p className='pilar-esg-nao-contido'>S</p>
+              )}
 
-              {/* <p class='pilar-esg'>Governamental</p> */}
-              <p class='pilar-esg-nao-contido'>G</p>
+              {dadosServico.areaESG == 'governamental' ? (
+                <p className='pilar-esg'>Governamental</p>
+              ) : (
+                <p className='pilar-esg-nao-contido'>G</p>
+              )}
+
 
             </div>
 

@@ -147,7 +147,7 @@ function verificar(event) {
                     value={data.email || ""}
                     onChange={(e) => updateFieldHandler("email", e.target.value)}
                 />
-                <label htmlFor="email"><span>Email Corporativo</span></label>
+                <label htmlFor="email"><span>Email Corporativo*</span></label>
             </div>
 
         </>

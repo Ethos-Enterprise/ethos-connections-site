@@ -1,7 +1,6 @@
-import React from 'react'
-
 //api
 import api from '../../service/api.js'
+
 
 //css
 import './PaginaInicial.css'
@@ -18,7 +17,11 @@ import { useNavigate, Link } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+//select do react
+import Select from 'react-select';
+
 
 export const PaginaInicial = () => {
 
@@ -26,31 +29,13 @@ export const PaginaInicial = () => {
 
   const navigate = useNavigate();
 
-  // const dadosServico = {
-  //   nomeServico: 'primeiro servico teste api',
-  //   descricao: 'decricao legal descricao legal descricao legal',
-  //   valor: 100,
-  //   fkEmpresa: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-  // };
+  const [servicos, setServicos] = useState([]);
 
-  // useEffect(() => {
-  //   api.post('v1.0/servicos', dadosServico, {
-  //     headers: {
-  //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //     },
-  //   })
-  //   .then((response) =>
-  //     console.log(response)
-  //   )
-  //   .catch((error) =>
-  //     console.log('erro ao cadastrar cadastrar serviço: ' , error)
-  
-  //     )
-  //   .finally(
-  //     console.log('tudo executado')
-  //   )
-  // }
-  // )
+  const [pesquisaServico, setPesquisaServico] = useState('');
+  const [ultimaPesquisa, setUltimaPesquisa] = useState('');
+
+  const [filtroValor, setFiltroValor] = useState('');
+
 
   useEffect(() => {
     api.get("v1.0/servicos", {
@@ -58,18 +43,165 @@ export const PaginaInicial = () => {
         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
       }
     })
-      .then((response) =>
-        console.log('OK Serviços disponiveis:' + response.data)
-      )
-      .catch((error) =>
-        console.log('erro ao pegar todos os serviços. ERRO: ', error)
-      )
-      .finally(
-        console.log('Sai da requisição VerTodosServicos')
-      );
+      .then(async (response) => {
+        const servicosComNomeEmpresa = await Promise.all(
+          response.data.map(async (servico) => {
+            const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
+            // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
+            return { ...servico, razaoSocial };
+          })
+        );
+        setServicos(servicosComNomeEmpresa);
+      })
+      .catch((error) => {
+        console.log('erro ao pegar todos os serviços. ERRO: ', error);
+      })
+  }, []);
+
+  const buscarServicosPorNome = () => {
+    if (pesquisaServico !== '') {
+      api.get("v1.0/servicos/busca-por-nome", {
+        params: { nome: pesquisaServico },
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+        }
+      })
+
+        .then(async (response) => {
+          console.log(response.status);
+          if (response.status !== 204) {
+            const responseData = Array.isArray(response.data) ? response.data : [response.data];
+
+            const servicosComNomeEmpresa = await Promise.all(
+              responseData.map ? responseData.map(async (servico) => {
+                const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
+                // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
+                return { ...servico, razaoSocial };
+              }) : [responseData]
+            );
+            setServicos(servicosComNomeEmpresa);
+            setUltimaPesquisa(pesquisaServico);
+            setPesquisaServico(pesquisaServico);
+          } else {
+            setServicos([])
+            setUltimaPesquisa(pesquisaServico);
+
+          }
+        })
+        .catch((error) =>
+          console.log(error)
+        )
+    } else {
+      console.log('nao esta pesquisando nada');
+    }
   }
 
-  )
+  const buscarPorValorMedio = () => {
+    if (filtroValor !== '') {
+      if (ultimaPesquisa == '') {
+
+        api.get('v1.0/servicos/busca-por-valor', {
+          params: { valor: parseFloat(filtroValor) },
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
+          .then(async (response) => {
+            if (response.status !== 204) {
+              const responseData = Array.isArray(response.data) ? response.data : [response.data];
+
+              const servicosComNomeEmpresa = await Promise.all(
+                responseData.map ? responseData.map(async (servico) => {
+                  const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
+                  // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
+                  return { ...servico, razaoSocial };
+                }) : [responseData]
+              );
+              setServicos(servicosComNomeEmpresa);
+
+            } else {
+              setServicos([])
+            }
+          })
+          .catch((error) =>
+            console.log(error)
+          )
+      } else {
+        const servicosFiltrados = servicos.filter(servico => servico.valor <= parseFloat(filtroValor));
+        setServicos(servicosFiltrados);
+      }
+
+    }
+  }
+
+  const buscarInformacoesEmpresa = (id) => {
+    return api.get(`/v1.0/empresas/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
+      .then((response) => {
+        return response.data.razaoSocial
+      })
+      .catch((error) => {
+        console.log('algo deu errado ao pegar o nome ', error);
+        throw error;
+      });
+  };
+
+  const buscarFotoPerfil = (id) => {
+    return api.get(`/v1.0/empresas/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
+      .then((response) => {
+        const razaoSocial = response.data.razaoSocial;
+        console.log(razaoSocial);
+        return razaoSocial;
+      })
+      .catch((error) => {
+        console.log('algo deu errado ao pegar o nome ', error);
+        throw error;
+      });
+  };
+
+  const teclaPressionadaPesquisa = (event) => {
+    if (event.key === 'Enter') {
+      buscarServicosPorNome();
+    }
+  };
+
+  const optionsEstados = [
+    { value: '', label: 'Selecione seu estado' },
+    { value: 'AC', label: 'Acre' },
+    { value: 'AL', label: 'Alagoas' },
+    { value: 'AP', label: 'Amapá' },
+    { value: 'AM', label: 'Amazonas' },
+    { value: 'BA', label: 'Bahia' },
+    { value: 'CE', label: 'Ceará' },
+    { value: 'DF', label: 'Distrito Federal' },
+    { value: 'ES', label: 'Espírito Santo' },
+    { value: 'GO', label: 'Goiás' },
+    { value: 'MA', label: 'Maranhão' },
+    { value: 'MT', label: 'Mato Grosso' },
+    { value: 'MS', label: 'Mato Grosso do Sul' },
+    { value: 'MG', label: 'Minas Gerais' },
+    { value: 'PA', label: 'Pará' },
+    { value: 'PB', label: 'Paraíba' },
+    { value: 'PR', label: 'Paraná' },
+    { value: 'PE', label: 'Pernambuco' },
+    { value: 'PI', label: 'Piauí' },
+    { value: 'RJ', label: 'Rio de Janeiro' },
+    { value: 'RN', label: 'Rio Grande do Norte' },
+    { value: 'RS', label: 'Rio Grande do Sul' },
+    { value: 'RO', label: 'Rondônia' },
+    { value: 'RR', label: 'Roraima' },
+    { value: 'SC', label: 'Santa Catarina' },
+    { value: 'SP', label: 'São Paulo' },
+    { value: 'SE', label: 'Sergipe' },
+    { value: 'TO', label: 'Tocantins' },
+  ];
 
   return (
     <div className='pagina-inicial'>
@@ -83,59 +215,170 @@ export const PaginaInicial = () => {
       <div className='conteudo'>
 
         <div className='beadcrumb'>
-        <Link to='/solucoes-esg' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
+          <Link to='/solucoes-esg' className='link-beadcrumb-atual'><span>Soluções ESG </span>  </Link>
         </div>
-        
+
         <div className='container-ultimos-serviços'>
-          <h4 className='titulo-ultimos-servicos'>Últimos serviços visitados</h4>
+          <h4 className='titulo-ultimos-servicos'>Categorias ESG </h4>
           <div className='ultimos-servicos'>
-            <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
-            <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
-            <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
-            <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
+            <UltimosServicos nomeServico={"Environmental"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
+            <UltimosServicos nomeServico={"Social"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
+            <UltimosServicos nomeServico={"Governanmental"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
+            {/* <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} /> */}
           </div>
 
         </div>
 
         <div className='input-pesquisa'>
-          <input type="text" className='pesquisa' placeholder='Buscar soluções' />
-          <button className="botao-pesquisar" type="submit"><i className="fa-solid fa-magnifying-glass icone-botao-pesquisar" ></i></button>
+          <input className='pesquisa'
+            type="text"
+            placeholder='Buscar soluções'
+            value={pesquisaServico}
+            onChange={(e) => setPesquisaServico(e.target.value)}
+            onKeyDown={teclaPressionadaPesquisa}
+          />
+
+          <button className="botao-pesquisar" onClick={buscarServicosPorNome}><i className="fa-solid fa-magnifying-glass icone-botao-pesquisar" ></i></button>
         </div>
 
         <div className='filtros-pesquisa'>
           <p className='titulo-filtro'>Filtros</p>
           <div className='filtros'>
 
-            <select name="areas" id="" className='select-filtro'>
-              <option value="">Selecione a área ESG</option>
-              <option value="">Ambiental</option>
-              <option value="">Social</option>
-              <option value="">Governamental</option>
-            </select>
+
 
             <div className='input-filtro'>
-              <input className='filtro' type="text" placeholder='Preço médio (máximo)' />
-              <button className='botao-filtrar'>Filtrar</button>
+              <input className='filtro'
+                type="text"
+                placeholder='Preço médio (máximo)'
+                value={filtroValor}
+                onChange={(e) => setFiltroValor(e.target.value)}
+              />
+              <button className='botao-filtrar' onClick={buscarPorValorMedio}>Filtrar</button>
             </div>
 
-            <div className='input-filtro'>
-              <input className='filtro' type="text" placeholder='Localização(Digite seu CEP)' />
-              <button className='botao-filtrar'>Filtrar</button>
-            </div>
+            <Select className='select-filtro'
+              defaultValue={{ value: '', label: 'Selecione seu estado' }}
+              options={optionsEstados}
+            // onChange={handleChange}
+            // onKeyUp={handleKeyUp}
+
+            styles={{
+              control: (provided ,state )=> ({
+                ...provided,
+                width: '20vw',
+                background: '#1B1F23', 
+                borderRadius: '4px', 
+                border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
+                borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
+                boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
+                cursor: 'pointer',
+                fontWeight: '200',
+                fontSize: '0.90rem',
+                color: '#fafafa'
+              }),
+              option: (provided, state) => ({
+                ...provided,
+                background: '#380448',
+                background: state.isSelected ? '#1B1F23' : '#384048', // Cor de fundo quando selecionado
+                color: state.isSelected ? '#00000' : 'white', // Cor do texto quando selecionado
+                ':hover': {
+                  background: '#1B1F23', // Cor de fundo quando passa o mouse
+                cursor: 'pointer'
+                },
+              }),
+
+              singleValue: provided => ({
+                ...provided,
+                color: '#fafafa', // Altere esta cor para a cor desejada
+              }),
+              placeholder: provided => ({
+                ...provided,
+                color: 'red', // Cor do texto quando não há seleção
+              }),
+            }}
+            
+            />
+
+            <Select className='select-filtro'
+              defaultValue={{ value: '', label: 'Selecione sua cidade' }}
+              options={optionsEstados}
+            // onChange={handleChange}
+            // onKeyUp={handleKeyUp}
+
+            
+            styles={{
+              control: (provided ,state )=> ({
+                ...provided,
+            
+                width: '20vw',
+                background: '#1B1F23', 
+                borderRadius: '4px', 
+                border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
+                borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
+                boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
+                cursor: 'pointer',
+                fontWeight: '200',
+                fontSize: '0.90rem',
+                color: '#fafafa'
+              }),
+              option: (provided, state) => ({
+                ...provided,
+                background: '#380448',
+                background: state.isSelected ? '#1B1F23' : '#384048', // Cor de fundo quando selecionado
+                color: state.isSelected ? '#01a2c3' : 'white', // Cor do texto quando selecionado
+                ':hover': {
+                  background: '#1B1F23', // Cor de fundo quando passa o mouse
+                cursor: 'pointer',
+                color: '#01a2c3'
+                },
+              }),
+
+              singleValue: provided => ({
+                ...provided,
+                color: '#fafafa', // Altere esta cor para a cor desejada
+              }),
+              placeholder: provided => ({
+                ...provided,
+                color: 'red', // Cor do texto quando não há seleção
+              }),
+            }}
+            />
 
           </div>
         </div>
 
+        {ultimaPesquisa != '' ?(
+          <h4 className='resultado-pesquisa'>Exibindo resultados para: "{ultimaPesquisa}"</h4>
+        ): (
+          <h4 className='resultado-pesquisa'>Exibindo todas as Soluções</h4>
+        )}
         <div className='servicos-pesquisados'>
-          <Servico 
-          key={1}
-          fotoPerfil={true}
-          nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'} 
-          nomeEmpresa={'Deloitte'} 
-          descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'} 
-          valorMedio={'2.000'} 
-          areaESG={'Environmental, Social'}
-          />
+
+          {/* LISTAR SERVICOS QUE VEM ATRAVAES A REQUISICAO */}
+          {servicos.length > 0 ? (
+            servicos.map((servico) => (
+              <Servico
+                key={servico.id}
+                id={servico.id}
+                fotoPerfil={true}
+                nomeServico={servico.nomeServico}
+                nomeEmpresa={servico.razaoSocial}
+                descricao={servico.descricao}
+                valorMedio={(servico.valor).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                areaESG={servico.areaAtuacaoEsg}
+                fkPrestadoraServico={servico.fkPrestadoraServico}
+              />
+            ))
+          ) : (
+            <p>Nenhum resultado encontrado.</p>
+          )}
+
         </div>
 
       </div>

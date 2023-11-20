@@ -37,18 +37,20 @@
   font-size: 1.1rem;
   font-weight: var(--letra-medium);
   color: var(--cor-primaria);
+  margin: 0;
 }
 
 .subtitulo-star-avaliacao {
   font-size: 1rem;
-  font-weight: var(--cinza);
+  font-weight:  var(--letra-light);
   color: #CFCFCF;
 }
 
 .descricao-star-avaliacao {
   font-size: 1rem;
-  font-weight: var(--cinza);
+  font-weight: var(--letra-light);
   color: #FAFAFA;
+  line-height: 26px;
 }
 
 .container-avaliacao{

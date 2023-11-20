@@ -3,6 +3,10 @@ import React from 'react'
 //css
 import './Servico.css'
 
+//api
+import api from '../../service/api.js'
+
+
 //imagens
 import FotoPerfil from '../../assets/imagens/perfil.jpg'
 
@@ -12,28 +16,39 @@ import { Link, useNavigate } from 'react-router-dom'
 const Servico = (props) => {
   const navigate = useNavigate();
 
-  //   const verServico = (id) => {
-  //     api.get(`/v1.0/servicos/${id}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //       }
-  //     })
-  //       .then(response => {
 
-  //         console.log('sucesso na busca: ' + response.data)
-  //         navigate('/solucoes-esg/servico/avaliacao');
-  //       })
-  //       .catch(error => {
-  //         console.log('erro ao buscar serviço por id' + error);
-  //       })
-  //       .finally(
-  //         console.log('Terminei a requisição BuscarServicoPorId')
-  //       );
-  // }
+    const verServico = () => {
+      // api.get(`/v1.0/servicos/${props.id}`, {
+      //   headers: {
+      //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      //   }
+      // })
+      //   .then(response => {
 
-  const verServico = () => {
-    navigate('/solucoes-esg/portfolio/avaliacao');
-  }
+      //     console.log('sucesso na busca: ', response.data)
+      //     navigate('/solucoes-esg/portfolio/avaliacao');
+      //   })
+      //   .catch(error => {
+      //     console.log('erro ao buscar serviço por id' + error);
+      //   })
+      //   .finally(
+      //     console.log('Terminei a requisição BuscarServicoPorId')
+      //   );
+  
+      const dadosServico = {
+        id: props.id,
+        nomeServico: props.nomeServico,
+        nomeEmpresa: props.nomeEmpresa,
+        descricao: props.descricao,
+        valorMedio: props.valorMedio,
+        areaESG: props.areaESG,
+        fkPrestadoraServico:props.fkPrestadoraServico
+      };
+
+      navigate('/solucoes-esg/portfolio/avaliacao', { state: { dadosServico } });
+
+    }
+
 
   return (
 
@@ -67,19 +82,19 @@ const Servico = (props) => {
 
       <div className='pilar-servico'>
 
-        {props.areaESG.includes('Environmental') ? (
+        {props.areaESG == 'environmental' ? (
           <p className='pilar-esg'>Environmental</p>
         ) : (
           <p className='pilar-esg-nao-contido'>E</p>
         )}
 
-        {props.areaESG.includes('Social') ? (
+        {props.areaESG == 'social' ? (
           <p className='pilar-esg'>Social</p>
         ) : (
           <p className='pilar-esg-nao-contido'>S</p>
         )}
 
-        {props.areaESG.includes('Governamental') ? (
+        {props.areaESG == 'governamental' ? (
           <p className='pilar-esg'>Governamental</p>
         ) : (
           <p className='pilar-esg-nao-contido'>G</p>

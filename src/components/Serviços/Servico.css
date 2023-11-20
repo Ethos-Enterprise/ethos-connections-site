@@ -39,6 +39,7 @@
 .dados-servico-empresa .descricao-servico{
     margin: 24px 0px;
     font-size: 0.9rem;
+    height: 80px;
     font-weight: var(--letra-light);
 }
 
