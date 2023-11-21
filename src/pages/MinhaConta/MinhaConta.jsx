@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+//css
+import './MinhaConta.css'
+
 //componentes
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma';
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma.jsx';
@@ -11,9 +14,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 //hooks
 import { useUsuario } from '../../hooks/Usuario.jsx';
-import MeuPerfil from './Secoes/MeuPerfil.jsx';
-import MinhasInteracoes from './Secoes/MinhasInteracoes.jsx';
-import MeuPlano from './Secoes/MeuPlano.jsx';
+import MeuPerfil from './Secoes/MeuPerfil/MeuPerfil.jsx';
+import MinhasInteracoes from './Secoes/MinhasInteracoes/MinhasInteracoes.jsx';
+import MeuPlano from './Secoes/MeuPlano/MeuPlano.jsx';
 
 const MinhaConta = () => {
   const { usuario } = useUsuario();
@@ -95,6 +98,8 @@ const MinhaConta = () => {
           </div>
         </div>
       </div>
+
+      <FooterPlataforma />
     </div>
   )
 }

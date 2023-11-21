@@ -11,6 +11,7 @@
     padding: 20px 35px;
     background-color: var(--cinza);
     border-radius: 7px;
+    min-height: 400px;
 }
 
 .dados-portfolio .titulo-secao{
@@ -34,10 +35,10 @@
 
 .dados-portfolio .campo-portfolio .input-portfolio{
     border-radius: 5px;
-    background-color: #1b1b1b;
+    background-color: transparent;
     padding: 10px;
     color: var(--cor-letras);
-    border: 0.2px solid #a3a3a3;
+    border: 0.2px solid var(--cor-primaria);
     width: 35vw;
 }
 
@@ -84,11 +85,12 @@
 }
 
 .campo-texto-portfolio .text-area-sobre-empresa{
+    font-family: 'Poppins', sans-serif;
     border-radius: 5px;
-    background-color: #1b1b1b;
+    background-color: transparent;
     padding: 10px;
     color: var(--cor-letras);
-    border: 0.2px solid #a3a3a3;
+    border: 0.2px solid var(--cor-primaria);
     width: 35vw;
     resize: none;
 }
@@ -120,4 +122,42 @@
     font-size: 1.2rem;
     font-weight: var(--letra-bold);
     margin: 16px 0px 0px 0px;
+}
+
+.input-portfolio::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
+  
+
+  .dados-portfolio .campo-portfolio-arquivo{
+    margin-top: 16px;
+    gap: 16px;
+}
+
+
+.dados-portfolio .campo-portfolio-arquivo .label-portfolio{
+    font-weight: var(--letra-regular);
+    font-size: 1rem;
+
+}
+
+.dados-portfolio .campo-portfolio-arquivo .input-portfolio{
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 10px;
+    color: var(--cor-letras);
+    border: 0.2px solid var(--cor-primaria);
+    width: 35vw;
+}
+
+.arquivo{
+    width: 120px;
+    margin: 0;
+}
+
+.input-botao-portfolio{
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
 }

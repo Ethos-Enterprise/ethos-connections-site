@@ -60,7 +60,6 @@ const EditarPortfolio = () => {
       case 'dados-complementares':
         return <DadosComplementares />;
       case 'servicos':
-        console.log('volteiii');
           return <Servicos voltar={false}/>;
       case 'certificacoes':
         return <Certificacoes />;

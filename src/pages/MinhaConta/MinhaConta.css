@@ -1,0 +1,17 @@
+/* GERAL */
+.dados-minha-conta {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 35px;
+    background-color: var(--cinza);
+    border-radius: 7px;
+    min-height: 400px;
+}
+
+.dados-minha-conta .titulo-secao{
+    margin: 0;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+}

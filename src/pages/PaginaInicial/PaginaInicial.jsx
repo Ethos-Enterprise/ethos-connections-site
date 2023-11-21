@@ -260,97 +260,96 @@ export const PaginaInicial = () => {
             <Select className='select-filtro'
               defaultValue={{ value: '', label: 'Selecione seu estado' }}
               options={optionsEstados}
-            // onChange={handleChange}
-            // onKeyUp={handleKeyUp}
+              // onChange={handleChange}
+              // onKeyUp={handleKeyUp}
 
-            styles={{
-              control: (provided ,state )=> ({
-                ...provided,
-                width: '20vw',
-                background: '#1B1F23', 
-                borderRadius: '4px', 
-                border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
-                borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
-                boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
-                cursor: 'pointer',
-                fontWeight: '200',
-                fontSize: '0.90rem',
-                color: '#fafafa'
-              }),
-              option: (provided, state) => ({
-                ...provided,
-                background: '#380448',
-                background: state.isSelected ? '#1B1F23' : '#384048', // Cor de fundo quando selecionado
-                color: state.isSelected ? '#00000' : 'white', // Cor do texto quando selecionado
-                ':hover': {
-                  background: '#1B1F23', // Cor de fundo quando passa o mouse
-                cursor: 'pointer'
-                },
-              }),
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  width: '20vw',
+                  background: '#1B1F23',
+                  borderRadius: '4px',
+                  border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
+                  borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
+                  boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
+                  cursor: 'pointer',
+                  fontWeight: '200',
+                  fontSize: '0.90rem',
+                  color: '#fafafa'
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  background: state.isSelected ? '#1B1F23' : '#384048',
+                  color: state.isSelected ? '#00000' : 'white',
+                  ':hover': {
+                    background: '#1B1F23',
+                    cursor: 'pointer'
+                  },
+                }),
 
-              singleValue: provided => ({
-                ...provided,
-                color: '#fafafa', // Altere esta cor para a cor desejada
-              }),
-              placeholder: provided => ({
-                ...provided,
-                color: 'red', // Cor do texto quando não há seleção
-              }),
-            }}
-            
+                singleValue: provided => ({
+                  ...provided,
+                  color: '#fafafa',
+                }),
+                placeholder: provided => ({
+                  ...provided,
+                  color: 'red',
+                }),
+              }}
+
             />
 
             <Select className='select-filtro'
               defaultValue={{ value: '', label: 'Selecione sua cidade' }}
               options={optionsEstados}
-            // onChange={handleChange}
-            // onKeyUp={handleKeyUp}
+              // onChange={handleChange}
+              // onKeyUp={handleKeyUp}
 
-            
-            styles={{
-              control: (provided ,state )=> ({
-                ...provided,
-            
-                width: '20vw',
-                background: '#1B1F23', 
-                borderRadius: '4px', 
-                border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
-                borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
-                boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
-                cursor: 'pointer',
-                fontWeight: '200',
-                fontSize: '0.90rem',
-                color: '#fafafa'
-              }),
-              option: (provided, state) => ({
-                ...provided,
-                background: '#380448',
-                background: state.isSelected ? '#1B1F23' : '#384048', // Cor de fundo quando selecionado
-                color: state.isSelected ? '#01a2c3' : 'white', // Cor do texto quando selecionado
-                ':hover': {
-                  background: '#1B1F23', // Cor de fundo quando passa o mouse
-                cursor: 'pointer',
-                color: '#01a2c3'
-                },
-              }),
 
-              singleValue: provided => ({
-                ...provided,
-                color: '#fafafa', // Altere esta cor para a cor desejada
-              }),
-              placeholder: provided => ({
-                ...provided,
-                color: 'red', // Cor do texto quando não há seleção
-              }),
-            }}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+
+                  width: '20vw',
+                  background: '#1B1F23',
+                  borderRadius: '4px',
+                  border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
+                  borderColor: provided.isMenuOpen ? 'red' : '#01a2c3',
+                  boxShadow: state.isFocused ? '0 0 0 0.5px white' : 'none',
+                  cursor: 'pointer',
+                  fontWeight: '200',
+                  fontSize: '0.90rem',
+                  color: '#fafafa'
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  background: state.isSelected ? '#1B1F23' : '#384048',
+
+                  color: state.isSelected ? '#01a2c3' : 'white',
+                  ':hover': {
+                    background: '#1B1F23',
+                    cursor: 'pointer',
+                    color: '#01a2c3'
+                  },
+                }),
+
+                singleValue: provided => ({
+                  ...provided,
+                  color: '#fafafa', // Altere esta cor para a cor desejada
+                }),
+                placeholder: provided => ({
+                  ...provided,
+                  color: 'red', // Cor do texto quando não há seleção
+                }),
+              }}
             />
 
           </div>
         </div>
 
-        {ultimaPesquisa != '' ?(
+        {ultimaPesquisa != '' ? (
           <h4 className='resultado-pesquisa'>Exibindo resultados para: "{ultimaPesquisa}"</h4>
-        ): (
+        ) : (
           <h4 className='resultado-pesquisa'>Exibindo todas as Soluções</h4>
         )}
         <div className='servicos-pesquisados'>

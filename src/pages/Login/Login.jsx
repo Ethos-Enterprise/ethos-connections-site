@@ -79,7 +79,7 @@ const Login = () => {
 
                 Swal.fire({
                   icon: "success",
-                  text: "Login feitro com sucesso!",
+                  text: "Login feito com sucesso!",
                   showConfirmButton: false,
                   timer:2000,
                   timerProgressBar: true,  

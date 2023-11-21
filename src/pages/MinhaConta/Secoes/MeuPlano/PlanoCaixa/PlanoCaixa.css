@@ -1,0 +1,52 @@
+.container-plano{
+    border: 0.05px solid #a3a3a3;
+    border-radius: 7px;
+    margin-top: 16px;
+    width: 50vw;
+}
+
+.container-plano .nome-plano-informacao{
+    margin: 15px 0px 10px 25px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+}
+.container-plano .informacoes-plano{
+    display: flex;
+
+}
+
+.container-plano .informacoes-plano .detalhes-plano{
+    box-sizing:border-box;
+    padding: 20px 0px 0px 25px;
+    border-top: 1px solid #a3a3a3;
+    width: 80%;
+    font-weight: var(--letra-light);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+
+}
+
+.container-plano .informacoes-plano .preco-plano{
+    border-left: 1px solid #a3a3a3;
+    border-top: 1px solid #a3a3a3;
+    width: 20%;
+    padding: 20px;
+
+}
+
+.informacoes-plano .beneficio-plano{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0px 0px 15px;
+}
+
+.informacoes-plano .beneficio-plano .icone-check-plano{
+    color: var(--cor-primaria);
+}
+.informacoes-plano .beneficio-plano .descricao-beneficio-plano{
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: var(--letra-light);
+}

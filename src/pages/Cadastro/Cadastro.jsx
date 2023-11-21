@@ -126,8 +126,6 @@ const Cadastro = () => {
           })
 
             .then(response => {
-              // Lide com a resposta da API aqui
-
               console.log(response.data)
 
               console.log('Cadastro realizado com sucesso!');
@@ -171,49 +169,49 @@ const Cadastro = () => {
 
         setMensagemErro(mensagensErro);
 
-      }else{
+      } else {
         setMensagemErro('')
         mudarEtapa(etapaAtual + 1);
       }
     }
 
-    if(etapaAtual == 1) {
+    if (etapaAtual == 1) {
       let campoTelefone = removerCaracteresEspeciais(data.telefone).length < 10;
       let email = !data.email.includes('@') || !data.email.includes('.com')
 
-      
-      if(campoTelefone || email) {
-        setErro(true) 
+
+      if (campoTelefone || email) {
+        setErro(true)
         let mensagensErro = '';
 
-        if(campoTelefone) mensagensErro += 'Digite um número de telefone válido!\n'
-        if(email) mensagensErro += 'Digite um email válido!\n'
+        if (campoTelefone) mensagensErro += 'Digite um número de telefone válido!\n'
+        if (email) mensagensErro += 'Digite um email válido!\n'
         mensagensErro = mensagensErro.split('\n').map((line, index) => <React.Fragment key={index}>{line}<br /></React.Fragment>);
 
         setMensagemErro(mensagensErro);
-      }else{
+      } else {
         setMensagemErro('')
-        mudarEtapa(etapaAtual + 1); 
+        mudarEtapa(etapaAtual + 1);
       }
     }
 
-    if(etapaAtual == 2) {
+    if (etapaAtual == 2) {
       let senha = data.senha == ''
       let confirmacaoSenha = data.confirmacaoSenha != data.senha
 
       console.log(senha);
       console.log(confirmacaoSenha);
 
-      if(senha || confirmacaoSenha) {
+      if (senha || confirmacaoSenha) {
         setErro(true)
         let mensagensErro = ''
 
-        if(senha) mensagensErro += 'Digite uma senha!\n'
-        if(confirmacaoSenha) mensagensErro += 'As senhas não coincidem!\n'
+        if (senha) mensagensErro += 'Digite uma senha!\n'
+        if (confirmacaoSenha) mensagensErro += 'As senhas não coincidem!\n'
         mensagensErro = mensagensErro.split('\n').map((line, index) => <React.Fragment key={index}>{line}<br /></React.Fragment>);
 
         setMensagemErro(mensagensErro);
-      }else{
+      } else {
         setMensagemErro('')
 
         cadastrar(e);
@@ -221,80 +219,78 @@ const Cadastro = () => {
 
     }
   }
-    return (
-      <div className='fundo-cadastro'>
-        <Link to="/" className='link-voltar'>
-          <ButtonFilled acao={" < "} />
-        </Link>
+  return (
+    <div className='fundo-cadastro'>
+      <Link to="/" className='link-voltar'>
+        <ButtonFilled acao={" < "} />
+      </Link>
 
-        <div className='imagem-lateral-cadastro'>
-          <img src={FotoCadastro} alt="" />
+      <div className='imagem-lateral-cadastro'>
+        <img src={FotoCadastro} alt="" />
 
-          <p>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
+        <p>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
+      </div>
+
+      <form className='formulario-cadastro' onSubmit={(e) => {
+        e.preventDefault();
+
+        verificarCampos(e);
+
+      }}>
+
+        {!esconderBotoes ? (
+          <>
+            <div className='imagem'>
+              <img src={IconeLogo} alt="icone logo" />
+            </div>
+
+
+            <h2>Cadastro de Empresa</h2>
+            <Progresso etapaAtual={etapaAtual} />
+          </>
+        ) : null}
+
+        {erro ? (
+          <h4 className='erro-cadastro'>{mensagemErro}</h4>
+        ) : (null)}
+
+        <div className='container-inputs'>
+          {etapaComponents}
         </div>
 
-        <form className='formulario-cadastro' onSubmit={(e) => {
-          e.preventDefault();
-
-            verificarCampos(e);
-          
-        }
-
-        }>
-
+        <div className='botoes-cadastro'>
           {!esconderBotoes ? (
             <>
-              <div className='imagem'>
-                <img src={IconeLogo} alt="icone logo" />
-              </div>
+              {etapaAtual > 0 ? (
 
+                <button className='botao-borda' type="button" onClick={() => mudarEtapa(etapaAtual - 1)}>
+                  Voltar
+                </button>
+              ) : (
+                <button className='botao-desativado' type="button">
+                  Voltar
+                </button>
+              )}
 
-              <h2>Cadastro de Empresa</h2>
-              <Progresso etapaAtual={etapaAtual} />
+              {!ultimoPasso ? (
+                <button className='botao-preenchido' type="submit">
+                  Avançar
+                </button>
+              ) : (
+
+                <button className='botao-preenchido' type="submit">
+                  Cadastrar
+                </button>
+              )}
             </>
           ) : null}
 
-          {erro ? (
-            <h4 className='erro-cadastro'>{mensagemErro}</h4>
-          ) : (null)}
 
-          <div className='container-inputs'>
-            {etapaComponents}
-          </div>
+        </div>
+        <p className='link-pagina-mobile'>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
+      </form>
+    </div >
+  )
+}
 
-          <div className='botoes-cadastro'>
-            {!esconderBotoes ? (
-              <>
-                {etapaAtual > 0 ? (
-
-                  <button className='botao-borda' type="button" onClick={() => mudarEtapa(etapaAtual - 1)}>
-                    Voltar
-                  </button>
-                ) : (
-                  <button className='botao-desativado' type="button">
-                    Voltar
-                  </button>
-                )}
-
-                {!ultimoPasso ? (
-                  <button className='botao-preenchido' type="submit">
-                    Avançar
-                  </button>
-                ) : (
-
-                  <button className='botao-preenchido' type="submit">
-                    Cadastrar
-                  </button>
-                )}
-              </>
-            ) : null}
-
-
-          </div>
-          <p className='link-pagina-mobile'>Já tem uma conta? <Link to="/entrar" className='link-pagina'>Faça login</Link> </p>
-        </form>
-      </div >
-    )
-  }
-
-  export default Cadastro
+export default Cadastro
