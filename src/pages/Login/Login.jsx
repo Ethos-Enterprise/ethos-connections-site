@@ -105,6 +105,8 @@ const Login = () => {
           }
         })
         .catch(error => {
+
+          console.log('erro na autenticação');
           console.log(error);
         });
     } else {
@@ -140,7 +142,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="seuInput"><span>Email</span></label>
+          <label htmlFor="email"><span>Email</span></label>
         </div>
 
         <div className="input">
@@ -152,7 +154,7 @@ const Login = () => {
             onChange={(e) => setSenha(e.target.value)}
 
           />
-          <label htmlFor="seuInput"><span>Senha</span></label>
+          <label htmlFor="senha"><span>Senha</span></label>
         </div>
 
         <Link to="" className='link-pagina'>Esqueceu a senha?</Link>

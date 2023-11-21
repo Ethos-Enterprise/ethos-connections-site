@@ -13,17 +13,17 @@ const PlanoCaixa = () => {
                     Ideal para buscar serviços para sua empresa.
 
                     <div className='beneficio-plano'>
-                        <i class="fa-solid fa-check icone-check-plano"></i>
+                        <i className="fa-solid fa-check icone-check-plano"></i>
                         <p className='descricao-beneficio-plano'>Acesso a portfolios de empresas certificadas</p>
                     </div>
 
                     <div className='beneficio-plano'>
-                        <i class="fa-solid fa-check icone-check-plano"></i>
+                        <i className="fa-solid fa-check icone-check-plano"></i>
                         <p className='descricao-beneficio-plano'>Acesso a portfolios de empresas certificadas</p>
                     </div>
 
                     <div className='beneficio-plano'>
-                        <i class="fa-solid fa-check icone-check-plano"></i>
+                        <i className="fa-solid fa-check icone-check-plano"></i>
                         <p className='descricao-beneficio-plano'>Acesso a portfolios de empresas certificadas</p>
                     </div>
                 </div>
