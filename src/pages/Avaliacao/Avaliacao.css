@@ -357,6 +357,22 @@
     padding: 2rem 2rem 2rem 2rem;
 }
 
+.modal2 {
+    width: 130vh;
+    flex-shrink: 0;
+    background-color: #0d1114;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation: animateModal 800ms;
+    z-index: 2;
+    /* Garante que o modal esteja acima do overlay */
+    backdrop-filter: blur(90px);
+    /* Aplica o desfoque ao modal */
+    padding: 2rem 2rem 2rem 2rem;
+}
 
 @keyframes animateModal {
     from {

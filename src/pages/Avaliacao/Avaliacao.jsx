@@ -39,7 +39,7 @@ const Avaliacao = () => {
 
   const toggleModal = () => {
     let modal = document.querySelector('.modal');
-    modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+    modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
   };
 
   const closeModal = () => {
@@ -47,15 +47,18 @@ const Avaliacao = () => {
     modal.style.display = 'none';
   };
 
-  const handleClick = () => {
-    const spanElement = document.querySelector('.fechar');
+  const toggleModal2 = () => {
 
-    // Adicione a lógica para mudar a cor de fundo
-    spanElement.style.backgroundColor = 'sua-nova-cor-aqui';
-
-    // Chame a função closeModal se necessário
-    closeModal();
+    let modal2 = document.querySelector('.modal2');
+    modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
   };
+
+  const closeModal2 = () => {
+    closeModal();
+    let modal = document.querySelector('.modal2');
+    modal.style.display = 'none';
+  };
+
   return (
 
     <><HeaderPlataforma
@@ -129,7 +132,7 @@ const Avaliacao = () => {
               </button>
 
 
-
+              {/* Primeiro Modal */}
               <div className="modal">
 
                 <div className="box-modal">
@@ -151,7 +154,7 @@ const Avaliacao = () => {
 
                     <div className="box-texto-modal">
                       <h2 className='titulo-modal-h2-5'>Serviço:</h2>
-                      <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa </h2>
+                      <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
                     </div>
 
                     <div className="box-texto-modal">
@@ -165,7 +168,7 @@ const Avaliacao = () => {
                         Cancelar
                       </span>
 
-                      <button className='botao-preenchido-servico'>
+                      <button onClick={toggleModal2} className='botao-preenchido-servico'>
                         Confirmar
                       </button>
                     </div>
@@ -173,6 +176,42 @@ const Avaliacao = () => {
                 </div>
               </div>
 
+              {/* Segundo Modal */}
+
+              <div className="modal2">
+
+                <div className="box-modal">
+                  <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
+                  <div className="traco"></div>
+                  <div className="texto-modal">
+                    <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
+                    <div className="traco"></div>
+                    <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
+                    <br/>
+                    <br/>
+                      Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
+                    <br/>
+                    <br/>
+                    Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
+                    <br/>
+                    <br/>
+                    Agradecemos sua preferência pela Ethos!
+                    <br/>
+                    <br/>
+                    </h2>
+
+                    <div className="botoes-modal">
+                      <span onClick={closeModal2} className='fechar' >
+                        Ver Contatos
+                      </span>
+
+                      <button onClick={closeModal2} className='botao-preenchido-servico'>
+                        Finalizar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
               <HeartCheckbox></HeartCheckbox>
