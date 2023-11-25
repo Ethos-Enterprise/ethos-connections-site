@@ -1,4 +1,6 @@
 import React from 'react'
+//Importando CSS
+import './MinhasInteracoes.css';
 
 const MinhasInteracoes = () => {
   return (
@@ -9,6 +11,10 @@ const MinhasInteracoes = () => {
 
       <div className='tracinho-divisor'></div>
       {/* COLCOAR DETALHES DA PAGINA */}
+
+
+
+
 
     </div>
   )

@@ -69,7 +69,6 @@ const Avaliacao = () => {
 
       <div className="conteudo">
 
-        {/* COPIAR E COLAR A DIV beadcrumb NAS PAGINAS E IR ADICIONANDO O CAMINHO CONFORME ESTE, O CSS DO INDEX ESTA DEIXANDO ELE NO FORMATO BONITINHO :) */}
         <div className='beadcrumb'>
           <Link to='/solucoes-esg' className='link-beadcrumb'><span>Soluções ESG {'>'}</span>  </Link>
           <Link to='/solucoes-esg/portfolio' className='link-beadcrumb'><span>Portfólio {'>'}</span>  </Link>
@@ -89,7 +88,6 @@ const Avaliacao = () => {
                 <Link to={'/solucoes-esg/portfolio'}>
                   <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
                 </Link>
-
               </div>
             </div>
           </div>
@@ -176,8 +174,8 @@ const Avaliacao = () => {
                 </div>
               </div>
 
-              {/* Segundo Modal */}
 
+              {/* Segundo Modal */}
               <div className="modal2">
 
                 <div className="box-modal">
@@ -187,23 +185,27 @@ const Avaliacao = () => {
                     <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
                     <div className="traco"></div>
                     <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
-                    <br/>
-                    <br/>
+                      <br />
+                      <br />
                       Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
-                    <br/>
-                    <br/>
-                    Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
-                    <br/>
-                    <br/>
-                    Agradecemos sua preferência pela Ethos!
-                    <br/>
-                    <br/>
+                      <br />
+                      <br />
+                      Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
+                      <br />
+                      <br />
+                      Agradecemos sua preferência pela Ethos!
+                      <br />
+                      <br />
                     </h2>
 
                     <div className="botoes-modal">
-                      <span onClick={closeModal2} className='fechar' >
-                        Ver Contatos
-                      </span>
+
+                      <Link to={'/minha-conta#minhas-interacoes'} style={{ textDecoration: 'none', color: '#3366cc' }}>
+                        <span onClick={closeModal2} className='fechar'>
+                          Ver Contatos
+                        </span>
+                      </Link>
+
 
                       <button onClick={closeModal2} className='botao-preenchido-servico'>
                         Finalizar
