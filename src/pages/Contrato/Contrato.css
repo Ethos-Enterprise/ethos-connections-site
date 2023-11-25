@@ -1,0 +1,110 @@
+.container-contrato{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding: 20px 35px 50px 35px;
+}
+
+.container-contrato .observacao-contrato{
+    color: rgb(228, 55, 46);
+    font-weight: var(--letra-regular);
+    font-size: 0.99rem;
+}
+.container-contrato .container-titulo{
+    display: flex;
+    align-items: center;
+    margin: 27px 0px 20px 0px;
+    width: 100%;
+}
+.container-contrato .container-titulo .titulo-contrato{
+    font-weight: var(--letra-bold);
+    font-size: 1.1rem;
+    color: var(--cor-primaria);
+    margin: 0px 15px 0px 0px;
+}
+
+.container-contrato .container-titulo .traco{
+    background-color: var(--cor-primaria);
+    height: 0.2px;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.container-contrato .informacoes-plano-contrato{
+    display: flex;
+    gap: 40px;
+    margin: 25px 0px 0px 10px;
+}
+
+.container-contrato .informacao-plano-contrato{
+    display: flex;
+    justify-content: center;
+}
+
+.informacao-plano-contrato .plano-contrato{
+    margin: 0;
+    margin-right: 15px;
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-letras);
+}
+
+.informacao-plano-contrato .nome-plano-contrato{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: var(--letra-light);
+    color: var(--cor-letras);
+}
+
+.container-termos-plano{
+    margin: 25px 0px 0px 10px;
+}
+
+.container-termos-plano .titulo-termo-plano{
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 30px 0px 0px 0px;
+    color: var(--cor-letras);
+}
+
+.container-termos-plano .descricao-termo-plano{
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+    margin: 10px 0px 0px 15px;
+}
+
+
+.concordo-contrato{
+    display: flex;
+    margin: 24px 0px 10px 10px;    
+    align-items: center;
+}
+
+.concordo-contrato .check-contrato{
+    width: 22px; 
+    height: 22px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.concordo-contrato .label-check-contrato{
+    font-size: 1rem;
+    font-weight: var(--letra-regular);
+}
+
+.botoes-contrato{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+}
+
+.botoes-contrato .botao-preenchido{
+    width: 200px;
+    margin: 0;
+}
+
+.botoes-contrato .botao-borda{
+    width: 200px;
+    margin: 0;
+}

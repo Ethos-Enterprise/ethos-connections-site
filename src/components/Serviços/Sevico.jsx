@@ -63,7 +63,6 @@ const Servico = (props) => {
       <div className='dados-servico-empresa'>
         <h4 className='titulo-servico'>{props.nomeServico}</h4>
         <p className='nome-empresa-servico'>{props.nomeEmpresa}</p>
-
         <p className='descricao-servico'>{props.descricao}
         </p>
 

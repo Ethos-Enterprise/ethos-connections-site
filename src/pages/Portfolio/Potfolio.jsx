@@ -14,6 +14,7 @@ import iconeCertificado from '../../assets/icones/certificado.png'
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma.jsx';
 import Servico from '../../components/Serviços/Sevico.jsx'
+
 //coisas do react
 import { useNavigate, Link } from 'react-router-dom';
 

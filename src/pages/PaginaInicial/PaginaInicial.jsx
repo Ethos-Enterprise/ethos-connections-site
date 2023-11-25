@@ -44,6 +44,7 @@ export const PaginaInicial = () => {
       }
     })
       .then(async (response) => {
+        console.log(response);
         const servicosComNomeEmpresa = await Promise.all(
           response.data.map(async (servico) => {
             const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);

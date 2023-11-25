@@ -146,3 +146,7 @@
     font-weight: var(--letra-medium);
 }
 
+
+.container-menu-latera{
+    width: 15vw;
+}

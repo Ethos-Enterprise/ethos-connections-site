@@ -1,41 +1,91 @@
 import React from 'react'
 
+//api
+import api from '../../../service/api'
+
 //select do react
 import Select from 'react-select';
 import { useState } from 'react';
+import ButtonFilled from '../../../components/ButtonFilled/ButtonFilled';
+
+//react router dom
+import { Link, useLocation, useNavigate} from 'react-router-dom';
+
+//hook
+import { useUsuario } from '../../../hooks/Usuario';
 
 const AdicionarServico = () => {
 
+    const { usuario } = useUsuario();
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [dadosServico, setDadosServico] = useState({
-        servico: '',
-        valorMedio: '',
+        nomeServico: '',
+        valor: '',
         descricao: '',
-        areasESG: [],
-      });
+        areaAtuacaoEsg: [],
+        fkPrestadoraServico: usuario.id
+    });
 
-      console.log(dadosServico.areasESG[0].value);
-      
-      const limparCampos = () => {
+    console.log(dadosServico);
+
+    const limparCampos = () => {
         setDadosServico({
-          servico: '',
-          valorMedio: '',
-          descricao: '',
-          areasESG: [],
+            nomeServico: '',
+            valor: '',
+            descricao: '',
+            areaAtuacaoEsg: [],
+            fkPrestadoraServico: usuario.id
         });
-      };
-    
-      const atualizarCampos = (selectedOptions) => {
-        setDadosServico((prevDados) => ({
-          ...prevDados,
-          areasESG: selectedOptions,
-        }));
-      };
+    };
 
-    const cadastrarServico = () => {
-        console.log('Dados Cadastrados:', dadosServico);
+    const atualizarCampos = (selectedOptions) => {
+        setDadosServico((prevDados) => ({
+            ...prevDados,
+            areaAtuacaoEsg: selectedOptions.map(option => option.value),
+        }));
+    };
+
+    const cadastrarServico = (e) => {
+        e.preventDefault();
+
+        api.post('/v1.0/servicos', {
+            nomeServico: 'Exemplo',
+            descricao: 'Este é um serviço de Exemplo',
+            valor: 1.0,
+            areaAtuacaoEsg: [
+              'ENVIRONMENTAL',
+              'SOCIAL',
+              'GOVERNANCE'
+            ],
+            fkPrestadoraServico: `${usuario.id}`,
+        }, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            },
+        })
+            .then((response) => {
+                console.log('SERVICO CADASTRADO', response);
+
+            })
+            .catch((error) => {
+                console.log('deu erro aqui');
+                console.log(error);
+            }
+            )
+
         limparCampos();
-      };
-    
+    };
+
+
+    const voltar = () =>  {
+        setAdicionarServicoTela(false);
+
+        navigate('/meu-portfolio/editar-portfolio#servicos');
+    }
+
     return (
         <div>
             <div className='dados-portfolio' >
@@ -45,58 +95,66 @@ const AdicionarServico = () => {
                         Adicionar Serviço
                     </h2>
 
+
+                    <div className='botao-adicionar-servico' onClick={voltar}>
+                        <span className='acao-botao-adicionar-servico'>
+                            <span className='icone-adicionar-servico'>
+                                {'<'}</span>
+                            Voltar
+                        </span>
+                    </div>
                 </div>
                 <div className='tracinho-divisor'></div>
 
-                <div className='inputs-portfolio'>
+                <form className='inputs-portfolio' onSubmit={(e) => cadastrarServico(e)}>
                     <div className='campo-portfolio'>
                         <label htmlFor="" className='label-portfolio'>Serviço Prestado</label>
-                        <input 
-                        type="text" 
-                        className='input-portfolio' 
-                        value={dadosServico.servico}
-                        onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, servico: e.target.value }))}
+                        <input
+                            type="text"
+                            className='input-portfolio'
+                            value={dadosServico.nomeServico}
+                            onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, nomeServico: e.target.value }))}
                         />
                     </div>
 
                     <div className='campo-portfolio'>
                         <label htmlFor="" className='label-portfolio'>Valor Médio</label>
                         <input
-              type='text'
-              className='input-portfolio'
-              value={dadosServico.valorMedio}
-              onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, valorMedio: e.target.value }))}
-            />
+                            type='text'
+                            className='input-portfolio'
+                            value={dadosServico.valor}
+                            onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, valor: e.target.value }))}
+                        />
                     </div>
 
 
                     <div className='campo-texto-portfolio'>
                         <label htmlFor="" className='label-text-area'>Descrição</label>
                         <textarea
-              name=''
-              id=''
-              cols='30'
-              rows='10'
-              className='text-area-sobre-empresa'
-              value={dadosServico.descricao}
-              onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, descricao: e.target.value }))}
-            ></textarea>
+                            name=''
+                            id=''
+                            cols='30'
+                            rows='10'
+                            className='text-area-sobre-empresa'
+                            value={dadosServico.descricao}
+                            onChange={(e) => setDadosServico((prevDados) => ({ ...prevDados, descricao: e.target.value }))}
+                        ></textarea>
                     </div>
 
                     <div className='campo-portfolio'>
                         <label htmlFor="" className='label-portfolio'>Área ESG (1 ou mais)</label>
                         <Select
                             isMulti
-                            placeholder='Selecione as áreas ESG do serviço' 
+                            placeholder='Selecione as áreas ESG do serviço'
                             name="colors"
                             options={[
-                                { value: 'Environmental', label: 'Environmental' },
-                                { value: 'Social', label: 'Social' },
-                                { value: 'Governamental', label: 'Governamental' },
-                              ]}
+                                { value: 'ENVIRONMENTAL', label: 'Environmental' },
+                                { value: 'SOCIAL', label: 'Social' },
+                                { value: 'GOVERNANCE', label: 'Governance' },
+                            ]}
                             className="basic-multi-select"
                             classNamePrefix="select"
-                            value={dadosServico.areasESG}
+                            value={dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option }))}
                             onChange={atualizarCampos}
                             styles={{
                                 control: (provided, state) => ({
@@ -156,9 +214,14 @@ const AdicionarServico = () => {
                         />
                     </div>
 
-                </div>
+                    <div className='botoes-portfolio'>
+
+                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Desfazer Alterações</button>
+                        <ButtonFilled acao={'Salvar'} type='submit' />
+                    </div>
+                </form>
             </div >
-        </div>
+        </div >
     )
 }
 

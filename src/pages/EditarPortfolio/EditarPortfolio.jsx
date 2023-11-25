@@ -39,9 +39,8 @@ const EditarPortfolio = () => {
 
     const hash = location.hash.replace(/^#/, '');
 
-    const secaoValida = opcoesMenu.some((opcao) => opcao.hash === hash);
 
-    if (secaoValida) {
+    if (hash && opcoesMenu.some((opcao) => opcao.hash === hash)) {
       setSecaoAtual(hash);
  
     } else {
@@ -74,6 +73,7 @@ const EditarPortfolio = () => {
   const handleMenuClick = ( hash) => {
     setSecaoAtual(hash);
     navigate(`/meu-portfolio/editar-portfolio#${hash}`);
+
   };
 
   return (

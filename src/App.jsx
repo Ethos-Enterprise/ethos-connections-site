@@ -14,12 +14,15 @@ import Avaliacao from "./pages/Avaliacao/Avaliacao";
 import Portfolio from "./pages/Portfolio/Potfolio.jsx";
 import EditarPortfolio from "./pages/EditarPortfolio/EditarPortfolio.jsx";
 import MeuPortfolio from "./pages/MeuPortfolio/MeuPortfolio.jsx";
+import Contrato from "./pages/Contrato/Contrato.jsx";
+
 
 
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
 import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.jsx";
 import MinhaConta from "./pages/MinhaConta/MinhaConta.jsx";
+import Pagamento from "./pages/Pagamento/Pagamento.jsx";
 
 function App() {
   return (
@@ -42,6 +45,11 @@ function App() {
           <Route path="/meu-portfolio" element={<MeuPortfolio />} />
 
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
+
+
+          <Route path="/meu-plano/contrato" element={<Contrato />} />
+          <Route path="/meu-plano/contrato/pagamento" element={<Pagamento />} />
+
         </Routes>
 
       </Router>

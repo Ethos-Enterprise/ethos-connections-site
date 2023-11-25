@@ -3,10 +3,23 @@
     border-radius: 7px;
     margin-top: 16px;
     width: 50vw;
+    margin-bottom: 16px;
 }
 
+.container-plano .container-informacoes-principais-plano{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-plano .container-informacoes-principais-plano .botao-preenchido{
+    margin: 0px 10px 0px 0px;
+    width: 175px;
+    height: 30px;
+    padding: 0px 8px 0px 8px;
+}
 .container-plano .nome-plano-informacao{
-    margin: 15px 0px 10px 25px;
+    margin: 15px 0px 10px 30px;
     font-weight: var(--letra-semi-bold);
     font-size: 1rem;
     color: var(--cor-primaria);
@@ -16,15 +29,17 @@
 
 }
 
+.titulo-plano-atual{
+    margin: 0px 0px 18px 0px;
+}
+
 .container-plano .informacoes-plano .detalhes-plano{
     box-sizing:border-box;
-    padding: 20px 0px 0px 25px;
+    padding: 20px 0px 20px 30px;
     border-top: 1px solid #a3a3a3;
     width: 80%;
     font-weight: var(--letra-light);
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-
+    font-size: 0.9rem;    
 }
 
 .container-plano .informacoes-plano .preco-plano{
@@ -32,7 +47,23 @@
     border-top: 1px solid #a3a3a3;
     width: 20%;
     padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.container-plano .informacoes-plano .preco-plano .preco{
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 0px 0px 8px 0px;
+}
+
+.container-plano .informacoes-plano .preco-plano .tipo-de-plano{
+    color: #A3A3A3;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    margin: 0;
 }
 
 .informacoes-plano .beneficio-plano{
@@ -44,7 +75,9 @@
 
 .informacoes-plano .beneficio-plano .icone-check-plano{
     color: var(--cor-primaria);
+    margin-right: 5px;
 }
+
 .informacoes-plano .beneficio-plano .descricao-beneficio-plano{
     margin: 0;
     font-size: 0.9rem;

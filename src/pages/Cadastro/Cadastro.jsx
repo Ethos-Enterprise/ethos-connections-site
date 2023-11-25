@@ -136,7 +136,15 @@ const Cadastro = () => {
               console.error(error);
 
               setErro(true)
-              setMensagemErro(error.response.data.detail)
+              console.log('erro', error.response.data.detail)
+
+              
+              if(error.response.data.detail == 'Cnpj inválido') {
+                setMensagemErro('Insira um CNPJ válido')   
+              }else{
+                setMensagemErro('CNPJ já cadastrado')          
+              }
+
 
             });
 
@@ -176,7 +184,7 @@ const Cadastro = () => {
     }
 
     if (etapaAtual == 1) {
-      let campoTelefone = removerCaracteresEspeciais(data.telefone).length < 10;
+      let campoTelefone = removerCaracteresEspeciais(data.telefone).length < 11;
       let email = !data.email.includes('@') || !data.email.includes('.com')
 
 
