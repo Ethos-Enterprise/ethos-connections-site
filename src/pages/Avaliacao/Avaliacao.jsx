@@ -5,6 +5,7 @@ import './Avaliacao.css';
 
 //Imagem
 import ImagemPerfil from '../../assets/imagens/perfil.jpg'
+import SolicitarContato from '../../assets/imagens/solicitar contato.jpg'
 
 
 //Componentes Footer e Header
@@ -35,6 +36,26 @@ const Avaliacao = () => {
   const dadosServico = location.state ? location.state.dadosServico : null;
 
   console.log(dadosServico);
+
+  const toggleModal = () => {
+    let modal = document.querySelector('.modal');
+    modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+  };
+
+  const closeModal = () => {
+    let modal = document.querySelector('.modal');
+    modal.style.display = 'none';
+  };
+
+  const handleClick = () => {
+    const spanElement = document.querySelector('.fechar');
+
+    // Adicione a lógica para mudar a cor de fundo
+    spanElement.style.backgroundColor = 'sua-nova-cor-aqui';
+
+    // Chame a função closeModal se necessário
+    closeModal();
+  };
   return (
 
     <><HeaderPlataforma
@@ -103,13 +124,66 @@ const Avaliacao = () => {
             </div>
 
             <div className="box-container-informacoes">
-              <button className='botao-preenchido-servico'>Solicitar Contato</button>
+              <button className='botao-preenchido-servico' onClick={toggleModal}>
+                Solicitar Contato
+              </button>
+
+
+
+              <div className="modal">
+
+                <div className="box-modal">
+                  <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
+                  <div className="traco"></div>
+                  <div className="texto-modal">
+                    <h1 className='titulo-modal-h1'>Contatar Empresa</h1>
+                    <div className="traco"></div>
+                    <h2 className='titulo-modal-h2'>Informaremos a empresa que você solicitou que ela entre em contato com você.
+                      <br />
+                      <br />
+                      Confirme sua solicitação de contato para o seguinte serviço
+                    </h2>
+
+                    <div className="box-texto-modal">
+                      <h2 className='titulo-modal-h2-5'>Empresa:</h2>
+                      <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
+                    </div>
+
+                    <div className="box-texto-modal">
+                      <h2 className='titulo-modal-h2-5'>Serviço:</h2>
+                      <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa </h2>
+                    </div>
+
+                    <div className="box-texto-modal">
+                      <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
+                      <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
+                    </div>
+
+
+                    <div className="botoes-modal">
+                      <span onClick={closeModal} className='fechar' >
+                        Cancelar
+                      </span>
+
+                      <button className='botao-preenchido-servico'>
+                        Confirmar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
               <HeartCheckbox></HeartCheckbox>
 
               <h2 className='subtitulo-container-informacao-favoritar'>Favoritar</h2>
             </div>
 
           </div>
+
+
+
         </div>
 
 
@@ -139,7 +213,9 @@ const Avaliacao = () => {
 
 
     </>
+
+
   )
 }
 
-export default Avaliacao
+export default Avaliacao;

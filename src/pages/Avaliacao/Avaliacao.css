@@ -201,54 +201,195 @@
 .caixa-avaliacao-servico {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
-  }
-  
-  .usuario-conjunto {
+    justify-content: space-between;
+}
+
+.usuario-conjunto {
     display: flex;
     flex-direction: row;
     gap: 2.5vh;
-    align-items: center; 
-  }
-  
-  .usuario-servico {
+    align-items: center;
+}
+
+.usuario-servico {
     width: 25px;
     height: 25px;
-  }
-  
-  .estrela-servico {
+}
+
+.estrela-servico {
     width: 25px;
     height: 25px;
-  }
-  
-  .estrelas-conjunto {
+}
+
+.estrelas-conjunto {
     display: flex;
     gap: 1vh;
-  }
-  
-  .titulo-star-avaliacao {
+}
+
+.titulo-star-avaliacao {
     font-size: 1.1rem;
     font-weight: var(--letra-medium);
     color: var(--cor-primaria);
-  }
-  
-  .subtitulo-star-avaliacao {
+}
+
+.subtitulo-star-avaliacao {
     font-size: 1rem;
     font-weight: var(--cinza);
     color: #CFCFCF;
-  }
-  
-  .descricao-star-avaliacao {
+}
+
+.descricao-star-avaliacao {
     font-size: 1rem;
     font-weight: var(--cinza);
     color: #FAFAFA;
-  }
-  
-  .container-avaliacao{
-    padding: 0px 35px 10px;
-  
-  }
+}
 
-  .tag-valor-medio{
+.container-avaliacao {
+    padding: 0px 35px 10px;
+
+}
+
+.tag-valor-medio {
     font-weight: var(--letra-medium);
-  }
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(52, 52, 52);
+    background: linear-gradient(90deg,
+            rgba(52, 52, 52, 1) 0%,
+            rgba(97, 119, 255, 1) 0%,
+            rgba(33, 57, 189, 1) 100%);
+}
+
+.wrapper a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #585858;
+    font-family: "Roboto", sans-serif;
+}
+
+
+
+/* Modal */
+.box-modal {
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+}
+
+.imagem-modal {
+    width: 50vh;
+    border-radius: 6px;
+}
+
+
+.titulo-modal-h1 {
+    font-size: 1.2rem;
+    font-weight: var(--letra-semi-bold);
+    color: var(--cor-primaria);
+}
+
+
+.titulo-modal-h2 {
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
+
+}
+
+.box-texto-modal{
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+}
+
+.titulo-modal-h2-5-texto {
+    font-size: 1rem;
+    font-weight: var(--letra-semi-bold);
+    max-width: 90%;
+}
+
+.titulo-modal-h2-5 {
+    font-size: 1rem;
+    font-weight: var(--letra-semi-bold);
+    color: var(--cor-primaria);
+
+}
+
+.botoes-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    gap: 1.5rem;
+}
+
+
+
+
+.btn:hover {
+    background: aliceblue;
+    color: black;
+
+
+}
+
+.modal {
+    width: 130vh;
+    flex-shrink: 0;
+    background-color: #0d1114;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation: animateModal 800ms;
+    z-index: 2;
+    /* Garante que o modal esteja acima do overlay */
+    backdrop-filter: blur(90px);
+    /* Aplica o desfoque ao modal */
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+
+@keyframes animateModal {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+        /* Ajustei um pouco o posicionamento inicial */
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+.fechar {
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in;
+    width: 8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.fechar:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+}
