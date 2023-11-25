@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 //react router dom
 import AdicionarServico from './AdicionarServico';
-
+import Servico from '../../../components/Serviços/Sevico'
 
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
@@ -63,28 +63,29 @@ const Servicos = (props) => {
               </div>
               <div className='tracinho-divisor'></div>
 
-              <div className='inputs-portfolio'>
+              <div className='caixa-portfolio'>
 
                 {/* LISTAR SERVICOS QUE VEM ATRAVAES A REQUISICAO */}
                 {/* {servicos.length > 0 ? (
-                  servicos.map((servico) => (
+                  servicos.map((servico) => ( */}
                     <Servico
-                      key={servico.id}
-                      id={servico.id}
-                      fotoPerfil={true}
-                      nomeServico={servico.nomeServico}
-                      nomeEmpresa={servico.razaoSocial}
-                      descricao={servico.descricao}
-                      valorMedio={(servico.valor).toLocaleString('pt-BR', {
+                      // key={servico.id}
+                      id={'2'}
+                      ocasiao={'meu-servico-editar'}
+                      nomeServico={'TESTE'}
+                      nomeEmpresa={'servico.razaoSocial'}
+                      descricao={'servico.descricao'}
+                      valorMedio={('11').toLocaleString('pt-BR', {
                         style: 'currency',
                         currency: 'BRL',
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}
-                      areaESG={servico.areaAtuacaoEsg}
-                      fkPrestadoraServico={servico.fkPrestadoraServico}
+                      areaESG={'environmental'}
+                      fkPrestadoraServico={'servico.fkPrestadoraServico'}
                     />
-                  ))
+
+                  {/* ))
                 ) : (
                   <p>Nenhum serviço cadastrado.</p>
                 )} */}

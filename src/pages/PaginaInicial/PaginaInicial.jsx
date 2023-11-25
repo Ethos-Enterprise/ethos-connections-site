@@ -361,7 +361,7 @@ export const PaginaInicial = () => {
               <Servico
                 key={servico.id}
                 id={servico.id}
-                fotoPerfil={true}
+                ocasiao={'solucoes'}
                 nomeServico={servico.nomeServico}
                 nomeEmpresa={servico.razaoSocial}
                 descricao={servico.descricao}

@@ -21,6 +21,13 @@ ul .link-header{
     font-weight: var(--letra-light);
     font-size: 1.100rem;
     min-width: 130px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+ul .link-header:hover{
+    color: var(--cor-primaria);
+
 }
 
 .caixa-dropdown{
@@ -101,3 +108,7 @@ ul .link-header{
 }
 
 
+ul .link-header.opcaoHeaderAtivo{
+    color: var(--cor-primaria);
+    font-weight: var(--letra-regular);
+}

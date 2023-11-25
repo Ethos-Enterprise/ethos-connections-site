@@ -11,10 +11,13 @@ import IconeDropdownFechado from '../../../assets/icones/icone-dropdown-fechado.
 import IconeDropdownAberto from '../../../assets/icones/icone-dropdown-aberto.png';
 
 //router
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const HeaderPlataforma = (props) => {
     const navigate = useNavigate();
+
+    const location = useLocation();
+
     const username = sessionStorage?.getItem('email');
 
     const handleLogout = () => {
@@ -26,10 +29,13 @@ const HeaderPlataforma = (props) => {
     return (
         < div className='caixa-header'>
             <header className='header-plataforma'>
+
+                <Link to={'/solucoes-esg'}>
                 <img src={Logo} alt="LOGO" className='logo' />
+                </Link>
                 {props.plano == 'Free' && (
                     <ul>
-                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
+                        <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
                         <Link to='/' className='link-header'>Parceiro Ethos</Link >
                         <Link to='' className='link-header'>Aplicativo Ethos</Link >
                     </ul>
@@ -38,8 +44,8 @@ const HeaderPlataforma = (props) => {
 
                 {props.plano == 'Analytics' && (
                     <ul>
-                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
-                        <Link to='/meu-progresso' className='link-header'>Meu Progresso</Link >
+                        <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
+                        <Link to='/meu-progresso' className={`link-header ${location.pathname.includes('/meu-progresso') ? 'opcaoHeaderAtivo' : ''}`}>Meu Progresso</Link>
                         <Link to='' className='link-header'>Parceiro Ethos</Link >
                     </ul>
                 )
@@ -47,8 +53,10 @@ const HeaderPlataforma = (props) => {
 
                 {props.plano == 'Provider' && (
                     <ul>
-                        <Link to='/solucoes-esg' className='link-header'>Soluções ESG</Link >
-                        <Link to='/minhas-negociacoes' className='link-header'>Minhas Negociações</Link >
+
+                        <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
+                        <Link to='/minhas-negociacoes' className={`link-header ${location.pathname.includes('/minhas-negociacoes') ? 'opcaoHeaderAtivo' : ''}`}>Minhas Negociações</Link>
+          
                         <Link to='' className='link-header'>Aplicativo Ethos</Link >
                     </ul>
                 )
@@ -67,21 +75,21 @@ const HeaderPlataforma = (props) => {
                         <ul className="usuario-lista">
 
 
-                            {props.plano == 'Provider' ?(
-                            <Link to={'/meu-portfolio'} className='link-dropdown'>
-                            <li>
-                                Meu Portfolio
-                            </li>
-                        </Link>
+                            {props.plano == 'Provider' ? (
+                                <Link to={'/meu-portfolio'} className='link-dropdown'>
+                                    <li>
+                                        Meu Portfolio
+                                    </li>
+                                </Link>
                             ) : (
 
-                            <Link to={'/minha-conta#meu-perfil'} className='link-dropdown'>
-                                <li>
-                                    Meu Perfil
-                                </li>
-                            </Link>
+                                <Link to={'/minha-conta#meu-perfil'} className='link-dropdown'>
+                                    <li>
+                                        Meu Perfil
+                                    </li>
+                                </Link>
                             )
-                                }
+                            }
 
                             <Link to={"/minha-conta#minhas-interacoes"} className='link-dropdown'>
                                 <li>Minhas Interações</li>

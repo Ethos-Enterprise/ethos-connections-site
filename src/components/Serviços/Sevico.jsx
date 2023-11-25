@@ -17,44 +17,41 @@ const Servico = (props) => {
   const navigate = useNavigate();
 
 
-    const verServico = () => {
-      // api.get(`/v1.0/servicos/${props.id}`, {
-      //   headers: {
-      //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      //   }
-      // })
-      //   .then(response => {
+  const verServico = () => {
+    // api.get(`/v1.0/servicos/${props.id}`, {
+    //   headers: {
+    //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+    //   }
+    // })
+    //   .then(response => {
 
-      //     console.log('sucesso na busca: ', response.data)
-      //     navigate('/solucoes-esg/portfolio/avaliacao');
-      //   })
-      //   .catch(error => {
-      //     console.log('erro ao buscar serviço por id' + error);
-      //   })
-      //   .finally(
-      //     console.log('Terminei a requisição BuscarServicoPorId')
-      //   );
-  
-      const dadosServico = {
-        id: props.id,
-        nomeServico: props.nomeServico,
-        nomeEmpresa: props.nomeEmpresa,
-        descricao: props.descricao,
-        valorMedio: props.valorMedio,
-        areaESG: props.areaESG,
-        fkPrestadoraServico:props.fkPrestadoraServico
-      };
+    //     console.log('sucesso na busca: ', response.data)
+    //     navigate('/solucoes-esg/portfolio/avaliacao');
+    //   })
+    //   .catch(error => {
+    //     console.log('erro ao buscar serviço por id' + error);
+    //   })
+    //   .finally(
+    //     console.log('Terminei a requisição BuscarServicoPorId')
+    //   );
 
-      navigate('/solucoes-esg/portfolio/avaliacao', { state: { dadosServico } });
+    const dadosServico = {
+      id: props.id,
+      nomeServico: props.nomeServico,
+      nomeEmpresa: props.nomeEmpresa,
+      descricao: props.descricao,
+      valorMedio: props.valorMedio,
+      areaESG: props.areaESG,
+      fkPrestadoraServico: props.fkPrestadoraServico
+    };
 
-    }
+    navigate('/solucoes-esg/portfolio/avaliacao', { state: { dadosServico } });
 
+  }
 
   return (
-
-    <div className={props.fotoPerfil ? ('caixa-servico') : ('caixa-servico-portfolio')} onClick={verServico}>
-
-      {props.fotoPerfil  && (
+    <div className={props.ocasiao === 'solucoes' ? 'caixa-servico' : (props.ocasiao === 'portfolio-servico' ? 'caixa-servico-portfolio' : 'caixa-meu-servico')} onClick={verServico}>
+      {props.ocasiao === 'solucoes' && (
         <div className='foto-perfil-empresa'>
           <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
         </div>
@@ -63,46 +60,63 @@ const Servico = (props) => {
       <div className='dados-servico-empresa'>
         <h4 className='titulo-servico'>{props.nomeServico}</h4>
         <p className='nome-empresa-servico'>{props.nomeEmpresa}</p>
-        <p className='descricao-servico'>{props.descricao}
-        </p>
+        <p className='descricao-servico'>{props.descricao}</p>
 
-        {props.fotoPerfil ? (
-          
-        <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+        {props.ocasiao === 'solucoes' ? (
+          <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+        ) : props.ocasiao === 'portfolio-servico' ? (
+          <div className='container-valor-e-avaliacao'>
+            <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
+              <i className="fa-regular fa-comment icone-avaliacoes">
+                <span>Ver Avaliações</span>
+              </i>
+            </Link>
+          </div>
         ) : (
           <div className='container-valor-e-avaliacao'>
-          <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-          <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'> <i className="fa-regular fa-comment icone-avaliacoes"> <span>Ver Avaliações</span></i></Link>
+            <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+
+            <div className='links-uteis-meu-servico'>
+
+            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
+              <i className="fa-solid fa-pen icone-avaliacoes">
+                <span>Editar</span>
+              </i>
+            </Link>
+
+            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
+              <i className="fa-regular fa-trash-can icone-avaliacoes">
+                <span>Excluir</span>
+              </i>
+            </Link>
+            </div>
+
           </div>
-        )
-        }
+        )}
       </div>
 
-
       <div className='pilar-servico'>
-
-        {props.areaESG == 'environmental' ? (
+        {props.areaESG === 'environmental' ? (
           <p className='pilar-esg'>Environmental</p>
         ) : (
           <p className='pilar-esg-nao-contido'>E</p>
         )}
 
-        {props.areaESG == 'social' ? (
+        {props.areaESG === 'social' ? (
           <p className='pilar-esg'>Social</p>
         ) : (
           <p className='pilar-esg-nao-contido'>S</p>
         )}
 
-        {props.areaESG == 'governamental' ? (
+        {props.areaESG === 'governamental' ? (
           <p className='pilar-esg'>Governamental</p>
         ) : (
           <p className='pilar-esg-nao-contido'>G</p>
         )}
-
       </div>
-    </div >
+    </div>
+  );
+};
 
-  )
-}
-
-export default Servico
+export default Servico;
