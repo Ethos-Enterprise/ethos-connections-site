@@ -17,7 +17,6 @@ import MeuPortfolio from "./pages/MeuPortfolio/MeuPortfolio.jsx";
 import Contrato from "./pages/Contrato/Contrato.jsx";
 
 
-
 //contexto
 import { UsuarioProvider } from "./hooks/Usuario.jsx";
 import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.jsx";
