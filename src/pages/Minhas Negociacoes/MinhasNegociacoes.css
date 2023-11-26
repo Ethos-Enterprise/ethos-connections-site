@@ -1,0 +1,18 @@
+.container-minhas-negociacoes{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding: 20px 35px;
+
+}
+
+.container-minhas-negociacoes .titulo-pagina{
+    color: var(--cor-primaria);
+    font-weight: var(--letra-medium);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.container-status-negociacoes{
+    display: flex;
+    gap: 24px;
+}

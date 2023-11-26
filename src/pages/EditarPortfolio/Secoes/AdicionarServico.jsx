@@ -5,21 +5,24 @@ import api from '../../../service/api'
 
 //select do react
 import Select from 'react-select';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ButtonFilled from '../../../components/ButtonFilled/ButtonFilled';
 
 //react router dom
-import { Link, useLocation, useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
 
 const AdicionarServico = (props) => {
 
+    const [edicao, setEdicao] = useState(false);
+
     const { usuario } = useUsuario();
 
     const location = useLocation();
     const navigate = useNavigate();
+
 
     const [dadosServico, setDadosServico] = useState({
         nomeServico: '',
@@ -28,6 +31,15 @@ const AdicionarServico = (props) => {
         areaAtuacaoEsg: [],
         fkPrestadoraServico: usuario.id
     });
+
+    useEffect(() => {
+        if (location.state && location.state.dadosServicoParaEditar) {
+            setDadosServico(location.state.dadosServicoParaEditar);
+            setEdicao(true)
+            console.log('mudeii', edicao);
+        }
+    }, [location.state]);
+
 
     console.log(dadosServico);
 
@@ -56,9 +68,9 @@ const AdicionarServico = (props) => {
             descricao: 'Este é um serviço de Exemplo',
             valor: 1.0,
             areaAtuacaoEsg: [
-              'ENVIRONMENTAL',
-              'SOCIAL',
-              'GOVERNANCE'
+                'ENVIRONMENTAL',
+                'SOCIAL',
+                'GOVERNANCE'
             ],
             fkPrestadoraServico: '3767c8e2-4aaa-4e0a-ada9-ad82223945a7',
         }, {
@@ -80,11 +92,13 @@ const AdicionarServico = (props) => {
     };
 
 
-    const voltar = () =>  {
+    const editarServico= () => {
+        console.log('api editar servico');
+    }
+    const voltar = () => {
         limparCampos();
-    props.setComponente('servicos'); 
+        props.setComponente('servicos');
         navigate('/meu-portfolio/editar-portfolio#servicos');
-
     }
 
     return (
@@ -93,7 +107,7 @@ const AdicionarServico = (props) => {
                 <div className='titulo-botao-adicionar'>
 
                     <h2 className='titulo-secao'>
-                        Adicionar Serviço
+                        {edicao ? 'Editar Serviço' : 'Adicionar Serviço'}
                     </h2>
 
 
@@ -155,7 +169,8 @@ const AdicionarServico = (props) => {
                             ]}
                             className="basic-multi-select"
                             classNamePrefix="select"
-                            value={dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option }))}
+                            value={Array.isArray(dadosServico.areaAtuacaoEsg) ? dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option })) : []}
+
                             onChange={atualizarCampos}
                             styles={{
                                 control: (provided, state) => ({
@@ -216,9 +231,18 @@ const AdicionarServico = (props) => {
                     </div>
 
                     <div className='botoes-portfolio'>
-
+                        {edicao ? (
+                        <>
                         <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Desfazer Alterações</button>
                         <ButtonFilled acao={'Salvar'} type='submit' />
+                        </>
+                        ) : (
+                            <>
+                            <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
+                            <ButtonFilled acao={'Salvar'} type='submit' />
+                            </>
+                        )}
+
                     </div>
                 </form>
             </div >

@@ -14,8 +14,12 @@ const Servicos = (props) => {
   const { usuario } = useUsuario();
   const [componente, setComponente] = useState(props.componente);
 
+  const [editandoServico, setEditandoServico] = useState(null); 
+
   const adicionarServico = () => {
     setComponente('adicionarServico');
+
+      window.location.hash = "#servicos#adicionar-servico";
   };
 
   // useEffect(() => {
@@ -78,6 +82,8 @@ const Servicos = (props) => {
                       })}
                       areaESG={'environmental'}
                       fkPrestadoraServico={'servico.fkPrestadoraServico'}
+                      
+                      setComponente={setComponente}
                     />
 
                   {/* ))

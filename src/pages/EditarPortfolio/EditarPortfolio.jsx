@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //css
 import './EditarPortfolio.css';
@@ -14,7 +14,7 @@ import AdicionarServico from './Secoes/AdicionarServico.jsx'
 import Certificacoes from './Secoes/Certificacoes.jsx';
 
 //react router dom
-import { Link, useLocation, useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 //hooks
 import { useUsuario } from '../../hooks/Usuario.jsx';
@@ -34,15 +34,18 @@ const EditarPortfolio = () => {
     { nome: 'Ver Portfólio', hash: 'ver-portfolio' },
   ];
 
+  const hash = location.hash.replace(/^#/, '');
   useEffect(() => {
-
-    const hash = location.hash.replace(/^#/, '');
-
 
     if (hash && opcoesMenu.some((opcao) => opcao.hash === hash)) {
       setSecaoAtual(hash);
- 
-    } 
+
+    }
+
+    if (hash == 'servicos#adicionar-servico') {
+      setSecaoAtual('servicos')
+    }
+
   }, [location, navigate, opcoesMenu]);
 
 
@@ -54,7 +57,7 @@ const EditarPortfolio = () => {
       case 'dados-complementares':
         return <DadosComplementares />;
       case 'servicos':
-          return <Servicos componente={'servicos'} />;
+        return <Servicos componente={hash.includes('adicionar-servico') ? 'adicionarServico' : 'servicos'}/>
       case 'certificacoes':
         return <Certificacoes />;
       case 'ver-portfolio':
@@ -64,8 +67,9 @@ const EditarPortfolio = () => {
         return <DadosGerais />;
     }
   };
-  
-  const handleMenuClick = ( hash) => {
+
+  const handleMenuClick = (hash) => {
+ 
     setSecaoAtual(hash);
     navigate(`/meu-portfolio/editar-portfolio#${hash}`);
 
@@ -94,11 +98,11 @@ const EditarPortfolio = () => {
         </div>
 
         <div className='container-menu-campos-editaveis'>
-          <MenuLateral 
-          titulo={'Editar Portfólio'} 
-          opcoes={opcoesMenu} 
-          secaoAtiva={secaoAtual}
-          setSecaoAtual={handleMenuClick}
+          <MenuLateral
+            titulo={'Editar Portfólio'}
+            opcoes={opcoesMenu}
+            secaoAtiva={secaoAtual}
+            setSecaoAtual={handleMenuClick}
           />
 
           <div className='dados-editaveis'>

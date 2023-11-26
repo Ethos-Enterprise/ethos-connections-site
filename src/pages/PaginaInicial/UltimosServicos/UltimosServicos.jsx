@@ -4,7 +4,7 @@ import './UltimosServicos.css'
 const UltimosServicos = (props) => {
   const divStyle = {
     backgroundImage: `url(${props.imagemFundo})`,
-    backgroundSize: 'auto 175px', 
+    backgroundSize: 'auto 180px', 
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     borderRadius: '7px',

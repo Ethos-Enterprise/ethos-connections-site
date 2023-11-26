@@ -30,8 +30,6 @@ const DadosGerais = () => {
     cep: usuario.cep,
   });
 
-  console.log(dadosGerais);
-
   const atualizarCampo = (campo, valor) => {
     setDadosGerais((prevDados) => ({
       ...prevDados,
@@ -97,7 +95,7 @@ const DadosGerais = () => {
         cancelButtonColor: "#d33",
         cancelButtonText: "Cancelar",
         confirmButtonText: "Salvar",
-
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
           api.put(`v1.0/empresas/${usuario.id}`, {

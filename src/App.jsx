@@ -23,6 +23,7 @@ import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.js
 import MinhaConta from "./pages/MinhaConta/MinhaConta.jsx";
 import Pagamento from "./pages/Pagamento/Pagamento.jsx";
 import Formulario from "./pages/Formulario/Formulario.jsx";
+import MinhasNegociacoes from "./pages/Minhas Negociacoes/MinhasNegociacoes.jsx";
 
 function App() {
   return (
@@ -44,13 +45,13 @@ function App() {
 
           <Route path="/meu-portfolio" element={<MeuPortfolio />} />
           <Route path="/meu-progresso/formulario" element={<Formulario />} />
-
-
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
 
-
           <Route path="/meu-plano/contrato" element={<Contrato />} />
+
           <Route path="/meu-plano/contrato/pagamento" element={<Pagamento />} />
+
+          <Route path="/minhas-negociacoes" element={<MinhasNegociacoes />} />
 
         </Routes>
 
