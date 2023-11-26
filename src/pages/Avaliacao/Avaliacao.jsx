@@ -4,7 +4,6 @@ import ImagemPerfil from '../../assets/imagens/perfil.jpg'
 import SolicitarContato from '../../assets/imagens/solicitar contato.jpg'
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma'
-import ButtonFilled from '../../components/ButtonFilled/ButtonFilled'
 import ButtonBorda from '../../components/ButtonOutlined/ButtonOutlined'
 import HeartCheckbox from './favoritar/Heart.jsx';
 import AvaliacaoServicoComponent from './Componente/Avaliacoes.jsx';
@@ -222,9 +221,7 @@ const Avaliacao = () => {
           <div className='margin-avaliacao-2'>
             <div className="titulo-caixa-avaliacao-2"> <h2 className='titulo-avaliacao-servico-2'>Avaliações do Serviço </h2><h2 className='titulo-avaliacao-servico-3'>(3)</h2></div>
             <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
-
             <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
-
             <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
           </div>
 

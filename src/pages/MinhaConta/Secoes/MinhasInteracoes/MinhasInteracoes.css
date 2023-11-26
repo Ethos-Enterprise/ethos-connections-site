@@ -18,7 +18,6 @@
     font-size: 1.1rem;
     font-weight: var(--letra-bold);
     margin-top: 3vh;
-
 }
 
 .interactions-title-box {
@@ -63,135 +62,6 @@
     font-weight: 200;
     line-height: normal;
 }
-
-
-
-
-
-/* Componente */
-.interaction-img-curtida {
-    border-radius: 20px;
-    display: flex;
-    width: 25vh;
-}
-
-.interactions-subtitle-curtida {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.interactions-subtitle-data-curtida {
-    font-size: 1rem;
-    font-weight: 200;
-    line-height: normal;
-}
-
-.imagem-interactionsC-curtida {
-    border-bottom: 4px solid var(--cor-primaria);
-    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
-    background-color: #00000065;
-}
-
-.imagem-interactionsC-curtida:hover {
-    background-color: #00000065;
-}
-
-.imagem-interactionsC-2 {
-    cursor: pointer;
-}
-
-
-.imagem-interactionsF-2-curtida {
-    border-bottom: 4px solid var(--cor-primaria);
-    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
-    background-color: #00000065;
-}
-
-.imagem-interactionsF-2-curtida:hover {
-    background-color: #00000065;
-}
-
-.favoritos-hidden-curtida {
-    display: none;
-}
-
-.contato-hidden-curtida {
-    display: none;
-}
-
-.interactions-box-component-curtida {
-    position: relative;
-    border-radius: 7px;
-    gap: 4vh;
-    background: #00000086;
-    display: flex;
-    padding: 3vh 3vh 3vh 3vh;
-    margin-bottom: 3vh;
-}
-
-
-.interactions-box-component-empresa-curtida {
-    position: absolute;
-    top: 2vh;
-    right: 1vh;
-    padding: 3vh 3vh 3vh 3vh;
-
-}
-
-
-.botao-posicao-cheio {
-
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--cor-primaria);
-    border: none;
-    padding: 8px;
-    width: 23vh;
-    color: var(--preto-comum);
-    font-weight: var(--letra-semi-bold);
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.2s ease-in;
-
-}
-
-.botao-posicao-cheio:hover {
-    background-color: var(--cor-letras);
-}
-
-.botao-posicao-vazio {
-    border-radius: 5px;
-    width: 23vh;
-    background-color: transparent;
-    border: 2px solid;
-    color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
-    font-family: 'Poppins', sans-serif;
-    padding: 6.4px;
-    font-weight: var(--letra-semi-bold);
-    font-size: 1rem;
-    cursor: pointer;
-    margin-right: 2vh;
-    transition: background-color 0.2s ease-in;
-
-}
-
-.botao-posicao-vazio:hover {
-    background-color: var(--cor-primaria);
-    color: var(--cor-letras);
-}
-
-.gap-botao-favorito {
-    gap: 20vh;
-}
-
-.interactions-subtitle-posicionar {
-    display: flex;
-    flex-direction: row;
-    gap: 2vh;
-}
-
 
 
 /* Modal */
@@ -323,9 +193,6 @@
     display: none;
 
     background: rgba(0, 0, 0, 0.795);
-    /* Fundo escuro semi-transparente */
     backdrop-filter: blur(20%);
-    /* Aplica o desfoque ao overlay */
     overflow-y: auto;
-    /* Adiciona barra de rolagem se o conteúdo ultrapassar a altura da janela modal */
 }

@@ -3,9 +3,7 @@ import './cardServico.css';
 import PropTypes from 'prop-types';
 
 const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusContato, inicioContato }) => {
-  // Define the 'avaliar' function
   const avaliar = () => {
-    // Add your logic for evaluating the service
     console.log('Avaliar Serviço clicked');
   };
 

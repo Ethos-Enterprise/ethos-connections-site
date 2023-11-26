@@ -6,6 +6,7 @@ import ImagemEmpresaPerfil from '../../../../assets/imagens/perfilImg.png';
 import ImagemFavoritos from '../../../../assets/icones/favoritos.png';
 import CardSerInteractionsBox from './Componente/cardServico.jsx';
 import SolicitarContato from '../../../../assets/imagens/solicitar contato.jpg'
+import InteractionsBoxComponentCurtida from './Componente/cardFavorito.jsx';
 
 const MinhasInteracoes = () => {
   const [favoritosClicado, setFavoritosClicado] = useState(false);
@@ -196,34 +197,26 @@ const MinhasInteracoes = () => {
 
 
         {/*Componente */}
-        <div className="interactions-box-component-curtida">
-          <div className="box-interactions-imagem">
-            <img src={ImagemEmpresas} alt="" className="interaction-img" />
-          </div>
+        <InteractionsBoxComponentCurtida
+          ImagemEmpresas={ImagemEmpresas}
+          nomeServico="Treinamento de Responsabilidade Social Corporativa (RSC)"
+          nomeEmpresa="Deloitte"
+          descricao=" O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC"
+          pilarESG="Governança"
+          valorMedio={2000.0}
+          toggleModal={toggleModal}
+        />
 
-          <div className="caixa-curtida">
-            <h1 className="interactions-title">Nome do serviço</h1>
-            <h2 className="interactions-subtitle">Nome da Empresa</h2>
-            <h2 className="interactions-subtitle">   Breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descri.....</h2>
-
-            <div className="interactions-subtitle-posicionar">
-              <h2 className="interactions-subtitle">  <b>Pilar ESG:</b> Ambiental</h2>
-              <h2 className="interactions-subtitle">  <b>Valor Médio:</b> R$ XXXX,XX </h2>
-            </div>
-            <div className="interactions-box-component-empresa-curtida">
-              <div className="box-botao-favorito">
-                <div className="gap-botao-favorito">
-                  <button className="botao-posicao-vazio">Remover Favorito</button>
-                  <button className="botao-posicao-cheio" onClick={toggleModal}>Solicitar Contato</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-
+         {/*Componente */}
+         <InteractionsBoxComponentCurtida
+          ImagemEmpresas={ImagemEmpresaPerfil}
+          nomeServico="Nome do Serviço"
+          nomeEmpresa="Nome da Empresa"
+          descricao=" Breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descri....."
+          pilarESG="Ambiental"
+          valorMedio={1000.0}
+          toggleModal={toggleModal}
+        />
 
 
       </div>
