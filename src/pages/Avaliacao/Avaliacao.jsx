@@ -126,7 +126,7 @@ const Avaliacao = () => {
 
             <div className="botoes-modal">
 
-              <Link to={'/minha-conta#minhas-interacoes'} style={{ textDecoration: 'none', color: '#3366cc' }}>
+              <Link to={'/minha-conta#minhas-interacoes#contatos'} style={{ textDecoration: 'none', color: '#3366cc' }}>
                 <span onClick={closeModal2} className='fechar'>
                   Ver Contatos
                 </span>

@@ -83,7 +83,7 @@ const AdicionarServico = (props) => {
     const voltar = () =>  {
         limparCampos();
     props.setComponente('servicos'); 
-        navigate('/meu-portfolio/editar-portfolio#servicos');
+        navigate('/meu-portfolio/-editarportfolio#servicos');
 
     }
 

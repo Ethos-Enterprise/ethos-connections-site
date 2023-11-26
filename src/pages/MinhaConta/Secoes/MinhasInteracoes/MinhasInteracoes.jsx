@@ -5,30 +5,38 @@ import ImagemEmpresas from '../../../../assets/imagens/deloitte_logo.jpeg';
 import ImagemEmpresaPerfil from '../../../../assets/imagens/perfilImg.png';
 import ImagemFavoritos from '../../../../assets/icones/favoritos.png';
 import CardSerInteractionsBox from './Componente/cardServico.jsx';
-import SolicitarContato from '../../../../assets/imagens/solicitar contato.jpg'
+import SolicitarContato from '../../../../assets/imagens/solicitar contato.jpg';
 import InteractionsBoxComponentCurtida from './Componente/cardFavorito.jsx';
 
-const MinhasInteracoes = () => {
-  const [favoritosClicado, setFavoritosClicado] = useState(false);
-  const [contatosClicado, setContatosClicado] = useState(true);
+const MinhasInteracoes = (props) => {
 
-  const handleFavoritosClick = () => {
-    setFavoritosClicado(!favoritosClicado);
-    setContatosClicado(false);
+  const [componente, setComponente] = useState(props.componente);
+  console.log(componente)
+
+  const contatosFunc = () => {
+    setComponente('minhas-interacoes#favoritos');
+    window.location.hash = "#minhas-interacoes#favoritos";
   };
 
-  const handleContatoClick = () => {
-    setContatosClicado(!contatosClicado);
-    setFavoritosClicado(false);
+  const favoritosFunc = () => {
+    setComponente('minhas-interacoes#contatos');
+    window.location.hash = "#minhas-interacoes#contatos";
   };
 
+
+
+  // Modal
   const toggleModal = () => {
     let modal = document.querySelector('.modal');
     let modalJanela = document.querySelector('.janela-modal');
 
-    modalJanela.style.display = modalJanela.style.display === 'none' || modalJanela.style.display === '' ? 'block' : 'none';
+    modalJanela.style.display =
+      modalJanela.style.display === 'none' || modalJanela.style.display === ''
+        ? 'block'
+        : 'none';
 
-    modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
+    modal.style.display =
+      modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
   };
 
   const closeModal = () => {
@@ -38,26 +46,31 @@ const MinhasInteracoes = () => {
     modal.style.display = 'none';
     modalJanela.style.display = 'none';
   };
-  const toggleModal2 = () => {
 
+  const toggleModal2 = () => {
     let modal2 = document.querySelector('.modal2');
     modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
   };
 
-
-
   const closeModal2 = () => {
+
     closeModal();
     let modal2 = document.querySelector('.modal2');
-
     modal2.style.display = 'none';
 
+
   };
+
+  const closeModal3 = () => {
+    closeModal();
+    let modal2 = document.querySelector('.modal2');
+    modal2.style.display = 'none';
+    favoritosFunc();
+
+  }
+
   return (
-
     <div className='dados-minha-conta'>
-
-
       {/* Primeiro Modal */}
       <div className="janela-modal">
         <div className="modal">
@@ -88,7 +101,6 @@ const MinhasInteracoes = () => {
                 <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
               </div>
 
-
               <div className="botoes-modal">
                 <span onClick={closeModal} className='fechar' >
                   Cancelar
@@ -103,10 +115,8 @@ const MinhasInteracoes = () => {
         </div>
       </div>
 
-
       {/* Segundo Modal */}
       <div className="modal2">
-
         <div className="box-modal">
           <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
           <div className="traco"></div>
@@ -128,12 +138,9 @@ const MinhasInteracoes = () => {
             </h2>
 
             <div className="botoes-modal">
-
-              {/* ACRESCENTAR LINK */}
-              <span onClick={closeModal2} className='fechar'>
+              <span onClick={closeModal3} className='fechar'>
                 Ver Contatos
               </span>
-
 
               <button onClick={closeModal2} className='botao-preenchido-servico'>
                 Finalizar
@@ -143,89 +150,85 @@ const MinhasInteracoes = () => {
         </div>
       </div>
 
-
       {/* Fim Modal */}
+
+      {/* Contatos */}
 
       <h2 className='titulo-secao'>Minhas Interações</h2>
       <div className='tracinho-divisor'></div>
 
-      <div className={`minhas-interacoes-container ${favoritosClicado ? 'favoritos-hidden' : ''}`}>
-        <div className="interactions-box">
-          <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC' onClick={handleContatoClick} />
-          <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF' onClick={handleFavoritosClick} />
-        </div>
+      {componente === 'minhas-interacoes#contatos' ? (
+        <>
+          <div className="interactions-box">
+            <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC' onClick={favoritosFunc} />
+            <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF' onClick={contatosFunc} />
+          </div>
 
-        <div className='tracinho-divisor'></div>
+          <div className='tracinho-divisor'></div>
 
-        <div className="interactions-title">Empresas Contatadas</div>
+          <div className="interactions-title">Empresas Contatadas</div>
 
-        <div className="interactions-title-box">
-          <h2 className='box-title-interactions'>Total: 2 empresas</h2>
-          <h3 className='box-interactions-letter'>Finalizados: 1 empresa</h3>
-          <h3 className='box-interactions-letter'>Em andamento: 1 empresa</h3>
-        </div>
+          <div className="interactions-title-box">
+            <h2 className='box-title-interactions'>Total: 2 empresas</h2>
+            <h3 className='box-interactions-letter'>Finalizados: 1 empresa</h3>
+            <h3 className='box-interactions-letter'>Em andamento: 1 empresa</h3>
+          </div>
 
-        {/* Card */}
-        <CardSerInteractionsBox
-          ImagemEmpresas={ImagemEmpresas}
-          empresaNome='Deloitte'
-          servicoNome='Nome do Serviço'
-          statusContato='Aguardando resposta da empresa'
-          inicioContato='XX-XX-XXXX'
-        />
-        <CardSerInteractionsBox
-          ImagemEmpresas={ImagemEmpresaPerfil}
-          empresaNome='Nome da Empresa'
-          servicoNome='Nome do Serviço'
-          statusContato='Aguardando resposta da empresa'
-          inicioContato='XX-XX-XXXX'
-        />
-      </div>
+          <CardSerInteractionsBox
+            ImagemEmpresas={ImagemEmpresas}
+            empresaNome='Deloitte'
+            servicoNome='Nome do Serviço'
+            statusContato='Aguardando resposta da empresa'
+            inicioContato='XX-XX-XXXX'
+          />
+          <CardSerInteractionsBox
+            ImagemEmpresas={ImagemEmpresaPerfil}
+            empresaNome='Nome da Empresa'
+            servicoNome='Nome do Serviço'
+            statusContato='Aguardando resposta da empresa'
+            inicioContato='XX-XX-XXXX'
+          />
 
-      {/* Contato */}
-      <div className={`minhas-interacoes-container ${contatosClicado ? 'contato-hidden' : ''}`}>
-        <div className="interactions-box">
-          <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC-2' onClick={handleContatoClick} />
-          <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF-2' onClick={handleFavoritosClick} />
-        </div>
+        </>
+      ) : (
 
-        <div className="interactions-title">Histórico de Curtidas</div>
+        /* favoritos */
+        <>
 
-        <div className="interactions-title-box">
-          <h2 className='box-title-interactions'>Total: 2 empresas</h2>
-        </div>
+          <div className="interactions-box">
+            <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC-2' onClick={favoritosFunc} />
+            <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF-2' onClick={contatosFunc} />
+          </div>
 
+          <div className="interactions-title">Histórico de Curtidas</div>
 
-        {/*Componente */}
-        <InteractionsBoxComponentCurtida
-          ImagemEmpresas={ImagemEmpresas}
-          nomeServico="Treinamento de Responsabilidade Social Corporativa (RSC)"
-          nomeEmpresa="Deloitte"
-          descricao=" O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC"
-          pilarESG="Governança"
-          valorMedio={2000.0}
-          toggleModal={toggleModal}
-        />
+          <div className="interactions-title-box">
+            <h2 className='box-title-interactions'>Total: 2 empresas</h2>
+          </div>
 
-         {/*Componente */}
-         <InteractionsBoxComponentCurtida
-          ImagemEmpresas={ImagemEmpresaPerfil}
-          nomeServico="Nome do Serviço"
-          nomeEmpresa="Nome da Empresa"
-          descricao=" Breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descri....."
-          pilarESG="Ambiental"
-          valorMedio={1000.0}
-          toggleModal={toggleModal}
-        />
+          <InteractionsBoxComponentCurtida
+            ImagemEmpresas={ImagemEmpresas}
+            nomeServico="Treinamento de Responsabilidade Social Corporativa (RSC)"
+            nomeEmpresa="Deloitte"
+            descricao=" O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC"
+            pilarESG="Governança"
+            valorMedio={2000.0}
+            toggleModal={toggleModal}
+          />
 
-
-      </div>
-
-
-    </div>
-
-
-
+          <InteractionsBoxComponentCurtida
+            ImagemEmpresas={ImagemEmpresaPerfil}
+            nomeServico="Nome do Serviço"
+            nomeEmpresa="Nome da Empresa"
+            descricao=" Breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descri....."
+            pilarESG="Ambiental"
+            valorMedio={1000.0}
+            toggleModal={toggleModal}
+          />
+        </>
+      )
+      }
+    </div >
   );
 }
 

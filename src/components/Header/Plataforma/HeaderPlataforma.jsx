@@ -91,7 +91,7 @@ const HeaderPlataforma = (props) => {
                             )
                             }
 
-                            <Link to={"/minha-conta#minhas-interacoes"} className='link-dropdown'>
+                            <Link to={"/minha-conta#minhas-interacoes#contatos"} className='link-dropdown'>
                                 <li>Minhas Interações</li>
                             </Link>
 

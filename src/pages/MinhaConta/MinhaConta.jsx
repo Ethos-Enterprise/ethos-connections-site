@@ -29,7 +29,7 @@ const MinhaConta = () => {
 
   const opcoesMenuMinhaConta = [
     { nome: 'Meu Perfil', hash: 'meu-perfil' },
-    { nome: 'Minhas Interações', hash: 'minhas-interacoes' },
+    { nome: 'Minhas Interações', hash: 'minhas-interacoes#contatos' },
     { nome: 'Meu Plano', hash: 'meu-plano' },
     { nome: 'Sair', hash: 'sair' },
   ];
@@ -43,18 +43,22 @@ const MinhaConta = () => {
     if (secaoValida) {
       setSecaoAtual(hash);
 
-    } else {
-      navigate('/minha-conta#' + opcoesMenuMinhaConta[0]?.hash);
+    } 
 
-    }
+    if (hash === 'minhas-interacoes#favoritos') {
+      setSecaoAtual('minhas-interacoes#contatos');
+  }
+
+    
   }, [location, navigate, opcoesMenuMinhaConta]);
 
   const renderizarComponenteCorreto = () => {
     switch (secaoAtual) {
       case 'meu-perfil':
         return <MeuPerfil />;
-      case 'minhas-interacoes':
-        return <MinhasInteracoes />;
+        case 'minhas-interacoes#contatos':
+          return <MinhasInteracoes componente={secaoAtual === 'minhas-interacoes#contatos' ? 'minhas-interacoes#contatos' : 'minhas-interacoes#favoritos'} />;
+      
       case 'meu-plano':
         return <MeuPlano />;
       case 'sair':
