@@ -134,6 +134,8 @@ const Potfolio = () => {
                     <div className='tracinho-divisor'></div>
                     <Servico
                         key={1}
+                        ocasiao={'portfolio-servico'}
+
                         nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'}
                         nomeEmpresa={'Deloitte'}
                         descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'}
@@ -143,6 +145,8 @@ const Potfolio = () => {
 
                     <Servico
                         key={1}
+                        ocasiao={'portfolio-servico'}
+
                         nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'}
                         nomeEmpresa={'Deloitte'}
                         descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'}

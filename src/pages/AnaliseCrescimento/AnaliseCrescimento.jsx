@@ -44,10 +44,10 @@ const AnaliseCrescimento = () => {
                         <div className='tracinho-divisor'></div>
 
                         <div className='campo-graficos'>
-                            <h3 className='titulo-grafico'>Total de Aderência ESG - em % <span><i class="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span> </h3>
+                            <h3 className='titulo-grafico'>Total de Aderência ESG - em % <span><i className="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span> </h3>
                             <BarraProgresso porcentagem={10} />
 
-                            <h3 className='titulo-grafico'>Aderência ESG por Área de Impacto - em % <span><i class="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span></h3>
+                            <h3 className='titulo-grafico'>Aderência ESG por Área de Impacto - em % <span><i className="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span></h3>
                             <div className='graficos-circulares'>
                                 <div className='container-grafico-circular'>
                                     <GraficoCircular porcentagem={10} />
