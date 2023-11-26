@@ -14,11 +14,30 @@
     margin-bottom: 3vh;
 }
 
-.interactions-box-component-empresa{
+.interactions-box-component-empresa {
     width: 100%;
 }
 
-.box-botao{
+.box-botao {
     margin-top: 20vh;
+}
+
+.botao-posicao {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-primaria);
+    /* width: 100px; */
+    border: none;
+    padding: 8px;
+    color: var(--preto-comum);
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in;
     width: 19vh;
+
+}
+
+.botao-posicao:hover {
+    background-color: var(--cor-letras);
 }

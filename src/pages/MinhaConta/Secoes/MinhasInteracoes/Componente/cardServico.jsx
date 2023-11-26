@@ -1,13 +1,18 @@
 import React from 'react';
 import './cardServico.css';
 import PropTypes from 'prop-types';
-import ButtonPreenchido from '../../../../../components/ButtonFilled/ButtonFilled'; // Corrected import statement
 
-const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusContato, inicioContato }) => { // Corrected prop name
+const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusContato, inicioContato }) => {
+  // Define the 'avaliar' function
+  const avaliar = () => {
+    // Add your logic for evaluating the service
+    console.log('Avaliar Serviço clicked');
+  };
+
   return (
     <div className="interactions-box-component">
       <div className="box-interactions-imagem">
-        <img src={ImagemEmpresas} alt="" className="interaction-img" /> {/* Corrected prop name */}
+        <img src={ImagemEmpresas} alt="" className="interaction-img" />
       </div>
       <div className="interactions-box-component-empresa">
         <h1 className="interactions-title">{empresaNome}</h1>
@@ -16,7 +21,7 @@ const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusConta
         <h3 className="interactions-subtitle-data">Início do contato: {inicioContato}</h3>
       </div>
       <div className="box-botao">
-        <ButtonPreenchido acao={'Avaliar Serviço'} className="botao-posicao"></ButtonPreenchido> {/* Corrected component name */}
+        <button onClick={avaliar} className="botao-posicao">Avaliar Serviço</button>
       </div>
     </div>
   );
