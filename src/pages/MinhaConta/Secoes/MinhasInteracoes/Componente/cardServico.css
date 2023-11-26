@@ -1,0 +1,19 @@
+.imagem-interactionsC:hover,
+.imagem-interactionsF:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.interactions-box-component {
+    border-radius: 7px;
+    gap: 4vh;
+    background: #00000086;
+    display: flex;
+    padding: 3vh 3vh 3vh 3vh;
+    margin-bottom: 3vh;
+}
+
+.box-botao{
+    margin-top: 20vh
+}

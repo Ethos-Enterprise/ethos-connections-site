@@ -1,0 +1,75 @@
+.interactions-box {
+    display: flex;
+    flex-direction: row;
+    border-radius: 7px;
+    background: rgba(56, 64, 72, 0.00);
+    margin-top: 3vh;
+    gap: 3vh;
+    padding: 1vh;
+    background: #00000085;
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imagem-interactions {
+    margin-top: 2vh;
+}
+
+.interactions-title {
+    font-size: 1.1rem;
+    font-weight: var(--letra-bold);
+    margin-top: 3vh;
+
+}
+
+.interactions-title-box {
+    display: flex;
+    gap: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.box-title-interactions {
+    font-size: 1rem;
+    text-align: center;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 2.5vh;
+}
+
+.box-interactions-letter {
+    font-size: 1rem;
+    font-weight: var(--letra);
+    border-radius: 4px;
+    border: 1px solid #FFF;
+    padding: 4px 10px;
+
+}
+
+.interaction-img {
+    border-radius: 20px;
+    display: flex;
+    width: 25vh;
+}
+
+.interactions-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.interactions-subtitle-data {
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.imagem-interactionsC {
+    border-bottom: 4px solid var(--cor-primaria);
+    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
+    background-color: #00000065;
+}
+
+.imagem-interactionsC:hover {
+    background-color: #00000065;
+}

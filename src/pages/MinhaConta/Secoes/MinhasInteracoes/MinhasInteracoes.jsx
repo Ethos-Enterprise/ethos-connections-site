@@ -1,5 +1,11 @@
 import React from 'react'
 import './MinhasInteracoes.css';
+import ImagemContatos from '../../../../assets/icones/contatos.png'
+import ImagemEmpresas from '../../../../assets/imagens/deloitte_logo.jpeg'
+import ImagemEmpresaPerfil from '../../../../assets/imagens/perfilImg.png'
+
+import ImagemFavoritos from '../../../../assets/icones/favoritos.png'
+import CardSerInteractionsBox from './Componente/cardServico.jsx';
 
 const MinhasInteracoes = () => {
   return (
@@ -10,18 +16,42 @@ const MinhasInteracoes = () => {
 
       <div className='tracinho-divisor'></div>
 
-      <div className="caixa-interacoes">
-        <img src="" alt="Contatos" />
-        <img src="" alt="Favoritos" />
+      <div className="interactions-box">
+
+        <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC' />
+        <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF' />
+
+      </div>
+      
+      <div className='tracinho-divisor'></div>
+
+      <div className="interactions-title">Empresas Contatadas</div>
+
+      <div className="interactions-title-box">
+        <h2 className='box-title-interactions'>Total: 2 empresas</h2>
+        <h3 className='box-interactions-letter'>Finalizados: 1 empresa</h3>
+        <h3 className='box-interactions-letter'>Em andamento: 1 empresa</h3>
       </div>
 
-      <div className="interacoes-titulo">Empresas Contatadas</div>
 
-      <h1>Empresas Contatadas</h1>
-      <h2>Total: 2 empresas</h2>
+      {/* Card */}
 
-      <h3>Finalizados: 1 empresa</h3>
-      <h3>Em andamento: 1 empresa</h3>
+      <CardSerInteractionsBox
+        ImagemEmpresas={ImagemEmpresas}
+        empresaNome='Deloitte'
+        servicoNome='Nome do Serviço'
+        statusContato='Aguardando resposta da empresa'
+        inicioContato='XX-XX-XXXX'
+        acaoBotao='Avaliar Servico'
+      />
+      <CardSerInteractionsBox
+        ImagemEmpresas={ImagemEmpresaPerfil}
+        empresaNome='Nome da Empresa'
+        servicoNome='Nome do Serviço'
+        statusContato='Aguardando resposta da empresa'
+        inicioContato='XX-XX-XXXX'
+        acaoBotao='Avaliar Servico'
+      />
 
     </div>
   )
