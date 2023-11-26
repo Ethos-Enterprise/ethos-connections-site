@@ -14,7 +14,7 @@ import { Link, useLocation, useNavigate} from 'react-router-dom';
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
 
-const AdicionarServico = () => {
+const AdicionarServico = (props) => {
 
     const { usuario } = useUsuario();
 
@@ -60,7 +60,7 @@ const AdicionarServico = () => {
               'SOCIAL',
               'GOVERNANCE'
             ],
-            fkPrestadoraServico: `${usuario.id}`,
+            fkPrestadoraServico: '3767c8e2-4aaa-4e0a-ada9-ad82223945a7',
         }, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -81,9 +81,10 @@ const AdicionarServico = () => {
 
 
     const voltar = () =>  {
-        setAdicionarServicoTela(false);
-
+        limparCampos();
+    props.setComponente('servicos'); 
         navigate('/meu-portfolio/editar-portfolio#servicos');
+
     }
 
     return (

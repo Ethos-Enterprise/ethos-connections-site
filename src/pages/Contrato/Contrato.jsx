@@ -46,22 +46,23 @@ const Contrato = (props) => {
    console.log('procurando a api');
 
 
-  // useEffect(() => {
-  //   console.log('chamei a api');
+  useEffect(() => {
+    console.log('chamei a api');
 
-  //   api.get(`/v1.0/prestadoras/${'3767c8e2-4aaa-4e0a-ada9-ad82223945a7'}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //     }
-  //   })
-  //   .then((response) => {
-  //     console.log(response);
-  //   })
-  //   .then((error) => {
-  //     console.log(error);
-  //   })
+    console.log(usuario.id);
+    api.get(`/v1.0/prestadoras/empresa/${usuario.id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .then((error) => {
+      console.log(error);
+    })
 
-  // }, []);
+  }, []);
 
   const irParaPagamentos = () => {
     navigate('/meu-plano/contrato/pagamento')  

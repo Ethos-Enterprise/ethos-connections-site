@@ -23,7 +23,6 @@ const EditarPortfolio = () => {
   const { usuario } = useUsuario();
 
   const [secaoAtual, setSecaoAtual] = useState();
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -43,23 +42,19 @@ const EditarPortfolio = () => {
     if (hash && opcoesMenu.some((opcao) => opcao.hash === hash)) {
       setSecaoAtual(hash);
  
-    } else {
-      navigate('/meu-portfolio/editar-portfolio#' + opcoesMenu[0]?.hash);
-
-    }
+    } 
   }, [location, navigate, opcoesMenu]);
 
 
   const renderizarComponenteSecao = () => {
-
-
+    console.log(secaoAtual);
     switch (secaoAtual) {
       case 'dados-gerais':
         return <DadosGerais />;
       case 'dados-complementares':
         return <DadosComplementares />;
       case 'servicos':
-          return <Servicos voltar={false}/>;
+          return <Servicos componente={'servicos'} />;
       case 'certificacoes':
         return <Certificacoes />;
       case 'ver-portfolio':
@@ -86,7 +81,7 @@ const EditarPortfolio = () => {
 
       <div className="conteudo">
         <div className='beadcrumb'>
-          <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
+          <Link to='/meu-portfolio' className='link-beadcrumb'>
             <span>Meu Portfólio {'> '}</span>
           </Link>
           <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>

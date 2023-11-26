@@ -9,7 +9,7 @@ import './PaginaInicial.css'
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
 import Dropdown from '../../components/Dropdown/Dropdown.jsx'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma.jsx';
-import Servico from '../../components/Serviços/Sevico.jsx';
+import Servico from '../../components/Serviços/Servico.jsx';
 import UltimosServicos from './UltimosServicos/UltimosServicos.jsx';
 
 //coisas do react

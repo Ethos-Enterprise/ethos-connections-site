@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 //react router dom
 import AdicionarServico from './AdicionarServico';
-import Servico from '../../../components/Serviços/Sevico'
+import Servico from '../../../components/Serviços/Servico'
 
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
@@ -12,15 +12,11 @@ import { useUsuario } from '../../../hooks/Usuario';
 const Servicos = (props) => {
 
   const { usuario } = useUsuario();
-
-  const [adicionarServicoTela, setAdicionarServicoTela] = useState(props.voltar);
+  const [componente, setComponente] = useState(props.componente);
 
   const adicionarServico = () => {
-    setAdicionarServicoTela(true);
-    // Adiciona a hash à URL quando clicar em "Adicionar Serviço"
-    window.history.pushState(null, null, '#adicionar-servico');
+    setComponente('adicionarServico');
   };
-
 
   // useEffect(() => {
 
@@ -40,11 +36,10 @@ const Servicos = (props) => {
   //     })
   // }, []);
 
-  console.log(adicionarServicoTela);
+  
   return (
     <>
-      {
-        !adicionarServicoTela ?
+      {componente ==='servicos' ?
           (
             <div className='dados-portfolio' >
               <div className='titulo-botao-adicionar'>
@@ -93,7 +88,7 @@ const Servicos = (props) => {
             </div >
 
           ) : (
-            <AdicionarServico />
+            <AdicionarServico setComponente={setComponente}/> 
           )
       }
     </>
