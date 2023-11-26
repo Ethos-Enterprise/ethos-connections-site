@@ -14,6 +14,11 @@
     margin-bottom: 3vh;
 }
 
+.interactions-box-component-empresa{
+    width: 100%;
+}
+
 .box-botao{
-    margin-top: 20vh
+    margin-top: 20vh;
+    width: 19vh;
 }

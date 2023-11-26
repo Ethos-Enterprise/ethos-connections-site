@@ -3,7 +3,7 @@ import './cardServico.css';
 import PropTypes from 'prop-types';
 import ButtonPreenchido from '../../../../../components/ButtonFilled/ButtonFilled'; // Corrected import statement
 
-const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusContato, inicioContato, acaoBotao }) => { // Corrected prop name
+const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusContato, inicioContato }) => { // Corrected prop name
   return (
     <div className="interactions-box-component">
       <div className="box-interactions-imagem">
@@ -16,7 +16,7 @@ const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusConta
         <h3 className="interactions-subtitle-data">Início do contato: {inicioContato}</h3>
       </div>
       <div className="box-botao">
-        <ButtonPreenchido acao={acaoBotao} className="botao-posicao"></ButtonPreenchido> {/* Corrected component name */}
+        <ButtonPreenchido acao={'Avaliar Serviço'} className="botao-posicao"></ButtonPreenchido> {/* Corrected component name */}
       </div>
     </div>
   );
@@ -28,7 +28,6 @@ InteractionsBox.propTypes = {
   servicoNome: PropTypes.string.isRequired,
   statusContato: PropTypes.string.isRequired,
   inicioContato: PropTypes.string.isRequired,
-  acaoBotao: PropTypes.string.isRequired,
 };
 
 export default InteractionsBox;

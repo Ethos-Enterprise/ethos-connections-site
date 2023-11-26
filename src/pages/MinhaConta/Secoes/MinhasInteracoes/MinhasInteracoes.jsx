@@ -42,7 +42,6 @@ const MinhasInteracoes = () => {
         servicoNome='Nome do Serviço'
         statusContato='Aguardando resposta da empresa'
         inicioContato='XX-XX-XXXX'
-        acaoBotao='Avaliar Servico'
       />
       <CardSerInteractionsBox
         ImagemEmpresas={ImagemEmpresaPerfil}
@@ -50,7 +49,6 @@ const MinhasInteracoes = () => {
         servicoNome='Nome do Serviço'
         statusContato='Aguardando resposta da empresa'
         inicioContato='XX-XX-XXXX'
-        acaoBotao='Avaliar Servico'
       />
 
     </div>
