@@ -64,30 +64,268 @@
     line-height: normal;
 }
 
-.imagem-interactionsC {
+
+
+
+
+/* Componente */
+.interaction-img-curtida {
+    border-radius: 20px;
+    display: flex;
+    width: 25vh;
+}
+
+.interactions-subtitle-curtida {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.interactions-subtitle-data-curtida {
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.imagem-interactionsC-curtida {
     border-bottom: 4px solid var(--cor-primaria);
     box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
     background-color: #00000065;
 }
 
-.imagem-interactionsC:hover {
+.imagem-interactionsC-curtida:hover {
     background-color: #00000065;
 }
 
-.imagem-interactionsF-2 {
+.imagem-interactionsC-2 {
+    cursor: pointer;
+}
+
+
+.imagem-interactionsF-2-curtida {
     border-bottom: 4px solid var(--cor-primaria);
     box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
     background-color: #00000065;
 }
 
-.imagem-interactionsF-2:hover {
+.imagem-interactionsF-2-curtida:hover {
     background-color: #00000065;
 }
 
-.favoritos-hidden {
+.favoritos-hidden-curtida {
     display: none;
-  }
+}
 
-  .contato-hidden{
+.contato-hidden-curtida {
     display: none;
-  }
+}
+
+.interactions-box-component-curtida {
+    position: relative;
+    border-radius: 7px;
+    gap: 4vh;
+    background: #00000086;
+    display: flex;
+    padding: 3vh 3vh 3vh 3vh;
+    margin-bottom: 3vh;
+}
+
+
+.interactions-box-component-empresa-curtida {
+    position: absolute;
+    top: 2vh;
+    right: 1vh;
+    padding: 3vh 3vh 3vh 3vh;
+
+}
+
+
+.botao-posicao-cheio {
+
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-primaria);
+    border: none;
+    padding: 8px;
+    width: 23vh;
+    color: var(--preto-comum);
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in;
+
+}
+
+.botao-posicao-cheio:hover {
+    background-color: var(--cor-letras);
+}
+
+.botao-posicao-vazio {
+    border-radius: 5px;
+    width: 23vh;
+    background-color: transparent;
+    border: 2px solid;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    font-family: 'Poppins', sans-serif;
+    padding: 6.4px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 2vh;
+    transition: background-color 0.2s ease-in;
+
+}
+
+.botao-posicao-vazio:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-letras);
+}
+
+.gap-botao-favorito {
+    gap: 20vh;
+}
+
+.interactions-subtitle-posicionar {
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+}
+
+
+
+/* Modal */
+.box-modal {
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+}
+
+.imagem-modal {
+    border-radius: 6px;
+    height: 45vh;
+    width: 45vh;
+    background-position: center;
+    background-size: contain;
+}
+
+
+.titulo-modal-h1 {
+    font-size: 1.2rem;
+    font-weight: var(--letra-semi-bold);
+    color: var(--cor-primaria);
+}
+
+
+.titulo-modal-h2 {
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
+
+}
+
+.box-texto-modal {
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+}
+
+.titulo-modal-h2-5-texto {
+    font-size: 1rem;
+    font-weight: var(--letra-semi-bold);
+    max-width: 90%;
+}
+
+.titulo-modal-h2-5 {
+    font-size: 1rem;
+    font-weight: var(--letra-semi-bold);
+    color: var(--cor-primaria);
+
+}
+
+.botoes-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    gap: 1.5rem;
+}
+
+
+
+
+.btn:hover {
+    background: aliceblue;
+    color: black;
+
+
+}
+
+.modal, .modal2 {
+    display: flex;
+    width: 130vh;
+    flex-shrink: 0;
+    background-color: var(--cinza);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation: animateModal 800ms;
+    z-index: 3;
+    backdrop-filter: blur(90px);
+    padding: 2rem 2rem 2rem 2rem;
+    border-radius: 1%;
+}
+
+
+
+@keyframes animateModal {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+.fechar {
+    border-radius: 5px;
+    background-color: transparent;
+    border: 2px solid;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    font-family: 'Poppins', sans-serif;
+    padding: 8px;
+    font-weight: var(--letra-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in;
+    width: 8rem;
+    display: flex;
+    justify-content: center;
+}
+
+.fechar:hover {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+.janela-modal {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    background: rgba(0, 0, 0, 0.795);
+    /* Fundo escuro semi-transparente */
+    backdrop-filter: blur(20%);
+    /* Aplica o desfoque ao overlay */
+    overflow-y: auto;
+    /* Adiciona barra de rolagem se o conteúdo ultrapassar a altura da janela modal */
+}

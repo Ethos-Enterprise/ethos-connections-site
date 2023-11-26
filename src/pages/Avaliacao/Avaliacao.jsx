@@ -20,134 +20,134 @@ const Avaliacao = () => {
   const dadosServico = location.state ? location.state.dadosServico : null;
 
   console.log(dadosServico);
-const toggleModal = () => {
+  const toggleModal = () => {
     let modal = document.querySelector('.modal');
     let modalJanela = document.querySelector('.janela-modal');
 
     modalJanela.style.display = modalJanela.style.display === 'none' || modalJanela.style.display === '' ? 'block' : 'none';
 
     modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
-};
+  };
 
-const closeModal = () => {
+  const closeModal = () => {
     let modal = document.querySelector('.modal');
     let modalJanela = document.querySelector('.janela-modal');
 
     modal.style.display = 'none';
     modalJanela.style.display = 'none';
-};
-const toggleModal2 = () => {
+  };
+  const toggleModal2 = () => {
 
-  let modal2 = document.querySelector('.modal2');
-  modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
-};
+    let modal2 = document.querySelector('.modal2');
+    modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
+  };
 
 
 
-const closeModal2 = () => {
-  closeModal();
-  let modal2 = document.querySelector('.modal2');
+  const closeModal2 = () => {
+    closeModal();
+    let modal2 = document.querySelector('.modal2');
 
-  modal2.style.display = 'none';
+    modal2.style.display = 'none';
 
-};
+  };
 
   return (
 
     <>
-  
- {/* Primeiro Modal */}
- <div className="janela-modal">
- <div className="modal">
-<div className="box-modal">
-  <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
-  <div className="traco"></div>
-  <div className="texto-modal">
-    <h1 className='titulo-modal-h1'>Contatar Empresa</h1>
-    <div className="traco"></div>
-    <h2 className='titulo-modal-h2'>Informaremos a empresa que você solicitou que ela entre em contato com você.
-      <br />
-      <br />
-      Confirme sua solicitação de contato para o seguinte serviço
-    </h2>
 
-    <div className="box-texto-modal">
-      <h2 className='titulo-modal-h2-5'>Empresa:</h2>
-      <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
-    </div>
+      {/* Primeiro Modal */}
+      <div className="janela-modal">
+        <div className="modal">
+          <div className="box-modal">
+            <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
+            <div className="traco"></div>
+            <div className="texto-modal">
+              <h1 className='titulo-modal-h1'>Contatar Empresa</h1>
+              <div className="traco"></div>
+              <h2 className='titulo-modal-h2'>Informaremos a empresa que você solicitou que ela entre em contato com você.
+                <br />
+                <br />
+                Confirme sua solicitação de contato para o seguinte serviço
+              </h2>
 
-    <div className="box-texto-modal">
-      <h2 className='titulo-modal-h2-5'>Serviço:</h2>
-      <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
-    </div>
+              <div className="box-texto-modal">
+                <h2 className='titulo-modal-h2-5'>Empresa:</h2>
+                <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
+              </div>
 
-    <div className="box-texto-modal">
-      <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
-      <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
-    </div>
+              <div className="box-texto-modal">
+                <h2 className='titulo-modal-h2-5'>Serviço:</h2>
+                <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
+              </div>
 
-
-    <div className="botoes-modal">
-      <span onClick={closeModal} className='fechar' >
-        Cancelar
-      </span>
-
-      <button onClick={toggleModal2} className='botao-preenchido-servico'>
-        Confirmar
-      </button>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+              <div className="box-texto-modal">
+                <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
+                <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
+              </div>
 
 
-{/* Segundo Modal */}
-<div className="modal2">
+              <div className="botoes-modal">
+                <span onClick={closeModal} className='fechar' >
+                  Cancelar
+                </span>
 
-<div className="box-modal">
-  <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
-  <div className="traco"></div>
-  <div className="texto-modal">
-    <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
-    <div className="traco"></div>
-    <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
-      <br />
-      <br />
-      Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
-      <br />
-      <br />
-      Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
-      <br />
-      <br />
-      Agradecemos sua preferência pela Ethos!
-      <br />
-      <br />
-    </h2>
-
-    <div className="botoes-modal">
-
-      <Link to={'/minha-conta#minhas-interacoes'} style={{ textDecoration: 'none', color: '#3366cc' }}>
-        <span onClick={closeModal2} className='fechar'>
-          Ver Contatos
-        </span>
-      </Link>
+                <button onClick={toggleModal2} className='botao-preenchido-servico'>
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-      <button onClick={closeModal2} className='botao-preenchido-servico'>
-        Finalizar
-      </button>
-    </div>
-  </div>
-</div>
-</div>
+      {/* Segundo Modal */}
+      <div className="modal2">
+
+        <div className="box-modal">
+          <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
+          <div className="traco"></div>
+          <div className="texto-modal">
+            <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
+            <div className="traco"></div>
+            <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
+              <br />
+              <br />
+              Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
+              <br />
+              <br />
+              Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
+              <br />
+              <br />
+              Agradecemos sua preferência pela Ethos!
+              <br />
+              <br />
+            </h2>
+
+            <div className="botoes-modal">
+
+              <Link to={'/minha-conta#minhas-interacoes'} style={{ textDecoration: 'none', color: '#3366cc' }}>
+                <span onClick={closeModal2} className='fechar'>
+                  Ver Contatos
+                </span>
+              </Link>
+
+
+              <button onClick={closeModal2} className='botao-preenchido-servico'>
+                Finalizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
-    <HeaderPlataforma
-      plano={'Free'}
-      razaoSocial={usuario.razaoSocial}
-    ></HeaderPlataforma>
+      <HeaderPlataforma
+        plano={'Free'}
+        razaoSocial={usuario.razaoSocial}
+      ></HeaderPlataforma>
 
       <div className="conteudo">
         <div className='beadcrumb'>

@@ -1,3 +1,54 @@
+.interaction-img {
+    border-radius: 20px;
+    display: flex;
+    width: 25vh;
+}
+
+.interactions-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.interactions-subtitle-data {
+    font-size: 1rem;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.imagem-interactionsC {
+    border-bottom: 4px solid var(--cor-primaria);
+    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
+    background-color: #00000065;
+}
+
+.imagem-interactionsC:hover {
+    background-color: #00000065;
+}
+
+.imagem-interactionsF-2 {
+    border-bottom: 4px solid var(--cor-primaria);
+    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
+    background-color: #00000065;
+}
+
+.imagem-interactionsF-2:hover {
+    background-color: #00000065;
+}
+
+.favoritos-hidden {
+    display: none;
+}
+
+.contato-hidden {
+    display: none;
+}
+
+
+.interactions-box-component {
+    position: relative;
+}
+
 .imagem-interactionsC:hover,
 .imagem-interactionsF:hover {
     transform: scale(1.1);
