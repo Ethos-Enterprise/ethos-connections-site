@@ -25,7 +25,6 @@
 .botao-posicao {
     font-family: 'Poppins', sans-serif;
     background-color: var(--cor-primaria);
-    /* width: 100px; */
     border: none;
     padding: 8px;
     color: var(--preto-comum);
