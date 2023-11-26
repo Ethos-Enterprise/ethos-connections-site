@@ -1,60 +1,276 @@
+/* Carrossel Container */
 .carrosel {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
-
-  .carrosel img {
-    width: 100%; /* Ajusta a largura da imagem para 100% do container */
-    transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave ao passar para o próximo slide */
-  }
-  
-  .bolinhas {
-    position: absolute;
-    top: 50%;
-    margin-left: 4rem;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    height: 30%; /* Adiciona uma altura fixa para a coluna de bolinhas */
-
-  }
-  
-  .bolinha {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #01a3c300; /* Cor da bolinha inativa */
-    margin-bottom: 1rem; /* Espaçamento entre as bolinhas */
-    cursor: pointer;
-    border: 2px solid #01A2C3; /* Adiciona um contorno à bolinha */
-
-  }
-  
-  .bolinha.ativa {
-    background-color: #01A2C3; /* Cor da bolinha ativa */
-  }
-  
-  /* Adicione estas regras de estilo ao seu arquivo de estilo (Carrosel.css) ou onde você gerencia seus estilos */
-.texto-sobre-imagem {
-  position: absolute;
-  top: 3%; /* Posiciona o texto no centro vertical */
-  left: 50%; /* Posiciona o texto no centro horizontal */
-  transform: translate(-50%, -50%); /* Move o texto de volta pela metade de sua própria largura e altura para centralizá-lo completamente */
-  text-align: center; /* Centraliza o texto no contêiner */
-  color: #fff; /* Cor do texto (ajuste conforme necessário) */
-  font-size: 40px; /* Tamanho da fonte do texto (ajuste conforme necessário) */
-  letter-spacing: 13px; /* Ajuste o valor conforme necessário */
-  font-weight: light; /* Peso da fonte (ajuste conforme necessário) */
-  padding: 10px; /* Espaçamento interno do texto (ajuste conforme necessário) */
-  white-space: nowrap;
-  border-radius: 8px; /* Borda arredondada para o contêiner de texto (ajuste conforme necessário) */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Bolinhas de Navegação */
+.bolinhas {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  /* Ajuste a margem esquerda conforme necessário */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+}
 
+.bolinha {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #01a3c300;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: 2px solid #01A2C3;
+}
+
+.bolinha.ativa {
+  background-color: #01A2C3;
+}
+
+/* Texto sobre a Imagem */
+.texto-sobre-imagem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  letter-spacing: 20px;
+  font-weight: light;
+  padding: 6px;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+/* Subtítulo */
 .subtitulo {
   font-weight: bold;
   font-size: 4rem;
   color: white;
+  margin-bottom: 1rem;
 }
+
+/* Primeira Frase */
+.primeira-frase {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
+/* Estilize as classes específicas */
+
+/* Imagem do Carrossel */
+.carrosel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carrossel Container */
+.carrosel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Bolinhas de Navegação */
+.bolinhas {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  margin-left: 5rem;
+}
+
+.bolinha {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #01a3c300;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: 2px solid #01A2C3;
+}
+
+.bolinha.ativa {
+  background-color: #01A2C3;
+}
+
+/* Texto sobre a Imagem */
+.texto-sobre-imagem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  letter-spacing: 20px;
+  font-weight: light;
+  padding: 6px;
+  white-space: nowrap;
+  border-radius: 8px;
+}
+
+/* Subtítulo */
+.subtitulo {
+  font-weight: bold;
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Primeira Frase */
+.primeira-frase {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: 10px;
+  font-weight: bold;
+}
+
+
+/* Frase no Topo da Página */
+.conexoes {
+  position: absolute;
+  bottom: 500%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-weight: 300;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 40px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 15px;
+}
+
+
+.ethos {
+  color: #ccc;
+  font-weight: 300;
+  margin-top: 3rem;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  color: #ccc;
+  white-space: nowrap;
+
+}
+
+
+/* Imagem do Carrossel */
+.carrosel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.terceiro-carrosel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.terceiro-carrosel img {
+  width: 75%;
+  height: auto;
+  display: block;
+  margin: auto;
+  /* Centraliza a imagem horizontalmente */
+  margin-left: 4rem;
+  position: absolute;
+  top: 47%;
+  /* Centraliza verticalmente a partir do topo */
+  transform: translateY(-50%);
+  /* Ajusta para centralizar verticalmente */
+}
+
+.ods {
+  position: absolute;
+  bottom: 84%;
+  /* Ajuste conforme necessário para a posição vertical */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-weight: 300;
+  color: #fff;
+  white-space: wrap;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+/* Seção específica para o segundo carrossel (com cards) */
+.segundo-carrosel {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 40%;
+  align-items: center;
+  left: 25%;
+  gap: 3rem;
+
+}
+
+.segundo-carrosel .letra {
+  display: block;
+  font-size: 1.5em;
+  font-weight:400;
+}
+
+.segundo-carrosel img {
+  width: 80px;
+}
+
+.card-carrosel .ingles {
+  /* Adicione estilos específicos para a classe 'ingles' */
+  font-weight:500;
+}
+/* Estilo dos cards */
+.card-carrosel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  opacity: 0.8;
+  padding: 20px;
+  font-size:large;
+  letter-spacing: 2px;
+  background-color: #030303;
+  width: 160px;
+  height:260px;
+  font-weight: 300;
+  border-radius: 15px;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-carrosel p {
+  margin-bottom: 1px; /* Ajuste a margem inferior conforme necessário */
+}
+.card-carrosel .ambi {
+  width: 90px;
+
+}
+
+/* ... (outros estilos existentes) */

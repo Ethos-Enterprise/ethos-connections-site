@@ -1,0 +1,104 @@
+.explicacao-planos {
+    position: relative;
+    background-attachment: #ca1c1c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 95vh;
+    
+  }
+  
+  
+    .planos-container {
+      display: flex;
+      justify-content: flex-start;
+      align-self: flex-start;
+      z-index: 1; /* Certifique-se de que o título está acima do overlay */
+      flex-direction: column;
+    }
+  
+    .subtitulo-planos{
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 40px;
+      font-weight: var(--letra-regular);
+      color: var(--cor-letras);
+      font-size: 20px;
+      text-align:left;
+      margin-left: 105px;    
+      width: 70%;
+    }
+    
+    .titulo-planos {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      font-weight: var(--letra-medium);
+      color: var(--cor-letras);
+      font-size: 30px;
+      margin-left: 6rem;
+    }
+  
+    .planos-container .texto {
+      font-size: 18px; /* Tamanho da fonte */
+      font-weight: 400; /* Negrito */
+      margin: 0; /* Remover margens padrão */
+      letter-spacing: 3px;
+    }
+  
+    .titulo-planos span {
+      color: var(--cor-primaria);
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    
+    .planos-container {
+      gap: 1rem;
+      display: flex;
+      text-align: center;
+    }
+  
+  
+  
+       /*  CSS  DOS CARDS ... */
+  
+   
+
+  
+  
+  .cards-planos {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 8rem;
+    font-weight: bold; /* Negrito */
+    
+  }
+  
+  .card {
+    
+    position: relative;
+    width: 300px;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.5s;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Garante que a opacidade não ultrapasse os limites do cartão */
+    font-weight: bold; /* Negrito */
+  
+  }
+  
+  
+  
+
+  
+  
+  
+  
+  

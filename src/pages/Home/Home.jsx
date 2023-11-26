@@ -12,16 +12,17 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 import './Home.css';
 
 import imagem1 from '../../assets/imagens/carrosel-1.png';
-import imagem3 from '../../assets/imagens/carrossel-2.png';
 import imagem2 from '../../assets/imagens/carrossel-3.png';
+import imagem3 from '../../assets/background-fazemos.jpg';
+
  
 // Componente Home
 const Home = () => {
-  const imagens = [imagem1, imagem3, imagem2];
+  const imagens = [imagem1, imagem2, imagem3];
   const textos = [
-    'Conexões que transformam', 
-    'Texto para a segunda imagem',
-    'Texto para a terceira imagem',
+    '', 
+    '',
+    '',
   ];
 
  
