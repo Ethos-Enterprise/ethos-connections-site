@@ -22,6 +22,10 @@ import React, { useEffect, useState } from 'react';
 //select do react
 import Select from 'react-select';
 
+//imagem
+import imgEnvironmental from '../../assets/imagens/environmental.png'
+import imgSocial from '../../assets/imagens/social.jpg'
+import imgGovernance from '../../assets/imagens/governance.jpg'
 
 export const PaginaInicial = () => {
 
@@ -222,9 +226,9 @@ export const PaginaInicial = () => {
         <div className='container-ultimos-serviços'>
           <h4 className='titulo-ultimos-servicos'>Categorias ESG </h4>
           <div className='ultimos-servicos'>
-            <UltimosServicos nomeServico={"Environmental"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
-            <UltimosServicos nomeServico={"Social"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
-            <UltimosServicos nomeServico={"Governanmental"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} />
+            <UltimosServicos nomeServico={"Environmental"}  imagemFundo={imgEnvironmental}/>
+            <UltimosServicos nomeServico={"Social"} imagemFundo={imgSocial} />
+            <UltimosServicos nomeServico={"Governance"} imagemFundo={imgGovernance} />
             {/* <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} /> */}
           </div>
 

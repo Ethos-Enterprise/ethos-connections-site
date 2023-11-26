@@ -9,6 +9,9 @@ import FotoFormularioAmbiental from '../../../assets/imagens/ambiental.jpg'
 import FotoFormularioSocial from '../../../assets/imagens/social.png'
 import FotoFormularioGovernamental from '../../../assets/imagens/GOVERNAMENTAL.png'
 
+//coisas do react
+import { useNavigate, Link } from 'react-router-dom';
+
 const CardFormulario = (props) => {
     let imagemSrc;
 
@@ -20,8 +23,15 @@ const CardFormulario = (props) => {
         imagemSrc = FotoFormularioGovernamental;
     } 
 
+
+    const navigate = useNavigate();
+
+    const irParaFormulario = () => {
+        navigate('/meu-progresso/formulario');
+    }
+
     return (
-        <div className='card-formulario'>
+        <div className='card-formulario' onClick={() => irParaFormulario()}>
 
             <div className='foto-status-formulario'>
                 <img src={imagemSrc} alt="" className='foto-formulario' />

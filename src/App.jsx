@@ -22,6 +22,7 @@ import { UsuarioProvider } from "./hooks/Usuario.jsx";
 import AnaliseCrescimento from "./pages/AnaliseCrescimento/AnaliseCrescimento.jsx";
 import MinhaConta from "./pages/MinhaConta/MinhaConta.jsx";
 import Pagamento from "./pages/Pagamento/Pagamento.jsx";
+import Formulario from "./pages/Formulario/Formulario.jsx";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
           <Route path="/minha-conta" element={<MinhaConta/>}/>
 
           <Route path="/meu-portfolio" element={<MeuPortfolio />} />
+          <Route path="/meu-progresso/formulario" element={<Formulario />} />
+
 
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
 

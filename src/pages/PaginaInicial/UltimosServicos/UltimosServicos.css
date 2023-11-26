@@ -2,18 +2,30 @@
     background-color: var(--cinza-caixas);
     padding: 15px 20px;
     width: 295px;
+    margin: 0;
+    height: 70px;
     border-radius: 7px;
     cursor: pointer;
     transition: all 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container-ultimo-servico .titulo-ultimo-servico{
     margin: 0px;
     font-size: 1rem;
-    font-weight: var(--letra-regular);
+    font-weight: var(--letra-medium);
+    color: var(--cor-letras);
+    letter-spacing: 2px;
+    background-color: #056b80;
+    border-radius: 5px;
+    padding: 2px 2px;
+    width: 60%;
+    text-align: center;
 }
 
-.container-ultimo-servico .nome-empresa-ultimo-servico{
+/* .container-ultimo-servico .nome-empresa-ultimo-servico{
     margin: 8px 0px 16px 0px ;
     font-size: 0.89rem;
     font-weight: var(--letra-light);
@@ -23,7 +35,7 @@
     margin: 0px 0px 0px 0px ;
     font-size: 0.9rem;
     font-weight: var(--letra-regular);
-}
+} */
 
 .container-ultimo-servico:hover{
     scale: 1.025;

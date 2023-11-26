@@ -1,0 +1,5 @@
+.container-formulario{
+    background-color: var(--cinza);
+    border-radius: 7px;
+    padding: 20px 35px;
+}
