@@ -49,8 +49,36 @@ const Servico = (props) => {
 
   }
 
+  const deletarServico = (id) => {
+
+    console.log(id + 'deletado');
+
+    api.delete(`/v1.0/servicos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
+      .then((response) => {
+
+        console.log('Serviço de id: ' + id + "deletado")
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log('erro ao deletar serviço' + error);
+      })
+  }
+
+  const editarServico = (id) => {
+
+    console.log(id + 'indo editar');
+
+
+  }
+
+  const renderizarOnClick = !props.ocasiao || props.ocasiao !== 'meu-servico-editar' ? { onClick: verServico } : {};
+
   return (
-    <div className={props.ocasiao === 'solucoes' ? 'caixa-servico' : (props.ocasiao === 'portfolio-servico' ? 'caixa-servico-portfolio' : 'caixa-meu-servico')} onClick={verServico}>
+    <div className={props.ocasiao === 'solucoes' ? 'caixa-servico' : (props.ocasiao === 'portfolio-servico' ? 'caixa-servico-portfolio' : 'caixa-meu-servico')} {...renderizarOnClick}>
       {props.ocasiao === 'solucoes' && (
         <div className='foto-perfil-empresa'>
           <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
@@ -79,17 +107,17 @@ const Servico = (props) => {
 
             <div className='links-uteis-meu-servico'>
 
-            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
-              <i className="fa-solid fa-pen icone-avaliacoes">
-                <span>Editar</span>
-              </i>
-            </Link>
+              <Link onClick={() => editarServico(props.id)} className='link-avaliacoes'>
+                <i className="fa-solid fa-pen icone-avaliacoes">
+                  <span>Editar</span>
+                </i>
+              </Link>
 
-            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
-              <i className="fa-regular fa-trash-can icone-avaliacoes">
-                <span>Excluir</span>
-              </i>
-            </Link>
+              <Link onClick={() => deletarServico(props.id)} className='link-avaliacoes'>
+                <i className="fa-regular fa-trash-can icone-avaliacoes">
+                  <span>Excluir</span>
+                </i>
+              </Link>
             </div>
 
           </div>
