@@ -3,6 +3,7 @@ import './MinhasInteracoes.css';
 import ImagemContatos from '../../../../assets/icones/contatos.png';
 import ImagemEmpresas from '../../../../assets/imagens/deloitte_logo.jpeg';
 import ImagemEmpresaPerfil from '../../../../assets/imagens/perfilImg.png';
+import ImagemEmpresaPerfilEy from '../../../../assets/imagens/ey.jpg';
 import ImagemFavoritos from '../../../../assets/icones/favoritos.png';
 import CardSerInteractionsBox from './Componente/cardServico.jsx';
 import SolicitarContato from '../../../../assets/imagens/solicitar contato.jpg';
@@ -177,16 +178,16 @@ const MinhasInteracoes = (props) => {
           <CardSerInteractionsBox
             ImagemEmpresas={ImagemEmpresas}
             empresaNome='Deloitte'
-            servicoNome='Nome do Serviço'
+            servicoNome='Treinamento de Responsabilidade Social Corporativa (RSC)'
             statusContato='Aguardando resposta da empresa'
-            inicioContato='XX-XX-XXXX'
+            inicioContato='15-11-2023'
           />
           <CardSerInteractionsBox
-            ImagemEmpresas={ImagemEmpresaPerfil}
-            empresaNome='Nome da Empresa'
-            servicoNome='Nome do Serviço'
+            ImagemEmpresas={ImagemEmpresaPerfilEy}
+            empresaNome='Ernst & Young'
+            servicoNome='Gestão de portfólios de investimentos'
             statusContato='Aguardando resposta da empresa'
-            inicioContato='XX-XX-XXXX'
+            inicioContato='25-11-2023'
           />
 
         </>
@@ -217,11 +218,11 @@ const MinhasInteracoes = (props) => {
           />
 
           <InteractionsBoxComponentCurtida
-            ImagemEmpresas={ImagemEmpresaPerfil}
-            nomeServico="Nome do Serviço"
-            nomeEmpresa="Nome da Empresa"
-            descricao=" Breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descrição breve descri....."
-            pilarESG="Ambiental"
+            ImagemEmpresas={ImagemEmpresaPerfilEy}
+            nomeServico="Gestão de portfólios de investimentos"
+            nomeEmpresa="Ernst & Young"
+            descricao="A Gestão de Portfólios de Investimentos é um serviço especializado oferecido por instituições financeiras, gestoras de ativos ou profissionais do mercado financeiro. Essa prática envolve a administração estratégica de um conjunto diversificado de investimentos, com o objetivo de otimizar o retorno financeiro em linha com os objetivos e tolerâncias de risco do cliente."
+            pilarESG="Governança"
             valorMedio={1000.0}
             toggleModal={toggleModal}
           />

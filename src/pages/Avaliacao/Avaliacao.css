@@ -6,13 +6,7 @@
 }
 
 
-.container-avaliacao-servico {
-    background-color: var(--cinza);
-    border-radius: 7px;
-    width: 30vh;
-    height: 42vh;
-    padding: 20px 20px;
-}
+
 
 .margin-avaliacao-foto {
     margin: 0;
@@ -60,6 +54,33 @@
     padding: 20px 35px;
     position: relative;
 }
+
+.container-avaliacao-servico {
+    background-color: var(--cinza);
+    border-radius: 7px;
+    width: 30vh;
+    height:42vh;
+    padding: 20px 20px;
+}
+
+@media screen and (max-width: 1366px) and (min-width: 768px) {
+    .container-informacoes {
+        background-color: var(--cinza);
+        border-radius: 1%;
+        width: 100%;
+        height: 48vh;
+        padding: 20px 35px;
+        position: relative;
+    }
+    
+    .container-avaliacao-servico {
+        background-color: var(--cinza);
+        border-radius: 7px;
+        width: 30vh;
+        height:48vh;
+        padding: 20px 20px;
+    }
+  }
 
 .titulo-container-informacao {
     font-size: 1.2rem;

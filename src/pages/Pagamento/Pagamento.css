@@ -1,0 +1,44 @@
+.conteudo-pagamento {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    margin-left: 10vw;
+}
+
+.conteudo-titulo-pagamento {
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+.pagamento-box {
+    border-radius: 7px;
+    border: 1px solid #FDFAFA;
+    background: #1B1F23;
+    height: 544px;
+}
+
+.img-pagamento {
+    width: 43px;
+    height: 43px;
+    margin-top: 3vh;
+}
+
+.pagamento-box-titulo {
+    display: flex;
+    justify-content: center;
+    gap: 2vh;
+}
+
+.pagamento-box-titulo-h1 {
+    font-size: 1.6rem;
+    font-weight: var(--letra-bold);
+    margin-top: 3vh;
+}
+
+
+.container-box{
+    display: flex;
+}
