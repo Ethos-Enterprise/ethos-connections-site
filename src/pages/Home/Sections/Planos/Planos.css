@@ -4,7 +4,8 @@
   align-items: center;
   background-color: #0D0D0D;
   width: 100%;
-  height: 110vh;
+  height: 95vh;
+  padding: 45px 0px 45px 0px;
 }
 
 .textos-container {

@@ -6,10 +6,11 @@ import CardBeneficio from '../BeneficiosESG/CardBeneficio/CardBeneficioESG'
 export const BeneficiosESG = (props) => {
   return (
 
-    <div class='beneficios-esg'>
-      <div class="overlay"></div>
-      <div class='titulo'>      <h2 className='titulo-beneficios-esg'> 
-      <span>Por que </span>adotar<span> práticas ESG? </span></h2>
+    <div className='beneficios-esg'>
+      <div className="overlay"></div>
+      <div className='titulo'>      
+      <h2 className='titulo-beneficios-esg'> 
+      <span>Por que </span>adotar<span> práticas </span>  <span>ESG?</span></h2>
       </div>
 
       <div className='titulo-container'>

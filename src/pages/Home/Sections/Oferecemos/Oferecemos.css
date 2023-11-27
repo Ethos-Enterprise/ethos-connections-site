@@ -3,12 +3,12 @@
     background-size: cover;
 
     background-position: center; /* Isso centraliza a imagem vertical e horizontalmente */
-  
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 60px 0px 60px 0px;
 }
 .titulo-oferecemos{
     margin-bottom: 50px;

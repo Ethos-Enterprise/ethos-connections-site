@@ -27,10 +27,12 @@ body {
 
 .titulo {
   display: flex;
-  justify-content: flex-start;
-  align-self: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
   margin-top: 100px;
   z-index: 1; /* Certifique-se de que o título está acima do overlay */
+
+
 }
 
 .titulo-beneficios-esg {
@@ -39,8 +41,8 @@ body {
   margin-bottom: 80px;
   font-weight: var(--letra-medium);
   color: var(--cor-letras);
-  font-size: 35px;
-  margin-left: 6rem;
+  font-size: 40px;
+  margin-left: 8.8rem;
 }
 
 .titulo-beneficios-esg span {

@@ -5,7 +5,7 @@ const Fazemos = (props) => {
   return (
     <section className="container-fazemos">
       <div className="conteudo-container">
-        <h2 className='titulo-fazemos'> <span>Como</span> a <span>Ethos</span> pode te <span>ajudar</span>?</h2>
+        <h2 className='titulo-fazemos'> <span>Como</span> a <span>Ethos</span> pode <br />te <span>ajudar</span>?</h2>
         <p className='descricao'>Dada a força que o ESG  vêm ganhando nos últimos anos, nós surgimos 
             com o objetivo de unir empresas que ofereçam serviços/soluções ESG com empresas que buscam esse tipo de direcionamento.</p>
         

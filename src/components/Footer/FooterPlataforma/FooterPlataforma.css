@@ -1,6 +1,6 @@
 .footer-plataforma{
     box-sizing:border-box;
-    margin-top: 64px;
+    /* margin-top: 64px; */
     display: flex;
     border-top: 0.1px solid var(--cor-secundaria);
     padding: 40px 100px 10px 100px;
