@@ -2,12 +2,15 @@
 .carrosel {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 10h;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.slide-content{
+  margin: 0;
+}
 /* Bolinhas de Navegação */
 .bolinhas {
   position: absolute;
