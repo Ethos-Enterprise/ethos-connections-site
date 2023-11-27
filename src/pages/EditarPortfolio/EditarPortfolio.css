@@ -52,8 +52,8 @@
 .botoes-portfolio{
     display: flex;
     margin-top: 16px;
+    margin-left: 60px;
     align-items: center;
-    justify-content: center;
     gap: 24px;
 }
 
@@ -160,4 +160,24 @@
     display: flex;
     gap: 8px;
     margin-top: 16px;
+}
+
+.beadcrumb-editar-portfolio {
+    display: flex;
+    justify-content: space-between;
+}
+
+.beadcrumb-editar-portfolio .desativar{
+    margin: 0;
+    font-weight: var(--letra-medium);
+    background-color: var(--cor-primaria);
+    border-radius: 7px;
+    font-size: 1rem;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.beadcrumb-editar-portfolio .desativar:hover{
+    background-color: var(--cor-letras);
+    color: black;
 }

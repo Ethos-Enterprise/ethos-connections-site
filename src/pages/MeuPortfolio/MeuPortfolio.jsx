@@ -26,6 +26,72 @@ const MeuPortfolio = () => {
     const editarDados = () => {
         navigate('/meu-portfolio/editar-portfolio#dados-gerais')
     } 
+
+    const mudarFotoPerfil = async () => {
+        try {
+          const { value: file, dismiss: dismissReason } = await Swal.fire({
+            title: "Escolha uma foto de perfil",
+            input: "file",
+            inputAttributes: {
+              "accept": "image/*",
+              "aria-label": "Adicione sua foto de perfil"
+            },
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar'
+          });
+      
+          if (dismissReason === Swal.DismissReason.cancel) {
+            // CHAMAR REVERTER
+          } else if (file) {
+            // chamar api de salvar foto
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              Swal.fire({
+                title: "Foto de Perfil Alterada!",
+                imageUrl: e.target.result,
+                imageAlt: "The uploaded picture"
+              });
+            };
+            reader.readAsDataURL(file);
+          }
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+      };
+      
+
+      const mudarFotoCapa = async () => {
+        try {
+          const { value: file, dismiss: dismissReason } = await Swal.fire({
+            title: "Escolha uma foto de capa",
+            input: "file",
+            inputAttributes: {
+              "accept": "image/*",
+              "aria-label": "Adicione sua foto de perfil"
+            },
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar'
+          });
+      
+          if (dismissReason === Swal.DismissReason.cancel) {
+            // CHAMAR REVERTER
+          } else if (file) {
+            // chamar api de salvar foto
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              Swal.fire({
+                title: "Foto de Perfil Alterada!",
+                imageUrl: e.target.result,
+                imageAlt: "The uploaded picture"
+              });
+            };
+            reader.readAsDataURL(file);
+          }
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+      };
+
     return (
 
         <div>
@@ -45,12 +111,16 @@ const MeuPortfolio = () => {
 
                     <div className='container-foto'>
                         <img src={FotoDeCapa} alt="" className='foto-de-capa' />
+                        <div className='descricao-hover-capa' onClick={mudarFotoCapa}> <i className="fa-solid fa-camera icone-camera"></i>  <span>Editar Foto de Capa</span></div>
+
                     </div>
 
                     <div className='container-informacoes-principais-empresa'>
 
                         <div className='foto-de-perfil'>
                             <img src={FotoPerfil} alt="foto de perfil da empresa" className='foto-de-perfil-empresa' />
+                            <div className='descricao-hover-perfil' onClick={mudarFotoPerfil}> <i className="fa-solid fa-camera icone-camera"></i>  <span>Editar Foto de Perfil</span></div>
+
                         </div>
 
                         <div className='informacoes-principais'>

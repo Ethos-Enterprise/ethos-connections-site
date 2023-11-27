@@ -2,7 +2,7 @@
     background-color: var(--cinza);
     border-radius: 7px;
     padding: 20px 35px;
-
+    min-height: 450px;
 }
 
 .container-minhas-negociacoes .titulo-pagina{
@@ -14,5 +14,132 @@
 
 .container-status-negociacoes{
     display: flex;
-    gap: 24px;
+    gap: 32px;
+}
+
+.container-status-negociacoes .status{
+    margin: 30px 0px 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-status-negociacoes .status .input-status{
+    border: 2px solid red;
+    width: 20px;
+    height: 20px;
+    margin: 0px 10px 0px 0px;
+    background-color: var(--cor-primaria);
+}
+
+.container-negociacoes{
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.container-negociacoes .titulo-controle-negociacoes{
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-primaria);
+}
+
+.container-negociacoes .titulos-tabela-negociacao{
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.container-negociacoes .titulos-tabela-negociacao .titulo-nome-empresa{
+    width: 245px;
+    text-align: center;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.container-negociacoes .titulos-tabela-negociacao .titulo-nome-servico{
+    width: 245px;
+    text-align: center;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.container-negociacoes .titulos-tabela-negociacao .titulo-contato{
+    width: 210px;
+    text-align: center;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.container-negociacoes .titulos-tabela-negociacao .titulo-status-atual{
+    width: 190px;
+    text-align: center;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.container-negociacoes .titulos-tabela-negociacao .titulo-final{
+    width: 180px;
+    text-align: center;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+}
+
+.tracinho-divisor-negociacoes{
+    width: 100%;
+    border-bottom: 1px solid var(--cor-letras);
+    margin: 0px;
+  }
+
+  .linha-contato{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+  }
+  
+.dado-nome-empresa{
+    width: 245px;
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+}
+
+.dado-nome-servico{
+    width: 245px;
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+
+}
+
+.dado-data-contato{
+    width: 210px;
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+}
+
+.dado-status-atual{
+    width: 190px;
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+}
+
+.dado-final{
+    width: 180px;
+    text-align: center;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+}
+
+.icone-atualizar{
+    margin-right: 10px;
+}
+
+
+.vazio-negocios{
+    text-align: center;
+    font-weight: var(--letra-regular);
+    color: var(--cor-letras);
 }

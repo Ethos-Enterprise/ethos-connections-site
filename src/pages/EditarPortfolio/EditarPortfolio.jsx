@@ -32,6 +32,7 @@ const EditarPortfolio = () => {
     { nome: 'Serviços', hash: 'servicos' },
     { nome: 'Certificações', hash: 'certificacoes' },
     { nome: 'Ver Portfólio', hash: 'ver-portfolio' },
+
   ];
 
   const hash = location.hash.replace(/^#/, '');
@@ -84,7 +85,8 @@ const EditarPortfolio = () => {
       />
 
       <div className="conteudo">
-        <div className='beadcrumb'>
+        <div className='beadcrumb beadcrumb-editar-portfolio'>
+          <div>
           <Link to='/meu-portfolio' className='link-beadcrumb'>
             <span>Meu Portfólio {'> '}</span>
           </Link>
@@ -95,6 +97,9 @@ const EditarPortfolio = () => {
           <Link to={`/minha-conta#${secaoAtual}`} className='link-beadcrumb-atual'>
             <span className='caminho'>{opcoesMenu.find(opcao => opcao.hash === secaoAtual)?.nome}</span>
           </Link>
+          </div>
+
+          <h4 className='desativar' > <i class="fa-regular fa-trash-can"></i> Excluir Conta</h4>
         </div>
 
         <div className='container-menu-campos-editaveis'>
@@ -104,7 +109,7 @@ const EditarPortfolio = () => {
             secaoAtiva={secaoAtual}
             setSecaoAtual={handleMenuClick}
           />
-
+          
           <div className='dados-editaveis'>
             {renderizarComponenteSecao()}
           </div>

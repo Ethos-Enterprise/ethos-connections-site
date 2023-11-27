@@ -62,7 +62,7 @@ const AdicionarServico = (props) => {
 
     const cadastrarServico = (e) => {
         e.preventDefault();
-
+        console.log('cadastrrr');
         api.post('/v1.0/servicos', {
             nomeServico: 'Exemplo',
             descricao: 'Este é um serviço de Exemplo',
@@ -92,9 +92,44 @@ const AdicionarServico = (props) => {
     };
 
 
-    const editarServico= () => {
+    const editarServico= (e) => {
+        e.preventDefault();
+
         console.log('api editar servico');
+        Swal.fire({
+            title: "Salvar Alterações?",
+            icon: "question",
+            confirmButtonColor: "#3085d6",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Salvar",
+            reverseButtons: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              api.put('caminho editar servico do id tal', {
+      
+              }, {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                },
+              })
+                .then((response) => {
+                  console.log('editar dados portfolio', response);
+                    // posso pegar os dados do portfolio e atualizar pela api e dps recarregar
+                  Swal.fire({
+                    title: "Dados Atualizados!",
+                    icon: "success"
+                  });
+                })
+      
+                .catch((error) => {
+                  console.log('erro ao editar portfolio', error);
+                })
+            }
+          })
     }
+
     const voltar = () => {
         limparCampos();
         props.setComponente('servicos');
@@ -121,7 +156,7 @@ const AdicionarServico = (props) => {
                 </div>
                 <div className='tracinho-divisor'></div>
 
-                <form className='inputs-portfolio' onSubmit={(e) => cadastrarServico(e)}>
+                <form className='inputs-portfolio' onSubmit={(e) => edicao ? editarServico(e) : cadastrarServico(e)}>
                     <div className='campo-portfolio'>
                         <label htmlFor="" className='label-portfolio'>Serviço Prestado</label>
                         <input
@@ -233,7 +268,7 @@ const AdicionarServico = (props) => {
                     <div className='botoes-portfolio'>
                         {edicao ? (
                         <>
-                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Desfazer Alterações</button>
+                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
                         <ButtonFilled acao={'Salvar'} type='submit' />
                         </>
                         ) : (
