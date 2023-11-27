@@ -1,4 +1,3 @@
-// ExplicacaoESG.jsx
 
 import React from 'react';
 import './ExplicacaoESG.css';

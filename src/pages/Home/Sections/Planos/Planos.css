@@ -1,104 +1,164 @@
-.explicacao-planos {
-    position: relative;
-    background-attachment: #ca1c1c;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 95vh;
-    
-  }
-  
-  
-    .planos-container {
-      display: flex;
-      justify-content: flex-start;
-      align-self: flex-start;
-      z-index: 1; /* Certifique-se de que o título está acima do overlay */
-      flex-direction: column;
-    }
-  
-    .subtitulo-planos{
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 40px;
-      font-weight: var(--letra-regular);
-      color: var(--cor-letras);
-      font-size: 20px;
-      text-align:left;
-      margin-left: 105px;    
-      width: 70%;
-    }
-    
-    .titulo-planos {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 10px;
-      font-weight: var(--letra-medium);
-      color: var(--cor-letras);
-      font-size: 30px;
-      margin-left: 6rem;
-    }
-  
-    .planos-container .texto {
-      font-size: 18px; /* Tamanho da fonte */
-      font-weight: 400; /* Negrito */
-      margin: 0; /* Remover margens padrão */
-      letter-spacing: 3px;
-    }
-  
-    .titulo-planos span {
-      color: var(--cor-primaria);
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    
-    .planos-container {
-      gap: 1rem;
-      display: flex;
-      text-align: center;
-    }
-  
-  
-  
-       /*  CSS  DOS CARDS ... */
-  
-   
+.planos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0D0D0D;
+  width: 100%;
+  height: 110vh;
+}
 
-  
-  
-  .cards-planos {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap: 8rem;
-    font-weight: bold; /* Negrito */
-    
-  }
-  
-  .card {
-    
-    position: relative;
-    width: 300px;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.5s;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden; /* Garante que a opacidade não ultrapasse os limites do cartão */
-    font-weight: bold; /* Negrito */
-  
-  }
-  
-  
-  
+.textos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.titulo-planos {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: var(--letra-medium);
+  color: var(--cor-letras);
+}
+
+.subtitulo-planos {
+  font-weight: 200;
+  font-size: medium;
+  line-height: 30px;
+}
+
+.titulo-planos span {
+  color: var(--cor-primaria);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/*Aqui começa os cards*/
+.cardPlanos-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+.linha-fina {
+  height: 1px; /* Ajuste conforme necessário */
+  width: 250px;
+  background-color: #01A2C3;
+  margin-bottom: 2px;
+}
+
+.plano-categoria{
+  font-size: larger;
+  font-weight: 400;
+  color: #01A2C3;
+  margin: 0% 0% 3% 0%;
+}
+
+.cardPlanos h2 {
+  font-size: larger;
+  font-weight: 100;
+  margin: 10% 0px 3px 0px;
+}
+
+.p1 {
+  font-size: small;
+  font-weight: 400;
+  color: #4D4D4D;
+  letter-spacing: 2px;
   
+}
+
+.p2 {
+  text-align: center;
+  font-size: m;
+  font-weight: 100;
+}
+
+.p3 {
+  font-size: medium;
+  font-weight: 300;
+  text-align: center;
+  margin: 11px 0px 0px 0px;
+}
+
+.p3 img {
+  margin-right: 5px;
+}
+
+
+.cardPlanos {
+  background-color: #181919;
+  width: 320px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #01A2C3;
+  border-radius: 5px;
+  margin-top: 10px; /* Ajuste conforme necessário */
   
-  
-  
-  
+}
+
+/* Adicione a seguinte regra para ajustar o espaço entre as linhas de texto */
+.cardPlanos .p1,
+.cardPlanos h2 {
+  line-height: 0.1;
+  /* Ajuste conforme necessário */
+}
+
+.linhas {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+}
+
+.line1 {
+  display: flex;
+  height: 30px;
+  width: 108vh;
+  background-color: #014D5C;
+  margin-top: 1px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+
+
+}
+
+.line2 {
+  display: flex;
+  height: 30px;
+  width: 51vh;
+  background-color: #014D5C;
+  margin-right: 2%;
+  margin-top: 1px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.botao-preenchido-planos {
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cor-primaria);
+  padding: 7px;
+  border: none;
+  color: var(--preto-comum);
+  font-weight: var(--letra-semi-bold);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in;
+  width: 170px;
+  margin-top: 30%;
+}
+
+.botao-preenchido-planos:hover {
+  background-color: var(--cor-letras);
+}
+/* Planos.css */
+
