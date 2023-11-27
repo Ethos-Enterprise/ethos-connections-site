@@ -144,9 +144,10 @@ margin-right: 10px;
     border-bottom: 0.5px solid var(--cor-detalhe);
 }
 
-.dados-servico-empresa{
+.caixa-meu-servico .dados-servico-empresa{
     width: 100%;
-
+    margin-top: 10px;
+    margin-left: 15px;
 }
 
 .caixa-meu-servico .dados-servico-empresa .titulo-servico{

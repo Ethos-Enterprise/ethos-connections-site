@@ -229,7 +229,6 @@ export const PaginaInicial = () => {
             <UltimosServicos nomeServico={"Environmental"}  imagemFundo={imgEnvironmental}/>
             <UltimosServicos nomeServico={"Social"} imagemFundo={imgSocial} />
             <UltimosServicos nomeServico={"Governance"} imagemFundo={imgGovernance} />
-            {/* <UltimosServicos nomeServico={"Emissão de Carbono 0"} nomeEmpresaServico={"Safe Solutions"} valorServico={"R$100.00 "} /> */}
           </div>
 
         </div>
@@ -271,7 +270,7 @@ export const PaginaInicial = () => {
               styles={{
                 control: (provided, state) => ({
                   ...provided,
-                  width: '20vw',
+                  width: '23vw',
                   background: '#1B1F23',
                   borderRadius: '4px',
                   border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',
@@ -315,7 +314,7 @@ export const PaginaInicial = () => {
                 control: (provided, state) => ({
                   ...provided,
 
-                  width: '20vw',
+                  width: '23vw',
                   background: '#1B1F23',
                   borderRadius: '4px',
                   border: provided.isFocused ? '0.5px solid white' : '0.5px solid #01a2c3',

@@ -5,21 +5,24 @@ import api from '../../../service/api'
 
 //select do react
 import Select from 'react-select';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ButtonFilled from '../../../components/ButtonFilled/ButtonFilled';
 
 //react router dom
-import { Link, useLocation, useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
 
 const AdicionarServico = (props) => {
 
+    const [edicao, setEdicao] = useState(false);
+
     const { usuario } = useUsuario();
 
     const location = useLocation();
     const navigate = useNavigate();
+
 
     const [dadosServico, setDadosServico] = useState({
         nomeServico: '',
@@ -28,6 +31,15 @@ const AdicionarServico = (props) => {
         areaAtuacaoEsg: [],
         fkPrestadoraServico: usuario.id
     });
+
+    useEffect(() => {
+        if (location.state && location.state.dadosServicoParaEditar) {
+            setDadosServico(location.state.dadosServicoParaEditar);
+            setEdicao(true)
+            console.log('mudeii', edicao);
+        }
+    }, [location.state]);
+
 
     console.log(dadosServico);
 
@@ -50,15 +62,15 @@ const AdicionarServico = (props) => {
 
     const cadastrarServico = (e) => {
         e.preventDefault();
-
+        console.log('cadastrrr');
         api.post('/v1.0/servicos', {
             nomeServico: 'Exemplo',
             descricao: 'Este é um serviço de Exemplo',
             valor: 1.0,
             areaAtuacaoEsg: [
-              'ENVIRONMENTAL',
-              'SOCIAL',
-              'GOVERNANCE'
+                'ENVIRONMENTAL',
+                'SOCIAL',
+                'GOVERNANCE'
             ],
             fkPrestadoraServico: '3767c8e2-4aaa-4e0a-ada9-ad82223945a7',
         }, {
@@ -80,10 +92,48 @@ const AdicionarServico = (props) => {
     };
 
 
-    const voltar = () =>  {
+    const editarServico= (e) => {
+        e.preventDefault();
+
+        console.log('api editar servico');
+        Swal.fire({
+            title: "Salvar Alterações?",
+            icon: "question",
+            confirmButtonColor: "#3085d6",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Salvar",
+            reverseButtons: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              api.put('caminho editar servico do id tal', {
+      
+              }, {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                },
+              })
+                .then((response) => {
+                  console.log('editar dados portfolio', response);
+                    // posso pegar os dados do portfolio e atualizar pela api e dps recarregar
+                  Swal.fire({
+                    title: "Dados Atualizados!",
+                    icon: "success"
+                  });
+                })
+      
+                .catch((error) => {
+                  console.log('erro ao editar portfolio', error);
+                })
+            }
+          })
+    }
+
+    const voltar = () => {
         limparCampos();
     props.setComponente('servicos'); 
-        navigate('/meu-portfolio/-editarportfolio#servicos');
+        navigate('/meu-portfolio/editar-portfolio#servicos');
 
     }
 
@@ -93,7 +143,7 @@ const AdicionarServico = (props) => {
                 <div className='titulo-botao-adicionar'>
 
                     <h2 className='titulo-secao'>
-                        Adicionar Serviço
+                        {edicao ? 'Editar Serviço' : 'Adicionar Serviço'}
                     </h2>
 
 
@@ -107,7 +157,7 @@ const AdicionarServico = (props) => {
                 </div>
                 <div className='tracinho-divisor'></div>
 
-                <form className='inputs-portfolio' onSubmit={(e) => cadastrarServico(e)}>
+                <form className='inputs-portfolio' onSubmit={(e) => edicao ? editarServico(e) : cadastrarServico(e)}>
                     <div className='campo-portfolio'>
                         <label htmlFor="" className='label-portfolio'>Serviço Prestado</label>
                         <input
@@ -155,7 +205,8 @@ const AdicionarServico = (props) => {
                             ]}
                             className="basic-multi-select"
                             classNamePrefix="select"
-                            value={dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option }))}
+                            value={Array.isArray(dadosServico.areaAtuacaoEsg) ? dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option })) : []}
+
                             onChange={atualizarCampos}
                             styles={{
                                 control: (provided, state) => ({
@@ -216,9 +267,18 @@ const AdicionarServico = (props) => {
                     </div>
 
                     <div className='botoes-portfolio'>
-
-                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Desfazer Alterações</button>
+                        {edicao ? (
+                        <>
+                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
                         <ButtonFilled acao={'Salvar'} type='submit' />
+                        </>
+                        ) : (
+                            <>
+                            <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
+                            <ButtonFilled acao={'Salvar'} type='submit' />
+                            </>
+                        )}
+
                     </div>
                 </form>
             </div >

@@ -30,8 +30,6 @@ const DadosGerais = () => {
     cep: usuario.cep,
   });
 
-  console.log(dadosGerais);
-
   const atualizarCampo = (campo, valor) => {
     setDadosGerais((prevDados) => ({
       ...prevDados,
@@ -97,7 +95,7 @@ const DadosGerais = () => {
         cancelButtonColor: "#d33",
         cancelButtonText: "Cancelar",
         confirmButtonText: "Salvar",
-
+        reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
           api.put(`v1.0/empresas/${usuario.id}`, {
@@ -128,26 +126,26 @@ const DadosGerais = () => {
                   console.log(response.data);
                   atualizarUsuario(response.data)
                   window.location.reload();
-
+         
                 })
 
                 .catch((error) => {
                   console.log(error);
                 })
+                Swal.fire({
+                  title: "Dados Atualizados!",
+                  icon: "success"
+                });
+            })
+            .catch(error => {
+              console.log('falha ao editar');
 
+              console.log(error);
             })
 
-          Swal.fire({
-            title: "Dados Atualizados!",
-            icon: "success"
-          });
         }
       })
-        .catch(error => {
-          console.log('falha ao editar');
 
-          console.log(error);
-        })
     } else {
       console.log('dados incorretos');
     }
@@ -325,7 +323,7 @@ const DadosGerais = () => {
 
         <div className='botoes-portfolio'>
 
-          <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Desfazer Alterações</button>
+          <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'>Cancelar</button>
           <ButtonFilled acao={'Salvar'} type='submit' />
         </div>
       </form>
