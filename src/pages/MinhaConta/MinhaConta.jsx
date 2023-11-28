@@ -29,7 +29,7 @@ const MinhaConta = () => {
 
   const opcoesMenuMinhaConta = [
     { nome: 'Meu Perfil', hash: 'meu-perfil' },
-    { nome: 'Minhas Interações', hash: 'minhas-interacoes#contatos' },
+    // { nome: 'Minhas Interações', hash: 'minhas-interacoes#contatos' },
     { nome: 'Meu Plano', hash: 'meu-plano' },
     { nome: 'Sair', hash: 'sair' },
   ];
@@ -56,8 +56,8 @@ const MinhaConta = () => {
     switch (secaoAtual) {
       case 'meu-perfil':
         return <MeuPerfil />;
-        case 'minhas-interacoes#contatos':
-          return <MinhasInteracoes componente={secaoAtual === 'minhas-interacoes#contatos' ? 'minhas-interacoes#contatos' : 'minhas-interacoes#favoritos'} />;
+        // case 'minhas-interacoes#contatos':
+        //   return <MinhasInteracoes componente={secaoAtual === 'minhas-interacoes#contatos' ? 'minhas-interacoes#contatos' : 'minhas-interacoes#favoritos'} />;
       
       case 'meu-plano':
         return <MeuPlano />;

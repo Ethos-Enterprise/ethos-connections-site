@@ -64,9 +64,10 @@
     position: relative;
     border-radius: 7px;
     gap: 4vh;
-    background: #00000086;
+    /* background: #00000086; */
+    background: #45454541;
     display: flex;
-    padding: 3vh 3vh 3vh 3vh;
+    padding: 5vh 3vh 5vh 3vh;
     margin-bottom: 3vh;
 }
 
@@ -134,7 +135,7 @@
     font-size: 1.1rem;
     font-weight: var(--letra-bold);
     color: var(--cor-primaria);
-    margin-top: 3vh;
-    max-width: 40%;
+    margin: 8px 0px 2px 0px;
+    max-width: 60%;
 
 }

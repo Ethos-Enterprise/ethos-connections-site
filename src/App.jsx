@@ -24,6 +24,7 @@ import MinhaConta from "./pages/MinhaConta/MinhaConta.jsx";
 import Pagamento from "./pages/Pagamento/Pagamento.jsx";
 import Formulario from "./pages/Formulario/Formulario.jsx";
 import MinhasNegociacoes from "./pages/Minhas Negociacoes/MinhasNegociacoes.jsx";
+import MinhasInteracoes from "./pages/MinhaConta/Secoes/MinhasInteracoes/MinhasInteracoes.jsx";
 
 function App() {
   return (
@@ -52,6 +53,8 @@ function App() {
           <Route path="/meu-plano/contrato/pagamento" element={<Pagamento />} />
 
           <Route path="/minhas-negociacoes" element={<MinhasNegociacoes />} />
+          <Route path="/minhas-interacoes" element={<MinhasInteracoes componente={'contatos'}/>} />
+
 
         </Routes>
 

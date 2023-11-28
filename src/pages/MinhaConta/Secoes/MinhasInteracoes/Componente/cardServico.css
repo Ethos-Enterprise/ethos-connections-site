@@ -75,10 +75,10 @@
 .interactions-box-component {
     border-radius: 7px;
     gap: 4vh;
-    background: #00000086;
+    background: #45454541;
     /* box-shadow: 0 0 0.4px 0.3px #a3a3a3; */
     display: flex;
-    padding: 3vh 3vh 3vh 3vh;
+    padding: 5vh 3vh 5vh 3vh;
     margin-bottom: 3vh;
 }
 

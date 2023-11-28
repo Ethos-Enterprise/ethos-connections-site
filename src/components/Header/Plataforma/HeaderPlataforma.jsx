@@ -36,7 +36,7 @@ const HeaderPlataforma = (props) => {
                 {props.plano == 'Free' && (
                     <ul>
                         <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
-                        <Link className='link-header'>Parceiro Ethos</Link >
+                        <Link to={'/minhas-interacoes#contatos'}  className={`link-header ${location.pathname.includes('/minhas-interacoes') ? 'opcaoHeaderAtivo' : ''}`}>Minhas Interações</Link >
                         <Link  className='link-header'>Aplicativo Ethos</Link >
                     </ul>
                 )
@@ -46,7 +46,7 @@ const HeaderPlataforma = (props) => {
                     <ul>
                         <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
                         <Link to='/meu-progresso' className={`link-header ${location.pathname.includes('/meu-progresso') ? 'opcaoHeaderAtivo' : ''}`}>Meu Progresso</Link>
-                        <Link  className='link-header'>Parceiro Ethos</Link >
+                        <Link  to={'/minhas-interacoes#contatos'} className={`link-header ${location.pathname.includes('/minhas-interacoes') ? 'opcaoHeaderAtivo' : ''}`}>Minhas Interações</Link >
                     </ul>
                 )
                 }
@@ -56,8 +56,8 @@ const HeaderPlataforma = (props) => {
 
                         <Link to='/solucoes-esg' className={`link-header ${location.pathname.includes('/solucoes-esg') ? 'opcaoHeaderAtivo' : ''}`}>Soluções ESG </Link>
                         <Link to='/minhas-negociacoes' className={`link-header ${location.pathname.includes('/minhas-negociacoes') ? 'opcaoHeaderAtivo' : ''}`}>Minhas Negociações</Link>
-          
-                        <Link  className='link-header'>Aplicativo Ethos</Link >
+                        <Link  to={'/minhas-interacoes#contatos'} className={`link-header ${location.pathname.includes('/minhas-interacoes') ? 'opcaoHeaderAtivo' : ''}`}>Minhas Interações</Link >
+
                     </ul>
                 )
                 }
@@ -90,10 +90,6 @@ const HeaderPlataforma = (props) => {
                                 </Link>
                             )
                             }
-
-                            <Link to={"/minha-conta#minhas-interacoes#contatos"} className='link-dropdown'>
-                                <li>Minhas Interações</li>
-                            </Link>
 
                             <Link to={"/minha-conta#meu-plano"} className='link-dropdown'>
                                 <li>Meu Plano</li>
