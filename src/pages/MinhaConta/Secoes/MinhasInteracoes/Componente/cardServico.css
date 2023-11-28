@@ -1,25 +1,40 @@
 .interaction-img {
     border-radius: 20px;
     display: flex;
-    width: 25vh;
+    width: 18vh;
+}
+
+.interactions-title-servico{
+    font-size: 1.1rem;
+    font-weight: var(--letra-bold);
+    margin: 8px 0px 2px 0px;
+    color: var(--cor-primaria);
 }
 
 .interactions-subtitle {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: var(--letra-light);
     line-height: normal;
 }
 
 .interactions-subtitle-data {
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: var(--letra-light);
     line-height: normal;
+    margin: 3px 0px 0px 0px;
 }
 
 .imagem-interactionsC {
+    /* width: 100px; */
+    height: 100px;
     border-bottom: 4px solid var(--cor-primaria);
     box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
     background-color: #00000065;
+    border-radius: 7px;
+}
+
+.imagem-interactionsF {
+    height: 100px;
 }
 
 .imagem-interactionsC:hover {
@@ -30,6 +45,7 @@
     border-bottom: 4px solid var(--cor-primaria);
     box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
     background-color: #00000065;
+    border-radius: 7px;
 }
 
 .imagem-interactionsF-2:hover {
@@ -60,6 +76,7 @@
     border-radius: 7px;
     gap: 4vh;
     background: #00000086;
+    /* box-shadow: 0 0 0.4px 0.3px #a3a3a3; */
     display: flex;
     padding: 3vh 3vh 3vh 3vh;
     margin-bottom: 3vh;
@@ -77,7 +94,7 @@
     font-family: 'Poppins', sans-serif;
     background-color: var(--cor-primaria);
     border: none;
-    padding: 8px;
+    padding: 3px;
     color: var(--preto-comum);
     font-weight: var(--letra-semi-bold);
     font-size: 1rem;
@@ -85,9 +102,19 @@
     border-radius: 5px;
     transition: background-color 0.2s ease-in;
     width: 19vh;
-
+    height: 30px;
 }
 
 .botao-posicao:hover {
     background-color: var(--cor-letras);
+}
+
+.titulo-info-contato{
+    font-weight: var(--letra-regular);
+}
+
+.box-ultimo-servico{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

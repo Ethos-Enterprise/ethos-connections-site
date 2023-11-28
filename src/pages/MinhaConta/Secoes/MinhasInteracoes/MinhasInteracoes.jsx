@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './MinhasInteracoes.css';
 import ImagemContatos from '../../../../assets/icones/contatos.png';
+import ImagemFavoritos from '../../../../assets/icones/favoritos.png';
+
 import ImagemEmpresas from '../../../../assets/imagens/deloitte_logo.jpeg';
 import ImagemEmpresaPerfil from '../../../../assets/imagens/perfilImg.png';
 import ImagemEmpresaPerfilEy from '../../../../assets/imagens/ey.jpg';
-import ImagemFavoritos from '../../../../assets/icones/favoritos.png';
 import CardSerInteractionsBox from './Componente/cardServico.jsx';
 import SolicitarContato from '../../../../assets/imagens/solicitar contato.jpg';
 import InteractionsBoxComponentCurtida from './Componente/cardFavorito.jsx';
@@ -200,6 +201,7 @@ const MinhasInteracoes = (props) => {
             <img src={ImagemContatos} alt="Contatos" className='imagem-interactionsC-2' onClick={favoritosFunc} />
             <img src={ImagemFavoritos} alt="Favoritos" className='imagem-interactionsF-2' onClick={contatosFunc} />
           </div>
+          <div className='tracinho-divisor'></div>
 
           <div className="interactions-title">Histórico de Curtidas</div>
 

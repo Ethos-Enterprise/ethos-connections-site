@@ -26,8 +26,19 @@
     background-color: #00000065;
 }
 
+
+.imagem-interactionsC-2:hover,
+.imagem-interactionsF-2:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.imagem-interactionsF-2 {
+    height: 100px;
+}
 .imagem-interactionsC-2 {
     cursor: pointer;
+    height: 100px;
 }
 
 
@@ -122,6 +133,7 @@
 .interactions-title-curtida {
     font-size: 1.1rem;
     font-weight: var(--letra-bold);
+    color: var(--cor-primaria);
     margin-top: 3vh;
     max-width: 40%;
 
