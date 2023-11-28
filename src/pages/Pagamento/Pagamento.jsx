@@ -28,7 +28,7 @@ const Pagamento = () => {
     <>
       <HeaderPlataforma plano={'Provider'} razaoSocial={usuario.razaoSocial} />
 
-      <div className="conteudo-pagamento">
+      <div className="conteudo">
         <div className="conteudo-titulo-pagamento">Realizar Pagamento Pix</div>
 
         <div className="pagamento-box">
