@@ -16,11 +16,10 @@
 
 .pagamento-box {
     border-radius: 7px;
-    border: 1px solid #FDFAFA;
+    /* border: 1px solid #FDFAFA; */
     background: #1B1F23;
     padding: 0px 0px 5% 0%;
     margin-bottom: 5vh;
-
 }
 
 .img-pagamento {
@@ -45,7 +44,7 @@
 .container-box {
     display: flex;
     flex-direction: column;
-    padding: 0px 10vh ;
+    padding: 0px 10vh;
 
 }
 
@@ -58,23 +57,40 @@
 
 
 .container-box-pagamento-subtitulo-ativo {
-        font-weight: var(--letra-medium);
-        font-size: 1rem;
-        color: var(--cor-primaria);
-        width: 89px;
-        height: 33px;
-        flex-shrink: 0;
-        display: flex;
-        justify-content: center;
-        border-radius: 5px;
-        background: #384048;
-        border-top: 1px solid #FFF;
-        border-right: 1px solid #FFF;
-        border-left: 1px solid #FFF;
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+    width: 89px;
+    height: 33px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background: #384048;
+    /* border-top: 1px solid #FFF; */
+    /* border-right: 1px solid #FFF; */
+    /* border-left: 1px solid #FFF; */
+    cursor: pointer;
     z-index: 1;
-
 }
 
+.container-box-pagamento-subtitulo-ativo-2 {
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    color: var(--cor-primaria);
+    width: 20vh;
+    height: 33px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    background: #384048;
+    /* border-top: 1px solid #FFF; */
+    /* border-right: 1px solid #FFF; */
+    /* border-left: 1px solid #FFF; */
+    cursor: pointer;
+    z-index: 1;
+}
 
 
 .container-box-pagamento-subtitulo {
@@ -82,11 +98,22 @@
     font-size: 1rem;
     display: relative;
     justify-content: center;
+    cursor: pointer;
+}
+
+.container-box-pagamento-subtitulo-2 {
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    display: relative;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 1vh;
+
 }
 
 .caixa-pagamentos {
     border-radius: 5px;
-    border: 1px solid #FFF;
+    /* border: 1px solid #FFF; */
     background: #384048;
     position: relative;
     z-index: 1;
@@ -122,3 +149,4 @@
     justify-content: center;
     gap: 8vh;
 }
+
