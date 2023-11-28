@@ -2,11 +2,11 @@
 .dados-minha-conta {
     display: flex;
     flex-direction: column;
-
     padding: 20px 40px;
     background-color: var(--cinza);
     border-radius: 7px;
     min-height: 400px;
+    margin-bottom: 5vh;
 }
 
 .dados-minha-conta .titulo-secao{
@@ -15,3 +15,4 @@
     font-size: 1rem;
     color: var(--cor-primaria);
 }
+
