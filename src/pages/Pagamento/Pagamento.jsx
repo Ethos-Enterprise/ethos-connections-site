@@ -23,7 +23,24 @@ const Pagamento = () => {
     setComponente('pix');
   };
 
-  
+  const [codigoPix, setCodigoPix] = useState('');
+
+  const gerarCodigoPix = () => {
+    // Lógica para gerar um código PIX aleatório
+    const novoCodigoPix = Math.random().toString(36).substring(2, 12).toUpperCase();
+    setCodigoPix(novoCodigoPix);
+  };
+
+  const handleCopy = () => {
+    // Lógica para copiar o código PIX para a área de transferência
+    navigator.clipboard.writeText(codigoPix);
+  };
+
+  useEffect(() => {
+    // Gera o código PIX automaticamente quando o componente é montado
+    gerarCodigoPix();
+  }, []); // O array vazio assegura que este efeito é executado apenas uma vez, sem dependências
+
   return (
     <>
       <HeaderPlataforma plano={'Provider'} razaoSocial={usuario.razaoSocial} />
@@ -59,31 +76,57 @@ const Pagamento = () => {
 
                 <div className="caixa-pagamentos-dividir">
                   <div className="caixa-pagamentos-titulos-metade-1">
-                    <h1 className="titulo-pag">
-                      <b>Nome da Empresa:</b> Deloitte
-                    </h1>
-                    <h1 className="titulo-pag">
-                      <b>Recebedor:</b> Ethos Connections cia.
-                    </h1>
-                    <h1 className="titulo-pag">
-                      <b>Plano:</b> XXXXX
-                    </h1>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        Nome da Empresa:
+                      </h1>
+                      <h2 className='titulo-pag-2'>Deloitte</h2>
+                    </div>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        Recebedor:
+                      </h1>
+                      <h2 className='titulo-pag-2'> Ethos Connections cia</h2>
+
+                    </div>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        Plano:
+                      </h1>
+                      <h2 className='titulo-pag-2'>XXXXX</h2>
+                    </div>
+
                   </div>
 
                   <div className="caixa-pagamentos-titulos-metade-2">
-                    <h1 className="titulo-pag">
-                      {' '}
-                      <b>CNPJ:</b> 12.345.678/9101-12
-                    </h1>
-                    <h1 className="titulo-pag">
-                      {' '}
-                      <b>Vencimento:</b> 23/11/2023
-                    </h1>
-                    <h1 className="titulo-pag">
-                      {' '}
-                      <b>Valor:</b> 1000,00
-                    </h1>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        CNPJ:
+                      </h1>
+                      <h2 className='titulo-pag-2'>12.345.678/9101-12</h2>
+                    </div>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        Vencimento:
+                      </h1>
+                      <h2 className='titulo-pag-2'>23/11/2023</h2>
+                    </div>
+
+                    <div className="pag-org">
+                      <h1 className="titulo-pag">
+                        Valor:
+                      </h1>
+                      <h2 className='titulo-pag-2'>1000,00</h2>
+                    </div>
+
                   </div>
+
+
                 </div>
               </div>
             </div>
@@ -102,10 +145,14 @@ const Pagamento = () => {
                 <h1 className="caixa-pagamentos-h1">
                   Sua plataforma será atualizada imediatamente após o pagamento
                 </h1>
+                <div className='pix-codigo-container'>
+                  <strong className='titulo-pag'>Código Pix:</strong>
+                  <div className="caixa-pag">{codigoPix}</div>
+                  <button onClick={handleCopy} className='botao-pix'>Copiar Código Pix</button>
+                </div>
 
-             
 
-               
+
               </div>
 
 
@@ -116,11 +163,11 @@ const Pagamento = () => {
 
             </div>
 
-            
+
 
           )}
-        </div>
-      </div>
+        </div >
+      </div >
 
       <FooterPlataforma />
     </>
