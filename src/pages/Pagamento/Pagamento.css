@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 75vw;
     margin-left: 10vw;
+
 }
 
 .conteudo-titulo-pagamento {
@@ -17,13 +18,15 @@
     border-radius: 7px;
     border: 1px solid #FDFAFA;
     background: #1B1F23;
-    height: 544px;
+    padding: 0px 0px 5% 0%;
+    margin-bottom: 5vh;
+
 }
 
 .img-pagamento {
     width: 43px;
     height: 43px;
-    margin-top: 3vh;
+    margin-top: 4vh;
 }
 
 .pagamento-box-titulo {
@@ -35,10 +38,87 @@
 .pagamento-box-titulo-h1 {
     font-size: 1.6rem;
     font-weight: var(--letra-bold);
-    margin-top: 3vh;
+    margin-top: 4vh;
 }
 
 
-.container-box{
+.container-box {
     display: flex;
+    flex-direction: column;
+    padding: 0px 10vh ;
+
+}
+
+.container-box-pagamento-titulo {
+    display: flex;
+    gap: 2vh;
+    z-index: 2;
+    margin-bottom: -3.7vh;
+}
+
+
+.container-box-pagamento-subtitulo-ativo {
+        font-weight: var(--letra-medium);
+        font-size: 1rem;
+        color: var(--cor-primaria);
+        width: 89px;
+        height: 33px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+        background: #384048;
+        border-top: 1px solid #FFF;
+        border-right: 1px solid #FFF;
+        border-left: 1px solid #FFF;
+    z-index: 1;
+
+}
+
+
+
+.container-box-pagamento-subtitulo {
+    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    display: relative;
+    justify-content: center;
+}
+
+.caixa-pagamentos {
+    border-radius: 5px;
+    border: 1px solid #FFF;
+    background: #384048;
+    position: relative;
+    z-index: 1;
+}
+
+.caixa-pagamentos-h1 {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    font-weight: var(--letra-medium);
+    margin-top: 3vh;
+}
+
+.img-qrcode {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.qrcode {
+    width: 22vh;
+    height: 22vh;
+}
+
+.titulo-pag {
+    font-size: 1.1rem;
+    font-weight: var(--letra-medium);
+}
+
+.caixa-pagamentos-dividir {
+    display: flex;
+    justify-content: center;
+    gap: 8vh;
 }
