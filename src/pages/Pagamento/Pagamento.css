@@ -9,33 +9,35 @@
 .pagamento-box {
     border-radius: 7px;
     /* border: 1px solid #FDFAFA; */
-    background: #1B1F23;
-    padding: 0px 0px 5% 0%;
+    background-color: var(--cinza);
+    padding: 20px 35px;
 }
 
 .img-pagamento {
-    width: 43px;
-    height: 43px;
-    margin-top: 4vh;
+    width: 28px;
+    /* height: 43px; */
+    /* margin-top: 4vh; */
 }
 
 .pagamento-box-titulo {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 2vh;
+    margin: 10px 0px;
 }
 
 .pagamento-box-titulo-h1 {
-    font-size: 1.6rem;
-    font-weight: var(--letra-bold);
-    margin-top: 4vh;
+    font-size: 1.2rem;
+    font-weight: var(--letra-medium);
+    /* margin-top: 4vh; */
 }
 
 
 .container-box {
     display: flex;
     flex-direction: column;
-    padding: 0px 10vh;
+    /* padding: 0px 10vh; */
 
 }
 
@@ -48,7 +50,7 @@
 
 
 .container-box-pagamento-subtitulo-ativo {
-    font-weight: var(--letra-medium);
+    font-weight: var(--letra-regular);
     font-size: 1rem;
     color: var(--cor-primaria);
     width: 89px;
@@ -58,15 +60,15 @@
     justify-content: center;
     border-radius: 5px;
     background: #384048;
-    /* border-top: 1px solid #FFF; */
-    /* border-right: 1px solid #FFF; */
-    /* border-left: 1px solid #FFF; */
     cursor: pointer;
     z-index: 1;
+    padding: 10px 0px 25px 0px;
+    margin: 0;
+
 }
 
 .container-box-pagamento-subtitulo-ativo-2 {
-    font-weight: var(--letra-medium);
+    font-weight: var(--letra-regular);
     font-size: 1rem;
     color: var(--cor-primaria);
     width: 20vh;
@@ -76,30 +78,35 @@
     justify-content: center;
     border-radius: 5px;
     background: #384048;
-    /* border-top: 1px solid #FFF; */
-    /* border-right: 1px solid #FFF; */
-    /* border-left: 1px solid #FFF; */
+    padding: 10px 0px 25px 0px;
     cursor: pointer;
     z-index: 1;
+    margin: 0;
 }
 
 
 .container-box-pagamento-subtitulo {
-    font-weight: var(--letra-medium);
+    font-weight: var(--letra-regular);
     font-size: 1rem;
     display: relative;
     justify-content: center;
     cursor: pointer;
+    padding: 10px 0px 25px 10px;
+    margin: 0;
 }
 
 .container-box-pagamento-subtitulo-2 {
-    font-weight: var(--letra-medium);
+    font-weight: var(--letra-regular);
     font-size: 1rem;
     display: relative;
     justify-content: center;
     cursor: pointer;
-    margin-left: 1vh;
+    padding: 10px 0px 25px 10px;
+    margin: 0;
+}
 
+.container-box-pagamento-subtitulo:hover, .container-box-pagamento-subtitulo-2:hover {
+    color: var(--cor-primaria);
 }
 
 .caixa-pagamentos {
@@ -108,10 +115,13 @@
     background: #384048;
     position: relative;
     z-index: 1;
+    padding: 10px;
+    height: 400px;
+    margin-bottom: 20px;
 }
 
 .caixa-pagamentos-h1 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     font-weight: var(--letra-medium);
@@ -126,20 +136,22 @@
 }
 
 .qrcode {
-    width: 22vh;
-    height: 22vh;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 7px;
+    margin: 20px 0px;
 }
 
 .titulo-pag {
-    font-size: 1.1rem;
-    font-weight: var(--letra-semi-=);
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
     margin-top: 0.5vh;
 
 }
 
 .titulo-pag-2 {
-    font-size: 1.1rem;
-    font-weight: var(--letra-medium);
+    font-size: 1rem;
+    font-weight: var(--letra-light);
     margin-top: 0.5vh;
 }
 
@@ -157,7 +169,7 @@
 
 .pix-codigo-container {
     display: flex;
-    margin-top: 10vh;
+    margin-top: 15vh;
     margin-bottom: 10vh;
     justify-content: center;
     gap: 2vh;

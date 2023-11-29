@@ -12,7 +12,7 @@ import { useUsuario } from '../../hooks/Usuario'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma'
 
 //react router
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 const Contrato = (props) => {
 
   const { usuario } = useUsuario();
@@ -22,6 +22,10 @@ const Contrato = (props) => {
     navigate('/minha-conta#meu-plano')  
   }
 
+  const location = useLocation();
+  const state = location.state;
+  const nomeDoPlano = state && state.nomeDoPlano;
+  const precoDoPlano = state && state.precoDoPlano
    
   //  useEffect(() => {
   //    console.log('chamei a api');
@@ -65,7 +69,13 @@ const Contrato = (props) => {
   }, []);
 
   const irParaPagamentos = () => {
-    navigate('/meu-plano/contrato/pagamento')  
+    navigate('/meu-plano/contrato/pagamento', {
+      state: {
+        nomeDoPlano: nomeDoPlano,
+        precoDoPlano: precoDoPlano,
+      },
+    });
+
   }
   
   return (
@@ -93,12 +103,12 @@ const Contrato = (props) => {
           <div className='informacoes-plano-contrato'>
             <div className='informacao-plano-contrato'>
               <h4 className='plano-contrato'>Nome do Plano:</h4>
-              <span className='nome-plano-contrato'>nomePlano</span>
+              <span className='nome-plano-contrato'>{nomeDoPlano}</span>
             </div>
 
             <div className='informacao-plano-contrato'>
               <h4 className='plano-contrato'>Preço:</h4>
-              <span className='nome-plano-contrato'>valorPlano</span>
+              <span className='nome-plano-contrato'>{precoDoPlano}</span>
             </div>
           </div>
 

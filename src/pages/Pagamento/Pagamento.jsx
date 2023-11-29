@@ -10,6 +10,7 @@ import qrcode from '../../assets/qrcode.png';
 
 const Pagamento = () => {
   const { usuario } = useUsuario();
+  const navigate = useNavigate();
   const location = useLocation();
   const dadosServico = location.state ? location.state.dadosServico : null;
 
@@ -37,18 +38,69 @@ const Pagamento = () => {
   };
 
   useEffect(() => {
-    // Gera o código PIX automaticamente quando o componente é montado
     gerarCodigoPix();
-  }, []); // O array vazio assegura que este efeito é executado apenas uma vez, sem dependências
+  }, []);
+
+  useEffect(() => {
+    const tempoDeEspera = 6000;
+    const timeoutId = setTimeout(() => {
+      let timerInterval;
+
+      Swal.fire({
+        icon: 'success', 
+        title: "Pagamento Aprovado!",
+        html: "Liberando novas páginas.",
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+          timerInterval = setInterval(() => {
+            timer.textContent = `${Swal.getTimerLeft()}`;
+          }, 500);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+
+          if(nomeDoPlano == 'Plano Analytics') {
+
+            navigate('/meu-progresso');
+          }else{
+            navigate('/meu-portfolio');
+          }
+        }
+      });
+
+    }, tempoDeEspera);
+
+    return () => clearTimeout(timeoutId);
+  }, [navigate]);
+
+
+  const state = location.state;
+  const nomeDoPlano = state && state.nomeDoPlano;
+  const precoDoPlano = state && state.precoDoPlano
+   
 
   return (
     <>
       <HeaderPlataforma plano={'Provider'} razaoSocial={usuario.razaoSocial} />
 
       <div className="conteudo">
-        <div className="conteudo-titulo-pagamento">Realizar Pagamento Pix</div>
+
+      <div className='beadcrumb'>
+
+          <Link className='link-beadcrumb-atual'>
+            <span className='caminho'>Pagamento</span>
+          </Link>        
+
+        </div>
 
         <div className="pagamento-box">
+          
           <div className="pagamento-box-titulo">
             <img src={imgAprovado} alt="Aprovação pagamento" className="img-pagamento" />
             <h1 className="pagamento-box-titulo-h1">Obrigado por fazer parte da Ethos!</h1>
@@ -81,7 +133,7 @@ const Pagamento = () => {
                       <h1 className="titulo-pag">
                         Nome da Empresa:
                       </h1>
-                      <h2 className='titulo-pag-2'>Deloitte</h2>
+                      <h2 className='titulo-pag-2'>{usuario.razaoSocial}</h2>
                     </div>
 
                     <div className="pag-org">
@@ -96,7 +148,7 @@ const Pagamento = () => {
                       <h1 className="titulo-pag">
                         Plano:
                       </h1>
-                      <h2 className='titulo-pag-2'>XXXXX</h2>
+                      <h2 className='titulo-pag-2'>{nomeDoPlano}</h2>
                     </div>
 
                   </div>
@@ -107,7 +159,7 @@ const Pagamento = () => {
                       <h1 className="titulo-pag">
                         CNPJ:
                       </h1>
-                      <h2 className='titulo-pag-2'>12.345.678/9101-12</h2>
+                      <h2 className='titulo-pag-2'>{usuario.cnpj}</h2>
                     </div>
 
                     <div className="pag-org">
@@ -121,7 +173,7 @@ const Pagamento = () => {
                       <h1 className="titulo-pag">
                         Valor:
                       </h1>
-                      <h2 className='titulo-pag-2'>1000,00</h2>
+                      <h2 className='titulo-pag-2'>{precoDoPlano}</h2>
                     </div>
 
                   </div>

@@ -2,12 +2,8 @@
     display: flex;
     flex-direction: row;
     border-radius: 7px;
-    /* background: rgba(56, 64, 72, 0.00); */
-    /* margin-top: 3vh; */
     gap: 3vh;
     padding: 1vh;
-    /* background: #00000085; */
-    /* box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.2); */
 }
 
 .imagem-interactions {
@@ -18,39 +14,44 @@
 .interactions-title {
     font-size: 1.1rem;
     font-weight: var(--letra-regular);
-    margin-top: 3vh;
 }
 
 .interactions-title-box {
     display: flex;
-    gap: 3vh;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    justify-content: space-between;
+    margin: 0px 0px 20px 0px;
+    align-items: center;
+    background-color: var(--cinza);
+    padding: 15px 35px;
+    border-radius: 7px;
 }
 
 .box-title-interactions {
     font-size: 1rem;
     text-align: center;
     font-style: normal;
-    font-weight: 300;
+    font-weight: var(--letra-medium);
     line-height: normal;
-    margin-top: 2.5vh;
+    margin: 0;
+}
+
+.box-title-interactions span{
+    font-weight: var(--letra-light);
 }
 
 .box-interactions-letter {
     font-size: 1rem;
-    font-weight: var(--letra);
+    font-weight: var(--letra-medium);
     border-radius: 4px;
-    border: 1px solid #FFF;
-    padding: 4px 10px;
-
+    /* border: 1px solid #FFF; */
+    /* padding: 4px 10px; */
+    margin: 0;
 }
 
-.interaction-img {
-    border-radius: 20px;
-    display: flex;
-    width: 2vh;
+.box-interactions-letter span{
+    font-weight: var(--letra-light);
 }
+
 
 .interactions-subtitle {
     font-size: 1rem;
@@ -196,4 +197,39 @@
     background: rgba(0, 0, 0, 0.795);
     backdrop-filter: blur(20%);
     overflow-y: auto;
+}
+
+
+.metricas-contatos{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.titulo-secao-interacoes{
+    color: var(--cor-letras);
+    margin: 0;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    font-weight: var(--letra-regular);
+}
+
+.container-opcoes-interacoes{
+    padding: 20px 35px;
+    border-radius: 7px;
+    background-color: var(--cinza);
+    margin-bottom: 20px;
+}
+
+.titulo-ultimo-servico{
+    margin: 0px;
+    font-size: 1rem;
+    font-weight: var(--letra-medium);
+    color: var(--cor-letras);
+    letter-spacing: 2px;
+    background-color: #056b80;
+    border-radius: 5px;
+    padding: 2px 2px;
+    width: 60%;
+    text-align: center;
 }

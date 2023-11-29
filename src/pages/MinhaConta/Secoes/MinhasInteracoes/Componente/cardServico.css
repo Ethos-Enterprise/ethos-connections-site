@@ -1,20 +1,24 @@
 .interaction-img {
     border-radius: 20px;
     display: flex;
-    width: 18vh;
+    width: 23vh;
 }
 
 .interactions-title-servico{
     font-size: 1.1rem;
-    font-weight: var(--letra-bold);
+    font-weight: var(--letra-medium);
     margin: 8px 0px 2px 0px;
     color: var(--cor-primaria);
 }
 
 .interactions-subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: var(--letra-light);
-    line-height: normal;
+    line-height: 25px;
+}
+
+.interactions-subtitle b{
+    font-weight: var(--letra-medium);
 }
 
 .interactions-subtitle-data {
@@ -25,27 +29,31 @@
 }
 
 .imagem-interactionsC {
-    /* width: 100px; */
+    width: 525px;
     height: 100px;
-    border-bottom: 4px solid var(--cor-primaria);
-    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
+    /* border-bottom: 4px solid var(--cor-primaria); */
+    box-shadow: 0px 1px 8px 0px var(--cor-letras);
     background-color: #00000065;
     border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s ease;
 }
 
 .imagem-interactionsF {
+    transition: all 0.35s ease;
+    width: 525px;
     height: 100px;
+    background-color: #00000065;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .imagem-interactionsC:hover {
     background-color: #00000065;
-}
-
-.imagem-interactionsF-2 {
-    border-bottom: 4px solid var(--cor-primaria);
-    box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.2);
-    background-color: #00000065;
-    border-radius: 7px;
 }
 
 .imagem-interactionsF-2:hover {
@@ -61,25 +69,22 @@
 }
 
 
-.interactions-box-component {
-    position: relative;
-}
-
 .imagem-interactionsC:hover,
 .imagem-interactionsF:hover {
-    transform: scale(1.1);
+    transform: scale(1.02);
     cursor: pointer;
 }
 
-
 .interactions-box-component {
+    position: relative;
     border-radius: 7px;
     gap: 4vh;
-    background: #45454541;
-    /* box-shadow: 0 0 0.4px 0.3px #a3a3a3; */
+    background-color: var(--cinza);
     display: flex;
-    padding: 5vh 3vh 5vh 3vh;
+    align-items: center;
+    padding: 20px 35px;
     margin-bottom: 3vh;
+
 }
 
 .interactions-box-component-empresa {

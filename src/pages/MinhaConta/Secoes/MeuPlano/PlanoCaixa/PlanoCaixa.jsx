@@ -14,9 +14,13 @@ const PlanoCaixa = (props) => {
     const navigate = useNavigate();
 
     const mudarPlano = () => {
-        // Lógica para mudar o plano
-        console.log('Mudando o plano...');
-        navigate('/meu-plano/contrato')
+
+        navigate('/meu-plano/contrato', {
+        state: {
+          nomeDoPlano: props.nome,
+          precoDoPlano: props.preco,
+        },
+      });
     };
 
     return (
@@ -25,7 +29,7 @@ const PlanoCaixa = (props) => {
 
             <h2 className='nome-plano-informacao'>{props.nome}</h2>
 
-            {props.exibirBotao && <button onClick={() => mudarPlano()} className='botao-preenchido'>{props.botao}</button>}
+            {props.exibirBotao && <button className='botao-preenchido' onClick={() => mudarPlano(props.nome, props.preco)} >{props.botao}</button>}
 
             </div>
 
