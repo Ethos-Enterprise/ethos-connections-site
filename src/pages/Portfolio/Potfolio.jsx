@@ -58,7 +58,7 @@ const Potfolio = () => {
 
                         <div className='informacoes-principais'>
 
-                            <h2 className='nome-empresa-portfolio'>Delloite</h2>
+                            <h2 className='nome-empresa-portfolio'>Deloitte</h2>
                             <Link className='link-site-empresa'>ww.delloitte.com</Link>
                             <p className='descricao-breve-empresa'>Somos inovadores em tecnologia oferecendo soluções eficientes e escaláveis para nossos clientes.</p>
                             <p className='ano-certificacao-empresa'>Empresa certificada desde <span>2018</span></p>
