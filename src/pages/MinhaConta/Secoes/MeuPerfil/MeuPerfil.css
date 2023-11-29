@@ -58,6 +58,7 @@ margin-bottom: 1px;
     display: flex;
     justify-content: flex-end;
     margin-right: 3%;
+    gap: 1rem;
 }
 
 .botao-preenchido-perfil{

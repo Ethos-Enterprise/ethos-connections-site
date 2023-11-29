@@ -16,7 +16,7 @@ const MeuPerfil = () => {
       <div className='card-informacoes1'>
         <div className='infos-empresa'><p>Nome da empresa: <span>Matrix</span></p>
         <p>Área de Atuação: <span>Distribuidora de energia elétrica</span></p>
-        <p>Tamanho da Empresa:<span> 200 Funcionários</span></p>
+        <p>Tamanho da Empresa:<span> 500 Funcionários</span></p>
         </div>
         <p>CNPJ:<span> 12.345.678/9101-12</span></p>
       </div>
