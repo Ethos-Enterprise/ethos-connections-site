@@ -25,6 +25,8 @@ import Pagamento from "./pages/Pagamento/Pagamento.jsx";
 import Formulario from "./pages/Formulario/Formulario.jsx";
 import MinhasNegociacoes from "./pages/Minhas Negociacoes/MinhasNegociacoes.jsx";
 import MinhasInteracoes from "./pages/MinhaConta/Secoes/MinhasInteracoes/MinhasInteracoes.jsx";
+import Planos from "./pages/Home/Sections/Planos/Planos.jsx";
+import { Meta } from "./pages/Meta/Meta.jsx";
 
 function App() {
   return (
@@ -45,6 +47,9 @@ function App() {
           <Route path="/minha-conta" element={<MinhaConta/>}/>
 
           <Route path="/meu-portfolio" element={<MeuPortfolio />} />
+          
+          <Route path="/meu-progresso/metas" element={<Meta />} />
+
           <Route path="/meu-progresso/formulario" element={<Formulario />} />
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
 
@@ -54,7 +59,7 @@ function App() {
 
           <Route path="/minhas-negociacoes" element={<MinhasNegociacoes />} />
           <Route path="/minhas-interacoes" element={<MinhasInteracoes componente={'contatos'}/>} />
-
+          <Route path="/escolha-plano" element={<Planos componente={'escolha'}/>} />
 
         </Routes>
 

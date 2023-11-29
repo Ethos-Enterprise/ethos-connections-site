@@ -87,7 +87,7 @@ const Login = () => {
                     popup: 'animated fadeInDown faster' 
                   },
                   didClose: () => {
-                    navigate('/solucoes-esg');
+                    navigate('/escolha-plano');
                 }
                 });
 

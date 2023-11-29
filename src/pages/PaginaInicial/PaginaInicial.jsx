@@ -208,6 +208,9 @@ export const PaginaInicial = () => {
     { value: 'TO', label: 'Tocantins' },
   ];
 
+  const filtrarServicos = () => {
+    alert('oi')
+  }
   return (
     <div className='pagina-inicial'>
 

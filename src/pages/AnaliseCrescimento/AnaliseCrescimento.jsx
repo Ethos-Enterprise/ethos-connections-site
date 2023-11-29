@@ -11,7 +11,7 @@ import './AnaliseCrescimento.css'
 //imagens
 import IconeMeta from '../../assets/icones/meta.png'
 //react/router
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
@@ -19,9 +19,14 @@ import CardFormulario from './CardFormulario/CardFormulario.jsx';
 import GraficoCircular from './GraficoCircular/GraficoCircular.jsx';
 import BarraProgresso from './GraficoBarra/GraficoBarra.jsx';
 
-
 const AnaliseCrescimento = () => {
     const { usuario } = useUsuario();
+
+    const navigate = useNavigate();
+
+    const criarMeta = () => {
+        navigate('/meu-progresso/metas')
+    }
 
     return (
         <div>
@@ -34,7 +39,7 @@ const AnaliseCrescimento = () => {
             <div className='conteudo'>
 
                 <div className='beadcrumb'>
-                    <Link to='/analise-crescimento' className='link-beadcrumb-atual'><span>Meu Progresso</span>  </Link>
+                    <Link to='/meu-progresso' className='link-beadcrumb-atual'><span>Meu Progresso</span>  </Link>
                 </div>
 
                 <div className='nivel-meta-esg'>
@@ -75,8 +80,8 @@ const AnaliseCrescimento = () => {
                         <div className='titulo-container'>
 
                             <h2 className='titulo-campo'>Minha Meta</h2>
-                            <ButtonFilled acao={'Criar Meta'} />
 
+                            <button className='botao-preenchido' onClick={() => criarMeta()}>Criar Meta</button>
                         </div>
                         <div className='tracinho-divisor'></div>
 

@@ -34,7 +34,7 @@ const Home = () => {
       <BeneficiosESG />
       <Fazemos/>
       <Oferecemos />
-      <Planos />
+      <Planos tela={'institucional'} />
       <FooterPlataforma />
     </>
   );

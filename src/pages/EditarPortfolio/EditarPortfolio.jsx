@@ -58,7 +58,7 @@ const EditarPortfolio = () => {
       case 'dados-complementares':
         return <DadosComplementares />;
       case 'servicos':
-        return <Servicos componente={hash.includes('adicionar-servico') ? 'adicionarServico' : 'servicos'}/>
+        return <Servicos componente={hash.includes('adicionar-servico') ? 'adicionarServico' : 'servicos'} />
       case 'certificacoes':
         return <Certificacoes />;
       case 'ver-portfolio':
@@ -70,7 +70,7 @@ const EditarPortfolio = () => {
   };
 
   const handleMenuClick = (hash) => {
- 
+
     setSecaoAtual(hash);
     navigate(`/meu-portfolio/editar-portfolio#${hash}`);
 
@@ -87,16 +87,16 @@ const EditarPortfolio = () => {
       <div className="conteudo">
         <div className='beadcrumb beadcrumb-editar-portfolio'>
           <div>
-          <Link to='/meu-portfolio' className='link-beadcrumb'>
-            <span>Meu Portfólio {'> '}</span>
-          </Link>
-          <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
-            <span>Editar Portfólio {'> '}</span>
-          </Link>
+            <Link to='/meu-portfolio' className='link-beadcrumb'>
+              <span>Meu Portfólio {'> '}</span>
+            </Link>
+            <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
+              <span>Editar Portfólio {'> '}</span>
+            </Link>
 
-          <Link to={`/minha-conta#${secaoAtual}`} className='link-beadcrumb-atual'>
-            <span className='caminho'>{opcoesMenu.find(opcao => opcao.hash === secaoAtual)?.nome}</span>
-          </Link>
+            <Link to={`/minha-conta#${secaoAtual}`} className='link-beadcrumb-atual'>
+              <span className='caminho'>{opcoesMenu.find(opcao => opcao.hash === secaoAtual)?.nome}</span>
+            </Link>
           </div>
 
           <h4 className='desativar' > <i class="fa-regular fa-trash-can"></i> Excluir Conta</h4>
@@ -109,7 +109,7 @@ const EditarPortfolio = () => {
             secaoAtiva={secaoAtual}
             setSecaoAtual={handleMenuClick}
           />
-          
+
           <div className='dados-editaveis'>
             {renderizarComponenteSecao()}
           </div>

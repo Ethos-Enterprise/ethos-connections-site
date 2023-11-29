@@ -4,3 +4,59 @@
     border-radius: 7px;
     padding: 20px 35px;
 }
+
+.conteudo-formulario-pagina .formulario-beadcrumbs .botao-preenchido{
+    width: 155px;
+    display: flex;
+    justify-content: flex-start;
+    height: 25px;
+    padding: 1px 5px;
+    margin: 0;
+}
+
+.formulario-beadcrumbs{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-formulario .capa-formulario{
+    width: 100%;
+    border-radius: 7px;
+}
+
+.container-titulo-questionario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    margin: 16px 0px 24px 0px;
+    color: var(--cor-primaria);
+}
+.container-titulo-questionario .titulo-questionario{
+    font-size: 1.2rem;
+    font-weight: var(--letra-medium);
+    margin: 0px;
+}
+
+.container-informacao-pergunta .informacao-questionario{
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+    line-height: 25px;
+}
+
+.container-porcentagem-botao-iniciar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 32px 0px 16px 0px;
+}
+
+.container-porcentagem-botao-iniciar .porcentagem-questionario{
+    margin: 0;
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+}
+
+.container-porcentagem-botao-iniciar .botao-preenchido {
+    margin: 0;
+    width: 15vw;
+}

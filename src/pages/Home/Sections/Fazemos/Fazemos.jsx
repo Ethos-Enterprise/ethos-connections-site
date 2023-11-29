@@ -9,7 +9,7 @@ const Fazemos = (props) => {
         <p className='descricao'>Dada a força que o ESG  vêm ganhando nos últimos anos, nós surgimos 
             com o objetivo de unir empresas que ofereçam serviços/soluções ESG com empresas que buscam esse tipo de direcionamento.</p>
         
-        <div className='botoes'>
+        <div className='botoes-institucional'>
         <button className='botao1-borda'>Saiba Mais</button>
         <button className='botao1-preenchido'>Fazer cadastro</button>
         </div>
