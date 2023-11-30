@@ -27,6 +27,7 @@
     background-color: var(--cinza);
     padding: 5px 35px 35px 35px;
     border-radius: 7px;
+    /* height: 120px; */
 }
 
 .informacoes-principais-minha-empresa .container-informacoes-principais-empresa .foto-de-perfil {
@@ -90,7 +91,7 @@
 .informacoes-gerais-empresa .dados-gerais-empresa {
     background-color: var(--cinza);
     border-radius: 7px;
-    width: 87%;
+    width: 470px;
 }
 
 .informacoes-gerais-empresa .dados-gerais-empresa {
@@ -121,6 +122,7 @@
     border-radius: 7px;
     padding: 20px 35px;
     margin-bottom: 8px;
+    height: 200px;
 }
 
 .informacoes-gerais-empresa .sobre-a-empresa .descricao-sobre-empresa {
@@ -133,6 +135,7 @@
     background-color: var(--cinza);
     border-radius: 7px;
     padding: 20px 35px;
+    height: 200px;
 
 }
 
@@ -261,4 +264,15 @@
 
 .foto-de-perfil:hover .descricao-hover-perfil {
     display: flex;
+}
+
+.mais-informacoes-empresa {
+    width: 100%;
+}
+
+.certificados-anexados-empresa{
+    font-weight: var(--letra-light);
+    font-size: 0.95rem;
+    line-height: 26px;
+    /* margin: 0; */
 }

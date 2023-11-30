@@ -38,6 +38,9 @@ export const PaginaInicial = () => {
   const [pesquisaServico, setPesquisaServico] = useState('');
   const [ultimaPesquisa, setUltimaPesquisa] = useState('');
 
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+
+
   const [filtroValor, setFiltroValor] = useState('');
 
 
@@ -101,41 +104,48 @@ export const PaginaInicial = () => {
     }
   }
 
+  // const buscarPorValorMedio = () => {
+  //   if (filtroValor !== '') {
+  //     if (ultimaPesquisa == '') {
+
+  //       api.get('v1.0/servicos/busca-por-valor', {
+  //         params: { valor: parseFloat(filtroValor) },
+  //         headers: {
+  //           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+  //         }
+  //       })
+  //         .then(async (response) => {
+  //           if (response.status !== 204) {
+  //             const responseData = Array.isArray(response.data) ? response.data : [response.data];
+
+  //             const servicosComNomeEmpresa = await Promise.all(
+  //               responseData.map ? responseData.map(async (servico) => {
+  //                 const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
+  //                 // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
+  //                 return { ...servico, razaoSocial };
+  //               }) : [responseData]
+  //             );
+  //             setServicos(servicosComNomeEmpresa);
+
+  //           } else {
+  //             setServicos([])
+  //           }
+  //         })
+  //         .catch((error) =>
+  //           console.log(error)
+  //         )
+  //     } else {
+  //       const servicosFiltrados = servicos.filter(servico => servico.valor <= parseFloat(filtroValor));
+  //       setServicos(servicosFiltrados);
+  //     }
+
+  //   }
+  // }
+
   const buscarPorValorMedio = () => {
     if (filtroValor !== '') {
-      if (ultimaPesquisa == '') {
-
-        api.get('v1.0/servicos/busca-por-valor', {
-          params: { valor: parseFloat(filtroValor) },
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-          }
-        })
-          .then(async (response) => {
-            if (response.status !== 204) {
-              const responseData = Array.isArray(response.data) ? response.data : [response.data];
-
-              const servicosComNomeEmpresa = await Promise.all(
-                responseData.map ? responseData.map(async (servico) => {
-                  const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
-                  // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
-                  return { ...servico, razaoSocial };
-                }) : [responseData]
-              );
-              setServicos(servicosComNomeEmpresa);
-
-            } else {
-              setServicos([])
-            }
-          })
-          .catch((error) =>
-            console.log(error)
-          )
-      } else {
-        const servicosFiltrados = servicos.filter(servico => servico.valor <= parseFloat(filtroValor));
-        setServicos(servicosFiltrados);
-      }
-
+      const servicosFiltradosPorValor = servicos.filter(servico => servico.valor <= parseFloat(filtroValor));
+      setServicos(servicosFiltradosPorValor);
     }
   }
 
@@ -208,9 +218,19 @@ export const PaginaInicial = () => {
     { value: 'TO', label: 'Tocantins' },
   ];
 
-  const filtrarServicos = () => {
-    alert('oi')
+  const filtrarServicos = (categoria) => {
+
+    setCategoriaSelecionada(categoria);
+  };
+
+  const limparFiltro = () => {
+    setCategoriaSelecionada(null)
   }
+
+  const servicosFiltrados = categoriaSelecionada
+    ? servicos.filter(servico => servico.areaAtuacaoEsg === categoriaSelecionada)
+    : servicos;
+
   return (
     <div className='pagina-inicial'>
 
@@ -229,9 +249,9 @@ export const PaginaInicial = () => {
         <div className='container-ultimos-serviços'>
           <h4 className='titulo-ultimos-servicos'>Categorias ESG </h4>
           <div className='ultimos-servicos'>
-            <UltimosServicos nomeServico={"Environmental"}  imagemFundo={imgEnvironmental}/>
-            <UltimosServicos nomeServico={"Social"} imagemFundo={imgSocial} />
-            <UltimosServicos nomeServico={"Governance"} imagemFundo={imgGovernance} />
+            <UltimosServicos nomeServico={"Environmental"} imagemFundo={imgEnvironmental} onClick={() => filtrarServicos("environmental")} ativo={categoriaSelecionada === "environmental"} />
+            <UltimosServicos nomeServico={"Social"} imagemFundo={imgSocial} onClick={() => filtrarServicos("social")} ativo={categoriaSelecionada === "social"} />
+            <UltimosServicos nomeServico={"Governance"} imagemFundo={imgGovernance} onClick={() => filtrarServicos("governance")} ativo={categoriaSelecionada === "governance"} />
           </div>
 
         </div>
@@ -354,16 +374,31 @@ export const PaginaInicial = () => {
           </div>
         </div>
 
-        {ultimaPesquisa != '' ? (
-          <h4 className='resultado-pesquisa'>Exibindo resultados para: "{ultimaPesquisa}"</h4>
+        {ultimaPesquisa !== '' ? (
+          <div className='caixa-mensagem-filtro'>
+
+            <h4 className='resultado-pesquisa'>Exibindo resultados para: "{ultimaPesquisa}"</h4>
+
+            <h4 className='resultado-pesquisa-2' onClick={() => limparFiltro()}>Limpar Filtros</h4>
+          </div>
+          
+        ) : categoriaSelecionada !== null ? (
+          <div className='caixa-mensagem-filtro'>
+
+          <h4 className='resultado-pesquisa'>Exibindo soluções da categoria: "{categoriaSelecionada}"</h4>
+
+          <h4 className='resultado-pesquisa-2' onClick={() => limparFiltro()}>Limpar Filtros</h4>
+          </div>
+
         ) : (
           <h4 className='resultado-pesquisa'>Exibindo todas as Soluções</h4>
         )}
+
         <div className='servicos-pesquisados'>
 
           {/* LISTAR SERVICOS QUE VEM ATRAVAES A REQUISICAO */}
-          {servicos.length > 0 ? (
-            servicos.map((servico) => (
+          {servicosFiltrados.length > 0 ? (
+            servicosFiltrados.map((servico) => (
               <Servico
                 key={servico.id}
                 id={servico.id}

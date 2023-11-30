@@ -150,3 +150,16 @@
 .container-menu-latera{
     width: 15vw;
 }
+
+.caixa-mensagem-filtro{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.caixa-mensagem-filtro .resultado-pesquisa-2 {
+    color: var(--cor-primaria);
+    margin: 24px 0px 0px 0px;
+    font-weight: var(--letra-medium);
+    cursor: pointer;
+}

@@ -16,17 +16,114 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 import Servico from '../../components/Serviços/Servico.jsx'
 
 //coisas do react
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const Potfolio = () => {
+    const [servicos, setServicos] = useState([]);
+
     const { usuario } = useUsuario();
 
-    const navigate = useNavigate();
+    const location = useLocation();
+    const dadosServicoAvaliacao = location.state ? location.state.dadosServicoAvaliacao : null;
+
+    const [portfolioData, setPortfolioData] = useState(null);
+
+    // useEffect(() => {
+    // const fkPrestadora = '6ba7b813-9dad-11d1-80b4-00c04fd430c4'
+    // api.get(`/v1.0/servicos/lista-servicos/{fkPrestadoraServico}`, {
+    //     params: {
+    //       fkPrestadoraServico: fkPrestadora,
+    //     },
+    //     headers: {
+    //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+    //     },
+    // })
+    //     .then((response) => {
+    //         console.log(response);
+    //         setPortfolioData(response.data)
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
+    // },[]);
+
+
+    // useEffect(() => {
+    //     const fkPrestadora = 'b0108d55-fc0a-4e64-a9ef-dafb33a29631'
+    //     api.get(`/v1.0/prestadoras/empresa/${fkPrestadora}`, {
+    //         headers: {
+    //           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+    //         },
+    //     })
+    //         .then((response) => {
+    //             console.log(response);
+    //             setPortfolioData(response.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    //     },[]);
+
+    // useEffect(() => {
+    //     api.get(`/v1.0/empresas/${usuario.id}`, {
+    //         params: {
+    //             id: usuario.id,
+    //         },
+    //         headers: {
+    //             Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+    //         },
+    //     })
+    //         .then((response) => {
+    //             console.log(response);
+    //             setPortfolioData(response.data)
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }, []);
+
+    useEffect(() => {
+        api.get("v1.0/servicos", {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            }
+        })
+            .then(async (response) => {
+                console.log(response);
+                const servicosComNomeEmpresa = await Promise.all(
+                    response.data.map(async (servico) => {
+                        const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
+                        // const fotoPerfil = await buscarFotoPerfil(servico.fkPrestadoraServico);
+                        return { ...servico, razaoSocial };
+                    })
+                );
+                setServicos(servicosComNomeEmpresa);
+            })
+            .catch((error) => {
+                console.log('erro ao pegar todos os serviços. ERRO: ', error);
+            })
+    }, []);
+
+    const buscarInformacoesEmpresa = (id) => {
+        return api.get(`/v1.0/empresas/${id}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
+          .then((response) => {
+            return response.data.razaoSocial
+          })
+          .catch((error) => {
+            console.log('algo deu errado ao pegar o nome ', error);
+            throw error;
+          });
+      };
+
 
     return (
 
@@ -58,8 +155,8 @@ const Potfolio = () => {
 
                         <div className='informacoes-principais'>
 
-                            <h2 className='nome-empresa-portfolio'>Deloitte</h2>
-                            <Link className='link-site-empresa'>ww.delloitte.com</Link>
+                            <h2 className='nome-empresa-portfolio'>{dadosServicoAvaliacao.nomeEmpresa}</h2>
+                            <Link className='link-site-empresa'>ww.empresaD.com</Link>
                             <p className='descricao-breve-empresa'>Somos inovadores em tecnologia oferecendo soluções eficientes e escaláveis para nossos clientes.</p>
                             <p className='ano-certificacao-empresa'>Empresa certificada desde <span>2018</span></p>
                         </div>
@@ -74,17 +171,17 @@ const Potfolio = () => {
 
                         <div className='informacao'>
                             <h4 className='informacao-titulo'>Área de Atuação</h4>
-                            <p className='informacao-dado'>Tecnologia da Informação</p>
+                            <p className='informacao-dado'>tecnologia</p>
                         </div>
 
                         <div className='informacao'>
                             <h4 className='informacao-titulo'>Telefone Corporativo</h4>
-                            <p className='informacao-dado'>(11) 2345-6789</p>
+                            <p className='informacao-dado'>(11) 9 8765-8754</p>
                         </div>
 
                         <div className='informacao'>
                             <h4 className='informacao-titulo'>Email Corporativo</h4>
-                            <p className='informacao-dado'>email@email.com</p>
+                            <p className='informacao-dado'>empresaD@email.com</p>
                         </div>
 
                         <div className='informacao'>
@@ -93,7 +190,7 @@ const Potfolio = () => {
                         </div>
                         <div className='informacao'>
                             <h4 className='informacao-titulo'>Tamanho da Empresa</h4>
-                            <p className='informacao-dado'>60 -80 funcionários</p>
+                            <p className='informacao-dado'>100 funcionários</p>
                         </div>
                     </div>
 
@@ -112,16 +209,16 @@ const Potfolio = () => {
 
                             <div className='certificados'>
 
-                            <div className='certificado'>
-                                <img src={iconeCertificado} alt="icone-certificado" className='icone-certificado' />
-                                <p className='nome-certificado'>nomeCertificado</p>
-                            </div>
+                                <div className='certificado'>
+                                    <img src={iconeCertificado} alt="icone-certificado" className='icone-certificado' />
+                                    <p className='nome-certificado'>nomeCertificado</p>
+                                </div>
 
-                            
-                            <div className='certificado'>
-                                <img src={iconeCertificado} alt="icone-certificado" className='icone-certificado' />
-                                <p className='nome-certificado'>nomeCertificado</p>
-                            </div>
+
+                                <div className='certificado'>
+                                    <img src={iconeCertificado} alt="icone-certificado" className='icone-certificado' />
+                                    <p className='nome-certificado'>nomeCertificado</p>
+                                </div>
                             </div>
 
                         </div>
@@ -132,27 +229,30 @@ const Potfolio = () => {
                 <div className='servicos-da-empresa'>
                     <h3 className='titulo-informacao-empresa'>Todos os Serviços</h3>
                     <div className='tracinho-divisor'></div>
-                    <Servico
-                        key={1}
-                        ocasiao={'portfolio-servico'}
 
-                        nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'}
-                        nomeEmpresa={'Deloitte'}
-                        descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'}
-                        valorMedio={'2.000'}
-                        areaESG={'Environmental, Social'}
-                    />
+                    {servicos.length > 0 ? (
+                        servicos.map((servico) => (
+                            <Servico
+                                key={servico.id}
+                                id={servico.id}
+                                ocasiao={'portfolio-servico'}
+                                nomeServico={servico.nomeServico}
+                                nomeEmpresa={servico.razaoSocial}
+                                descricao={servico.descricao}
+                                valorMedio={(servico.valor).toLocaleString('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL',
+                                    minimumFractionDigits: 2,
+                                    maximumFractionDigits: 2,
+                                })}
+                                areaESG={servico.areaAtuacaoEsg}
+                                fkPrestadoraServico={servico.fkPrestadoraServico}
+                            />
+                        ))
+                    ) : (
+                        <p>Nenhum resultado encontrado.</p>
+                    )}
 
-                    <Servico
-                        key={1}
-                        ocasiao={'portfolio-servico'}
-
-                        nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'}
-                        nomeEmpresa={'Deloitte'}
-                        descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'}
-                        valorMedio={'2.000'}
-                        areaESG={'Environmental, Social'}
-                    />
 
                 </div>
 
