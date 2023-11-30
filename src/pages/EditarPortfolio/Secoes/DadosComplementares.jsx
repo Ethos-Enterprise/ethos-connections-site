@@ -12,10 +12,10 @@ const DadosComplementares = () => {
 
   // DADOS DA PAGINA
   const [dadosComplementares, setDadosComplementares] = useState({
-    descricaoBreve: 'oi',
-    sobreEmpresa: 'oiii',
-    linkSite: 'aaaa',
-    dataCertificada: '2001-12-12',
+    descricaoBreve: '',
+    sobreEmpresa: '',
+    linkSite: '',
+    dataCertificada: '',
   });
 
   const atualizarCampos = (campo, valor) => {
@@ -28,7 +28,7 @@ const DadosComplementares = () => {
 
   const editarDadosComplementares = (e) => {
     e.preventDefault();
-
+  
     console.log('Função editarDadosComplementares chamada!');
     Swal.fire({
       title: "Salvar Alterações?",
@@ -41,28 +41,60 @@ const DadosComplementares = () => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        api.put('caminho sla', {
-
-        }, {
+        const dadosDoPortifolio = {
+          urlImagemPerfil: 'nao vai ter foto',
+          urlBackgroundPerfil: 'nao vai ter background',
+          descricaEmpresa: dadosComplementares.descricaoBreve,
+          sobreEmpresa: dadosComplementares.sobreEmpresa,
+          linkWebsiteEmpresa: dadosComplementares.linkSite,
+          dataEmpresaCertificada: dadosComplementares.dataCertificada,
+          fkPrestadoraServico: 'b0108d55-fc0a-4e64-a9ef-dafb33a29631',
+        };
+  
+        api.post('/v1.0/portfolios', dadosDoPortifolio, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
           },
         })
           .then((response) => {
-            console.log('editar dados portfolio', response);
-              // posso pegar os dados do portfolio e atualizar pela api e dps recarregar
+            console.log('Editar dados do portfólio', response);
             Swal.fire({
-              title: "Dados Atualizados!",
-              icon: "success"
+              title: "Seus dados foram salvos!",
+              icon: "success",
             });
           })
-
           .catch((error) => {
-            console.log('erro ao editar portfolio', error);
-          })
+            console.log('Erro ao editar portfólio', error);
+            Swal.fire({
+              title: "Erro ao salvar os dados!",
+              text: "Ocorreu um erro ao salvar os dados. Por favor, tente novamente.",
+              icon: "error",
+            });
+          });
       }
-    })
-  }
+    });
+  };
+  
+
+  const cadastrarPortfolio= () => {
+    const dadosDoPortifolio = {
+      descricaEmpresa: dadosComplementares.descricaoBreve,
+      sobreEmpresa: dadosComplementares.sobreEmpresa,
+      linkWebsiteEmpresa: dadosComplementares.linkSite,
+      dataEmpresaCertificada: dadosComplementares.dataCertificada,
+    };
+
+    // Simulação de chamada assíncrona
+    setTimeout(() => {
+      sessionStorage.setItem('dadosComplementares', JSON.stringify(dadosDoPortifolio));
+
+      Swal.fire({
+        title: 'Seus dados foram salvos!',
+        icon: 'success',
+      });
+    }, 1000);
+  };
+
 
     return (
       <div className='dados-portfolio'>
@@ -71,7 +103,7 @@ const DadosComplementares = () => {
         </h2>
         <div className='tracinho-divisor'></div>
 
-        <form className='inputs-portfolio' onSubmit={(e) => editarDadosComplementares(e)}>
+        <form className='inputs-portfolio' onSubmit={(e) => {e.preventDefault(); cadastrarPortfolio();} }>
 
           <div className='campo-portfolio'>
             <label htmlFor="" className='label-portfolio'>Descricao Breve</label>

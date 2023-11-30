@@ -1,12 +1,7 @@
 import React from 'react'
 import './MeuPerfil.css'
 
-import { useUsuario } from '../../../../hooks/Usuario'
-
 const MeuPerfil = () => {
-
-  const {usuario} = useUsuario();
-  
   return (
     <div className='dados-minha-conta'>
       <h2 className='titulo-secao'>
@@ -31,8 +26,8 @@ const MeuPerfil = () => {
       <div className='card-informacoes2'>
         <div className='infos-empresa'>
         <p>Endereço: <span>Av. Brig. Faria Lima, 2066 - Pinheiros, São Paulo - SP, 01451-001</span></p>
-        <p>Telefone Corporativo: <span>{usuario.telefone}</span></p>
-        <p>Email Corporativo:<span>{usuario.email}</span></p>
+        <p>Telefone Corporativo: <span>11 3027-2900</span></p>
+        <p>Email Corporativo:<span> contato@matrixenergia.com</span></p>
         </div>
         
       </div>
