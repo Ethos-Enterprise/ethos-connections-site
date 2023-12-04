@@ -110,7 +110,6 @@ margin-right: 10px;
 
 .caixa-servico-portfolio .container-valor-e-avaliacao{
     display: flex;
-
     justify-content: space-between;
 }
 
@@ -130,13 +129,6 @@ margin-right: 10px;
     color: var(--cor-primaria);
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-}
-
-
-.caixa-servico-portfolio .dados-servico-empresa{
-    width: 100%;
-    /* margin-top: 10px; */
-    /* margin-left: 15px; */
 }
 
 /* MEU SERVICO */

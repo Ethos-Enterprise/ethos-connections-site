@@ -76,28 +76,6 @@ const EditarPortfolio = () => {
 
   };
 
-  const desativarConta = () => {
-    Swal.fire({
-      title: "Desativar conta?",
-      icon: "question",
-      confirmButtonColor: "#3085d6",
-      showCancelButton: true,
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Desativar",
-      cancelButtonText: "Cancelar",
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Conta desativada!",
-          icon: "success"
-        });
-          sessionStorage.clear();
-          localStorage.clear();
-          navigate('/entrar');
-        };
-    })
-  }
   return (
     <div>
       <HeaderPlataforma
@@ -121,7 +99,7 @@ const EditarPortfolio = () => {
             </Link>
           </div>
 
-          <h4 className='desativar' onClick={() => desativarConta()}> <i class="fa-regular fa-trash-can"></i> Desativar Conta</h4>
+          <h4 className='desativar' > <i class="fa-regular fa-trash-can"></i> Excluir Conta</h4>
         </div>
 
         <div className='container-menu-campos-editaveis'>

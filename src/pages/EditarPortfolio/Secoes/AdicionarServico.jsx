@@ -60,153 +60,82 @@ const AdicionarServico = (props) => {
         }));
     };
 
-    // const cadastrarServico = (e) => {
-    //     e.preventDefault();
-    //     console.log('cadastrrr');
-    //     api.post('/v1.0/servicos', {
-    //         nomeServico: 'Exemplo',
-    //         descricao: 'Este é um serviço de Exemplo',
-    //         valor: 1.0,
-    //         areaAtuacaoEsg: [
-    //             'ENVIRONMENTAL',
-    //             'SOCIAL',
-    //             'GOVERNANCE'
-    //         ],
-    //         fkPrestadoraServico: '3767c8e2-4aaa-4e0a-ada9-ad82223945a7',
-    //     }, {
-    //         headers: {
-    //             Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-    //         },
-    //     })
-    //         .then((response) => {
-    //             console.log('SERVICO CADASTRADO', response);
-
-    //         })
-    //         .catch((error) => {
-    //             console.log('deu erro aqui');
-    //             console.log(error);
-    //         }
-    //         )
-
-    //     limparCampos();
-    // };
-
-
-    // const editarServico= (e) => {
-    //     e.preventDefault();
-
-    //     console.log('api editar servico');
-    //     Swal.fire({
-    //         title: "Salvar Alterações?",
-    //         icon: "question",
-    //         confirmButtonColor: "#3085d6",
-    //         showCancelButton: true,
-    //         cancelButtonColor: "#d33",
-    //         cancelButtonText: "Cancelar",
-    //         confirmButtonText: "Salvar",
-    //         reverseButtons: true,
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //           api.put('caminho editar servico do id tal', {
-
-    //           }, {
-    //             headers: {
-    //               Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-    //             },
-    //           })
-    //             .then((response) => {
-    //               console.log('editar dados portfolio', response);
-    //                 // posso pegar os dados do portfolio e atualizar pela api e dps recarregar
-    //               Swal.fire({
-    //                 title: "Dados Atualizados!",
-    //                 icon: "success"
-    //               });
-    //             })
-
-    //             .catch((error) => {
-    //               console.log('erro ao editar portfolio', error);
-    //             })
-    //         }
-    //       })
-    // }
-
-
     const cadastrarServico = (e) => {
         e.preventDefault();
+        console.log('cadastrrr');
+        api.post('/v1.0/servicos', {
+            nomeServico: 'Exemplo',
+            descricao: 'Este é um serviço de Exemplo',
+            valor: 1.0,
+            areaAtuacaoEsg: [
+                'ENVIRONMENTAL',
+                'SOCIAL',
+                'GOVERNANCE'
+            ],
+            fkPrestadoraServico: '3767c8e2-4aaa-4e0a-ada9-ad82223945a7',
+        }, {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            },
+        })
+            .then((response) => {
+                console.log('SERVICO CADASTRADO', response);
 
-        Swal.fire({
-            title: "Cadastrar Serviço?",
-            icon: "question",
-            confirmButtonColor: "#3085d6",
-            showCancelButton: true,
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Cadastrar",
-            cancelButtonText: "Cancelar",
-            reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const dadosServicoArmazenar = {
-                    nomeServico: dadosServico.nomeServico,
-                    descricao: dadosServico.descricao,
-                    valor: dadosServico.valor,
-                    areaAtuacaoEsg: 'environmental',
-                };
-
-                sessionStorage.setItem('dadoServicoArmazenado', JSON.stringify(dadosServicoArmazenar));
-                limparCampos();
-                Swal.fire({
-                    title: "Serviço cadastrado!",
-                    icon: "success"
-                });
-                voltar();
+            })
+            .catch((error) => {
+                console.log('deu erro aqui');
+                console.log(error);
             }
-        });
-    }
-    const editarServico = (e) => {
-        e.preventDefault();
+            )
 
-        Swal.fire({
-            title: "Editar Serviço?",
-            icon: "question",
-            confirmButtonColor: "#3085d6",
-            showCancelButton: true,
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Editar",
-            cancelButtonText: "Cancelar",
-            reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                const dadosAtuais = JSON.parse(sessionStorage.getItem('dadoServicoArmazenado')) || {};
-                const servicosAtualizados = {
-                    ...dadosAtuais,
-                    nomeServico: dadosServico.nomeServico,
-                    descricao: dadosServico.descricao,
-                    valor: dadosServico.valor,
-                    areaAtuacaoEsg: 'environmental',
-                };
-
-                sessionStorage.setItem('dadoServicoArmazenado', JSON.stringify(servicosAtualizados));
-
-                limparCampos();
-                voltar();
-                Swal.fire({
-                    title: "Serviço Editado!",
-                    icon: "success"
-                });
-                voltar();
-            }
-        });
+        limparCampos();
     };
 
 
-    const voltar = () => {
-        limparCampos();
-        props.setComponente('servicos');
-        navigate('/meu-portfolio/editar-portfolio#servicos');
+    const editarServico= (e) => {
+        e.preventDefault();
+
+        console.log('api editar servico');
+        Swal.fire({
+            title: "Salvar Alterações?",
+            icon: "question",
+            confirmButtonColor: "#3085d6",
+            showCancelButton: true,
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Salvar",
+            reverseButtons: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              api.put('caminho editar servico do id tal', {
+      
+              }, {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                },
+              })
+                .then((response) => {
+                  console.log('editar dados portfolio', response);
+                    // posso pegar os dados do portfolio e atualizar pela api e dps recarregar
+                  Swal.fire({
+                    title: "Dados Atualizados!",
+                    icon: "success"
+                  });
+                })
+      
+                .catch((error) => {
+                  console.log('erro ao editar portfolio', error);
+                })
+            }
+          })
     }
 
+    const voltar = () => {
+        limparCampos();
+    props.setComponente('servicos'); 
+        navigate('/meu-portfolio/editar-portfolio#servicos');
 
+    }
 
     return (
         <div>
@@ -276,11 +205,8 @@ const AdicionarServico = (props) => {
                             ]}
                             className="basic-multi-select"
                             classNamePrefix="select"
-                            value={
-                                Array.isArray(dadosServico.areaAtuacaoEsg) ?
-                                    dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option })) :
-                                    (edicao ? [{ value: 'ENVIRONMENTAL', label: 'Environmental' }] : [])
-                            }
+                            value={Array.isArray(dadosServico.areaAtuacaoEsg) ? dadosServico.areaAtuacaoEsg.map(option => ({ value: option, label: option })) : []}
+
                             onChange={atualizarCampos}
                             styles={{
                                 control: (provided, state) => ({
@@ -342,14 +268,14 @@ const AdicionarServico = (props) => {
 
                     <div className='botoes-portfolio'>
                         {edicao ? (
-                            <>
-                                <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
-                                <ButtonFilled acao={'Salvar'} type='submit' />
-                            </>
+                        <>
+                        <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
+                        <ButtonFilled acao={'Salvar'} type='submit' />
+                        </>
                         ) : (
                             <>
-                                <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
-                                <ButtonFilled acao={'Salvar'} type='submit' />
+                            <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'> Cancelar</button>
+                            <ButtonFilled acao={'Salvar'} type='submit' />
                             </>
                         )}
 
@@ -358,7 +284,6 @@ const AdicionarServico = (props) => {
             </div >
         </div >
     )
-
 }
 
 export default AdicionarServico

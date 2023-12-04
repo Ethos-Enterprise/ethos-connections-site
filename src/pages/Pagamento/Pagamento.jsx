@@ -8,10 +8,6 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 import imgAprovado from '../../assets/verificado.png';
 import qrcode from '../../assets/qrcode.png';
 
-//api
-
-import api from '../../service/api.js'
-
 const Pagamento = () => {
   const { usuario } = useUsuario();
   const navigate = useNavigate();
@@ -45,16 +41,13 @@ const Pagamento = () => {
     gerarCodigoPix();
   }, []);
 
-
-
-
   useEffect(() => {
     const tempoDeEspera = 6000;
     const timeoutId = setTimeout(() => {
       let timerInterval;
 
       Swal.fire({
-        icon: 'success',
+        icon: 'success', 
         title: "Pagamento Aprovado!",
         html: "Liberando novas páginas.",
         timer: 3000,
@@ -72,34 +65,16 @@ const Pagamento = () => {
       }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
 
-          if (nomeDoPlano == 'Plano Analytics') {
+          if(nomeDoPlano == 'Plano Analytics') {
 
             navigate('/meu-progresso');
-          } else {
-
-            api.post('/v1.0/prestadoras', {
-              idEmpresa: usuario.id,
-              statusAprovacao: 'APROVADO'
-            }, {
-              headers: {
-                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-              }
-            })
-              .then((response) => {
-                console.log(response);
-              })
-              .catch((error) => {
-                console.log(error);
-              })
-
+          }else{
             navigate('/meu-portfolio');
           }
         }
       });
 
     }, tempoDeEspera);
-
-
 
     return () => clearTimeout(timeoutId);
   }, [navigate]);
@@ -108,7 +83,7 @@ const Pagamento = () => {
   const state = location.state;
   const nomeDoPlano = state && state.nomeDoPlano;
   const precoDoPlano = state && state.precoDoPlano
-
+   
 
   return (
     <>
@@ -116,16 +91,16 @@ const Pagamento = () => {
 
       <div className="conteudo">
 
-        <div className='beadcrumb'>
+      <div className='beadcrumb'>
 
           <Link className='link-beadcrumb-atual'>
             <span className='caminho'>Pagamento</span>
-          </Link>
+          </Link>        
 
         </div>
 
         <div className="pagamento-box">
-
+          
           <div className="pagamento-box-titulo">
             <img src={imgAprovado} alt="Aprovação pagamento" className="img-pagamento" />
             <h1 className="pagamento-box-titulo-h1">Obrigado por fazer parte da Ethos!</h1>

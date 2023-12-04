@@ -18,23 +18,7 @@ const Avaliacao = () => {
   const location = useLocation();
   const dadosServico = location.state ? location.state.dadosServico : null;
 
-  const navigate = useNavigate();
-
-  const verPortfolio = () => {
-
-  const dadosServicoAvaliacao = {
-    id: dadosServico.id,
-    nomeServico: dadosServico.nomeServico,
-    nomeEmpresa: dadosServico.nomeEmpresa,
-    descricao: dadosServico.descricao,
-    valorMedio: dadosServico.valorMedio,
-    areaESG: dadosServico.areaESG,
-    fkPrestadoraServico: dadosServico.fkPrestadoraServico
-  };
-  navigate('/solucoes-esg/portfolio', { state: { dadosServicoAvaliacao } });
-}
-  
-
+  console.log(dadosServico);
   const toggleModal = () => {
     let modal = document.querySelector('.modal');
     let modalJanela = document.querySelector('.janela-modal');
@@ -56,6 +40,7 @@ const Avaliacao = () => {
     let modal2 = document.querySelector('.modal2');
     modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
   };
+
 
 
   const closeModal2 = () => {
@@ -87,17 +72,17 @@ const Avaliacao = () => {
 
               <div className="box-texto-modal">
                 <h2 className='titulo-modal-h2-5'>Empresa:</h2>
-                <h2 className='titulo-modal-h2-5-texto'>{dadosServico.nomeEmpresa}</h2>
+                <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
               </div>
 
               <div className="box-texto-modal">
                 <h2 className='titulo-modal-h2-5'>Serviço:</h2>
-                <h2 className='titulo-modal-h2-5-texto'>{dadosServico.nomeServico}</h2>
+                <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
               </div>
 
               <div className="box-texto-modal">
                 <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
-                <h2 className='titulo-modal-h2-5-texto'>{dadosServico.valorMedio}</h2>
+                <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
               </div>
 
 
@@ -177,7 +162,9 @@ const Avaliacao = () => {
               <div className="container-foto-bloco">
                 <h1 className="titulo-avaliacao-servico">{dadosServico.nomeEmpresa}</h1>
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
-                  <button className='botao-preenchido' onClick={() => verPortfolio()}>Ver Portfólio</button>
+                <Link to={'/solucoes-esg/portfolio'}>
+                  <ButtonBorda acao={'Ver Portfólio'}></ButtonBorda>
+                </Link>
               </div>
             </div>
           </div>
@@ -205,7 +192,7 @@ const Avaliacao = () => {
                 <p className='pilar-esg-nao-contido'>S</p>
               )}
 
-              {dadosServico.areaESG == 'governance' ? (
+              {dadosServico.areaESG == 'governamental' ? (
                 <p className='pilar-esg'>Governamental</p>
               ) : (
                 <p className='pilar-esg-nao-contido'>G</p>
@@ -232,7 +219,9 @@ const Avaliacao = () => {
         <div className="container-avaliacao">
 
           <div className='margin-avaliacao-2'>
-            <div className="titulo-caixa-avaliacao-2"> <h2 className='titulo-avaliacao-servico-2'>Avaliações do Serviço </h2><h2 className='titulo-avaliacao-servico-3'>(1)</h2></div>
+            <div className="titulo-caixa-avaliacao-2"> <h2 className='titulo-avaliacao-servico-2'>Avaliações do Serviço </h2><h2 className='titulo-avaliacao-servico-3'>(3)</h2></div>
+            <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
+            <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
             <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
           </div>
 

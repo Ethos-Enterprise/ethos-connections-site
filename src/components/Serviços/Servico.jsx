@@ -61,27 +61,23 @@ const Servico = (props) => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        // api.delete(`/v1.0/servicos/${id}`, {
-        //   headers: {
-        //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-        //   }
-        // })
-        //   .then((response) => {
+        api.delete(`/v1.0/servicos/${id}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
+          .then((response) => {
 
-        //     console.log('Serviço de id: ' + id + "deletado")
-        //     console.log(response);
-        //   })
-        //   .catch((error) => {
-        //     console.log('erro ao deletar serviço' + error);
-        //   })
-
-        sessionStorage.removeItem('dadoServicoArmazenado');
-          console.log('exclui');
-        Swal.fire({
-          title: "Serviço excluido!",
-          icon: "success"
-        });
-        navigate('/meu-portfolio/editar-portfolio#servicos');
+            console.log('Serviço de id: ' + id + "deletado")
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log('erro ao deletar serviço' + error);
+          })
+          Swal.fire({
+            title: "Serviço excluido!",
+            icon: "success"
+          });
       }
 
     })
@@ -89,94 +85,93 @@ const Servico = (props) => {
 
   const editarServico = (e) => {
     e.preventDefault()
-    console.log('EDITAR SERVICO ');
-    const dadosServicoParaEditar = {
-      id: props.id,
-      nomeServico: props.nomeServico,
-      nomeEmpresa: props.nomeEmpresa,
-      descricao: props.descricao,
-      valor: props.valorMedio,
-      areaAtuacaoEsg: props.areaESG,
-      fkPrestadoraServico: props.fkPrestadoraServico
-    };
+   console.log('EDITAR SERVICO ');
+   const dadosServicoParaEditar = {
+    id: props.id,
+    nomeServico: props.nomeServico,
+    nomeEmpresa: props.nomeEmpresa,
+    descricao: props.descricao,
+    valor: props.valorMedio,
+    areaAtuacaoEsg: props.areaESG,
+    fkPrestadoraServico: props.fkPrestadoraServico
+  };
 
-    props.setComponente('adicionarServico');
-    navigate('/meu-portfolio/editar-portfolio#servicos#adicionar-servico', { state: { dadosServicoParaEditar } });
+    props.setComponente('adicionarServico'); 
+    navigate('/meu-portfolio/editar-portfolio#servicos#adicionar-servico', {state: {dadosServicoParaEditar}} );
 
   }
 
 
-  const renderizarOnClick = !props.ocasiao || props.ocasiao !== 'meu-servico-editar' ? { onClick: verServico } : {};
+    const renderizarOnClick = !props.ocasiao || props.ocasiao !== 'meu-servico-editar' ? { onClick: verServico } : {};
 
-  return (
-    <div className={props.ocasiao === 'solucoes' ? 'caixa-servico' : (props.ocasiao === 'portfolio-servico' ? 'caixa-servico-portfolio' : 'caixa-meu-servico')} {...renderizarOnClick}>
-      {props.ocasiao === 'solucoes' && (
-        <div className='foto-perfil-empresa'>
-          <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
-        </div>
-      )}
-
-      <div className='dados-servico-empresa'>
-        <h4 className='titulo-servico'>{props.nomeServico}</h4>
-        <p className='nome-empresa-servico'>{props.nomeEmpresa}</p>
-        <p className='descricao-servico'>{props.descricao}</p>
-
-        {props.ocasiao === 'solucoes' ? (
-          <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-
-        ) : props.ocasiao === 'portfolio-servico' ? (
-          <div className='container-valor-e-avaliacao'>
-            <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-            <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
-              <i className="fa-regular fa-comment icone-avaliacoes">
-                <span>Ver Avaliações</span>
-              </i>
-            </Link>
+    return (
+      <div className={props.ocasiao === 'solucoes' ? 'caixa-servico' : (props.ocasiao === 'portfolio-servico' ? 'caixa-servico-portfolio' : 'caixa-meu-servico')} {...renderizarOnClick}>
+        {props.ocasiao === 'solucoes' && (
+          <div className='foto-perfil-empresa'>
+            <img src={FotoPerfil} alt="foto-empresa-servico" className='foto' />
           </div>
-        ) : (
-          <div className='container-valor-e-avaliacao'>
+        )}
+
+        <div className='dados-servico-empresa'>
+          <h4 className='titulo-servico'>{props.nomeServico}</h4>
+          <p className='nome-empresa-servico'>{props.nomeEmpresa}</p>
+          <p className='descricao-servico'>{props.descricao}</p>
+
+          {props.ocasiao === 'solucoes' ? (
             <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
-
-            <div className='links-uteis-meu-servico'>
-
-              <Link onClick={(e) => { editarServico(e) }} className='link-avaliacoes'>
-                <i className="fa-solid fa-pen icone-avaliacoes">
-                  <span>Editar</span>
-                </i>
-              </Link>
-
-              <Link onClick={() => deletarServico()} className='link-avaliacoes'>
-                <i className="fa-regular fa-trash-can icone-avaliacoes">
-                  <span>Excluir</span>
+          ) : props.ocasiao === 'portfolio-servico' ? (
+            <div className='container-valor-e-avaliacao'>
+              <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
+              <Link to={'/solucoes-esg/portfolio/avaliacao'} className='link-avaliacoes'>
+                <i className="fa-regular fa-comment icone-avaliacoes">
+                  <span>Ver Avaliações</span>
                 </i>
               </Link>
             </div>
+          ) : (
+            <div className='container-valor-e-avaliacao'>
+              <p className='valor-medio-servico'>Valor Médio <span>R$ {props.valorMedio}</span></p>
 
-          </div>
-        )}
+              <div className='links-uteis-meu-servico'>
+
+                <Link onClick={(e) => { editarServico(e) }} className='link-avaliacoes'>
+                  <i className="fa-solid fa-pen icone-avaliacoes">
+                    <span>Editar</span>
+                  </i>
+                </Link>
+
+                <Link onClick={() => deletarServico(props.id)} className='link-avaliacoes'>
+                  <i className="fa-regular fa-trash-can icone-avaliacoes">
+                    <span>Excluir</span>
+                  </i>
+                </Link>
+              </div>
+
+            </div>
+          )}
+        </div>
+
+        <div className='pilar-servico'>
+          {props.areaESG === 'environmental' ? (
+            <p className='pilar-esg'>Environmental</p>
+          ) : (
+            <p className='pilar-esg-nao-contido'>E</p>
+          )}
+
+          {props.areaESG === 'social' ? (
+            <p className='pilar-esg'>Social</p>
+          ) : (
+            <p className='pilar-esg-nao-contido'>S</p>
+          )}
+
+          {props.areaESG === 'governamental' ? (
+            <p className='pilar-esg'>Governamental</p>
+          ) : (
+            <p className='pilar-esg-nao-contido'>G</p>
+          )}
+        </div>
       </div>
+    );
+  };
 
-      <div className='pilar-servico'>
-        {props.areaESG === 'environmental' ? (
-          <p className='pilar-esg'>Environmental</p>
-        ) : (
-          <p className='pilar-esg-nao-contido'>E</p>
-        )}
-
-        {props.areaESG === 'social' ? (
-          <p className='pilar-esg'>Social</p>
-        ) : (
-          <p className='pilar-esg-nao-contido'>S</p>
-        )}
-
-        {props.areaESG === 'governance' ? (
-          <p className='pilar-esg'>Governance</p>
-        ) : (
-          <p className='pilar-esg-nao-contido'>G</p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-export default Servico;
+  export default Servico;

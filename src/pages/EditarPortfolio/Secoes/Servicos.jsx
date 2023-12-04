@@ -14,13 +14,12 @@ const Servicos = (props) => {
   const { usuario } = useUsuario();
   const [componente, setComponente] = useState(props.componente);
 
-  const [editandoServico, setEditandoServico] = useState(null);
-  const servicoArmazenado = JSON.parse(sessionStorage.getItem('dadoServicoArmazenado')) || {};
+  const [editandoServico, setEditandoServico] = useState(null); 
 
   const adicionarServico = () => {
     setComponente('adicionarServico');
 
-    window.location.hash = "#servicos#adicionar-servico";
+      window.location.hash = "#servicos#adicionar-servico";
   };
 
   // useEffect(() => {
@@ -41,54 +40,62 @@ const Servicos = (props) => {
   //     })
   // }, []);
 
-
+  
   return (
     <>
-      {componente === 'servicos' ?
-        (
-          <div className='dados-portfolio' >
-            <div className='titulo-botao-adicionar'>
+      {componente ==='servicos' ?
+          (
+            <div className='dados-portfolio' >
+              <div className='titulo-botao-adicionar'>
 
-              <h2 className='titulo-secao'>
-                Serviços
-              </h2>
+                <h2 className='titulo-secao'>
+                  Serviços
+                </h2>
 
-              <div onClick={adicionarServico} className='botao-adicionar-servico'>
-                <i className="fa-solid fa-plus icone-adicionar-servico"></i>
+                <div onClick={adicionarServico} className='botao-adicionar-servico'>
+                  <i className="fa-solid fa-plus icone-adicionar-servico"></i>
 
-                <span className='acao-botao-adicionar-servico'>
-                  Adicionar
-                </span>
+                  <span className='acao-botao-adicionar-servico'>
+                    Adicionar
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className='tracinho-divisor'></div>
+              <div className='tracinho-divisor'></div>
 
-            <div className='caixa-portfolio'>
+              <div className='caixa-portfolio'>
 
+                {/* LISTAR SERVICOS QUE VEM ATRAVAES A REQUISICAO */}
+                {/* {servicos.length > 0 ? (
+                  servicos.map((servico) => ( */}
+                    <Servico
+                      // key={servico.id}
+                      id={'2'}
+                      ocasiao={'meu-servico-editar'}
+                      nomeServico={'TESTE'}
+                      nomeEmpresa={'servico.razaoSocial'}
+                      descricao={'servico.descricao'}
+                      valorMedio={('11').toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                      areaESG={'environmental'}
+                      fkPrestadoraServico={'servico.fkPrestadoraServico'}
+                      
+                      setComponente={setComponente}
+                    />
 
-{servicoArmazenado.nomeServico ? (
-            <Servico
-              id={'2'}
-              ocasiao={'meu-servico-editar'}
-              nomeServico={servicoArmazenado.nomeServico}
-              nomeEmpresa={usuario.razaoSocial}
-              descricao={servicoArmazenado.descricao}
-              valorMedio={(servicoArmazenado.valor)}
-              areaESG={servicoArmazenado.areaAtuacaoEsg}
-              fkPrestadoraServico={'servico.fkPrestadoraServico'}
-              setComponente={setComponente}
-            />
+                  {/* ))
+                ) : (
+                  <p>Nenhum serviço cadastrado.</p>
+                )} */}
+              </div>
+            </div >
+
           ) : (
-            <p>Nenhum serviço cadastrado.</p>
-          )}
-
-
-            </div>
-          </div >
-
-        ) : (
-          <AdicionarServico setComponente={setComponente} />
-        )
+            <AdicionarServico setComponente={setComponente}/> 
+          )
       }
     </>
 
