@@ -22,6 +22,7 @@ const HeaderPlataforma = (props) => {
 
     const handleLogout = () => {
         sessionStorage.clear();
+        localStorage.clear();
         navigate('/entrar');
     };
 

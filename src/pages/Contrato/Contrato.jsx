@@ -47,26 +47,24 @@ const Contrato = (props) => {
 
   //  }, []);
 
-   console.log('procurando a api');
 
+  // useEffect(() => {
+  //   console.log('chamei a api');
 
-  useEffect(() => {
-    console.log('chamei a api');
+  //   console.log(usuario.id);
+  //   api.get(`/v1.0/prestadoras/empresa/${usuario.id}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+  //     }
+  //   })
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   })
 
-    console.log(usuario.id);
-    api.get(`/v1.0/prestadoras/empresa/${usuario.id}`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .then((error) => {
-      console.log(error);
-    })
-
-  }, []);
+  // }, []);
 
   const irParaPagamentos = () => {
     navigate('/meu-plano/contrato/pagamento', {

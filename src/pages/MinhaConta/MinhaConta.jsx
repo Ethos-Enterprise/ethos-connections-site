@@ -28,7 +28,6 @@ const MinhaConta = () => {
   const navigate = useNavigate();
 
   const opcoesMenuMinhaConta = [
-    { }
     { nome: 'Meu Perfil', hash: 'meu-perfil' },
     // { nome: 'Minhas Interações', hash: 'minhas-interacoes#contatos' },
     { nome: 'Meu Plano', hash: 'meu-plano' },

@@ -1,6 +1,59 @@
-.container-criar-meta{
+.container-criar-meta {
     background-color: var(--cinza);
     padding: 20px 35px;
     border-radius: 7px;
     width: 100%;
+}
+
+.container-informacoes-pagina-meta {
+    display: flex;
+    flex-direction: row;
+    margin: 16px 0px 24px 0px;
+    width: 100%;
+    gap: 24px;
+}
+
+
+.foto-pagina-meta {
+    width: 40%;
+}
+
+.container-informacoes-meta .titulo-criacao-meta {
+    font-weight: var(--letra-light);
+    font-size: 1rem;
+    margin-bottom: 32px;
+}
+
+.container-informacoes-meta .opcao-meta-definir {
+    font-weight: var(--letra-regular);
+    font-size: 0.97rem;
+    border-radius: 7px;
+    border: 1px solid var(--cor-letras);
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0px 0px 16px 0px;
+}
+
+.container-informacoes-meta .opcao-meta-definir:hover {
+    scale: 1.02;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.container-informacoes-meta .container-botoes-meta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.container-informacoes-meta .container-botoes-meta .botao-borda {
+    margin: 0;
+    width: 12vw;
+}
+
+.container-informacoes-meta .container-botoes-meta .botao-preenchido {
+    margin: 0;
+    width: 12vw;
 }
