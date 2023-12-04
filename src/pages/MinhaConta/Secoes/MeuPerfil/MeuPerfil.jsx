@@ -1,7 +1,12 @@
 import React from 'react'
 import './MeuPerfil.css'
 
-const MeuPerfil = () => {
+import { useUsuario } from '../../../../hooks/Usuario'
+  
+  const MeuPerfil = () => {
+
+    const {usuario} = useUsuario();
+
   return (
     <div className='dados-minha-conta'>
       <h2 className='titulo-secao'>
