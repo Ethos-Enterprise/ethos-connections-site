@@ -1,7 +1,7 @@
 import React from 'react'
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma'
-import Questionario from './Questionario';
+import Questionario from './Questionario'
 
 //hooks
 import { useUsuario } from '../../hooks/Usuario';
@@ -58,7 +58,7 @@ const Formulario = () => {
                     <img src={CapaFormulario} alt="Imagem representando a pergunta" className='capa-formulario' />
 
                     {questionarioIniciado ? (
-                        <Questionario perguntaAtual={'hi'} />
+                        <Questionario />
                     ) : (
                         <>
                             <div className='container-titulo-questionario'>

@@ -28,6 +28,22 @@ const AnaliseCrescimento = () => {
         navigate('/meu-progresso/metas')
     }
 
+    if (!sessionStorage.getItem('ambiental')) {
+        sessionStorage.setItem('ambiental', 0);
+    }
+
+    if (!sessionStorage.getItem('social')) {
+        sessionStorage.setItem('social', 0);
+    }
+
+    if (!sessionStorage.getItem('governamental')) {
+        sessionStorage.setItem('governamental', 0);
+    }
+
+    let soma = (parseInt(sessionStorage.getItem('ambiental')) + parseInt(sessionStorage.getItem('social')) + parseInt(sessionStorage.getItem('governamental')));
+
+    let porcentagem = (soma / 3).toFixed(2) ;
+
     return (
         <div>
             <HeaderPlataforma
@@ -50,23 +66,23 @@ const AnaliseCrescimento = () => {
 
                         <div className='campo-graficos'>
                             <h3 className='titulo-grafico'>Total de Aderência ESG - em % <span><i className="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span> </h3>
-                            <BarraProgresso porcentagem={10} />
+                            <BarraProgresso porcentagem={porcentagem} />
 
                             <h3 className='titulo-grafico'>Aderência ESG por Área de Impacto - em % <span><i className="fa-solid fa-question icone-duvida"></i> <div className='texto-info'>Dados com base sua pontuação nos formulários avaliativos. </div></span></h3>
                             <div className='graficos-circulares'>
                                 <div className='container-grafico-circular'>
-                                    <GraficoCircular porcentagem={10} />
+                                    <GraficoCircular porcentagem={sessionStorage.getItem('ambiental')} />
                                     <p className='titulo-grafico-circular'>Ambiental</p>
                                 </div>
 
                                 <div className='container-grafico-circular'>
-                                    <GraficoCircular porcentagem={0} />
+                                    <GraficoCircular porcentagem={sessionStorage.getItem('social')} />
                                     <p className='titulo-grafico-circular'>Social</p>
 
                                 </div>
 
                                 <div className='container-grafico-circular'>
-                                    <GraficoCircular porcentagem={0} />
+                                    <GraficoCircular porcentagem={sessionStorage.getItem('governamental')} />
                                     <p className='titulo-grafico-circular'>Governamental</p>
 
                                 </div>
