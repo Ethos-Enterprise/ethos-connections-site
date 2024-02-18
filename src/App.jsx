@@ -36,8 +36,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/entrar" element={<Login />} />
+          <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/cadastrar" element={<Cadastro />} />
           <Route path="/solucoes-esg" element={<PaginaInicial />} />
           <Route path="/solucoes-esg/portfolio/avaliacao" element={<Avaliacao />} />

@@ -30,7 +30,6 @@ export function UsuarioProvider({ children }) {
 
   // Armazenando os dados do usuário no localStorage sempre que eles mudam
   useEffect(() => {
-
     sessionStorage.setItem('usuarioDados', JSON.stringify(usuario));
   }, [usuario]);
 

@@ -1,16 +1,17 @@
 import React from 'react'
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma'
 import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPlataforma'
+import Questionario from './Questionario';
 
 //hooks
 import { useUsuario } from '../../hooks/Usuario';
+import { useState } from 'react';
 
 //css
 import './Formulario.css'
 
-
 //router dom
-import { Link , useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //imagens
 import CapaFormulario from '../../assets/imagens/capa-formulario-esg.png'
@@ -24,6 +25,12 @@ const Formulario = () => {
         navigate('/meu-progresso')
     }
 
+    const [questionarioIniciado, setQuestionarioIniciado] = useState(false);
+
+    const iniciarQuestionario = () => {
+        setQuestionarioIniciado(true)
+    }
+
     return (
         <div>
 
@@ -31,7 +38,6 @@ const Formulario = () => {
                 plano={'Analytics'}
                 razaoSocial={usuario.razaoSocial}
             />
-
 
             <div className='conteudo conteudo-formulario-pagina'>
 
@@ -51,35 +57,42 @@ const Formulario = () => {
 
                     <img src={CapaFormulario} alt="Imagem representando a pergunta" className='capa-formulario' />
 
-                    <div className='container-titulo-questionario'>
-                        <h2 className='titulo-questionario'>Questionário Ambiental</h2>
-                        <span>
-                            10 Perguntas
-                        </span>
-                    </div>
+                    {questionarioIniciado ? (
+                        <Questionario perguntaAtual={'hi'} />
+                    ) : (
+                        <>
+                            <div className='container-titulo-questionario'>
+                                <h2 className='titulo-questionario'>Questionário Ambiental</h2>
+                                <span>
+                                    10 Perguntas
+                                </span>
+                            </div>
 
-                    <div className='container-informacao-pergunta'>
-                        <p className='informacao-questionario'>Sabemos que a sustentabilidade ambiental é uma preocupação cada vez mais relevante para empresas comprometidas com práticas responsáveis. Este formulário tem como objetivo ajudá-lo a avaliar e melhorar suas iniciativas ambientais.</p>
+                            <div className='container-informacao-pergunta'>
+                                <p className='informacao-questionario'>Sabemos que a sustentabilidade ambiental é uma preocupação cada vez mais relevante para empresas comprometidas com práticas responsáveis. Este formulário tem como objetivo ajudá-lo a avaliar e melhorar suas iniciativas ambientais.</p>
 
-                        <p className="informacao-questionario">
+                                <p className="informacao-questionario">
 
-                            Sua participação é fundamental para entendermos sua pegada ambiental e recomendar as soluções ESG mais adequadas às suas necessidades. Ao responder a estas perguntas, você estará dando um passo importante em direção a um mundo mais sustentável e ético.
-                        </p>
-                        <p className="informacao-questionario">
+                                    Sua participação é fundamental para entendermos sua pegada ambiental e recomendar as soluções ESG mais adequadas às suas necessidades. Ao responder a estas perguntas, você estará dando um passo importante em direção a um mundo mais sustentável e ético.
+                                </p>
+                                <p className="informacao-questionario">
 
-                            Juntos, podemos criar um impacto positivo na saúde do planeta e no sucesso do seu negócio. Vamos começar a avaliar suas práticas e a definir metas para um futuro mais verde!"
-                        </p>
+                                    Juntos, podemos criar um impacto positivo na saúde do planeta e no sucesso do seu negócio. Vamos começar a avaliar suas práticas e a definir metas para um futuro mais verde!"
+                                </p>
 
-                    </div>
+                            </div>
 
-                    <div className='container-porcentagem-botao-iniciar'>
+                            <div className='container-porcentagem-botao-iniciar'>
 
-                    <h2 className="porcentagem-questionario">
-                    Pontuação: 0/100%
-                    </h2>
+                                <h2 className="porcentagem-questionario">
+                                    Pontuação: 0/100%
+                                </h2>
 
-                    <button className='botao-preenchido'>Iniciar Questionário</button>
-                    </div>
+                                <button className='botao-preenchido' onClick={() => iniciarQuestionario()}>Iniciar Questionário</button>
+                            </div>
+                        </>
+                    )}
+
                 </div>
             </div>
 

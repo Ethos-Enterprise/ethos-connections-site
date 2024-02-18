@@ -48,6 +48,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    navigate('/escolha-plano');
+
+    
     console.log(email, senha)
 
     if (email != '' && senha != '') {
