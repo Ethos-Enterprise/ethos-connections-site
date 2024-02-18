@@ -42,7 +42,7 @@ const AnaliseCrescimento = () => {
 
     let soma = (parseInt(sessionStorage.getItem('ambiental')) + parseInt(sessionStorage.getItem('social')) + parseInt(sessionStorage.getItem('governamental')));
 
-    let porcentagem = (soma / 3).toFixed(2) ;
+    let porcentagem = Math.round(soma / 3);
 
     return (
         <div>
