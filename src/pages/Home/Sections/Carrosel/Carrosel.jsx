@@ -72,7 +72,7 @@ const Carrosel = ({ imagens, textos }) => {
             <div className="card-carrosel">
               <h2 className='letra'>G</h2>
               <img src={G} alt="Descrição da imagem" />
-              <p className='ingles'>Governamental</p>
+              <p className='ingles'>Governance</p>
               <p>Governança</p>
             </div>
           </div>
