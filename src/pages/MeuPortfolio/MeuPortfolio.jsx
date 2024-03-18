@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 
 //componentes
 import HeaderPlataforma from '../../components/Header/Plataforma/HeaderPlataforma';
@@ -12,26 +13,85 @@ import FotoDeCapa from '../../assets/imagens/foto-inexistente.jpg'
 import FotoPerfil from '../../assets/imagens/foto-perfil-off.jpg'
 import iconeCertificado from '../../assets/icones/certificado.png'
 
+import axios from "axios";
+
 //css
 import './MeuPortfolio.css'
 
 //react router dom
 import { Link, useNavigate } from 'react-router-dom';
 
+import api from '../../service/api.js'
+
 const MeuPortfolio = () => {
   const { usuario } = useUsuario();
+  const { atualizarUsuario } = useUsuario();
 
   const navigate = useNavigate();
 
-  const dadosArmazenados = JSON.parse(sessionStorage.getItem('dadosComplementares'));
+  // const dadosArmazenados = JSON.parse(sessionStorage.getItem('dadosComplementares'));
 
-  const servicoArmazenado = JSON.parse(sessionStorage.getItem('dadoServicoArmazenado')) || {};
+  // const servicoArmazenado = JSON.parse(sessionStorage.getItem('dadoServicoArmazenado')) || {};
 
-  console.log(dadosArmazenados);
+  // console.log(dadosArmazenados);
+
+  const [portfolioData, setPortfolioData] = useState({
+    idPortfolio: '',
+    descricaoBreve: '',
+    sobreEmpresa: '',
+    linkSite: '',
+    dataCertificada: '',
+  });
 
   const editarDados = () => {
     navigate('/meu-portfolio/editar-portfolio#dados-gerais')
   }
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
+      .then(response => {
+        console.log('DADOS BUSCADOS NA API');
+        console.log(response.data);
+
+        const dados = response.data;
+
+
+        atualizarUsuario(prevState => ({ ...prevState, idPortfolio: response.data.id }));
+
+        setPortfolioData({
+          descricaoBreve: dados.descricaoEmpresa || '',
+          sobreEmpresa: dados.sobreEmpresa || '',
+          linkSite: dados.linkWebsiteEmpresa || '',
+          dataCertificada: dados.dataEmpresaCertificada || '',
+        });
+
+        console.log('DADOS ');
+        console.log(portfolioData);
+      })
+      .catch(error => {
+        console.error("DEU ERROO !", error);
+      });
+  }, []);
+
+
+  // useEffect(() => {
+  //   const fkPrestadora = '6ba7b813-9dad-11d1-80b4-00c04fd430c4'
+  //   api.get(`/v1.0/servicos/lista-servicos/${fkPrestadora}`, {
+  //       params: {
+  //         fkPrestadoraServico: fkPrestadora,
+  //       }
+  //   })
+  //       .then((response) => {
+  //           console.log('SERVICOS PRESTADORA ');
+  //           console.log(response);
+  //           // setPortfolioData(response.data)
+  //       })
+  //       .catch((error) => {
+  //           console.log(error);
+  //       })
+  //   },[]);
+
 
   const mudarFotoPerfil = async () => {
     try {
@@ -105,7 +165,7 @@ const MeuPortfolio = () => {
     <div>
 
       <HeaderPlataforma
-        plano={'Provider'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       />
 
@@ -140,16 +200,21 @@ const MeuPortfolio = () => {
 
               <Link className='link-site-empresa'>
 
-                {dadosArmazenados && dadosArmazenados.linkWebsiteEmpresa ? dadosArmazenados.linkWebsiteEmpresa : 'Adicione seu site'}
+                {portfolioData.linkSite ? portfolioData.linkSite : 'Adicione seu site'}
 
               </Link>
               <p className='descricao-breve-empresa'>
-                {dadosArmazenados && dadosArmazenados.descricaEmpresa ? dadosArmazenados.descricaEmpresa : 'Adicione uma descrição da empresa'}
+                {portfolioData.descricaoBreve ? portfolioData.descricaoBreve : 'Adicione uma descrição da empresa'}
 
               </p>
-              <p className='ano-certificacao-empresa'>  {dadosArmazenados && dadosArmazenados.dataEmpresaCertificada
-                ? `Empresa certificada desde ${new Date(dadosArmazenados.dataEmpresaCertificada).getFullYear()}`
-                : 'Adicione a data de certificação'}<span></span></p>
+              <p className='ano-certificacao-empresa'>
+            
+
+                {portfolioData.dataCertificada ?
+                  `Empresa certificada desde ${new Date(portfolioData.dataCertificada).getFullYear()}`
+                  : 'Adicione a data de certificação'}
+
+                <span></span></p>
             </div>
 
           </div>
@@ -190,7 +255,7 @@ const MeuPortfolio = () => {
               <h3 className='titulo-informacao-empresa'>Sobre a empresa</h3>
               <div className='tracinho-divisor'></div>
               <p className='descricao-sobre-empresa'>
-                {dadosArmazenados && dadosArmazenados.sobreEmpresa ? dadosArmazenados.sobreEmpresa : ' Adicione uma descrição sobre a sua empresa'}
+                {portfolioData.sobreEmpresa ? portfolioData.sobreEmpresa : ' Adicione uma descrição sobre a sua empresa'}
 
               </p>
 
@@ -232,7 +297,7 @@ const MeuPortfolio = () => {
                     /> */}
 
 
-          {servicoArmazenado.nomeServico ? (
+          {/* {servicoArmazenado.nomeServico ? (
             <Servico
               id={'2'}
               ocasiao={'portfolio-servico'}
@@ -245,7 +310,7 @@ const MeuPortfolio = () => {
             />
           ) : (
             <p>Nenhum serviço cadastrado.</p>
-          )}
+          )} */}
 
         </div>
 

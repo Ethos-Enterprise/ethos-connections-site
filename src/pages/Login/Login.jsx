@@ -19,6 +19,7 @@ import { useState } from 'react';
 
 //hook 
 import { useUsuario } from '../../hooks/Usuario';
+import axios from 'axios';
 
 function verificar(event) {
   const input = event.target;
@@ -45,78 +46,131 @@ const Login = () => {
   //colocar função do hook Usuario
   const { atualizarUsuario } = useUsuario();
 
-  const handleSubmit = (e) => {
+  const { usuario } = useUsuario();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    navigate('/escolha-plano');
-
-    
-    console.log(email, senha)
-
-    if (email != '' && senha != '') {
-
-      api.post('/auth/login', {
-        email: 'admin@ethos',
-        password: '123'
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
+    try {
+      const responseLogin = await api.get(`/v1.0/empresas/login/${email}/${senha}`);
+      console.log('Login realizado com sucesso!');
+      console.log(responseLogin.data);
+  
+      // Atualiza o estado do usuário imediatamente com os dados de login.
+      atualizarUsuario(responseLogin.data);
+  
+      // Mostra o alerta de sucesso de login
+      await Swal.fire({
+        icon: "success",
+        text: "Login feito com sucesso!",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        showClass: {
+          popup: 'animated fadeInDown faster'
         }
-      })
-        .then(response => {
-          console.log(response.data);
-          if (response.status === 200 && response.data?.token) {
-            sessionStorage.setItem('authToken', response.data.token);
+      });
+  
+      // Após o sucesso do login, faz a requisição para buscar as prestadoras
+      const responsePrestadoras = await api.get('/v1.0/prestadoras');
+      console.log(' PRESTADORA  ');
+      console.log(responsePrestadoras.data);
+  
+      const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === responseLogin.data.id);
+  
+      if (prestadoraCorrespondente) {
+        console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
 
-            const authToken = sessionStorage.getItem('authToken');
+        atualizarUsuario(prevState => ({ ...prevState, idPrestadora: prestadoraCorrespondente.idPrestadora }));
+        atualizarUsuario(prevState => ({ ...prevState, plano: "Provider" }));
 
-            //requisição login pegar dados do input e passar o token tb
-            api.get(`/v1.0/empresas/login/${email}/${senha}`, {
-              headers: {
-                Authorization: `Bearer ${authToken}`,
-              }
-            })
-              .then(response => {
-                console.log('Login realizado com sucesso!');
-                atualizarUsuario(response.data);
+        navigate('/solucoes-esg');
+      } else {
+        console.log('Usuário não é uma prestadora.');
+        atualizarUsuario(prevState => ({ ...prevState, plano: "Free" }));
 
-                Swal.fire({
-                  icon: "success",
-                  text: "Login feito com sucesso!",
-                  showConfirmButton: false,
-                  timer:2000,
-                  timerProgressBar: true,  
-                  showClass: {
-                    popup: 'animated fadeInDown faster' 
-                  },
-                  didClose: () => {
-                    navigate('/escolha-plano');
-                }
-                });
+        navigate('/escolha-plano');
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+      if (error.response && error.response.data.status === 404) {
+        setErro(true);
+        setMensagemErro('Email ou senha incorretas!');
+      }
+    }
+  };
+    
 
-              })
-              .catch(error => {
-                if (error.response.data.status == 404) {
-                  setErro(true);
-                  setMensagemErro('Email ou senha incorretas!')
-                }
-                console.error('Erro no login : ', error.response.data.detail);
-              });
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-          } else {
-            throw new Error('Ops! Ocorreu um erro interno.');
-          }
-        })
-        .catch(error => {
 
-          console.log('erro na autenticação');
-          console.log(error);
-        });
-    } else {
-      setErro(true);
-      setMensagemErro('Preencha todos os campos!');
-    };
-  }
+  //   console.log(email, senha)
+
+  //   navigate("/solucoes-esg")
+  //   if (email != '' && senha != '') {
+
+  //     api.post('/auth/login', {
+  //       email: 'admin@ethos',
+  //       password: '123'
+  //     }, {
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //       .then(response => {
+  //         console.log(response.data);
+  //         if (response.status === 200 && response.data?.token) {
+  //           sessionStorage.setItem('authToken', response.data.token);
+
+  //           const authToken = sessionStorage.getItem('authToken');
+
+  //           //requisição login pegar dados do input e passar o token tb
+  //           api.get(`/v1.0/empresas/login/${email}/${senha}`, {
+  //             headers: {
+  //               Authorization: `Bearer ${authToken}`,
+  //             }
+  //           })
+  //             .then(response => {
+  //               console.log('Login realizado com sucesso!');
+  //               atualizarUsuario(response.data);
+
+  //               Swal.fire({
+  //                 icon: "success",
+  //                 text: "Login feito com sucesso!",
+  //                 showConfirmButton: false,
+  //                 timer:2000,
+  //                 timerProgressBar: true,  
+  //                 showClass: {
+  //                   popup: 'animated fadeInDown faster' 
+  //                 },
+  //                 didClose: () => {
+  //                   navigate('/escolha-plano');
+  //               }
+  //               });
+
+  //             })
+  //             .catch(error => {
+  //               if (error.response.data.status == 404) {
+  //                 setErro(true);
+  //                 setMensagemErro('Email ou senha incorretas!')
+  //               }
+  //               console.error('Erro no login : ', error.response.data.detail);
+  //             });
+
+  //         } else {
+  //           throw new Error('Ops! Ocorreu um erro interno.');
+  //         }
+  //       })
+  //       .catch(error => {
+
+  //         console.log('erro na autenticação');
+  //         console.log(error);
+  //       });
+  //   } else {
+  //     setErro(true);
+  //     setMensagemErro('Preencha todos os campos!');
+  //   };
+  // }
 
   return (
     <div className={`fundo ${erro ? 'erro' : ''}`}>

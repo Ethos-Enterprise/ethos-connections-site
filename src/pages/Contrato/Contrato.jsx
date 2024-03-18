@@ -13,6 +13,8 @@ import FooterPlataforma from '../../components/Footer/FooterPlataforma/FooterPla
 
 //react router
 import { Link, useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios';
+
 const Contrato = (props) => {
 
   const { usuario } = useUsuario();
@@ -26,27 +28,6 @@ const Contrato = (props) => {
   const state = location.state;
   const nomeDoPlano = state && state.nomeDoPlano;
   const precoDoPlano = state && state.precoDoPlano
-   
-  //  useEffect(() => {
-  //    console.log('chamei a api');
-
-  //    api.post('/v1.0/prestadoras', {
-  //      idEmpresa: usuario.id,
-  //      statusAprovacao: 'APROVADO'
-  //    }, {
-  //      headers: {
-  //        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //      }
-  //    })
-  //    .then((response) => {
-  //      console.log(response);
-  //    })
-  //    .then((error) => {
-  //      console.log(error);
-  //    })
-
-  //  }, []);
-
 
   // useEffect(() => {
   //   console.log('chamei a api');
@@ -80,7 +61,7 @@ const Contrato = (props) => {
     <div>
       <HeaderPlataforma
 
-        plano={'Provider'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       />
 

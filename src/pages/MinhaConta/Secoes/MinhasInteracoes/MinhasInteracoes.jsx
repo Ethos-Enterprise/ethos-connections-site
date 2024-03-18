@@ -105,7 +105,7 @@ const MinhasInteracoes = (props) => {
     <>
 
       <HeaderPlataforma
-        plano={'Free'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       />
 

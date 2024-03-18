@@ -9,90 +9,70 @@ import Servico from '../../../components/Serviços/Servico'
 //hook
 import { useUsuario } from '../../../hooks/Usuario';
 
+import axios from 'axios';
+import api from '../../../service/api';
+
 const Servicos = (props) => {
 
   const { usuario } = useUsuario();
   const [componente, setComponente] = useState(props.componente);
 
-  const [editandoServico, setEditandoServico] = useState(null);
-  const servicoArmazenado = JSON.parse(sessionStorage.getItem('dadoServicoArmazenado')) || {};
+  const [servicos, setServicos] = useState([]);
 
   const adicionarServico = () => {
     setComponente('adicionarServico');
-
     window.location.hash = "#servicos#adicionar-servico";
   };
 
-  // useEffect(() => {
-
-  //   api.get(`v1.0/servicos/${usuario.idEmpresa}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-  //     }
-  //   })
-  //     .then( (response) => {
-
-  //       console.log(response);
-
-  //       //criar state que pega todos os servicos da empresa
-  //     })
-  //     .catch((error) => {
-  //       console.log('erro ao pegar os serviços da empresa. ERRO: ', error);
-  //     })
-  // }, []);
-
+  useEffect(() => {
+    api.get(`/v1.0/servicos`)
+    .then( (response) => {
+      console.log('Serviços obtidos:', response.data);
+      setServicos(response.data); 
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log('erro ao pegar os serviços da empresa. ERRO: ', error);
+      })
+  }, []);
 
   return (
     <>
-      {componente === 'servicos' ?
-        (
-          <div className='dados-portfolio' >
-            <div className='titulo-botao-adicionar'>
-
-              <h2 className='titulo-secao'>
-                Serviços
-              </h2>
-
-              <div onClick={adicionarServico} className='botao-adicionar-servico'>
-                <i className="fa-solid fa-plus icone-adicionar-servico"></i>
-
-                <span className='acao-botao-adicionar-servico'>
-                  Adicionar
-                </span>
-              </div>
+      {componente === 'servicos' ? (
+        <div className='dados-portfolio' >
+          <div className='titulo-botao-adicionar'>
+            <h2 className='titulo-secao'>Serviços</h2>
+            <div onClick={adicionarServico} className='botao-adicionar-servico'>
+              <i className="fa-solid fa-plus icone-adicionar-servico"></i>
+              <span className='acao-botao-adicionar-servico'>Adicionar</span>
             </div>
-            <div className='tracinho-divisor'></div>
-
-            <div className='caixa-portfolio'>
-
-
-{servicoArmazenado.nomeServico ? (
-            <Servico
-              id={'2'}
-              ocasiao={'meu-servico-editar'}
-              nomeServico={servicoArmazenado.nomeServico}
-              nomeEmpresa={usuario.razaoSocial}
-              descricao={servicoArmazenado.descricao}
-              valorMedio={(servicoArmazenado.valor)}
-              areaESG={servicoArmazenado.areaAtuacaoEsg}
-              fkPrestadoraServico={'servico.fkPrestadoraServico'}
-              setComponente={setComponente}
-            />
-          ) : (
-            <p>Nenhum serviço cadastrado.</p>
-          )}
-
-
-            </div>
-          </div >
-
-        ) : (
-          <AdicionarServico setComponente={setComponente} />
-        )
-      }
+          </div>
+          <div className='tracinho-divisor'></div>
+          <div className='caixa-portfolio'>
+            {servicos.length > 0 ? (
+              servicos.map(servico => (
+                <Servico
+                  key={servico.id} // Supondo que cada serviço tenha um ID único
+                  ocasiao={'meu-servico-editar'}
+                  nomeServico={servico.nomeServico}
+                  nomeEmpresa={usuario.razaoSocial}
+                  descricao={servico.descricao}
+                  valorMedio={servico.valor}
+                  areaESG={servico.areaAtuacaoEsg}
+                  fkPrestadoraServico={servico.fkPrestadoraServico}
+                  setComponente={setComponente}
+                />
+              ))
+            ) : (
+              <p>Nenhum serviço cadastrado.</p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <AdicionarServico setComponente={setComponente} />
+      )}
     </>
-
   )
 }
 
-export default Servicos
+export default Servicos;

@@ -26,6 +26,7 @@ import Select from 'react-select';
 import imgEnvironmental from '../../assets/imagens/environmental.png'
 import imgSocial from '../../assets/imagens/social.jpg'
 import imgGovernance from '../../assets/imagens/governance.jpg'
+import axios from 'axios';
 
 export const PaginaInicial = () => {
 
@@ -45,13 +46,11 @@ export const PaginaInicial = () => {
 
 
   useEffect(() => {
-    api.get("v1.0/servicos", {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+
+    console.log('servicos');
+    api.get("/v1.0/servicos")
       .then(async (response) => {
-        console.log(response);
+        console.log(response.data);
         const servicosComNomeEmpresa = await Promise.all(
           response.data.map(async (servico) => {
             const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
@@ -61,20 +60,25 @@ export const PaginaInicial = () => {
         );
         setServicos(servicosComNomeEmpresa);
       })
-      .catch((error) => {
-        console.log('erro ao pegar todos os serviços. ERRO: ', error);
+      .catch(error => {
+        if (error.response) {
+          console.log('Erro de resposta do servidor:', error.response.data);
+        } else if (error.request) {
+          console.log('Erro de rede:', error.request);
+        } else {
+          console.log('Erro ao enviar solicitação:', error.message);
+        }
       })
   }, []);
 
+
   const buscarServicosPorNome = () => {
     if (pesquisaServico !== '') {
-      api.get("v1.0/servicos/busca-por-nome", {
-        params: { nome: pesquisaServico },
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      api.get("/v1.0/servicos/busca-por-nome", {
+        params: { 
+          nome: pesquisaServico 
         }
       })
-
         .then(async (response) => {
           console.log(response.status);
           if (response.status !== 204) {
@@ -96,9 +100,18 @@ export const PaginaInicial = () => {
 
           }
         })
-        .catch((error) =>
-          console.log(error)
-        )
+        .catch(error => {
+          if (error.response) {
+            // O servidor respondeu com um código de status diferente de 2xx
+            console.log('Erro de resposta do servidor:', error.response.data);
+          } else if (error.request) {
+            // A solicitação foi feita, mas não recebeu resposta
+            console.log('Erro de rede:', error.request);
+          } else {
+            // Um erro ocorreu durante a configuração da solicitação
+            console.log('Erro ao enviar solicitação:', error.message);
+          }
+        })
     } else {
       console.log('nao esta pesquisando nada');
     }
@@ -142,6 +155,7 @@ export const PaginaInicial = () => {
   //   }
   // }
 
+
   const buscarPorValorMedio = () => {
     if (filtroValor !== '') {
       const servicosFiltradosPorValor = servicos.filter(servico => servico.valor <= parseFloat(filtroValor));
@@ -150,22 +164,19 @@ export const PaginaInicial = () => {
   }
 
   const buscarInformacoesEmpresa = (id) => {
-    return api.get(`/v1.0/empresas/${id}`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+
+    return api.get(`v1.0/empresas/${id}`)
       .then((response) => {
         return response.data.razaoSocial
       })
       .catch((error) => {
-        console.log('algo deu errado ao pegar o nome ', error);
+        console.log('algo deu errado ao pegar as informações da empresa ', error.response);
         throw error;
       });
   };
 
   const buscarFotoPerfil = (id) => {
-    return api.get(`/v1.0/empresas/${id}`, {
+    return api.get(`v1.0/empresas/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
       }
@@ -235,7 +246,7 @@ export const PaginaInicial = () => {
     <div className='pagina-inicial'>
 
       <HeaderPlataforma
-        plano={'Free'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
 
       />

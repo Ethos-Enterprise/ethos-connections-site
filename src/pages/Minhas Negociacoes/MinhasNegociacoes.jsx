@@ -19,7 +19,7 @@ const MinhasNegociacoes = () => {
         <div>
             <HeaderPlataforma
 
-                plano={'Provider'}
+                plano={usuario.plano}
                 razaoSocial={usuario.razaoSocial}
             />
 

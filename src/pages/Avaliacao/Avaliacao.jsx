@@ -159,7 +159,7 @@ const Avaliacao = () => {
 
 
       <HeaderPlataforma
-        plano={'Free'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       ></HeaderPlataforma>
 

@@ -35,7 +35,7 @@ const Formulario = () => {
         <div>
 
             <HeaderPlataforma
-                plano={'Analytics'}
+                plano={usuario.plano}
                 razaoSocial={usuario.razaoSocial}
             />
 

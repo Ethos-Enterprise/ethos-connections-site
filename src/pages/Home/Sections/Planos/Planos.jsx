@@ -29,7 +29,7 @@ const Planos = (props) => {
 
       <div className='planos-container'>
         <div className='textos-container'>
-          <h2 className='titulo-planos'> Conheça<span>nossos</span> Planos</h2>
+          <h2 className='titulo-planos'> Conheça<span>nossos</span>planos</h2>
           <h2 className='subtitulo-planos'>Aqui nós temos diferentes planos para atender às diferentes necessidades de cada empresa.</h2>
 
           <div className='linhas'>

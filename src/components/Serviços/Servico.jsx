@@ -6,7 +6,7 @@ import './Servico.css'
 //api
 import api from '../../service/api.js'
 
-
+import axios from 'axios';
 //imagens
 import FotoPerfil from '../../assets/imagens/perfil.jpg'
 
@@ -61,21 +61,16 @@ const Servico = (props) => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        // api.delete(`/v1.0/servicos/${id}`, {
-        //   headers: {
-        //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-        //   }
-        // })
-        //   .then((response) => {
+        api.delete(`/v1.0/servicos/${id}`)
+          .then((response) => {
 
-        //     console.log('Serviço de id: ' + id + "deletado")
-        //     console.log(response);
-        //   })
-        //   .catch((error) => {
-        //     console.log('erro ao deletar serviço' + error);
-        //   })
+            console.log('Serviço de id: ' + id + "deletado")
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log('erro ao deletar serviço' + error);
+          })
 
-        sessionStorage.removeItem('dadoServicoArmazenado');
           console.log('exclui');
         Swal.fire({
           title: "Serviço excluido!",

@@ -75,7 +75,7 @@ const MinhaConta = () => {
   return (
     <div>
       <HeaderPlataforma
-        plano={'Free'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       />
       <div className="conteudo">

@@ -4,6 +4,7 @@ const UsuarioContext = createContext();
 
 export function UsuarioProvider({ children }) {
   // obtendo os dados do usuário do localStorage
+  
   const usuarioDadosArmazenados = sessionStorage.getItem('usuarioDados');
   const usuarioDadosIniciais = usuarioDadosArmazenados ? JSON.parse(usuarioDadosArmazenados) : {
     id: '',
@@ -14,6 +15,9 @@ export function UsuarioProvider({ children }) {
     setor: '',
     qtdFuncionarios: 0,
     assinanteNewsletter: false,
+    plano: '',
+    idPrestadora: '',
+    idPortfolio: '',
   };
 
   //  dados do usuário p fornecer aos componentes
@@ -26,7 +30,6 @@ export function UsuarioProvider({ children }) {
 
     setUsuario(novoUsuario);
   };
-
 
   // Armazenando os dados do usuário no localStorage sempre que eles mudam
   useEffect(() => {

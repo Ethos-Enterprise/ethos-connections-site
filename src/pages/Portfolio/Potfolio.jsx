@@ -38,14 +38,12 @@ const Potfolio = () => {
     // api.get(`/v1.0/servicos/lista-servicos/{fkPrestadoraServico}`, {
     //     params: {
     //       fkPrestadoraServico: fkPrestadora,
-    //     },
-    //     headers: {
-    //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-    //     },
+    //     }
     // })
     //     .then((response) => {
+    //         console.log('SERVICOS PRESTADORA ');
     //         console.log(response);
-    //         setPortfolioData(response.data)
+    //         // setPortfolioData(response.data)
     //     })
     //     .catch((error) => {
     //         console.log(error);
@@ -130,7 +128,7 @@ const Potfolio = () => {
         <div>
 
             <HeaderPlataforma
-                plano={'Free'}
+                plano={usuario.plano}
                 razaoSocial={usuario.razaoSocial}
             />
 

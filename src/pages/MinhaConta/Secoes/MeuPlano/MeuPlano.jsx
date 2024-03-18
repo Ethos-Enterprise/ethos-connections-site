@@ -1,10 +1,13 @@
 import React from 'react'
 import PlanoCaixa from './PlanoCaixa/PlanoCaixa'
-
+import { useUsuario } from '../../../../hooks/Usuario'
 //css
 import './MeuPlano.css'
 
-const MeuPlano = ({ planoAtual = 'Plano Free' }) => {
+const MeuPlano = () => {
+  const { usuario } = useUsuario(); 
+  const planoAtual = "Plano " + usuario.plano;
+
   const planos = [
     {
       nome: 'Plano Free',
@@ -37,18 +40,15 @@ const MeuPlano = ({ planoAtual = 'Plano Free' }) => {
       botao: 'Solicitar Avaliação'
     }
   ];
+
   return (
     <div className='dados-minha-conta'>
-      <h2 className='titulo-secao'>
-        Meu Plano
-      </h2>
+      <h2 className='titulo-secao'> Meu Plano </h2>
 
       <div className='tracinho-divisor'></div>
       {/* COLCOAR DETALHES DA PAGINA */}
 
       <h2 className='titulo-plano-exibido'>Plano Atual</h2>
-
-
 
       {planos.map((plano, index) => (
         plano.nome === planoAtual && <PlanoCaixa key={index} {...plano} exibirBotao={plano.nome !== planoAtual} />
@@ -64,4 +64,4 @@ const MeuPlano = ({ planoAtual = 'Plano Free' }) => {
   )
 }
 
-export default MeuPlano
+export default MeuPlano;

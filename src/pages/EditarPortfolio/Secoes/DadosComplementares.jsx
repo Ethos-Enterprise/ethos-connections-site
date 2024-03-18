@@ -8,7 +8,13 @@ import { useState, useEffect } from 'react';
 //api
 import api from "../../../service/api";
 
+import axios from "axios";
+
+import { useUsuario } from '../../../hooks/Usuario';
+
 const DadosComplementares = () => {
+  const { usuario } = useUsuario(); 
+  const { atualizarUsuario } = useUsuario();
 
   // DADOS DA PAGINA
   const [dadosComplementares, setDadosComplementares] = useState({
@@ -18,6 +24,31 @@ const DadosComplementares = () => {
     dataCertificada: '',
   });
 
+  const [isEditando, setIsEditando] = useState(false);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
+
+        if (response.data) {
+          setDadosComplementares({
+            descricaoBreve: response.data.descricaoEmpresa ,
+            sobreEmpresa: response.data.sobreEmpresa ,
+            linkSite: response.data.linkWebsiteEmpresa ,
+            dataCertificada: response.data.dataEmpresaCertificada ,
+          });
+          setIsEditando(true);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const atualizarCampos = (campo, valor) => {
     setDadosComplementares((prevDados) => ({
       ...prevDados,
@@ -26,9 +57,7 @@ const DadosComplementares = () => {
   };
   console.log(dadosComplementares);
 
-  const editarDadosComplementares = (e) => {
-    e.preventDefault();
-  
+  const editarDadosComplementares = (e) => {  
     console.log('Função editarDadosComplementares chamada!');
     Swal.fire({
       title: "Salvar Alterações?",
@@ -42,20 +71,16 @@ const DadosComplementares = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const dadosDoPortifolio = {
-          urlImagemPerfil: 'nao vai ter foto',
-          urlBackgroundPerfil: 'nao vai ter background',
-          descricaEmpresa: dadosComplementares.descricaoBreve,
+          // urlImagemPerfil: 'nao vai ter foto',
+          // urlBackgroundPerfil: 'nao vai ter background',
+          descricaoEmpresa: dadosComplementares.descricaoBreve,
           sobreEmpresa: dadosComplementares.sobreEmpresa,
           linkWebsiteEmpresa: dadosComplementares.linkSite,
           dataEmpresaCertificada: dadosComplementares.dataCertificada,
-          fkPrestadoraServico: 'b0108d55-fc0a-4e64-a9ef-dafb33a29631',
+          fkPrestadoraServico: usuario.idPrestadora,
         };
   
-        api.post('/v1.0/portfolios', dadosDoPortifolio, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-          },
-        })
+        axios.put(`http://localhost:8020/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
           .then((response) => {
             console.log('Editar dados do portfólio', response);
             Swal.fire({
@@ -78,22 +103,57 @@ const DadosComplementares = () => {
 
   const cadastrarPortfolio= () => {
     const dadosDoPortifolio = {
-      descricaEmpresa: dadosComplementares.descricaoBreve,
+      descricaoEmpresa: dadosComplementares.descricaoBreve,
       sobreEmpresa: dadosComplementares.sobreEmpresa,
       linkWebsiteEmpresa: dadosComplementares.linkSite,
       dataEmpresaCertificada: dadosComplementares.dataCertificada,
+      fkPrestadoraServico: usuario.idPrestadora
     };
 
-    // Simulação de chamada assíncrona
-    setTimeout(() => {
-      sessionStorage.setItem('dadosComplementares', JSON.stringify(dadosDoPortifolio));
+    console.log(dadosDoPortifolio);
 
-      Swal.fire({
-        title: 'Seus dados foram salvos!',
-        icon: 'success',
+    axios.post('http://localhost:8020/v1.0/portfolios', dadosDoPortifolio)
+    // api.post('/v1.0/portfolios', dadosDoPortifolio)
+    .then((response) => {
+        console.log('Criar portfólio', response);
+        sessionStorage.setItem('dadosComplementares', JSON.stringify(dadosDoPortifolio));
+
+        Swal.fire({
+          title: "Seus dados foram salvos!",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+
+        if (error.response) {
+          // O servidor respondeu com um código de status diferente de 2xx
+          console.log('Erro de resposta do servidor:', error.response.data);
+        } else if (error.request) {
+          // A solicitação foi feita, mas não recebeu resposta
+          console.log('Erro de rede:', error.request);
+        } else {
+          // Um erro ocorreu durante a configuração da solicitação
+          console.log('Erro ao enviar solicitação:', error.message);
+        }
+
+        Swal.fire({
+          title: "Erro ao salvar os dados!",
+          text: "Ocorreu um erro ao salvar os dados. Por favor, tente novamente.",
+          icon: "error",
+        });
       });
-    }, 1000);
+      
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isEditando) {
+      editarDadosComplementares();
+    } else {
+      cadastrarPortfolio();
+    }
+  };
+
 
 
     return (
@@ -103,7 +163,7 @@ const DadosComplementares = () => {
         </h2>
         <div className='tracinho-divisor'></div>
 
-        <form className='inputs-portfolio' onSubmit={(e) => {e.preventDefault(); cadastrarPortfolio();} }>
+        <form className='inputs-portfolio' onSubmit={ handleSubmit}>
 
           <div className='campo-portfolio'>
             <label htmlFor="" className='label-portfolio'>Descricao Breve</label>
@@ -152,7 +212,8 @@ const DadosComplementares = () => {
           <div className='botoes-portfolio'>
 
             <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'>Cancelar</button>
-            <ButtonFilled acao={'Salvar'} type='submit'/>
+            <ButtonFilled acao={isEditando ? 'Salvar Alterações' : 'Cadastrar'} type='submit'/>
+
           </div>
 
         </form>

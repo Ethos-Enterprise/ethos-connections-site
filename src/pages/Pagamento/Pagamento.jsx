@@ -13,10 +13,12 @@ import qrcode from '../../assets/qrcode.png';
 import api from '../../service/api.js'
 
 const Pagamento = () => {
+  const { atualizarUsuario } = useUsuario();
+
   const { usuario } = useUsuario();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const dadosServico = location.state ? location.state.dadosServico : null;
 
   const [componente, setComponente] = useState('qrcode');
 
@@ -46,13 +48,13 @@ const Pagamento = () => {
   }, []);
 
 
-
+  const state = location.state;
+  const nomeDoPlano = state && state.nomeDoPlano;
+  const precoDoPlano = state && state.precoDoPlano
 
   useEffect(() => {
     const tempoDeEspera = 6000;
     const timeoutId = setTimeout(() => {
-      let timerInterval;
-
       Swal.fire({
         icon: 'success',
         title: "Pagamento Aprovado!",
@@ -61,58 +63,59 @@ const Pagamento = () => {
         timerProgressBar: true,
         didOpen: () => {
           Swal.showLoading();
-          const timer = Swal.getPopup().querySelector("b");
-          timerInterval = setInterval(() => {
-            timer.textContent = `${Swal.getTimerLeft()}`;
-          }, 500);
         },
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
       }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
-
-          if (nomeDoPlano == 'Plano Analytics') {
-
-            navigate('/meu-progresso');
-          } else {
-
-            api.post('/v1.0/prestadoras', {
-              idEmpresa: usuario.id,
-              statusAprovacao: 'APROVADO'
-            }, {
-              headers: {
-                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          const processarPlano = async () => {
+            try {
+              if (nomeDoPlano === 'Plano Analytics') {
+                console.log('Usuário adquiriu o Plano Analytics.');
+                atualizarUsuario(prevState => ({ ...prevState, plano: 'Analytics' }));
+                navigate('/meu-progresso');
+              } else {
+                console.log('Cadastrando prestadora...');
+                const responseCadastro = await api.post('/v1.0/prestadoras', {
+                  idEmpresa: usuario.id,
+                  statusAprovacao: 'APROVADO',
+                });
+                console.log('Prestadora' + responseCadastro+ 'cadastrada com sucesso.');
+  
+                const responsePrestadoras = await api.get('/v1.0/prestadoras');
+                console.log('VOU PEGAR O ID DELA', responsePrestadoras.data);
+  
+                const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === usuario.id);
+                if (prestadoraCorrespondente) {
+                  console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
+                  atualizarUsuario(prevState => ({
+                    ...prevState,
+                    idPrestadora: prestadoraCorrespondente.idPrestadora,
+                    plano: "Provider",
+                  }));
+                  navigate('/meu-portfolio');
+                } else {
+                  console.error('Não foi possível encontrar a prestadora correspondente.');
+                }
               }
-            })
-              .then((response) => {
-                console.log(response);
-              })
-              .catch((error) => {
-                console.log(error);
-              })
-
-            navigate('/meu-portfolio');
-          }
+            } catch (error) {
+              console.error('Erro ao processar o plano:', error.response ? error.response.data : error);
+            }
+          };
+  
+          processarPlano();
         }
       });
-
     }, tempoDeEspera);
-
-
-
+  
     return () => clearTimeout(timeoutId);
-  }, [navigate]);
-
-
-  const state = location.state;
-  const nomeDoPlano = state && state.nomeDoPlano;
-  const precoDoPlano = state && state.precoDoPlano
+  }, [nomeDoPlano, atualizarUsuario, usuario.id, navigate]);
+  
 
 
   return (
     <>
-      <HeaderPlataforma plano={'Provider'} razaoSocial={usuario.razaoSocial} />
+      <HeaderPlataforma
+        plano={usuario.plano}
+        razaoSocial={usuario.razaoSocial} />
 
       <div className="conteudo">
 
@@ -191,7 +194,7 @@ const Pagamento = () => {
                       <h1 className="titulo-pag">
                         Vencimento:
                       </h1>
-                      <h2 className='titulo-pag-2'>23/11/2023</h2>
+                      <h2 className='titulo-pag-2'>25/03/2023</h2>
                     </div>
 
                     <div className="pag-org">
@@ -228,19 +231,9 @@ const Pagamento = () => {
                   <button onClick={handleCopy} className='botao-pix'>Copiar Código Pix</button>
                 </div>
 
-
-
               </div>
 
-
-
-
-
-
-
             </div>
-
-
 
           )}
         </div >

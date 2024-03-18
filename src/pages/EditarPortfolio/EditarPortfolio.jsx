@@ -102,7 +102,7 @@ const EditarPortfolio = () => {
     <div>
       <HeaderPlataforma
 
-        plano={'Provider'}
+        plano={usuario.plano}
         razaoSocial={usuario.razaoSocial}
       />
 
@@ -121,7 +121,7 @@ const EditarPortfolio = () => {
             </Link>
           </div>
 
-          <h4 className='desativar' onClick={() => desativarConta()}> <i class="fa-regular fa-trash-can"></i> Desativar Conta</h4>
+          <h4 className='desativar' onClick={() => desativarConta()}> <i className="fa-regular fa-trash-can"></i> Desativar Conta</h4>
         </div>
 
         <div className='container-menu-campos-editaveis'>

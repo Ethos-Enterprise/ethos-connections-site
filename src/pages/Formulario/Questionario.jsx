@@ -154,7 +154,7 @@ const Questionario = () => {
     let resultadoFinal = 0;
 
     useEffect(() => {
-        axios.get("http://localhost:5440/v1.0/perguntas/ambiental")
+        api.get("/v1.0/perguntas/ambiental")
             .then(response => {
                 console.log(response.data);
                 // setPerguntas(response.data);
@@ -164,7 +164,7 @@ const Questionario = () => {
                 // console.log(error.message);
             });
 
-        // axios.get(`http://localhost:5435/v1.0/empresas/login/${'empresaA@email.com'}/${'senha123'}`, {
+        // api.get(`/v1.0/empresas/login/${'empresaA@email.com'}/${'senha123'}`, {
 
         // })
         //   .then(response => {
