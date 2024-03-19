@@ -12,11 +12,31 @@ import './Formulario.css'
 
 //router dom
 import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 //imagens
-import CapaFormulario from '../../assets/imagens/capa-formulario-esg.png'
+
+import CapaSocial from '../../assets/imagens/capa-formulario-social.jpg';
+import CapaGovernance from '../../assets/imagens/capa-formulario-governance.jpg';
+import CapaAmbiental from '../../assets/imagens/capa-formulario-ambiental.png';
 
 const Formulario = () => {
+    const { categoria } = useParams();
+
+    let imagemSrc;
+    
+    if (categoria === 'Ambiental') {
+        imagemSrc = CapaAmbiental;
+    } else if (categoria === 'Social') {
+        imagemSrc = CapaSocial;
+    } else {
+        imagemSrc = CapaGovernance;
+    } 
+
+
+
+    console.log(categoria);
+
     const { usuario } = useUsuario();
 
     const navigate = useNavigate()
@@ -27,7 +47,7 @@ const Formulario = () => {
 
     const [questionarioIniciado, setQuestionarioIniciado] = useState(false);
 
-    const iniciarQuestionario = () => {
+    const iniciarQuestionario = (categoria) => {
         setQuestionarioIniciado(true)
     }
 
@@ -55,21 +75,22 @@ const Formulario = () => {
                 <div className='container-formulario'>
 
 
-                    <img src={CapaFormulario} alt="Imagem representando a pergunta" className='capa-formulario' />
+                    <img src={imagemSrc} alt="Imagem representando a pergunta" className='capa-formulario' />
 
                     {questionarioIniciado ? (
-                        <Questionario />
+                        <Questionario categoriaQuestionario = {categoria} />
                     ) : (
                         <>
                             <div className='container-titulo-questionario'>
-                                <h2 className='titulo-questionario'>Questionário Ambiental</h2>
+                                <h2 className='titulo-questionario'>Questionário {categoria}</h2>
                                 <span>
                                     10 Perguntas
                                 </span>
                             </div>
 
                             <div className='container-informacao-pergunta'>
-                                <p className='informacao-questionario'>Sabemos que a sustentabilidade ambiental é uma preocupação cada vez mais relevante para empresas comprometidas com práticas responsáveis. Este formulário tem como objetivo ajudá-lo a avaliar e melhorar suas iniciativas ambientais.</p>
+                                <p className='informacao-questionario'>
+                                    Sabemos que a sustentabilidade ambiental é uma preocupação cada vez mais relevante para empresas comprometidas com práticas responsáveis. Este formulário tem como objetivo ajudá-lo a avaliar e melhorar suas iniciativas ambientais.</p>
 
                                 <p className="informacao-questionario">
 
@@ -88,7 +109,7 @@ const Formulario = () => {
                                     Pontuação: 0/100%
                                 </h2>
 
-                                <button className='botao-preenchido' onClick={() => iniciarQuestionario()}>Iniciar Questionário</button>
+                                <button className='botao-preenchido' onClick={() => iniciarQuestionario(categoria)}>Iniciar Questionário</button>
                             </div>
                         </>
                     )}

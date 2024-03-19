@@ -68,7 +68,7 @@ const Pagamento = () => {
         if (result.dismiss === Swal.DismissReason.timer) {
           const processarPlano = async () => {
             try {
-              if (nomeDoPlano === 'Plano Analytics') {
+              if (nomeDoPlano.includes('Analytics')) {
                 console.log('Usuário adquiriu o Plano Analytics.');
                 atualizarUsuario(prevState => ({ ...prevState, plano: 'Analytics' }));
                 navigate('/meu-progresso');

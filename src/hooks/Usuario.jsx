@@ -25,8 +25,8 @@ export function UsuarioProvider({ children }) {
 
   // Atualiza dados do usuário
   const atualizarUsuario = (novoUsuario) => {
-    console.log('ENTREI NO ATUALIZAR USUARIO');
-    console.log(novoUsuario);
+    // console.log('ENTREI NO ATUALIZAR USUARIO');
+    // console.log(novoUsuario);
 
     setUsuario(novoUsuario);
   };

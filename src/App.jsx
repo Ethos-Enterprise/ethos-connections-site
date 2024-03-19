@@ -50,7 +50,8 @@ function App() {
           
           <Route path="/meu-progresso/metas" element={<Meta />} />
 
-          <Route path="/meu-progresso/formulario" element={<Formulario />} />
+          <Route path="/meu-progresso/formulario/:categoria" element={<Formulario />} />
+
           <Route path="/meu-portfolio/editar-portfolio" element={<EditarPortfolio />} />
 
           <Route path="/meu-plano/contrato" element={<Contrato />} />

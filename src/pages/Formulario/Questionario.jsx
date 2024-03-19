@@ -3,12 +3,15 @@ import React from 'react'
 import api from '../../service/api';
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 
 //react/router
 import { Link , useNavigate} from 'react-router-dom'
 
 
-const Questionario = () => {
+const Questionario = ({categoriaQuestionario}) => {
+
 
     const navigate = useNavigate();
 
@@ -153,28 +156,23 @@ const Questionario = () => {
 
     let resultadoFinal = 0;
 
+    const categoria = categoriaQuestionario.toLowerCase();
+
     useEffect(() => {
-        api.get("/v1.0/perguntas/ambiental")
-            .then(response => {
+        api.get(`/v1.0/perguntas/area-esg?areaEsg=${categoria}`)
+        .then(response => {
+                console.log('deu bom');
+
                 console.log(response.data);
                 // setPerguntas(response.data);
             })
             .catch(error => {
+                console.log('deu ruim');
+
                 console.log(error);
                 // console.log(error.message);
             });
 
-        // api.get(`/v1.0/empresas/login/${'empresaA@email.com'}/${'senha123'}`, {
-
-        // })
-        //   .then(response => {
-        //     console.log('Login realizado com sucesso!', response);
-
-        //   })
-        //   .catch(error => {
-
-        //     console.error('Erro no login : ', error);
-        //   });
     }, []);
 
     const proximaPergunta = () => {

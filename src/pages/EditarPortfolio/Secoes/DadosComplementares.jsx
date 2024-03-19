@@ -30,7 +30,8 @@ const DadosComplementares = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
+        // MUDEI AQUIIII AGORA
+        const response = await api.get(`/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
 
         if (response.data) {
           setDadosComplementares({
@@ -80,7 +81,7 @@ const DadosComplementares = () => {
           fkPrestadoraServico: usuario.idPrestadora,
         };
   
-        axios.put(`http://localhost:8020/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
+        api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
           .then((response) => {
             console.log('Editar dados do portfólio', response);
             Swal.fire({
@@ -112,7 +113,7 @@ const DadosComplementares = () => {
 
     console.log(dadosDoPortifolio);
 
-    axios.post('http://localhost:8020/v1.0/portfolios', dadosDoPortifolio)
+    api.post('/v1.0/portfolios', dadosDoPortifolio)
     // api.post('/v1.0/portfolios', dadosDoPortifolio)
     .then((response) => {
         console.log('Criar portfólio', response);

@@ -15,6 +15,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const CardFormulario = (props) => {
     let imagemSrc;
 
+    
     if (props.formulario === 'Ambiental') {
         imagemSrc = FotoFormularioAmbiental;
     } else if (props.formulario === 'Social') {
@@ -27,7 +28,7 @@ const CardFormulario = (props) => {
     const navigate = useNavigate();
 
     const irParaFormulario = () => {
-        navigate('/meu-progresso/formulario');
+        navigate(`/meu-progresso/formulario/${props.formulario}`);
     }
 
     return (

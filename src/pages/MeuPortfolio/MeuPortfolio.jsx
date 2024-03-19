@@ -49,10 +49,10 @@ const MeuPortfolio = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
+    axios.get(`/v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
       .then(response => {
-        console.log('DADOS BUSCADOS NA API');
-        console.log(response.data);
+        // console.log('DADOS BUSCADOS NA API');
+        // console.log(response.data);
 
         const dados = response.data;
 
@@ -66,8 +66,8 @@ const MeuPortfolio = () => {
           dataCertificada: dados.dataEmpresaCertificada || '',
         });
 
-        console.log('DADOS ');
-        console.log(portfolioData);
+        // console.log('DADOS ');
+        // console.log(portfolioData);
       })
       .catch(error => {
         console.error("DEU ERROO !", error);
@@ -92,7 +92,6 @@ const MeuPortfolio = () => {
   //       })
   //   },[]);
 
-
   const mudarFotoPerfil = async () => {
     try {
       const { value: file, dismiss: dismissReason } = await Swal.fire({
@@ -105,25 +104,44 @@ const MeuPortfolio = () => {
         showCancelButton: true,
         cancelButtonText: 'Cancelar'
       });
-
+  
       if (dismissReason === Swal.DismissReason.cancel) {
-        // CHAMAR REVERTER
+        console.log("Upload cancelado pelo usuário.");
       } else if (file) {
-        // chamar api de salvar foto
+        console.log('vamos mudar a fotoo');
+
+        const formData = new FormData();
+        formData.append('arquivo', file);
+  
+        await api.patch(`/v1.0/portfolios/upload/perfil/${usuario.idPortfolio}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(response => {
+          console.log('DEU CERTO MUDAR A FOTO DE PERFIL');
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+  
         const reader = new FileReader();
         reader.onload = (e) => {
           Swal.fire({
             title: "Foto de Perfil Alterada!",
             imageUrl: e.target.result,
-            imageAlt: "The uploaded picture"
+            imageAlt: "A imagem enviada"
           });
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); 
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      console.error("Ocorreu um erro:", error);
+      Swal.fire("Erro", "Não foi possível mudar a foto de perfil.", error);
     }
   };
+  
 
 
   const mudarFotoCapa = async () => {
