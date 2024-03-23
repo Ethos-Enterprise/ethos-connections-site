@@ -159,7 +159,7 @@ const Questionario = ({categoriaQuestionario}) => {
     const categoria = categoriaQuestionario.toLowerCase();
 
     useEffect(() => {
-        api.get(`/v1.0/perguntas/area-esg?areaEsg=${categoria}`)
+        api.get(`/v1.0/perguntas`)
         .then(response => {
                 console.log('deu bom');
 
@@ -226,6 +226,7 @@ const Questionario = ({categoriaQuestionario}) => {
 
                         <div className='container-respostas'>
                             {perguntas[perguntaAtual].opcoes.map((opcao) => (
+                                
                                 <label key={opcao.id} htmlFor={opcao.id} className='container-opcao-pergunta'>
                                     <input
                                         type="radio"

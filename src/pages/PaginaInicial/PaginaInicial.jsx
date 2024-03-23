@@ -48,6 +48,7 @@ export const PaginaInicial = () => {
   useEffect(() => {
 
     console.log('servicos');
+    
     api.get("/v1.0/servicos")
       .then(async (response) => {
         console.log(response.data);

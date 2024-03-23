@@ -51,7 +51,7 @@ const EditarPortfolio = () => {
 
 
   const renderizarComponenteSecao = () => {
-    console.log(secaoAtual);
+    // console.log(secaoAtual);
     switch (secaoAtual) {
       case 'dados-gerais':
         return <DadosGerais />;
@@ -98,6 +98,7 @@ const EditarPortfolio = () => {
         };
     })
   }
+  
   return (
     <div>
       <HeaderPlataforma
@@ -109,9 +110,11 @@ const EditarPortfolio = () => {
       <div className="conteudo">
         <div className='beadcrumb beadcrumb-editar-portfolio'>
           <div>
+
             <Link to='/meu-portfolio' className='link-beadcrumb'>
               <span>Meu Portfólio {'> '}</span>
             </Link>
+
             <Link to='/meu-portfolio/editar-portfolio' className='link-beadcrumb'>
               <span>Editar Portfólio {'> '}</span>
             </Link>

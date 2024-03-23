@@ -11,13 +11,17 @@ import './AnaliseCrescimento.css'
 //imagens
 import IconeMeta from '../../assets/icones/meta.png'
 //react/router
-import { Link , useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 //hook
 import { useUsuario } from '../../hooks/Usuario.jsx';
 import CardFormulario from './CardFormulario/CardFormulario.jsx';
 import GraficoCircular from './GraficoCircular/GraficoCircular.jsx';
 import BarraProgresso from './GraficoBarra/GraficoBarra.jsx';
+
+import { useState, useEffect } from 'react';
+
+import api from '../../service/api';
 
 const AnaliseCrescimento = () => {
     const { usuario } = useUsuario();
@@ -43,6 +47,23 @@ const AnaliseCrescimento = () => {
     let soma = (parseInt(sessionStorage.getItem('ambiental')) + parseInt(sessionStorage.getItem('social')) + parseInt(sessionStorage.getItem('governamental')));
 
     let porcentagem = Math.round(soma / 3);
+
+    const [metas, setMetas] = useState([]);
+
+    useEffect(() => {
+        const buscarMetas = async () => {
+            try {
+                const response = await api.get('/v1.0/metas');
+                // const metasFiltradas = response.data.filter(meta =>  meta.fkEmpresa === usuario.id);
+                setMetas(response.data);
+                console.log(metas);
+            } catch (error) {
+                console.error('Erro ao buscar metas:', error);
+            }
+        };
+
+        buscarMetas();
+    }, []);
 
     return (
         <div>
@@ -102,8 +123,23 @@ const AnaliseCrescimento = () => {
                         <div className='tracinho-divisor'></div>
 
                         <div className='meta-nao-definida'>
-                            <img src={IconeMeta} alt="icone de meta" />
-                            <p>nenhuma meta definida</p>
+
+                            {metas.length > 0 ? (
+                                metas.map((meta) => (
+                                    <div className='caixinha-meta-definida' key={meta.id}> 
+                                        <p className='meta-definida-descricao'>{meta.descricao}</p> 
+                                        <p>Data Limite: {meta.dataFim}</p>
+                                        <p>ver serviços</p>
+                                    </div>
+                                ))
+                                ) : (
+                                    <>
+                                <img src={IconeMeta} alt="icone de meta" />
+                                <p className='meta-nao-definida-caixa'>nenhuma meta definida</p>
+                                    </>
+                            )}
+
+
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MinhasInteracoes.css';
 import ImagemContatos from '../../../../assets/imagens/contato.jpg';
 import ImagemFavoritos from '../../../../assets/imagens/favoritos.jpg';
@@ -15,6 +15,8 @@ import HeaderPlataforma from '../../../../components/Header/Plataforma/HeaderPla
 import { useUsuario } from '../../../../hooks/Usuario.jsx';
 import FooterPlataforma from '../../../../components/Footer/FooterPlataforma/FooterPlataforma.jsx';
 
+//api
+import api from '../../../../service/api.js'
 
 //react router
 
@@ -101,6 +103,58 @@ const MinhasInteracoes = (props) => {
     filter: 'brightness(80%) contrast(100%)'
   };
 
+  const [contatos, setContatos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`/v1.0/interacoes/empresa/${usuario.id}`);
+        
+        const contatosData = response.data;
+
+        const contatosPromises = contatosData.map(async (contato) => {
+          const [empresaInfo] = await Promise.all([
+            buscarNomeEmpresa(contato.fkEmpresa),
+            // servicoApi(contato.servicoId),
+          ]);
+  
+          return {
+            ...contato,
+            nomeEmpresa: empresaInfo.razaoSocial,
+            // servicoNome: servicoInfo.nome,
+          };
+        });
+  
+        const contatos = await Promise.all(contatosPromises);
+        setContatos(contatos);
+
+        console.log(contatos);
+        console.log('jjjjjjjjjj');
+      } catch (error) {
+        console.error("Erro ao buscar dados da API:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const buscarNomeEmpresa = async (id) => {
+    try {
+      const prestadoras = await api.get(`/v1.0/prestadoras`);
+      console.log(prestadoras);
+      const listaPrestadoras = prestadoras.data.find(p => p.fkEmpresa === id);
+
+      if(listaPrestadoras) {
+        const nomeEmpresa = await api.get(`v1.0/empresas/${listaPrestadoras.fkEmpresa}`);
+        return nomeEmpresa.data; 
+      }
+
+    } catch (error) {
+      console.error("Erro ao buscar nome da empresa:", error);
+      throw error; 
+    }
+  };
+
   return (
     <>
 
@@ -117,192 +171,193 @@ const MinhasInteracoes = (props) => {
 
 
 
-          {/* Primeiro Modal */}
-          <div className="janela-modal">
-            <div className="modal">
-              <div className="box-modal">
-                <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
-                <div className="traco"></div>
-                <div className="texto-modal">
-                  <h1 className='titulo-modal-h1'>Contatar Empresa</h1>
-                  <div className="traco"></div>
-                  <h2 className='titulo-modal-h2'>Informaremos a empresa que você solicitou que ela entre em contato com você.
-                    <br />
-                    <br />
-                    Confirme sua solicitação de contato para o seguinte serviço
-                  </h2>
-
-                  <div className="box-texto-modal">
-                    <h2 className='titulo-modal-h2-5'>Empresa:</h2>
-                    <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
-                  </div>
-
-                  <div className="box-texto-modal">
-                    <h2 className='titulo-modal-h2-5'>Serviço:</h2>
-                    <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
-                  </div>
-
-                  <div className="box-texto-modal">
-                    <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
-                    <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
-                  </div>
-
-                  <div className="botoes-modal">
-                    <span onClick={closeModal} className='fechar' >
-                      Cancelar
-                    </span>
-
-                    <button onClick={toggleModal2} className='botao-preenchido-servico'>
-                      Confirmar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Segundo Modal */}
-          <div className="modal2">
+        {/* Primeiro Modal */}
+        <div className="janela-modal">
+          <div className="modal">
             <div className="box-modal">
               <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
               <div className="traco"></div>
               <div className="texto-modal">
-                <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
+                <h1 className='titulo-modal-h1'>Contatar Empresa</h1>
                 <div className="traco"></div>
-                <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
+                <h2 className='titulo-modal-h2'>Informaremos a empresa que você solicitou que ela entre em contato com você.
                   <br />
                   <br />
-                  Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
-                  <br />
-                  <br />
-                  Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
-                  <br />
-                  <br />
-                  Agradecemos sua preferência pela Ethos!
-                  <br />
-                  <br />
+                  Confirme sua solicitação de contato para o seguinte serviço
                 </h2>
 
+                <div className="box-texto-modal">
+                  <h2 className='titulo-modal-h2-5'>Empresa:</h2>
+                  <h2 className='titulo-modal-h2-5-texto'>Deloitte</h2>
+                </div>
+
+                <div className="box-texto-modal">
+                  <h2 className='titulo-modal-h2-5'>Serviço:</h2>
+                  <h2 className='titulo-modal-h2-5-texto'>Treinamento de Responsabilidade Social Corporativa</h2>
+                </div>
+
+                <div className="box-texto-modal">
+                  <h2 className='titulo-modal-h2-5'>Preço Médio:</h2>
+                  <h2 className='titulo-modal-h2-5-texto'>R$ 2.000</h2>
+                </div>
+
                 <div className="botoes-modal">
-                  <span onClick={closeModal3} className='fechar'>
-                    Ver Contatos
+                  <span onClick={closeModal} className='fechar' >
+                    Cancelar
                   </span>
 
-                  <button onClick={closeModal2} className='botao-preenchido-servico'>
-                    Finalizar
+                  <button onClick={toggleModal2} className='botao-preenchido-servico'>
+                    Confirmar
                   </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Fim Modal */}
+        {/* Segundo Modal */}
+        <div className="modal2">
+          <div className="box-modal">
+            <img src={SolicitarContato} alt="Imagem contratar empresa" className='imagem-modal' />
+            <div className="traco"></div>
+            <div className="texto-modal">
+              <h1 className='titulo-modal-h1'>Solicitação Enviada!</h1>
+              <div className="traco"></div>
+              <h2 className='titulo-modal-h2'>Aguarde a empresa te contatar por email.
+                <br />
+                <br />
+                Você pode acompanhar o andamento através da página de Contatos que fica em “Minhas interações” nas opções do seu perfil.
+                <br />
+                <br />
+                Caso tenha alguma dúvida, entre em contato conosco para te ajudarmos.
+                <br />
+                <br />
+                Agradecemos sua preferência pela Ethos!
+                <br />
+                <br />
+              </h2>
 
-          {/* Contatos */}
+              <div className="botoes-modal">
+                <span onClick={closeModal3} className='fechar'>
+                  Ver Contatos
+                </span>
 
-          {/* <div className='tracinho-divisor'></div> */}
+                <button onClick={closeModal2} className='botao-preenchido-servico'>
+                  Finalizar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          {componente === 'contatos' ? (
-            <>
-              <div className='container-opcoes-interacoes'>
+        {/* Fim Modal */}
 
-                <h2 className='titulo-secao-interacoes'>Categorias de Interações</h2>
+        {/* Contatos */}
 
-                <div className="interactions-box">
+        {/* <div className='tracinho-divisor'></div> */}
 
-                  <div className='imagem-interactionsC' style={imagem1} onClick={favoritosFunc}>
-                    <h4 className='titulo-ultimo-servico'>Contatos</h4>
-                  </div>
+        {componente === 'contatos' ? (
+          <>
+            <div className='container-opcoes-interacoes'>
 
-                  <div className='imagem-interactionsF' style={imagem2} onClick={contatosFunc}>
-                    <h4 className='titulo-ultimo-servico'>Favoritos</h4>
-                  </div>
+              <h2 className='titulo-secao-interacoes'>Categorias de Interações</h2>
 
+              <div className="interactions-box">
+
+                <div className='imagem-interactionsC' style={imagem1} onClick={favoritosFunc}>
+                  <h4 className='titulo-ultimo-servico'>Contatos</h4>
+                </div>
+
+                <div className='imagem-interactionsF' style={imagem2} onClick={contatosFunc}>
+                  <h4 className='titulo-ultimo-servico'>Favoritos</h4>
                 </div>
 
               </div>
 
-              {/* <div className='tracinho-divisor'></div> */}
+            </div>
 
-              <div className="interactions-title-box">
-                <div className="interactions-title">Empresas Contatadas</div>
-                <div className='metricas-contatos'>
-                  {/* <h3 className='box-interactions-letter'>Total: <span>2 empresas</span></h3> */}
-                  <h3 className='box-interactions-letter'>Finalizado: <span>1 empresa</span></h3>
-                  <h3 className='box-interactions-letter'>Em andamento: <span>1 empresa</span></h3>
-                </div>
+            {/* <div className='tracinho-divisor'></div> */}
+
+            <div className="interactions-title-box">
+              <div className="interactions-title">Empresas Contatadas</div>
+              <div className='metricas-contatos'>
+                {/* <h3 className='box-interactions-letter'>Total: <span>2 empresas</span></h3> */}
+                <h3 className='box-interactions-letter'>Finalizado: <span>1 empresa</span></h3>
+                <h3 className='box-interactions-letter'>Em andamento: <span>1 empresa</span></h3>
               </div>
+            </div>
 
+            {contatos && contatos.length > 0 ? (
+
+              contatos.map((contato) => (
                 <CardSerInteractionsBox
-                  ImagemEmpresas={ImagemEmpresas}
-                  empresaNome='Deloitte'
-                  servicoNome='Treinamento de Responsabilidade Social Corporativa (RSC)'
-                  statusContato='Aguardando resposta da empresa'
-                  inicioContato='15-11-2023'
+                  key={contato.id} 
+                  ImagemEmpresas={ ImagemEmpresas}
+                  empresaNome={contato.nomeEmpresa}
+                  servicoNome='{contato.servicoNome}'
+                  statusContato={contato.status}
+                  inicioContato={contato.data}
                 />
-                <CardSerInteractionsBox
-                  ImagemEmpresas={ImagemEmpresaPerfilEy}
-                  empresaNome='Ernst & Young'
-                  servicoNome='Gestão de portfólios de investimentos'
-                  statusContato='Aguardando resposta da empresa'
-                  inicioContato='25-11-2023'
-                />
+              ))
+            ) : (
+              <p>Você não fez nenhuma interação.</p>
+            )}
 
-            </>
-          ) : (
+          </>
+        ) : (
 
-            /* favoritos */
-            <>
+          /* favoritos */
+          <>
 
-              <div className='container-opcoes-interacoes'>
+            <div className='container-opcoes-interacoes'>
 
-                <h2 className='titulo-secao-interacoes'>Categorias de Interações</h2>
+              <h2 className='titulo-secao-interacoes'>Categorias de Interações</h2>
 
-                <div className="interactions-box">
+              <div className="interactions-box">
 
-                  <div className='imagem-interactionsC-2' style={imagem1} onClick={favoritosFunc}>
-                    <h4 className='titulo-ultimo-servico'>Contatos</h4>
-                  </div>
-
-                  <div className='imagem-interactionsF-2' style={imagem2} onClick={contatosFunc}>
-                    <h4 className='titulo-ultimo-servico'>Favoritos</h4>
-                  </div>
-
+                <div className='imagem-interactionsC-2' style={imagem1} onClick={favoritosFunc}>
+                  <h4 className='titulo-ultimo-servico'>Contatos</h4>
                 </div>
-              </div>
 
-
-              <div className="interactions-title-box">
-
-                <div className="interactions-title">Histórico de Curtidas</div>
-                <div className='metricas-contatos'>
-                  <h2 className='box-title-interactions'>Total: <span>2 empresas</span></h2>
+                <div className='imagem-interactionsF-2' style={imagem2} onClick={contatosFunc}>
+                  <h4 className='titulo-ultimo-servico'>Favoritos</h4>
                 </div>
+
               </div>
+            </div>
 
-              <InteractionsBoxComponentCurtida
-                ImagemEmpresas={ImagemEmpresas}
-                nomeServico="Treinamento de Responsabilidade Social Corporativa (RSC)"
-                nomeEmpresa="Deloitte"
-                descricao=" O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC"
-                pilarESG="Governança"
-                valorMedio={2000.0}
-                toggleModal={toggleModal}
-              />
 
-              <InteractionsBoxComponentCurtida
-                ImagemEmpresas={ImagemEmpresaPerfilEy}
-                nomeServico="Gestão de portfólios de investimentos"
-                nomeEmpresa="Ernst & Young"
-                descricao="A Gestão de Portfólios de Investimentos é um serviço especializado oferecido por instituições financeiras, gestoras de ativos ou profissionais do mercado financeiro. Essa prática envolve a administração estratégica de um conjunto diversificado de investimentos, com o objetivo de otimizar o retorno financeiro em linha com os objetivos e tolerâncias de risco do cliente."
-                pilarESG="Governança"
-                valorMedio={1000.0}
-                toggleModal={toggleModal}
-              />
-            </>
-          )
-          }
-        
+            <div className="interactions-title-box">
+
+              <div className="interactions-title">Histórico de Curtidas</div>
+              <div className='metricas-contatos'>
+                <h2 className='box-title-interactions'>Total: <span>2 empresas</span></h2>
+              </div>
+            </div>
+
+            <InteractionsBoxComponentCurtida
+              ImagemEmpresas={ImagemEmpresas}
+              nomeServico="Treinamento de Responsabilidade Social Corporativa (RSC)"
+              nomeEmpresa="Deloitte"
+              descricao=" O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC"
+              pilarESG="Governança"
+              valorMedio={2000.0}
+              toggleModal={toggleModal}
+            />
+
+            <InteractionsBoxComponentCurtida
+              ImagemEmpresas={ImagemEmpresaPerfilEy}
+              nomeServico="Gestão de portfólios de investimentos"
+              nomeEmpresa="Ernst & Young"
+              descricao="A Gestão de Portfólios de Investimentos é um serviço especializado oferecido por instituições financeiras, gestoras de ativos ou profissionais do mercado financeiro. Essa prática envolve a administração estratégica de um conjunto diversificado de investimentos, com o objetivo de otimizar o retorno financeiro em linha com os objetivos e tolerâncias de risco do cliente."
+              pilarESG="Governança"
+              valorMedio={1000.0}
+              toggleModal={toggleModal}
+            />
+          </>
+        )
+        }
+
       </div>
 
 

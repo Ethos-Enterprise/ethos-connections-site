@@ -198,19 +198,16 @@ const Avaliacao = () => {
               ) : (
                 <p className='pilar-esg-nao-contido'>E</p>
               )}
-
               {dadosServico.areaESG == 'social' ? (
                 <p className='pilar-esg'>Social</p>
               ) : (
                 <p className='pilar-esg-nao-contido'>S</p>
               )}
-
               {dadosServico.areaESG == 'governance' ? (
                 <p className='pilar-esg'>Governamental</p>
               ) : (
                 <p className='pilar-esg-nao-contido'>G</p>
               )}
-
 
             </div>
 
@@ -221,21 +218,15 @@ const Avaliacao = () => {
               <HeartCheckbox></HeartCheckbox>
               <h2 className='subtitulo-container-informacao-favoritar'>Favoritar</h2>
             </div>
-
           </div>
-
-
 
         </div>
 
-
         <div className="container-avaliacao">
-
           <div className='margin-avaliacao-2'>
             <div className="titulo-caixa-avaliacao-2"> <h2 className='titulo-avaliacao-servico-2'>Avaliações do Serviço </h2><h2 className='titulo-avaliacao-servico-3'>(1)</h2></div>
             <AvaliacaoServicoComponent></AvaliacaoServicoComponent>
           </div>
-
         </div>
 
       </div>
@@ -243,7 +234,6 @@ const Avaliacao = () => {
       <FooterPlataforma></FooterPlataforma>
 
     </>
-
 
   )
 }

@@ -20,7 +20,12 @@ const InteractionsBox = ({ ImagemEmpresas, empresaNome, servicoNome, statusConta
         <div className='box-ultimo-servico'>
 
           <h3 className="interactions-subtitle-data"> <span className='titulo-info-contato'>Início do contato:</span> {inicioContato}</h3>
+         
+
+         {statusContato === 'FINALIZADA' && (
           <button onClick={avaliar} className="botao-posicao">Avaliar Serviço</button>
+         )}
+
         </div>
       </div>
       {/* <div className="box-botao"> */}

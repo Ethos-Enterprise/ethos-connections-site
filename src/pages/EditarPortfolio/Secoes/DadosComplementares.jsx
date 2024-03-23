@@ -13,7 +13,7 @@ import axios from "axios";
 import { useUsuario } from '../../../hooks/Usuario';
 
 const DadosComplementares = () => {
-  const { usuario } = useUsuario(); 
+  const { usuario } = useUsuario();
   const { atualizarUsuario } = useUsuario();
 
   // DADOS DA PAGINA
@@ -29,21 +29,29 @@ const DadosComplementares = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+
       try {
-        // MUDEI AQUIIII AGORA
-        const response = await api.get(`/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
+        const response = await
+          api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
+        // axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
 
         if (response.data) {
           setDadosComplementares({
-            descricaoBreve: response.data.descricaoEmpresa ,
-            sobreEmpresa: response.data.sobreEmpresa ,
-            linkSite: response.data.linkWebsiteEmpresa ,
-            dataCertificada: response.data.dataEmpresaCertificada ,
+            descricaoBreve: response.data.descricaoEmpresa,
+            sobreEmpresa: response.data.sobreEmpresa,
+            linkSite: response.data.linkWebsiteEmpresa,
+            dataCertificada: response.data.dataEmpresaCertificada,
           });
           setIsEditando(true);
         }
       } catch (error) {
-        console.error("Erro ao buscar dados", error);
+        if (error.response) {
+          console.log('Erro de resposta do servidor:', error.response.data);
+        } else if (error.request) {
+          console.log('Erro de rede:', error.request);
+        } else {
+          console.log('Erro ao enviar solicitação:', error.message);
+        }
       }
     };
 
@@ -56,9 +64,9 @@ const DadosComplementares = () => {
       [campo]: valor,
     }));
   };
-  console.log(dadosComplementares);
+  // console.log(dadosComplementares);
 
-  const editarDadosComplementares = (e) => {  
+  const editarDadosComplementares = (e) => {
     console.log('Função editarDadosComplementares chamada!');
     Swal.fire({
       title: "Salvar Alterações?",
@@ -80,7 +88,7 @@ const DadosComplementares = () => {
           dataEmpresaCertificada: dadosComplementares.dataCertificada,
           fkPrestadoraServico: usuario.idPrestadora,
         };
-  
+
         api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
           .then((response) => {
             console.log('Editar dados do portfólio', response);
@@ -100,9 +108,9 @@ const DadosComplementares = () => {
       }
     });
   };
-  
 
-  const cadastrarPortfolio= () => {
+
+  const cadastrarPortfolio = () => {
     const dadosDoPortifolio = {
       descricaoEmpresa: dadosComplementares.descricaoBreve,
       sobreEmpresa: dadosComplementares.sobreEmpresa,
@@ -115,35 +123,40 @@ const DadosComplementares = () => {
 
     api.post('/v1.0/portfolios', dadosDoPortifolio)
     // api.post('/v1.0/portfolios', dadosDoPortifolio)
-    .then((response) => {
-        console.log('Criar portfólio', response);
-        sessionStorage.setItem('dadosComplementares', JSON.stringify(dadosDoPortifolio));
 
+    .then(response => {
+      if (response.status === 201) {
+        console.log('Criar portfólio', response);
+  
         Swal.fire({
           title: "Seus dados foram salvos!",
           icon: "success",
         });
-      })
-      .catch((error) => {
-
-        if (error.response) {
-          // O servidor respondeu com um código de status diferente de 2xx
-          console.log('Erro de resposta do servidor:', error.response.data);
-        } else if (error.request) {
-          // A solicitação foi feita, mas não recebeu resposta
-          console.log('Erro de rede:', error.request);
-        } else {
-          // Um erro ocorreu durante a configuração da solicitação
-          console.log('Erro ao enviar solicitação:', error.message);
+      } else {
+        console.log('Status de resposta inesperado:', response.status);
+      }
+    })
+    .catch((error) => {
+      console.log('errroooo');
+      if (error.response) {
+        console.log('Erro de resposta do servidor:', error.response.status, error.response.data);
+        if (error.response.status === 201) {
+          console.log('Tratando 201 erroneamente como erro');
         }
-
-        Swal.fire({
-          title: "Erro ao salvar os dados!",
-          text: "Ocorreu um erro ao salvar os dados. Por favor, tente novamente.",
-          icon: "error",
-        });
+      } else if (error.request) {
+        console.log('Erro de rede:', error.request);
+      } else {
+        console.log('Erro ao enviar solicitação:', error.message);
+      }
+  
+      Swal.fire({
+        title: "Erro ao salvar os dados!",
+        text: "Ocorreu um erro ao salvar os dados. Por favor, tente novamente.",
+        icon: "error",
       });
-      
+    });
+
+
   };
 
   const handleSubmit = async (e) => {
@@ -157,69 +170,69 @@ const DadosComplementares = () => {
 
 
 
-    return (
-      <div className='dados-portfolio'>
-        <h2 className='titulo-secao'>
-          Dados Complementares
-        </h2>
-        <div className='tracinho-divisor'></div>
+  return (
+    <div className='dados-portfolio'>
+      <h2 className='titulo-secao'>
+        Dados Complementares
+      </h2>
+      <div className='tracinho-divisor'></div>
 
-        <form className='inputs-portfolio' onSubmit={ handleSubmit}>
+      <form className='inputs-portfolio' onSubmit={handleSubmit}>
 
-          <div className='campo-portfolio'>
-            <label htmlFor="" className='label-portfolio'>Descricao Breve</label>
-            <input
-              type="text"
-              className='input-portfolio'
-              value={dadosComplementares.descricaoBreve}
-              onChange={(e) => atualizarCampos('descricaoBreve', e.target.value)}
-            />
-          </div>
+        <div className='campo-portfolio'>
+          <label htmlFor="" className='label-portfolio'>Descricao Breve</label>
+          <input
+            type="text"
+            className='input-portfolio'
+            value={dadosComplementares.descricaoBreve}
+            onChange={(e) => atualizarCampos('descricaoBreve', e.target.value)}
+          />
+        </div>
 
-          <div className='campo-texto-portfolio'>
-            <label htmlFor="">Sobre a Empresa</label>
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              className='text-area-sobre-empresa'
-              value={dadosComplementares.sobreEmpresa}
-              onChange={(e) => atualizarCampos('sobreEmpresa', e.target.value)}
+        <div className='campo-texto-portfolio'>
+          <label htmlFor="">Sobre a Empresa</label>
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+            className='text-area-sobre-empresa'
+            value={dadosComplementares.sobreEmpresa}
+            onChange={(e) => atualizarCampos('sobreEmpresa', e.target.value)}
 
-            ></textarea>
-          </div>
+          ></textarea>
+        </div>
 
-          <div className='campo-portfolio'>
-            <label htmlFor="" className='label-portfolio'>Link WebSite</label>
-            <input
-              type="text"
-              className='input-portfolio'
-              value={dadosComplementares.linkSite}
-              onChange={(e) => atualizarCampos('linkSite', e.target.value)}
-            />
-          </div>
+        <div className='campo-portfolio'>
+          <label htmlFor="" className='label-portfolio'>Link WebSite</label>
+          <input
+            type="text"
+            className='input-portfolio'
+            value={dadosComplementares.linkSite}
+            onChange={(e) => atualizarCampos('linkSite', e.target.value)}
+          />
+        </div>
 
-          <div className='campo-portfolio'>
-            <label htmlFor="" className='label-portfolio'>Empresa Certificada desde</label>
-            <input
-              type="date"
-              className='input-portfolio'
-              value={dadosComplementares.dataCertificada}
-              onChange={(e) => atualizarCampos('dataCertificada', e.target.value)}
-            />
-          </div>
+        <div className='campo-portfolio'>
+          <label htmlFor="" className='label-portfolio'>Empresa Certificada desde</label>
+          <input
+            type="date"
+            className='input-portfolio'
+            value={dadosComplementares.dataCertificada}
+            onChange={(e) => atualizarCampos('dataCertificada', e.target.value)}
+          />
+        </div>
 
-          <div className='botoes-portfolio'>
+        <div className='botoes-portfolio'>
 
-            <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'>Cancelar</button>
-            <ButtonFilled acao={isEditando ? 'Salvar Alterações' : 'Cadastrar'} type='submit'/>
+          <button className='botao-borda' onClick={() => { alert('oiii') }} type='button'>Cancelar</button>
+          <ButtonFilled acao={isEditando ? 'Salvar Alterações' : 'Cadastrar'} type='submit' />
 
-          </div>
+        </div>
 
-        </form>
-      </div>
-    )
-  }
+      </form>
+    </div>
+  )
+}
 
-  export default DadosComplementares
+export default DadosComplementares

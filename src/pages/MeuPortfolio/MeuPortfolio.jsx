@@ -49,11 +49,8 @@ const MeuPortfolio = () => {
 
 
   useEffect(() => {
-    axios.get(`/v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
+    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
       .then(response => {
-        // console.log('DADOS BUSCADOS NA API');
-        // console.log(response.data);
-
         const dados = response.data;
 
 
@@ -70,7 +67,17 @@ const MeuPortfolio = () => {
         // console.log(portfolioData);
       })
       .catch(error => {
-        console.error("DEU ERROO !", error);
+
+        console.error("Busquei portfolio da prestadora");
+
+        if (error.response) {
+          console.log('empresa nao cadastrou portfolio:', error.response.data);
+        } else if (error.request) {
+          console.log('Erro de rede:', error.request);
+        } else {
+          console.log('Erro ao enviar solicitação:', error.message);
+        }
+
       });
   }, []);
 

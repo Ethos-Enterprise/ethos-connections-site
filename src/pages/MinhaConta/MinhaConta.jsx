@@ -18,6 +18,10 @@ import MeuPerfil from './Secoes/MeuPerfil/MeuPerfil.jsx';
 import MinhasInteracoes from './Secoes/MinhasInteracoes/MinhasInteracoes.jsx';
 import MeuPlano from './Secoes/MeuPlano/MeuPlano.jsx';
 
+//api
+import api from "../../service/api";
+
+
 const MinhaConta = () => {
   const { usuario } = useUsuario();
 

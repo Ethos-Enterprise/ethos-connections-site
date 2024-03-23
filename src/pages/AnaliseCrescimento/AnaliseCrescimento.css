@@ -104,14 +104,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 85%;
 }
 
 .container-meta .meta-nao-definida img{
     width: 95px;
 }
 
-.container-meta .meta-nao-definida p{
+.container-meta .meta-nao-definida .meta-nao-definida-caixa{
     font-weight: var(--letra-regular);
     font-size: 1rem;
     color: #454545;
@@ -135,4 +134,17 @@
     margin-top: 24px;
     display: flex;
     gap: 16px;   
+}
+
+.caixinha-meta-definida{
+    background-color: var(--cinza-caixas);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.caixinha-meta-definida .meta-definida-descricao {
+    color: var(--cor-letras);
+    text-align: left;
 }
