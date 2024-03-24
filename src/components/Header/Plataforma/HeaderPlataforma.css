@@ -112,3 +112,19 @@ ul .link-header.opcaoHeaderAtivo{
     color: var(--cor-primaria);
     font-weight: var(--letra-regular);
 }
+
+
+/* ADIDICONEIIIII AGORA */
+.texto-notificacao-nova {
+    color: var(--cor-primaria);
+}
+
+.bolinha-notificacao {
+    position: absolute;
+    top: 6px;
+    right: 112px;
+    width: 12px;
+    height: 12px;
+    background-color: red; 
+    border-radius: 50%;
+}

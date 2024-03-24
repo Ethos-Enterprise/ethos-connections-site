@@ -59,7 +59,7 @@ const Pagamento = () => {
         icon: 'success',
         title: "Pagamento Aprovado!",
         html: "Liberando novas páginas.",
-        timer: 3000,
+        timer: 2000,
         timerProgressBar: true,
         didOpen: () => {
           Swal.showLoading();

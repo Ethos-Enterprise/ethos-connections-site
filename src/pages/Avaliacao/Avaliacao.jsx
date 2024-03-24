@@ -9,8 +9,9 @@ import HeartCheckbox from './favoritar/Heart.jsx';
 import AvaliacaoServicoComponent from './Componente/Avaliacoes.jsx';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useUsuario } from '../../hooks/Usuario.jsx';
-import { useEffect } from 'react';
+import { useEffect , useState} from 'react';
 
+import api from '../../service/api.js';
 
 const Avaliacao = () => {
   const { usuario } = useUsuario();
@@ -22,18 +23,18 @@ const Avaliacao = () => {
 
   const verPortfolio = () => {
 
-  const dadosServicoAvaliacao = {
-    id: dadosServico.id,
-    nomeServico: dadosServico.nomeServico,
-    nomeEmpresa: dadosServico.nomeEmpresa,
-    descricao: dadosServico.descricao,
-    valorMedio: dadosServico.valorMedio,
-    areaESG: dadosServico.areaESG,
-    fkPrestadoraServico: dadosServico.fkPrestadoraServico
-  };
-  navigate('/solucoes-esg/portfolio', { state: { dadosServicoAvaliacao } });
-}
-  
+    const dadosServicoAvaliacao = {
+      id: dadosServico.id,
+      nomeServico: dadosServico.nomeServico,
+      nomeEmpresa: dadosServico.nomeEmpresa,
+      descricao: dadosServico.descricao,
+      valorMedio: dadosServico.valorMedio,
+      areaESG: dadosServico.areaESG,
+      fkPrestadoraServico: dadosServico.fkPrestadoraServico
+    };
+    navigate('/solucoes-esg/portfolio', { state: { dadosServicoAvaliacao } });
+  }
+
 
   const toggleModal = () => {
     let modal = document.querySelector('.modal');
@@ -51,12 +52,32 @@ const Avaliacao = () => {
     modal.style.display = 'none';
     modalJanela.style.display = 'none';
   };
+
   const toggleModal2 = () => {
 
+    console.log('ENVIEIII');
     let modal2 = document.querySelector('.modal2');
-    modal2.style.display = modal2.style.display === 'none' ? 'block' : 'none';
+
+    api.post('/v1.0/interacoes', {
+      status: "PENDENTE",
+      fkServico: dadosServico.id,
+      fkEmpresa: usuario.id
+    })
+      .then((response) => {
+        console.log(response.data);
+        setContatoSolicitado(true);
+        modal2.style.display = 'block';
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
   };
 
+  const verInteracao = () => {
+    navigate('/minhas-interacoes#contatos')
+  }
 
   const closeModal2 = () => {
     closeModal();
@@ -65,6 +86,24 @@ const Avaliacao = () => {
     modal2.style.display = 'none';
 
   };
+
+  // useEffect(() => {
+  //   console.log(dadosServico.id);
+
+  //   api.get(`/v1.0/avaliacoes`)
+  //   .then((response) => {
+  //     console.log('deu bom');
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log('deu ruim');
+  //     console.log(error);
+  //   })
+
+  // },[])
+
+  const [contatoSolicitado, setContatoSolicitado] = useState(false);
+
 
   return (
 
@@ -177,7 +216,7 @@ const Avaliacao = () => {
               <div className="container-foto-bloco">
                 <h1 className="titulo-avaliacao-servico">{dadosServico.nomeEmpresa}</h1>
                 <h1 className='subtitulo-avaliacao-servico'>Certificada desde 2018</h1>
-                  <button className='botao-preenchido' onClick={() => verPortfolio()}>Ver Portfólio</button>
+                <button className='botao-preenchido' onClick={() => verPortfolio()}>Ver Portfólio</button>
               </div>
             </div>
           </div>
@@ -212,9 +251,15 @@ const Avaliacao = () => {
             </div>
 
             <div className="box-container-informacoes">
-              <button className='botao-preenchido-servico' onClick={toggleModal}>
-                Solicitar Contato
-              </button>
+            {contatoSolicitado ? (
+          <button className='botao-preenchido-servico' onClick={verInteracao}>
+            Ver Interação
+          </button>
+        ) : (
+          <button className='botao-preenchido-servico' onClick={toggleModal}>
+            Solicitar Contato
+          </button>
+        )}
               <HeartCheckbox></HeartCheckbox>
               <h2 className='subtitulo-container-informacao-favoritar'>Favoritar</h2>
             </div>

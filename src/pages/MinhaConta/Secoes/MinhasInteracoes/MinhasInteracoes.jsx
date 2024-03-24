@@ -25,7 +25,6 @@ import UltimosServicos from '../../../PaginaInicial/UltimosServicos/UltimosServi
 const MinhasInteracoes = (props) => {
 
   const [componente, setComponente] = useState(props.componente);
-  console.log(componente)
 
   const contatosFunc = () => {
     setComponente('favoritos');
@@ -36,8 +35,6 @@ const MinhasInteracoes = (props) => {
     setComponente('contatos');
     window.location.hash = "#contatos";
   };
-
-
 
   // Modal
   const toggleModal = () => {
@@ -105,55 +102,44 @@ const MinhasInteracoes = (props) => {
 
   const [contatos, setContatos] = useState([]);
 
+  console.log(contatos);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`/v1.0/interacoes/empresa/${usuario.id}`);
-        
-        const contatosData = response.data;
-
+        const responseContatos = await api.get(`/v1.0/interacoes/empresa/${usuario.id}`);
+        const contatosData = responseContatos.data;
+  
         const contatosPromises = contatosData.map(async (contato) => {
-          const [empresaInfo] = await Promise.all([
-            buscarNomeEmpresa(contato.fkEmpresa),
-            // servicoApi(contato.servicoId),
-          ]);
+          const servicoResponse = await api.get(`/v1.0/servicos/${contato.fkServico}`);
+          const servicoData = servicoResponse.data;
+
+
+          console.log(servicoData.fkPrestadoraServico);
+          const prestadorasResponse = await api.get(`/v1.0/prestadoras`);
+          console.log(prestadorasResponse.data);
+          const idEmpresaServico = prestadorasResponse.data.filter(p => p.idPrestadora === servicoData.fkPrestadoraServico)
+          .map(p => p.fkEmpresa);
+
+          const empresaResponse = await api.get(`/v1.0/empresas/${idEmpresaServico}`);
   
           return {
             ...contato,
-            nomeEmpresa: empresaInfo.razaoSocial,
-            // servicoNome: servicoInfo.nome,
+            nomeServico: servicoData.nomeServico, 
+            nomeEmpresa: empresaResponse.data.razaoSocial 
           };
         });
   
-        const contatos = await Promise.all(contatosPromises);
-        setContatos(contatos);
-
-        console.log(contatos);
-        console.log('jjjjjjjjjj');
+        const contatosCompletos = await Promise.all(contatosPromises);
+        setContatos(contatosCompletos);
+  
       } catch (error) {
-        console.error("Erro ao buscar dados da API:", error);
+        console.error("Erro ao buscar dados das interações:", error);
       }
     };
-
+  
     fetchData();
   }, []);
-
-  const buscarNomeEmpresa = async (id) => {
-    try {
-      const prestadoras = await api.get(`/v1.0/prestadoras`);
-      console.log(prestadoras);
-      const listaPrestadoras = prestadoras.data.find(p => p.fkEmpresa === id);
-
-      if(listaPrestadoras) {
-        const nomeEmpresa = await api.get(`v1.0/empresas/${listaPrestadoras.fkEmpresa}`);
-        return nomeEmpresa.data; 
-      }
-
-    } catch (error) {
-      console.error("Erro ao buscar nome da empresa:", error);
-      throw error; 
-    }
-  };
+  
 
   return (
     <>
@@ -282,8 +268,9 @@ const MinhasInteracoes = (props) => {
               <div className="interactions-title">Empresas Contatadas</div>
               <div className='metricas-contatos'>
                 {/* <h3 className='box-interactions-letter'>Total: <span>2 empresas</span></h3> */}
-                <h3 className='box-interactions-letter'>Finalizado: <span>1 empresa</span></h3>
-                <h3 className='box-interactions-letter'>Em andamento: <span>1 empresa</span></h3>
+                <h3 className='box-interactions-letter'>Pendente: <span>{contatos.length} empresa</span></h3>
+                <h3 className='box-interactions-letter'>Em andamento: <span>0 empresa</span></h3>
+                <h3 className='box-interactions-letter'>Finalizado: <span>0 empresa</span></h3>
               </div>
             </div>
 
@@ -293,8 +280,8 @@ const MinhasInteracoes = (props) => {
                 <CardSerInteractionsBox
                   key={contato.id} 
                   ImagemEmpresas={ ImagemEmpresas}
-                  empresaNome={contato.nomeEmpresa}
-                  servicoNome='{contato.servicoNome}'
+                  empresaNome= {contato.nomeEmpresa}
+                  servicoNome= {contato.nomeServico}
                   statusContato={contato.status}
                   inicioContato={contato.data}
                 />

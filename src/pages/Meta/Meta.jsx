@@ -28,15 +28,8 @@ export const Meta = () => {
     const [dataInicio, setDataInicio] = useState(new Date().toISOString().split('T')[0]);
     const [dataLimite, setDataLimite] = useState('');
 
-    console.log(escolhaPilar);
 
     const salvarMeta = () => {
-        console.log({
-            escolhaPilar,
-            descricao,
-            dataInicio,
-            dataLimite,
-        });
 
         const dados = {
             pilarEsg: escolhaPilar,
@@ -45,6 +38,7 @@ export const Meta = () => {
             dataFim: dataLimite,
         };
 
+        
         api.post('/v1.0/metas', dados)
             .then((response) => {
                 console.log(response);
@@ -52,12 +46,12 @@ export const Meta = () => {
                 Swal.fire({
                     title: "Meta salva com sucesso!",
                     icon: "success",
-                    timer: 1500
                 }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                      navigate('/meu-progresso');
-                    }
+                    console.log(result);
+                        navigate('/meu-progresso');
+
                   });
+
             })
             .catch((error) => {
                 console.log(error);

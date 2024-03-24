@@ -6,7 +6,6 @@ import './Servico.css'
 //api
 import api from '../../service/api.js'
 
-import axios from 'axios';
 //imagens
 import FotoPerfil from '../../assets/imagens/perfil.jpg'
 
@@ -17,22 +16,6 @@ const Servico = (props) => {
   const navigate = useNavigate();
 
   const verServico = () => {
-    // api.get(`/v1.0/servicos/${props.id}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-    //   }
-    // })
-    //   .then(response => {
-
-    //     console.log('sucesso na busca: ', response.data)
-    //     navigate('/solucoes-esg/portfolio/avaliacao');
-    //   })
-    //   .catch(error => {
-    //     console.log('erro ao buscar serviço por id' + error);
-    //   })
-    //   .finally(
-    //     console.log('Terminei a requisição BuscarServicoPorId')
-    //   );
 
     const dadosServico = {
       id: props.id,
@@ -47,9 +30,9 @@ const Servico = (props) => {
     navigate('/solucoes-esg/portfolio/avaliacao', { state: { dadosServico } });
 
   }
-  const deletarServico = (id) => {
 
-    console.log(id + 'deletado');
+  const deletarServico = () => {
+
     Swal.fire({
       title: "Deletar Serviço?",
       icon: "question",
@@ -61,17 +44,15 @@ const Servico = (props) => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        api.delete(`/v1.0/servicos/${id}`)
+        api.delete(`/v1.0/servicos/${props.idServicoAtual}`)
           .then((response) => {
 
-            console.log('Serviço de id: ' + id + "deletado")
             console.log(response);
           })
           .catch((error) => {
             console.log('erro ao deletar serviço' + error);
           })
 
-          console.log('exclui');
         Swal.fire({
           title: "Serviço excluido!",
           icon: "success"
@@ -84,9 +65,8 @@ const Servico = (props) => {
 
   const editarServico = (e) => {
     e.preventDefault()
-    console.log('EDITAR SERVICO ');
     const dadosServicoParaEditar = {
-      id: props.id,
+      id: props.idServicoAtual,
       nomeServico: props.nomeServico,
       nomeEmpresa: props.nomeEmpresa,
       descricao: props.descricao,

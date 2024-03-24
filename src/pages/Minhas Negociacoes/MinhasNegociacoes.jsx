@@ -12,8 +12,66 @@ import { useUsuario } from '../../hooks/Usuario'
 import './MinhasNegociacoes.css'
 import LinhaContato from './LinhaContato/LinhaContato'
 
+//api
+import api from "../../service/api";
+
+import { useState, useEffect } from 'react';
+
 const MinhasNegociacoes = () => {
     const { usuario } = useUsuario();
+
+    const [interacoes, setInteracoes] = useState([]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const responseServicos = await api.get(`/v1.0/servicos`);
+                const servicosEmpresa = responseServicos.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
+
+                let todasInteracoes = [];
+
+                for (const servico of servicosEmpresa) {
+                    const interacoesResponse = await api.get(`/v1.0/interacoes/servico/${servico.id}`);
+                    for (const interacao of interacoesResponse.data) {
+                        const empresaResponse = await api.get(`/v1.0/empresas/${interacao.fkEmpresa}`);
+                        todasInteracoes.push({
+                            ...interacao,
+                            nomeEmpresa: empresaResponse.data.razaoSocial,
+                            nomeServico: servico.nomeServico,
+                            dataContato: interacao.createdAt
+                        });
+                    }
+                }
+
+                setInteracoes(todasInteracoes);
+            } catch (error) {
+                console.error("Erro ao buscar dados das interações e empresas:", error);
+            }
+        };
+        fetchData();
+
+        const timer = setTimeout(() => {
+            const novaInteracao = {
+                nomeEmpresa: "SPTECH",
+                nomeServico: "Serviço POC",
+                data: new Date().toISOString().split('T')[0],
+                status: "PENDENTE"
+            };
+    
+            setInteracoes((interacoes) => [...interacoes, novaInteracao]);
+            sessionStorage.setItem('novaNotificacao', 'true'); 
+        }, 100);
+    
+        return () => clearTimeout(timer);
+
+    }, [usuario.idPrestadora]);
+
+
+
+
+
+    console.log(interacoes);
 
     return (
         <div>
@@ -87,12 +145,21 @@ const MinhasNegociacoes = () => {
                         </div>
                         <div className='tracinho-divisor-negociacoes'></div>
 
-                        <LinhaContato />
+                        {interacoes.length > 0 ? (
+                            interacoes.map((interacao, index) => (
+                                <LinhaContato
+                                    key={index}
+                                    nomeEmpresa={interacao.nomeEmpresa}
+                                    nomeServico={interacao.nomeServico}
+                                    dataContato={interacao.data}
+                                    statusAtual={interacao.status}
+                                />
+                            ))
+                        ) : (
+                            <p className='vazio-negocios'>Não há Negociações</p>
+                        )}
 
-                        {/* <LinhaContato /> */}
-                        {/* <LinhaContato /> */}
 
-                            {/* <p className='vazio-negocios'>Não há Negociações</p> */}
                     </div>
 
                 </div>

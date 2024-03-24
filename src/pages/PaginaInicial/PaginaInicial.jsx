@@ -166,14 +166,21 @@ export const PaginaInicial = () => {
 
   const buscarInformacoesEmpresa = (id) => {
 
-    return api.get(`v1.0/empresas/${id}`)
-      .then((response) => {
-        return response.data.razaoSocial
-      })
-      .catch((error) => {
-        console.log('algo deu errado ao pegar as informações da empresa ', error.response);
-        throw error;
-      });
+    return api.get(`/v1.0/prestadoras`)
+    .then((responsePrestadora) => {
+      const fkEmpresaPrestadora = responsePrestadora.data.find(p => p.idPrestadora === id);
+
+      return api.get(`/v1.0/empresas/${fkEmpresaPrestadora.fkEmpresa}`);
+    })
+    .then((responseOutraRequisicao) => {
+      console.log('Resultado da segunda requisição: ', responseOutraRequisicao.data);
+      return responseOutraRequisicao.data.razaoSocial;
+    })
+    .catch((error) => {
+      console.log('algo deu errado em uma das requisições', error.response);
+      throw error;
+    });
+
   };
 
   const buscarFotoPerfil = (id) => {
@@ -240,7 +247,7 @@ export const PaginaInicial = () => {
   }
 
   const servicosFiltrados = categoriaSelecionada
-    ? servicos.filter(servico => servico.areaAtuacaoEsg === categoriaSelecionada)
+    ? servicos.filter(servico => servico.areaAtuacaoEsg.toLowerCase() === categoriaSelecionada)
     : servicos;
 
   return (
@@ -408,7 +415,6 @@ export const PaginaInicial = () => {
 
         <div className='servicos-pesquisados'>
 
-          {/* LISTAR SERVICOS QUE VEM ATRAVAES A REQUISICAO */}
           {servicosFiltrados.length > 0 ? (
             servicosFiltrados.map((servico) => (
               <Servico
@@ -424,7 +430,7 @@ export const PaginaInicial = () => {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
-                areaESG={servico.areaAtuacaoEsg}
+                areaESG={servico.areaAtuacaoEsg.toLowerCase()}
                 fkPrestadoraServico={servico.fkPrestadoraServico}
               />
             ))

@@ -74,11 +74,11 @@
 }
 
 .imagem-modal {
-    border-radius: 6px;
-    height: 45vh;
-    width: 45vh;
-    background-position: center;
-    background-size: contain;
+    /* border-radius: 6px; */
+    /* height: 45vh; */
+    /* width: 45vh; */
+    /* background-position: center; */
+    /* background-size: contain; */
 }
 
 
@@ -90,8 +90,8 @@
 
 
 .titulo-modal-h2 {
-    font-size: 1rem;
-    font-weight: var(--letra-medium);
+    font-size: 0.95rem;
+    font-weight: var(--letra-light);
 
 }
 
@@ -102,8 +102,8 @@
 }
 
 .titulo-modal-h2-5-texto {
-    font-size: 1rem;
-    font-weight: var(--letra-semi-bold);
+    font-size: 0.95rem;
+    font-weight: var(--letra-light);
     max-width: 90%;
 }
 

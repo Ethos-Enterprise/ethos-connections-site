@@ -47,6 +47,9 @@ const MeuPortfolio = () => {
     navigate('/meu-portfolio/editar-portfolio#dados-gerais')
   }
 
+  const [servicos, setServicos] = useState([]);
+
+
 
   useEffect(() => {
     api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
@@ -79,25 +82,24 @@ const MeuPortfolio = () => {
         }
 
       });
+
+
+    console.log(usuario.idPrestadora);
+    api.get(`/v1.0/servicos`)
+      .then((response) => {
+        const servicosEmpresa = response.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
+        setServicos(servicosEmpresa);
+      })
+      .catch((error) => {
+        console.log('erro ao pegar os serviços da empresa. ERRO: ', error);
+      });
+
+
+
   }, []);
 
 
-  // useEffect(() => {
-  //   const fkPrestadora = '6ba7b813-9dad-11d1-80b4-00c04fd430c4'
-  //   api.get(`/v1.0/servicos/lista-servicos/${fkPrestadora}`, {
-  //       params: {
-  //         fkPrestadoraServico: fkPrestadora,
-  //       }
-  //   })
-  //       .then((response) => {
-  //           console.log('SERVICOS PRESTADORA ');
-  //           console.log(response);
-  //           // setPortfolioData(response.data)
-  //       })
-  //       .catch((error) => {
-  //           console.log(error);
-  //       })
-  //   },[]);
+
 
   const mudarFotoPerfil = async () => {
     try {
@@ -111,7 +113,7 @@ const MeuPortfolio = () => {
         showCancelButton: true,
         cancelButtonText: 'Cancelar'
       });
-  
+
       if (dismissReason === Swal.DismissReason.cancel) {
         console.log("Upload cancelado pelo usuário.");
       } else if (file) {
@@ -119,20 +121,20 @@ const MeuPortfolio = () => {
 
         const formData = new FormData();
         formData.append('arquivo', file);
-  
+
         await api.patch(`/v1.0/portfolios/upload/perfil/${usuario.idPortfolio}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         })
-        .then(response => {
-          console.log('DEU CERTO MUDAR A FOTO DE PERFIL');
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-  
+          .then(response => {
+            console.log('DEU CERTO MUDAR A FOTO DE PERFIL');
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+
         const reader = new FileReader();
         reader.onload = (e) => {
           Swal.fire({
@@ -141,14 +143,14 @@ const MeuPortfolio = () => {
             imageAlt: "A imagem enviada"
           });
         };
-        reader.readAsDataURL(file); 
+        reader.readAsDataURL(file);
       }
     } catch (error) {
       console.error("Ocorreu um erro:", error);
       Swal.fire("Erro", "Não foi possível mudar a foto de perfil.", error);
     }
   };
-  
+
 
 
   const mudarFotoCapa = async () => {
@@ -233,7 +235,7 @@ const MeuPortfolio = () => {
 
               </p>
               <p className='ano-certificacao-empresa'>
-            
+
 
                 {portfolioData.dataCertificada ?
                   `Empresa certificada desde ${new Date(portfolioData.dataCertificada).getFullYear()}`
@@ -311,31 +313,26 @@ const MeuPortfolio = () => {
           <h3 className='titulo-informacao-empresa'>Todos os Serviços</h3>
           <div className='tracinho-divisor'></div>
 
-          {/* <Servico
-                        key={1}
-                        ocasiao={'portfolio-servico'}
-                        nomeServico={'Treinamento de Responsabilidade Social Corporativa (RSC)'}
-                        nomeEmpresa={'Deloitte'}
-                        descricao={'O treinamento de Responsabilidade Social Corporativa (RSC) é uma parte importante da estratégia de uma empresa para integrar práticas sociais e ambientais responsáveis em suas operações e cultura organizacional. Aqui estão alguns pontos-chave a serem considerados ao desenvolver um programa de treinamento de RSC'}
-                        valorMedio={'2.000'}
-                        areaESG={'Environmental, Social'}
-                    /> */}
+          {servicos.length > 0 ? (
+                servicos.map(servico => (
+                  <Servico
+                    key={servico.id} 
+                    idServicoAtual={servico.id}
+                    ocasiao={'portfolio-servico'}
+                    nomeServico={servico.nomeServico}
+                    nomeEmpresa={usuario.razaoSocial}
+                    descricao={servico.descricao}
+                    valorMedio={servico.valor}
+                    areaESG={servico.areaAtuacaoEsg.toLowerCase()}
+                    fkPrestadoraServico={servico.fkPrestadoraServico}
+                  />
+                ))
+              ) : (
+                <p>Nenhum serviço cadastrado.</p>
+              )}
 
 
-          {/* {servicoArmazenado.nomeServico ? (
-            <Servico
-              id={'2'}
-              ocasiao={'portfolio-servico'}
-              nomeServico={servicoArmazenado.nomeServico}
-              nomeEmpresa={usuario.razaoSocial}
-              descricao={servicoArmazenado.descricao}
-              valorMedio={(servicoArmazenado.valor)}
-              areaESG={servicoArmazenado.areaAtuacaoEsg}
-              fkPrestadoraServico={'servico.fkPrestadoraServico'}
-            />
-          ) : (
-            <p>Nenhum serviço cadastrado.</p>
-          )} */}
+
 
         </div>
 

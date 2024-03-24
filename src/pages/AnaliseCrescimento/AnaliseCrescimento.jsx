@@ -65,6 +65,26 @@ const AnaliseCrescimento = () => {
         buscarMetas();
     }, []);
 
+    const excluirMeta = (idMeta) => {
+        api.delete(`/v1.0/metas/${idMeta}`)
+            .then(() => {
+                const metasAtualizadas = metas.filter(meta => meta.id !== idMeta);
+                setMetas(metasAtualizadas);
+                Swal.fire({
+                    title: "Meta excluída com sucesso!",
+                    icon: "success",
+                });
+            })
+            .catch((error) => {
+                console.error('Erro ao excluir a meta:', error);
+                Swal.fire({
+                    title: "Erro ao excluir a meta!",
+                    text: "Tente novamente mais tarde.",
+                    icon: "error",
+                });
+            });
+    };
+
     return (
         <div>
             <HeaderPlataforma
@@ -126,17 +146,22 @@ const AnaliseCrescimento = () => {
 
                             {metas.length > 0 ? (
                                 metas.map((meta) => (
-                                    <div className='caixinha-meta-definida' key={meta.id}> 
-                                        <p className='meta-definida-descricao'>{meta.descricao}</p> 
-                                        <p>Data Limite: {meta.dataFim}</p>
-                                        <p>ver serviços</p>
+                                    <div className='caixinha-meta-definida' key={meta.id}>
+                                        <b className='meta-pilar-esg'>Pilar {meta.pilarEsg}</b>
+                                        <p className='meta-definida-descricao'>{meta.descricao}</p>
+                                        <p className='meta-data-limite'>Data Limite: {meta.dataFim}</p>
+
+                                        <div className='caixinha-com-botoes'>
+                                            <button className='botao-borda b' onClick={() => excluirMeta(meta.id)}>Excluir Meta</button>
+                                            <button className='botao-preenchido a' >Ver Serviços</button>
+                                        </div>
                                     </div>
                                 ))
-                                ) : (
-                                    <>
-                                <img src={IconeMeta} alt="icone de meta" />
-                                <p className='meta-nao-definida-caixa'>nenhuma meta definida</p>
-                                    </>
+                            ) : (
+                                <>
+                                    <img src={IconeMeta} alt="icone de meta" />
+                                    <p className='meta-nao-definida-caixa'>nenhuma meta definida</p>
+                                </>
                             )}
 
 
