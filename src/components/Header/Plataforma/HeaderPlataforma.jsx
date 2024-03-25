@@ -38,7 +38,7 @@ const HeaderPlataforma = (props) => {
         if (props.plano === 'Provider' && location.pathname !== '/minhas-negociacoes') {
             timer = setTimeout(() => {
                 setNovaNotificacao(true);
-            }, 2000);
+            }, 5000);
         }
 
         return () => clearTimeout(timer);
