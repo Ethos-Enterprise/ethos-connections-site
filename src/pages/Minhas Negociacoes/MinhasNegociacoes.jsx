@@ -52,6 +52,7 @@ const MinhasNegociacoes = () => {
         fetchData();
 
         const timer = setTimeout(() => {
+            console.log('TEMPO PARA COISAR NOTIFCAOAA');
             const novaInteracao = {
                 nomeEmpresa: "SPTECH",
                 nomeServico: "Serviço POC",
@@ -61,14 +62,11 @@ const MinhasNegociacoes = () => {
     
             setInteracoes((interacoes) => [...interacoes, novaInteracao]);
             sessionStorage.setItem('novaNotificacao', 'true'); 
-        }, 100);
+        }, 500);
     
         return () => clearTimeout(timer);
 
     }, [usuario.idPrestadora]);
-
-
-
 
 
     console.log(interacoes);

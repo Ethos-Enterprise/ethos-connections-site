@@ -85,11 +85,11 @@ const Cadastro = () => {
     })
 
       .then(response => {
-        console.log('autenticacao jwt STATUS: ', response.status);
-        if (response.status === 200 && response.data?.token) {
-          sessionStorage.setItem('authToken', response.data.token);
+        // console.log('autenticacao jwt STATUS: ', response.status);
+        if (response.status === 200 ) {
+          // sessionStorage.setItem('authToken', response.data.token);
 
-          const authToken = sessionStorage.getItem('authToken');
+          // const authToken = sessionStorage.getItem('authToken');
 
           // VOU FORMATAR O NUMERO DE FUNCIONARIOOOOS
           let numeroFuncionarios = '';
