@@ -75,18 +75,18 @@ const Cadastro = () => {
     e.preventDefault();
 
 
-    api.post('/auth/login', {
-      email: 'admin@ethos',
-      password: '123'
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    // api.post('/auth/login', {
+    //   email: 'admin@ethos',
+    //   password: '123'
+    // }, {
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // })
 
-      .then(response => {
+      // .then(response => {
         // console.log('autenticacao jwt STATUS: ', response.status);
-        if (response.status === 200 ) {
+        // if (response.status === 200 ) {
           // sessionStorage.setItem('authToken', response.data.token);
 
           // const authToken = sessionStorage.getItem('authToken');
@@ -144,13 +144,13 @@ const Cadastro = () => {
 
             });
 
-        } else {
-          throw new Error('Ops! Ocorreu um erro interno.');
-        }
-      })
-      .catch(error => {
-        console.log('erro ao acessar api' + error.message);
-      });
+        // } else {
+        //   throw new Error('Ops! Ocorreu um erro interno.');
+        // }
+      // })
+      // .catch(error => {
+      //   console.log('erro ao acessar api' + error.message);
+      // });
   };
 
 
