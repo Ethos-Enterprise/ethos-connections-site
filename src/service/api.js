@@ -5,7 +5,7 @@ import axios from "axios";
 //criando instancia do axios
 //agora qualquer requisição a api é feito como api.Verbo() 
 const api = axios.create({
-    baseURL: 'http://localhost:8081' //colocar o link da api que tem caminho para todas (a Gateway)
+    baseURL: 'http://54.147.32.243:8081' //colocar o link da api que tem caminho para todas (a Gateway)
     });
 
 //exportamos para poder acessar em todas as paginas do projeto

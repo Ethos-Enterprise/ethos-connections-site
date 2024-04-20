@@ -62,6 +62,10 @@ const Avaliacao = () => {
       status: "PENDENTE",
       fkServico: dadosServico.id,
       fkEmpresa: usuario.id
+    }, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
     })
       .then((response) => {
         console.log(response.data);
@@ -90,7 +94,11 @@ const Avaliacao = () => {
   // useEffect(() => {
   //   console.log(dadosServico.id);
 
-  //   api.get(`/v1.0/avaliacoes`)
+  //   api.get(`/v1.0/avaliacoes`, {
+  //     headers: {
+  //       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+  //     }
+  //   })
   //   .then((response) => {
   //     console.log('deu bom');
   //     console.log(response);

@@ -52,7 +52,11 @@ const MeuPortfolio = () => {
 
 
   useEffect(() => {
-    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
+    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
       .then(response => {
         const dados = response.data;
 
@@ -85,7 +89,11 @@ const MeuPortfolio = () => {
 
 
     console.log(usuario.idPrestadora);
-    api.get(`/v1.0/servicos`)
+    api.get(`/v1.0/servicos`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
       .then((response) => {
         const servicosEmpresa = response.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
         setServicos(servicosEmpresa);
@@ -125,6 +133,8 @@ const MeuPortfolio = () => {
         await api.patch(`/v1.0/portfolios/upload/perfil/${usuario.idPortfolio}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+
           },
         })
           .then(response => {
@@ -184,8 +194,6 @@ const MeuPortfolio = () => {
       console.error("An error occurred:", error);
     }
   };
-
-
 
   return (
 
@@ -314,22 +322,22 @@ const MeuPortfolio = () => {
           <div className='tracinho-divisor'></div>
 
           {servicos.length > 0 ? (
-                servicos.map(servico => (
-                  <Servico
-                    key={servico.id} 
-                    idServicoAtual={servico.id}
-                    ocasiao={'portfolio-servico'}
-                    nomeServico={servico.nomeServico}
-                    nomeEmpresa={usuario.razaoSocial}
-                    descricao={servico.descricao}
-                    valorMedio={servico.valor}
-                    areaESG={servico.areaAtuacaoEsg.toLowerCase()}
-                    fkPrestadoraServico={servico.fkPrestadoraServico}
-                  />
-                ))
-              ) : (
-                <p>Nenhum serviço cadastrado.</p>
-              )}
+            servicos.map(servico => (
+              <Servico
+                key={servico.id}
+                idServicoAtual={servico.id}
+                ocasiao={'portfolio-servico'}
+                nomeServico={servico.nomeServico}
+                nomeEmpresa={usuario.razaoSocial}
+                descricao={servico.descricao}
+                valorMedio={servico.valor}
+                areaESG={servico.areaAtuacaoEsg.toLowerCase()}
+                fkPrestadoraServico={servico.fkPrestadoraServico}
+              />
+            ))
+          ) : (
+            <p>Nenhum serviço cadastrado.</p>
+          )}
 
 
 

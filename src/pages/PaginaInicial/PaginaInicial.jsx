@@ -49,7 +49,11 @@ export const PaginaInicial = () => {
 
     console.log('servicos');
     
-    api.get("/v1.0/servicos")
+    api.get("/v1.0/servicos", {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
       .then(async (response) => {
         console.log(response.data);
         const servicosComNomeEmpresa = await Promise.all(
@@ -78,6 +82,10 @@ export const PaginaInicial = () => {
       api.get("/v1.0/servicos/busca-por-nome", {
         params: { 
           nome: pesquisaServico 
+        }
+      }, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
         }
       })
         .then(async (response) => {
@@ -166,11 +174,19 @@ export const PaginaInicial = () => {
 
   const buscarInformacoesEmpresa = (id) => {
 
-    return api.get(`/v1.0/prestadoras`)
+    return api.get(`/v1.0/prestadoras`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
     .then((responsePrestadora) => {
       const fkEmpresaPrestadora = responsePrestadora.data.find(p => p.idPrestadora === id);
 
-      return api.get(`/v1.0/empresas/${fkEmpresaPrestadora.fkEmpresa}`);
+      return api.get(`/v1.0/empresas/${fkEmpresaPrestadora.fkEmpresa}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+        }
+      });
     })
     .then((responseOutraRequisicao) => {
       console.log('Resultado da segunda requisição: ', responseOutraRequisicao.data);

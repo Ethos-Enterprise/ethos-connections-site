@@ -46,7 +46,6 @@ const MinhaConta = () => {
 
     if (secaoValida) {
       setSecaoAtual(hash);
-
     } 
 
     if (hash === 'minhas-interacoes#favoritos') {

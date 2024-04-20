@@ -32,8 +32,11 @@ const DadosComplementares = () => {
 
       try {
         const response = await
-          api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
-        // axios.get(`http://localhost:8020/v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
+          api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            }
+          });
 
         if (response.data) {
           setDadosComplementares({
@@ -89,7 +92,11 @@ const DadosComplementares = () => {
           fkPrestadoraServico: usuario.idPrestadora,
         };
 
-        api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
+        api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
           .then((response) => {
             console.log('Editar dados do portfólio', response);
             Swal.fire({
@@ -121,8 +128,11 @@ const DadosComplementares = () => {
 
     console.log(dadosDoPortifolio);
 
-    api.post('/v1.0/portfolios', dadosDoPortifolio)
-    // api.post('/v1.0/portfolios', dadosDoPortifolio)
+    api.post('/v1.0/portfolios', dadosDoPortifolio, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
 
     .then(response => {
       if (response.status === 201) {

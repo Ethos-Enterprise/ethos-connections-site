@@ -44,7 +44,11 @@ const Servico = (props) => {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        api.delete(`/v1.0/servicos/${props.idServicoAtual}`)
+        api.delete(`/v1.0/servicos/${props.idServicoAtual}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
           .then((response) => {
 
             console.log(response);

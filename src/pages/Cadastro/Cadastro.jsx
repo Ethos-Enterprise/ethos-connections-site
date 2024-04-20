@@ -119,7 +119,11 @@ const Cadastro = () => {
 
           console.log(empresaData);
 
-          api.post('/v1.0/empresas', empresaData)
+          api.post('/v1.0/empresas', empresaData, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            }
+          })
 
             .then(response => {
               console.log(response.data)

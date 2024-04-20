@@ -81,7 +81,11 @@ const AdicionarServico = (props) => {
                     valor: dadosServico.valor,
                     areaAtuacaoEsg: dadosServico.areaAtuacaoEsg,
                     fkPrestadoraServico: usuario.idPrestadora,
-                })
+                }, {
+                    headers: {
+                      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                    }
+                  })
 
                     .then((response) => {
                         Swal.fire({
@@ -127,7 +131,11 @@ const AdicionarServico = (props) => {
                         valor: dadosServico.valor,
                         areaAtuacaoEsg: dadosServico.areaAtuacaoEsg,
                         fkPrestadoraServico: usuario.id,
-                    })
+                    }, {
+                        headers: {
+                          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                        }
+                      })
                     .then((response) => {
                         console.log('editar dados portfolio', response);
                         Swal.fire({
