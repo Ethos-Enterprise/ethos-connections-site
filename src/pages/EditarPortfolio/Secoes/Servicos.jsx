@@ -26,11 +26,7 @@
 
     useEffect(() => {
       console.log(usuario.idPrestadora);
-          api.get(`/v1.0/servicos`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+          api.get(`/v1.0/servicos`)
             .then((response) => {
               const servicosEmpresa = response.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
               setServicos(servicosEmpresa);

@@ -32,11 +32,7 @@ const DadosComplementares = () => {
 
       try {
         const response = await
-          api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          });
+          api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`);
 
         if (response.data) {
           setDadosComplementares({
@@ -92,11 +88,7 @@ const DadosComplementares = () => {
           fkPrestadoraServico: usuario.idPrestadora,
         };
 
-        api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-          }
-        })
+        api.put(`/v1.0/portfolios/${usuario.idPortfolio}`, dadosDoPortifolio)
           .then((response) => {
             console.log('Editar dados do portfólio', response);
             Swal.fire({
@@ -128,11 +120,7 @@ const DadosComplementares = () => {
 
     console.log(dadosDoPortifolio);
 
-    api.post('/v1.0/portfolios', dadosDoPortifolio, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+    api.post('/v1.0/portfolios', dadosDoPortifolio)
 
     .then(response => {
       if (response.status === 201) {

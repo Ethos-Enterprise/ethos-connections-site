@@ -53,11 +53,7 @@ const AnaliseCrescimento = () => {
     useEffect(() => {
         const buscarMetas = async () => {
             try {
-                const response = await api.get('/v1.0/metas', {
-                    headers: {
-                      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                    }
-                  });
+                const response = await api.get('/v1.0/metas');
                 // const metasFiltradas = response.data.filter(meta =>  meta.fkEmpresa === usuario.id);
                 setMetas(response.data);
                 console.log(metas);
@@ -70,11 +66,7 @@ const AnaliseCrescimento = () => {
     }, []);
 
     const excluirMeta = (idMeta) => {
-        api.delete(`/v1.0/metas/${idMeta}`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+        api.delete(`/v1.0/metas/${idMeta}`)
             .then(() => {
                 const metasAtualizadas = metas.filter(meta => meta.id !== idMeta);
                 setMetas(metasAtualizadas);

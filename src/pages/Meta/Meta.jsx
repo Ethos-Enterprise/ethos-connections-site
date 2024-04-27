@@ -39,11 +39,7 @@ export const Meta = () => {
         };
 
         
-        api.post('/v1.0/metas', dados, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+        api.post('/v1.0/metas', dados)
             .then((response) => {
                 console.log(response);
                 console.log('meta');

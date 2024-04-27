@@ -159,11 +159,7 @@ const Questionario = ({categoriaQuestionario}) => {
     const categoria = categoriaQuestionario.toLowerCase();
 
     useEffect(() => {
-        api.get(`/v1.0/perguntas`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+        api.get(`/v1.0/perguntas`)
         .then(response => {
                 console.log('deu bom');
 

@@ -52,11 +52,7 @@ const MeuPortfolio = () => {
 
 
   useEffect(() => {
-    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
       .then(response => {
         const dados = response.data;
 
