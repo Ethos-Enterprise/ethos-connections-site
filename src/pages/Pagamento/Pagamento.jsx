@@ -77,20 +77,12 @@ const Pagamento = () => {
                 const responseCadastro = await api.post('/v1.0/prestadoras', {
                   idEmpresa: usuario.id,
                   statusAprovacao: 'APROVADO',
-                }, {
-                  headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                  }
                 });
-                console.log('Prestadora' + responseCadastro+ 'cadastrada com sucesso.');
-  
-                const responsePrestadoras = await api.get('/v1.0/prestadoras', {
-                  headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                  }
-                });
+                console.log('Prestadora' + responseCadastro + 'cadastrada com sucesso.');
+
+                const responsePrestadoras = await api.get('/v1.0/prestadoras');
                 console.log('VOU PEGAR O ID DELA', responsePrestadoras.data);
-  
+
                 const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === usuario.id);
                 if (prestadoraCorrespondente) {
                   console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
@@ -108,15 +100,15 @@ const Pagamento = () => {
               console.error('Erro ao processar o plano:', error.response ? error.response.data : error);
             }
           };
-  
+
           processarPlano();
         }
       });
     }, tempoDeEspera);
-  
+
     return () => clearTimeout(timeoutId);
   }, [nomeDoPlano, atualizarUsuario, usuario.id, navigate]);
-  
+
 
 
   return (

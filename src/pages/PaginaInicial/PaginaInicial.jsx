@@ -47,15 +47,11 @@ export const PaginaInicial = () => {
 
   useEffect(() => {
 
-    console.log('servicos');
+    // console.log('servicos');
     
-    api.get("/v1.0/servicos", {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+    api.get("/v1.0/servicos")
       .then(async (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const servicosComNomeEmpresa = await Promise.all(
           response.data.map(async (servico) => {
             const razaoSocial = await buscarInformacoesEmpresa(servico.fkPrestadoraServico);
@@ -82,10 +78,6 @@ export const PaginaInicial = () => {
       api.get("/v1.0/servicos/busca-por-nome", {
         params: { 
           nome: pesquisaServico 
-        }
-      }, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
         }
       })
         .then(async (response) => {
@@ -174,22 +166,14 @@ export const PaginaInicial = () => {
 
   const buscarInformacoesEmpresa = (id) => {
 
-    return api.get(`/v1.0/prestadoras`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+    return api.get(`/v1.0/prestadoras`)
     .then((responsePrestadora) => {
       const fkEmpresaPrestadora = responsePrestadora.data.find(p => p.idPrestadora === id);
 
-      return api.get(`/v1.0/empresas/${fkEmpresaPrestadora.fkEmpresa}`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-        }
-      });
+      return api.get(`/v1.0/empresas/${fkEmpresaPrestadora.fkEmpresa}`);
     })
     .then((responseOutraRequisicao) => {
-      console.log('Resultado da segunda requisição: ', responseOutraRequisicao.data);
+      // console.log('Resultado da segunda requisição: ', responseOutraRequisicao.data);
       return responseOutraRequisicao.data.razaoSocial;
     })
     .catch((error) => {
@@ -200,11 +184,7 @@ export const PaginaInicial = () => {
   };
 
   const buscarFotoPerfil = (id) => {
-    return api.get(`v1.0/empresas/${id}`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-      }
-    })
+    return api.get(`v1.0/empresas/${id}`)
       .then((response) => {
         const razaoSocial = response.data.razaoSocial;
         console.log(razaoSocial);

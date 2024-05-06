@@ -24,69 +24,28 @@ const MinhasNegociacoes = () => {
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const responseServicos = await api.get(`/v1.0/servicos`, {
-                    headers: {
-                      Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                    }
-                  });
-                const servicosEmpresa = responseServicos.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
+        const interacoesJSON = JSON.parse(sessionStorage.getItem('interacoesPrestadora') || '[]');
+        setInteracoes(interacoesJSON);
+    }, []);
 
-                let todasInteracoes = [];
-
-                for (const servico of servicosEmpresa) {
-                    const interacoesResponse = await api.get(`/v1.0/interacoes/servico/${servico.id}`, {
-                        headers: {
-                          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                        }
-                      });
-                    for (const interacao of interacoesResponse.data) {
-                        const empresaResponse = await api.get(`/v1.0/empresas/${interacao.fkEmpresa}`, {
-                            headers: {
-                              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                            }
-                          });
-                        todasInteracoes.push({
-                            ...interacao,
-                            nomeEmpresa: empresaResponse.data.razaoSocial,
-                            nomeServico: servico.nomeServico,
-                            dataContato: interacao.createdAt
-                        });
-                    }
-                }
-
-                setInteracoes(todasInteracoes);
-            } catch (error) {
-                console.error("Erro ao buscar dados das interações e empresas:", error);
+    useEffect(() => {
+        const handleStorageChange = (event) => {
+            if (event.key === 'interacoesPrestadora') {
+                const interacoesJSON = JSON.parse(event.newValue);
+                setInteracoes(interacoesJSON);
             }
         };
-        fetchData();
-
-        const timer = setTimeout(() => {
-            console.log('TEMPO PARA COISAR NOTIFCAOAA');
-            const novaInteracao = {
-                nomeEmpresa: "SPTECH",
-                nomeServico: "Serviço POC",
-                data: new Date().toISOString().split('T')[0],
-                status: "PENDENTE"
-            };
     
-            setInteracoes((interacoes) => [...interacoes, novaInteracao]);
-            sessionStorage.setItem('novaNotificacao', 'true'); 
-        }, 500);
+        window.addEventListener('storage', handleStorageChange);
     
-        return () => clearTimeout(timer);
-
-    }, [usuario.idPrestadora]);
-
-
-    console.log(interacoes);
-
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, [setInteracoes]);
+  
     return (
         <div>
             <HeaderPlataforma
-
                 plano={usuario.plano}
                 razaoSocial={usuario.razaoSocial}
             />

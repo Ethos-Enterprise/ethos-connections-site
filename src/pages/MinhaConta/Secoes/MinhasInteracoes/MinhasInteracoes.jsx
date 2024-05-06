@@ -106,37 +106,21 @@ const MinhasInteracoes = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseContatos = await api.get(`/v1.0/interacoes/empresa/${usuario.id}`, {
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-          }
-        });
+        const responseContatos = await api.get(`/v1.0/interacoes/empresa/${usuario.id}`);
         const contatosData = responseContatos.data;
   
         const contatosPromises = contatosData.map(async (contato) => {
-          const servicoResponse = await api.get(`/v1.0/servicos/${contato.fkServico}`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          });
+          const servicoResponse = await api.get(`/v1.0/servicos/${contato.fkServico}`);
           const servicoData = servicoResponse.data;
 
 
           console.log(servicoData.fkPrestadoraServico);
-          const prestadorasResponse = await api.get(`/v1.0/prestadoras`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          });
+          const prestadorasResponse = await api.get(`/v1.0/prestadoras`);
           console.log(prestadorasResponse.data);
           const idEmpresaServico = prestadorasResponse.data.filter(p => p.idPrestadora === servicoData.fkPrestadoraServico)
           .map(p => p.fkEmpresa);
 
-          const empresaResponse = await api.get(`/v1.0/empresas/${idEmpresaServico}`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          });
+          const empresaResponse = await api.get(`/v1.0/empresas/${idEmpresaServico}`);
   
           return {
             ...contato,

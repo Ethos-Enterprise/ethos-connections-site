@@ -27,6 +27,7 @@ import MinhasNegociacoes from "./pages/Minhas Negociacoes/MinhasNegociacoes.jsx"
 import MinhasInteracoes from "./pages/MinhaConta/Secoes/MinhasInteracoes/MinhasInteracoes.jsx";
 import Planos from "./pages/Home/Sections/Planos/Planos.jsx";
 import { Meta } from "./pages/Meta/Meta.jsx";
+import HeaderPlataforma from "./components/Header/Plataforma/HeaderPlataforma.jsx";
 
 function App() {
   return (

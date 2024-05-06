@@ -70,7 +70,14 @@ const Avaliacao = () => {
 
       })
       .catch((error) => {
-        console.log(error);
+        if(error.response.status){
+          setContatoSolicitado(true);
+          modal2.style.display = 'block';
+  
+        }else{
+          console.log(error);
+
+        }
       })
 
   };

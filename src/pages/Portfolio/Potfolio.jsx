@@ -86,11 +86,7 @@ const Potfolio = () => {
     // }, []);
 
     useEffect(() => {
-        api.get("v1.0/servicos", {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+        api.get("v1.0/servicos")
             .then(async (response) => {
                 console.log(response);
                 const servicosComNomeEmpresa = await Promise.all(
@@ -108,11 +104,7 @@ const Potfolio = () => {
     }, []);
 
     const buscarInformacoesEmpresa = (id) => {
-        return api.get(`/v1.0/empresas/${id}`, {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-            }
-          })
+        return api.get(`/v1.0/empresas/${id}`)
           .then((response) => {
             return response.data.razaoSocial
           })
