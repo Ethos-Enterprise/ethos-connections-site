@@ -62,6 +62,10 @@ const Avaliacao = () => {
       status: "PENDENTE",
       fkServico: dadosServico.id,
       fkEmpresa: usuario.id
+    }, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
     })
       .then((response) => {
         console.log(response.data);

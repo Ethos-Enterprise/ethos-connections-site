@@ -74,21 +74,21 @@ const Cadastro = () => {
     e.preventDefault();
 
 
-    // api.post('/auth/login', {
-    //   email: 'admin@ethos',
-    //   password: '123'
-    // }, {
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
+    api.post('/auth/login', {
+      email: 'admin@ethos',
+      password: '123'
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
-      // .then(response => {
-        // console.log('autenticacao jwt STATUS: ', response.status);
-        // if (response.status === 200 ) {
-          // sessionStorage.setItem('authToken', response.data.token);
+      .then(response => {
+        console.log('autenticacao jwt STATUS: ', response.status);
+        if (response.status === 200) {
+          sessionStorage.setItem('authToken', response.data.token);
 
-          // const authToken = sessionStorage.getItem('authToken');
+          const authToken = sessionStorage.getItem('authToken');
 
           // VOU FORMATAR O NUMERO DE FUNCIONARIOOOOS
           let numeroFuncionarios = '';
@@ -118,8 +118,11 @@ const Cadastro = () => {
 
           console.log(empresaData);
 
-          api.post('/v1.0/empresas', empresaData)
-
+          api.post('/v1.0/empresas', empresaData, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            }
+          })
             .then(response => {
               console.log(response.data)
 
@@ -133,23 +136,23 @@ const Cadastro = () => {
               setErro(true)
               console.log('erro', error.response.data.detail)
 
-              
-              if(error.response.data.detail == 'Cnpj inválido') {
-                setMensagemErro('Insira um CNPJ válido')   
-              }else{
-                setMensagemErro('CNPJ já cadastrado')          
+
+              if (error.response.data.detail == 'Cnpj inválido') {
+                setMensagemErro('Insira um CNPJ válido')
+              } else {
+                setMensagemErro('CNPJ já cadastrado')
               }
 
 
             });
 
-        // } else {
-        //   throw new Error('Ops! Ocorreu um erro interno.');
-        // }
-      // })
-      // .catch(error => {
-      //   console.log('erro ao acessar api' + error.message);
-      // });
+        } else {
+          throw new Error('Ops! Ocorreu um erro interno.');
+        }
+      })
+      .catch(error => {
+        console.log('erro ao acessar api' + error.message);
+      });
   };
 
 

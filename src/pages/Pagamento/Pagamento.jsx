@@ -77,10 +77,18 @@ const Pagamento = () => {
                 const responseCadastro = await api.post('/v1.0/prestadoras', {
                   idEmpresa: usuario.id,
                   statusAprovacao: 'APROVADO',
-                });
+                }, {
+                  headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                  }
+                })
                 console.log('Prestadora' + responseCadastro + 'cadastrada com sucesso.');
 
-                const responsePrestadoras = await api.get('/v1.0/prestadoras');
+                const responsePrestadoras = await api.get('/v1.0/prestadoras', {
+                  headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                  }
+                })
                 console.log('VOU PEGAR O ID DELA', responsePrestadoras.data);
 
                 const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === usuario.id);

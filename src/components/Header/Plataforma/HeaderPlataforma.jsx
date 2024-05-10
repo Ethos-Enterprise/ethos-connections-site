@@ -58,15 +58,27 @@ const HeaderPlataforma = (props) => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const responseServicos = await api.get(`/v1.0/servicos`);
+                    const responseServicos = await api.get(`/v1.0/servicos`, {
+                        headers: {
+                          Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                        }
+                      })
                     const servicosPrestadora = responseServicos.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
 
                     let todasInteracoes = [];
 
                     for (const servicoPrestadora of servicosPrestadora) {
-                        const interacoesResponse = await api.get(`/v1.0/interacoes/servico/${servicoPrestadora.id}`);
+                        const interacoesResponse = await api.get(`/v1.0/interacoes/servico/${servicoPrestadora.id}`, {
+                            headers: {
+                              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                            }
+                          })
                         for (const interacao of interacoesResponse.data) {
-                            const empresaResponse = await api.get(`/v1.0/empresas/${interacao.fkEmpresa}`);
+                            const empresaResponse = await api.get(`/v1.0/empresas/${interacao.fkEmpresa}`, {
+                                headers: {
+                                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                                }
+                              })
                             todasInteracoes.push({
                                 ...interacao,
                                 nomeEmpresa: empresaResponse.data.razaoSocial,

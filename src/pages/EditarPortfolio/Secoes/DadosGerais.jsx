@@ -107,12 +107,20 @@ const DadosGerais = () => {
             setor: dadosGerais.setor,
             qtdFuncionarios: dadosGerais.qtdFuncionarios,
             // assinanteNewsletter:dadosGerais.assinanteNewsletter
+          }, {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            }
           })
             .then(response => {
               console.log('deu derto resposta ');
               console.log(response);
 
-              api.get(`v1.0/empresas/${usuario.id}`)
+              api.get(`v1.0/empresas/${usuario.id}`, {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                }
+              })
                 .then((response) => {
                   console.log('NOVO USUARIO PEGO ');
                   console.log(response.data);

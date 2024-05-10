@@ -52,7 +52,11 @@ const MeuPortfolio = () => {
 
 
   useEffect(() => {
-    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`)
+    api.get(`v1.0/portfolios/prestadora/${usuario.idPrestadora}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
       .then(response => {
         const dados = response.data;
 
@@ -85,7 +89,11 @@ const MeuPortfolio = () => {
 
 
     console.log(usuario.idPrestadora);
-    api.get(`/v1.0/servicos`)
+    api.get(`/v1.0/servicos`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+      }
+    })
       .then((response) => {
         const servicosEmpresa = response.data.filter(servico => servico.fkPrestadoraServico === usuario.idPrestadora);
         setServicos(servicosEmpresa);
@@ -122,7 +130,11 @@ const MeuPortfolio = () => {
         const formData = new FormData();
         formData.append('arquivo', file);
 
-        await api.patch(`/v1.0/portfolios/upload/perfil/${usuario.idPortfolio}`, formData)
+        await api.patch(`/v1.0/portfolios/upload/perfil/${usuario.idPortfolio}`, formData, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+          }
+        })
           .then(response => {
             console.log('DEU CERTO MUDAR A FOTO DE PERFIL');
             console.log(response);
