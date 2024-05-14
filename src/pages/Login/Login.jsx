@@ -102,7 +102,7 @@ const Login = () => {
     e.preventDefault();
     if (email != '' && senha != '') {
 
-      api.post('/auth/login', {
+      api.post('/v1.0/auth/login', {
         email: 'admin@ethos',
         password: '123'
       }, {
@@ -114,8 +114,8 @@ const Login = () => {
           console.log('DEU CERTO');
 
           console.log(response);
-          if (response.status === 200 && response.data?.access_token) {
-            sessionStorage.setItem('authToken', response.data.access_token);
+          if (response.status === 200 && response.data?.token) {
+            sessionStorage.setItem('authToken', response.data.token);
 
             const authToken = sessionStorage.getItem('authToken');
 
