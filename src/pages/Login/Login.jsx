@@ -102,7 +102,7 @@ const Login = () => {
     e.preventDefault();
     if (email != '' && senha != '') {
 
-      api.post('/auth/login', {
+      api.post('v1.0/auth/login', {
         email: 'admin@ethos',
         password: '123'
       }, {
@@ -114,8 +114,8 @@ const Login = () => {
           console.log('DEU CERTO');
 
           console.log(response);
-          if (response.status === 200 && response.data?.access_token) {
-            sessionStorage.setItem('authToken', response.data.access_token);
+          if (response.status === 200 && response.data?.token) {
+            sessionStorage.setItem('authToken', response.data.token);
 
             const authToken = sessionStorage.getItem('authToken');
 
@@ -128,7 +128,7 @@ const Login = () => {
             })
               .then(response => {
                 console.log('Login realizado com sucesso!');
-                atualizarUsuario(response.data);
+                atualizarUsuario(response.data.token);
 
                 Swal.fire({
                   icon: "success",
@@ -167,7 +167,7 @@ const Login = () => {
 
               })
               .catch(error => {
-                if (error.response.data.status == 404) {
+                if (error.response.status == 404) {
                   setErro(true);
                   setMensagemErro('Email ou senha incorretas!')
                 }
@@ -179,8 +179,21 @@ const Login = () => {
           }
         })
         .catch(error => {
-          console.log('erro na autenticação');
-          console.log(error);
+          if (error.response) {
+            console.error('Erro na chamada da API:', error.response);
+        
+            if (error.response.status === 401) {
+              console.error('Token JWT inválido ou expirado');
+            } else if (error.response.status === 404) {
+              console.error('Recurso não encontrado');
+            } else {
+              console.error('Erro HTTP:', error.response.status);
+            }
+          } else if (error.request) {
+            console.error('Erro na requisição:', error.request);
+          } else {
+            console.error('Erro ao configurar a requisição:', error.message);
+          }
         });
     } else {
       setErro(true);
