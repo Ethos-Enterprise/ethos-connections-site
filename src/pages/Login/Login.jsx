@@ -118,10 +118,10 @@ const Login = () => {
 
               })
               .catch(error => {
-                if (error.response.data.status == 404) {
-                  setErro(true);
-                  setMensagemErro('Email ou senha incorretas!')
-                }
+                // if (error.response.data.status == 404) {
+                //   setErro(true);
+                //   setMensagemErro('Email ou senha incorretas!')
+                // }
                 console.error('Erro no login : ', error.response);
               });
 
