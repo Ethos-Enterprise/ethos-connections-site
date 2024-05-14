@@ -48,61 +48,12 @@ const Login = () => {
 
   const { usuario } = useUsuario();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-
-
-  //     const responseLogin = await api.get(`/v1.0/empresas/login/${email}/${senha}`);
-  //     atualizarUsuario(responseLogin.data);
-
-  //     await Swal.fire({
-  //       icon: "success",
-  //       text: "Login feito com sucesso!",
-  //       showConfirmButton: false,
-  //       timer: 2000,
-  //       timerProgressBar: true,
-  //       showClass: {
-  //         popup: 'animated fadeInDown faster'
-  //       }
-  //     });
-
-  //     // Após o sucesso do login, faz a requisição para buscar as prestadoras
-  //     const responsePrestadoras = await api.get('/v1.0/prestadoras');
-  //     // console.log(' PRESTADORA  ');
-  //     // console.log(responsePrestadoras.data);
-
-  //     const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === responseLogin.data.id);
-
-  //     if (prestadoraCorrespondente) {
-  //       console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
-
-  //       atualizarUsuario(prevState => ({ ...prevState, idPrestadora: prestadoraCorrespondente.idPrestadora }));
-  //       atualizarUsuario(prevState => ({ ...prevState, plano: "Provider" }));
-
-  //       navigate('/solucoes-esg');
-  //     } else {
-  //       console.log('Usuário não é uma prestadora.');
-  //       atualizarUsuario(prevState => ({ ...prevState, plano: "Free" }));
-
-  //       navigate('/escolha-plano');
-  //     }
-  //   } catch (error) {
-  //     console.error('Erro no login:', error);
-  //     if (error.response && error.response.data.status === 404) {
-  //       setErro(true);
-  //       setMensagemErro('Email ou senha incorretas!');
-  //     }
-  //   }
-  // };
-
-
   const handleSubmit = (e) => {
 
     e.preventDefault();
     if (email != '' && senha != '') {
 
-      api.post('v1.0/auth/login', {
+      api.post('/v1.0/auth/login', {
         email: 'admin@ethos',
         password: '123'
       }, {
@@ -167,7 +118,7 @@ const Login = () => {
 
               })
               .catch(error => {
-                if (error.response.status == 404) {
+                if (error.response.data.status == 404) {
                   setErro(true);
                   setMensagemErro('Email ou senha incorretas!')
                 }
