@@ -48,110 +48,98 @@ const Login = () => {
 
   const { usuario } = useUsuario();
 
-  const handleSubmit = (e) => {
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email != '' && senha != '') {
-
-      api.post('/v1.0/auth/login', {
-        email: 'admin@ethos',
-        password: '123'
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => {
-          console.log('DEU CERTO');
-
-          console.log(response);
-          if (response.status === 200 && response.data?.token) {
-            sessionStorage.setItem('authToken', response.data.token);
-
-            const authToken = sessionStorage.getItem('authToken');
-
-            console.log(authToken);
-
-            api.get(`/v1.0/empresas/login/${email}/${senha}`, {
-              headers: {
-                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-              }
-            })
-              .then(response => {
-                console.log('Login realizado com sucesso!');
-                atualizarUsuario(response.data.token);
-
-                Swal.fire({
-                  icon: "success",
-                  text: "Login feito com sucesso!",
-                  showConfirmButton: false,
-                  timer: 2000,
-                  timerProgressBar: true,
-                  showClass: {
-                    popup: 'animated fadeInDown faster'
-                  }
-                });
-
-                const responsePrestadoras = api.get('/v1.0/prestadoras', {
-                  headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
-                  }
-                });
-                console.log(' PRESTADORA  ');
-                console.log(responsePrestadoras.data);
-
-                const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === responseLogin.data.id);
-
-                if (prestadoraCorrespondente) {
-                  console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
-
-                  atualizarUsuario(prevState => ({ ...prevState, idPrestadora: prestadoraCorrespondente.idPrestadora }));
-                  atualizarUsuario(prevState => ({ ...prevState, plano: "Provider" }));
-
-                  navigate('/solucoes-esg');
-                } else {
-                  console.log('Usuário não é uma prestadora.');
-                  atualizarUsuario(prevState => ({ ...prevState, plano: "Free" }));
-
-                  navigate('/escolha-plano');
-                }
-
-              })
-              .catch(error => {
-                // if (error.response.data.status == 404) {
-                //   setErro(true);
-                //   setMensagemErro('Email ou senha incorretas!')
-                // }
-                console.error('Erro no login : ', error.response);
-              });
-
-          } else {
-            throw new Error('Ops! Ocorreu um erro interno.');
-          }
-        })
-        .catch(error => {
-          if (error.response) {
-            console.error('Erro na chamada da API:', error.response);
-        
-            if (error.response.status === 401) {
-              console.error('Token JWT inválido ou expirado');
-            } else if (error.response.status === 404) {
-              console.error('Recurso não encontrado');
-            } else {
-              console.error('Erro HTTP:', error.response.status);
-            }
-          } else if (error.request) {
-            console.error('Erro na requisição:', error.request);
-          } else {
-            console.error('Erro ao configurar a requisição:', error.message);
+  
+    try {
+      // Verifica se o email e senha foram preenchidos
+      if (email !== '' && senha !== '') {
+        // Autentica o usuário
+        const responseLogin = await api.post('v1.0/auth/login', {
+          email: 'admin@ethos',
+          password: '123'
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
           }
         });
-    } else {
-      setErro(true);
-      setMensagemErro('Preencha todos os campos!');
-    };
-
-  }
+  
+        // Se a autenticação for bem-sucedida
+        if (responseLogin.status === 200 && responseLogin.data?.token) {
+          sessionStorage.setItem('authToken', responseLogin.data.token);
+          const authToken = sessionStorage.getItem('authToken');
+  
+          // Faz a requisição para buscar os dados do usuário logado
+          const responseEmpresas = await api.get(`/v1.0/empresas/login/${email}/${senha}`, {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            }
+          });
+  
+          console.log('Login realizado com sucesso!');
+          console.log(responseEmpresas.data);
+  
+          // Atualiza o estado do usuário com os dados retornados pela API de empresas
+          atualizarUsuario(responseEmpresas.data);
+  
+          // Mostra o alerta de sucesso de login
+          await Swal.fire({
+            icon: "success",
+            text: "Login feito com sucesso!",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            showClass: {
+              popup: 'animated fadeInDown faster'
+            }
+          });
+  
+          // Após o sucesso do login, faz a requisição para buscar as prestadoras
+          const responsePrestadoras = await api.get('/v1.0/prestadoras', {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            }
+          });
+          console.log(' PRESTADORA  ');
+          console.log(responsePrestadoras.data);
+  
+          // Verifica se o usuário é uma prestadora
+          const prestadoraCorrespondente = responsePrestadoras.data.find(prest => prest.fkEmpresa === responseEmpresas.data.id);
+  
+          if (prestadoraCorrespondente) {
+            console.log('Usuário é uma prestadora:', prestadoraCorrespondente);
+  
+            // Atualiza o estado do usuário com o id da prestadora e o plano
+            atualizarUsuario(prevState => ({ ...prevState, idPrestadora: prestadoraCorrespondente.idPrestadora }));
+            atualizarUsuario(prevState => ({ ...prevState, plano: "Provider" }));
+  
+            // Redireciona para a página de soluções ESG
+            navigate('/solucoes-esg');
+          } else {
+            console.log('Usuário não é uma prestadora.');
+  
+            // Atualiza o estado do usuário com o plano Free
+            atualizarUsuario(prevState => ({ ...prevState, plano: "Free" }));
+  
+            // Redireciona para a página de escolha de plano
+            navigate('/escolha-plano');
+          }
+        } else {
+          throw new Error('Ops! Ocorreu um erro interno.');
+        }
+      } else {
+        setErro(true);
+        setMensagemErro('Preencha todos os campos!');
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+      if (error.response && error.response.data.status === 404) {
+        setErro(true);
+        setMensagemErro('Email ou senha incorretas!');
+      }
+    }
+  };
+  
 
   return (
     <div className={`fundo ${erro ? 'erro' : ''}`}>

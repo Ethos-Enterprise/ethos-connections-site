@@ -74,7 +74,7 @@ const Cadastro = () => {
     e.preventDefault();
 
 
-    api.post('/auth/login', {
+    api.post('v1.0/auth/login', {
       email: 'admin@ethos',
       password: '123'
     }, {
