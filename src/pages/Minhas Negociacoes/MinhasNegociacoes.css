@@ -133,6 +133,11 @@
     font-size: 1rem;
 }
 
+.dado-final:hover{
+    cursor: pointer;
+    background-color: var(--cor-secundaria);
+}
+
 .icone-atualizar{
     margin-right: 10px;
 }
@@ -142,4 +147,50 @@
     text-align: center;
     font-weight: var(--letra-regular);
     color: var(--cor-letras);
+}
+
+.modal-negociacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-negociacao-content {
+    background-color: var(--cinza);
+    border-radius: 5px;
+    width: 30%;
+    padding: 20px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.close:hover {
+    color: red;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.modal-buttons .botao-preenchido {
+    width: 10rem;
+    margin: 0px;
+    margin-top: 1vh;
+    font-size: 16px;
 }
